@@ -1,0 +1,76 @@
+/* Plangular */
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Helvetica, sans-serif;
+  font-size: 100%;
+  line-height: 1.5;
+}
+
+.wrap {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.marto { margin-top:    16px; }
+.marr  { margin-right:  16px; }
+.marbo { margin-bottom: 16px; }
+.marl  { margin-left:   16px; }
+
+.sq48 { width: 48px; height: 48px; }
+.sq64 { width: 64px; height: 64px; }
+
+.lh48 { line-height: 48px;}
+.lh64 { line-height: 64px;}
+
+.center { text-align: center; }
+
+.z64  { z-index: 64; }
+.z128 { z-index: 128; }
+.z256 { z-index: 256; }
+.posrel { position: relative; }
+.posabs { position: absolute; }
+
+
+.to0 { top:   0; }
+.r0  { right: 0; }
+.bo0 { bottom: 0; }
+.l0  { left: 0; }
+
+
+/* Player */
+
+.player {}
+
+.player .play,
+.player .pause { float: left; }
+
+.bd { overflow: auto; }
+
+
+/* Themes */
+
+.plangular {
+  color: #444;
+}
+
+.plangular .play {
+  color: #fff;
+  background-color: #ccc;
+}
+
+.plangular .pause {
+  color: #fff;
+  background-color: #0bf;
+}
+
+.time-span {
+  background-color: pink;
+}
+
+
+/* Icons */
