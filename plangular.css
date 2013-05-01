@@ -16,6 +16,29 @@ body {
   margin: 0 auto;
 }
 
+.h1 { font-size: 64px; }
+.h2 { font-size: 48px; }
+.h3 { font-size: 32px; }
+.h4 { font-size: 24px; }
+.h5 { font-size: 20px; }
+.h6 { font-size: 16px; }
+.sm { font-size: 12px; }
+
+.b  { font-weight: bold; }
+.reg { font-weight: normal; }
+
+.lh1 { line-height: 64px; }
+.lh2 { line-height: 48px; }
+.lh3 { line-height: 32px; }
+.lh4 { line-height: 24px; }
+.lh5 { line-height: 20px; }
+.lh6 { line-height: 16px; }
+
+.marto- { margin-top:    8px; }
+.marr-  { margin-right:  8px; }
+.marbo- { margin-bottom: 8px; }
+.marl-  { margin-left:   8px; }
+
 .marto { margin-top:    16px; }
 .marr  { margin-right:  16px; }
 .marbo { margin-bottom: 16px; }
@@ -23,6 +46,9 @@ body {
 
 .sq48 { width: 48px; height: 48px; }
 .sq64 { width: 64px; height: 64px; }
+
+.hi48 { height: 48px; }
+.hi64 { height: 64px; }
 
 .lh48 { line-height: 48px;}
 .lh64 { line-height: 64px;}
@@ -54,23 +80,25 @@ body {
 
 /* Themes */
 
+.dkgry { color: #444; }
+.wht   { color: #fff; }
+.prime { color: #0bf;}
+.gry1  { color: #f6f6f6; }
+.gry2  { color: #eee; }
+
+
+.bg-dkgry { background-color: #444; }
+.bg-wht   { background-color: #fff; }
+.bg-prime { background-color: #0bf;}
+.bg-gry1  { background-color: #f6f6f6; }
+.bg-gry2  { background-color: #eee; }
+
+
+
 .plangular {
-  color: #444;
+
 }
 
-.plangular .play {
-  color: #fff;
-  background-color: #ccc;
-}
-
-.plangular .pause {
-  color: #fff;
-  background-color: #0bf;
-}
-
-.time-span {
-  background-color: pink;
-}
 
 
 /* Icons */

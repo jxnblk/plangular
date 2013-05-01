@@ -122,7 +122,7 @@ plangular.controller('PlangularCtrl', ['$scope', 'soundcloud', 'player', 'audio'
     
     $scope.clientID = soundcloud.clientID;
     
-    $scope.trackURL = 'https://soundcloud.com/jxnblk/all-that-i-could-give-you';
+    $scope.trackURL = 'http://soundcloud.com/j_faraday/easy';
     
     soundcloud.getTrack($scope);
       
