@@ -1,0 +1,4 @@
+plangular
+=========
+
+Angular SoundCloud Player
