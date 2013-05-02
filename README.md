@@ -1,4 +1,4 @@
-plangular
+Plangular
 =========
 
-Angular SoundCloud Player
+Angular SoundCloud Player (WIP)

@@ -5,9 +5,11 @@ var plangular = angular.module('plangular', []).
     $routeProvider.when('/', {templateUrl: 'partials/plangular.html'});
   }]);
 
+// Replace this with Plangular SoundCloud API Client ID
+var clientID = '66828e9e2042e682190d1fde4b02e265';
+
 plangular.factory('soundcloud', function() {
-    // Replace Client ID with your plangular ID
-    var clientID = '66828e9e2042e682190d1fde4b02e265';
+     
     SC.initialize({
       client_id: clientID,
       redirect_uri: 'http:/jxnblk.com/plangular'
@@ -52,17 +54,15 @@ plangular.factory('soundcloud', function() {
 plangular.factory('player', function($rootScope, audio, soundcloud) {
     var player,
         track,
-        //playing = null,
         paused = false,
           // Check where this is defined
-          clientID = soundcloud.clientID,
+          //clientID = soundcloud.clientID,
         currentTimePercentage = audio.currentTime;
         
     player = {
 
       track: track,
       playing: false,
-      //paused: paused,
 
       play: function(track) {
       
@@ -82,11 +82,11 @@ plangular.factory('player', function($rootScope, audio, soundcloud) {
         }
       },
       
-      seek: function(time) {
-        audio.currentTime = time;
-      },
-      
     };
+    
+    audio.addEventListener('ended', function() {
+      $rootScope.$apply(player.pause());
+    }, false);
 
     return player;
   });
@@ -113,23 +113,17 @@ plangular.filter('playTime', function() {
   });
   
   
-plangular.controller('PlangularCtrl', ['$scope', 'soundcloud', 'player', 'audio', function($scope, soundcloud, player, audio) {
+plangular.controller('PlangularCtrl', ['$scope', 'soundcloud', 'player', function($scope, soundcloud, player) {
 
-    // Do I need these?
     $scope.player = player;
-    $scope.isPlaying = player.playing;
-    $scope.audio = audio;
-    
-    $scope.clientID = soundcloud.clientID;
-    
     $scope.trackURL = 'http://soundcloud.com/j_faraday/easy';
-    
     soundcloud.getTrack($scope);
       
   }]);
   
-plangular.controller('ScrubberCtrl', ['$scope', 'player', 'audio', function($scope, player, audio){
-      function updateView() {
+plangular.controller('ScrubberCtrl', ['$scope', 'audio', function($scope, audio){
+      
+      function updateScrubber() {
         $scope.$apply(function() {
           $scope.currentBufferPercentage = ((audio.buffered.length && audio.buffered.end(0)) / audio.duration) * 100;
           $scope.currentTimePercentage = (audio.currentTime / audio.duration) * 100;
@@ -138,11 +132,11 @@ plangular.controller('ScrubberCtrl', ['$scope', 'player', 'audio', function($sco
         });
       };
       
-      audio.addEventListener('timeupdate', updateView, false);
+      audio.addEventListener('timeupdate', updateScrubber, false);
     
       $scope.seekTo = function($event){
         var xpos = $event.offsetX / $event.target.offsetWidth;
-        player.seek(xpos * audio.duration);
+        audio.currentTime = (xpos * audio.duration);
       };
   }]);
   

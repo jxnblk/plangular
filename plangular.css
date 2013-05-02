@@ -1,9 +1,6 @@
 /* Plangular */
 
-* {
-  margin: 0;
-  padding: 0;
-}
+* { margin: 0; padding: 0; }
 
 body {
   font-family: Helvetica, sans-serif;
@@ -11,10 +8,9 @@ body {
   line-height: 1.5;
 }
 
-.wrap {
-  width: 90%;
-  margin: 0 auto;
-}
+.wrap { width: 90%; margin: 0 auto; }
+
+a { text-decoration: none; }
 
 .h1 { font-size: 64px; }
 .h2 { font-size: 48px; }
@@ -54,6 +50,7 @@ body {
 .lh64 { line-height: 64px;}
 
 .center { text-align: center; }
+.disb   { display: block; }
 
 .z64  { z-index: 64; }
 .z128 { z-index: 128; }
@@ -80,25 +77,139 @@ body {
 
 /* Themes */
 
-.dkgry { color: #444; }
-.wht   { color: #fff; }
-.prime { color: #0bf;}
-.gry1  { color: #f6f6f6; }
-.gry2  { color: #eee; }
+.dkgry  { color: #444; }
+.dkgry2 { color: #555; }
+.wht    { color: #fff; }
+.prime  { color: #0bf;}
+.gry1   { color: #f6f6f6; }
+.gry2   { color: #eee; }
+.midgry { color: #999; }
 
 
-.bg-dkgry { background-color: #444; }
-.bg-wht   { background-color: #fff; }
-.bg-prime { background-color: #0bf;}
-.bg-gry1  { background-color: #f6f6f6; }
-.bg-gry2  { background-color: #eee; }
+.bg-dkgry  { background-color: #444; }
+.bg-dkgry2 { background-color: #555; }
+.bg-wht    { background-color: #fff; }
+.bg-prime  { background-color: #0bf;}
+.bg-gry1   { background-color: #f6f6f6; }
+.bg-gry2   { background-color: #eee; }
+.bg-midgry { background-color: #999; }
+
+.plangular {}
 
 
+/* Animations */
 
-.plangular {
+@-webkit-keyframes popin {
+  0% { -webkit-transform: scale(.2); }
+  80% { -webkit-transform: scale(1.1); }
+  100% { -webkit-transform: scale(1); }
+} 
+.anim-popin { -webkit-animation: popin .1s; }
 
+@-webkit-keyframes spin {
+  from  {-webkit-transform: rotate(0deg);}
+  to    {-webkit-transform: rotate(360deg);}
+}
+.anim-spin { -webkit-animation: spin 4s linear infinite; }
+
+@-webkit-keyframes slideleft {
+  from  {-webkit-transform: translate3d(100%, 0, 0);}
+  to    {-webkit-transform: translate3d(0%, 0, 0);}
+}
+.anim-slideleft { -webkit-animation: slideleft .2s ease; } 
+
+
+.anim-hack {
+  -webkit-backface-visibility: hidden;
+  -webkit-perspective: 1000;
+  /* -webkit-transform: translate3d(0, 0, 0); */
 }
 
 
-
 /* Icons */
+
+@font-face {
+	font-family: 'jxn';
+	src:url('/icons/jxn.eot');
+	src:url('/icons/jxn.eot?#iefix') format('embedded-opentype'),
+		url('/icons/jxn.woff') format('woff'),
+		url('/icons/jxn.ttf') format('truetype'),
+		url('/icons/jxn.svg#jxn') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+/* Use the following CSS code if you want to use data attributes for inserting your icons */
+[data-icon]:before {
+	font-family: 'jxn';
+	content: attr(data-icon);
+	speak: none;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+}
+
+/* Use the following CSS code if you want to have a class per icon */
+/*
+Instead of a list of all class selectors,
+you can use the generic selector below, but it's slower:
+[class*="i-"] {
+*/
+.i-carat, .i-close, .i-loading, .i-link, .i-skip, .i-forward, .i-pause, .i-play, .i-cog, .i-action, .i-repost, .i-loop, .i-heart, .i-volume-off, .i-waveform, .i-shuffle {
+	font-family: 'jxn';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	/* line-height: 1; */
+	-webkit-font-smoothing: antialiased;
+}
+
+.i-carat:before {
+	content: "\21";
+}
+.i-loading:before {
+	content: "\e000";
+}
+.i-link:before {
+	content: "\e001";
+}
+.i-skip:before {
+	content: "\e002";
+}
+.i-forward:before {
+	content: "\e003";
+}
+.i-pause:before {
+	content: "\e004";
+}
+.i-play:before {
+	content: "\e005";
+}
+.i-cog:before {
+	content: "\e006";
+}
+.i-action:before {
+	content: "\e008";
+}
+.i-repost:before {
+	content: "\e009";
+}
+.i-loop:before {
+	content: "\e00a";
+}
+.i-heart:before {
+	content: "\e00d";
+}
+.i-volume-off:before {
+	content: "\e018";
+}
+.i-waveform:before {
+	content: "\e01c";
+}
+.i-shuffle:before {
+	content: "\e01f";
+}
