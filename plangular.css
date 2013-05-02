@@ -130,11 +130,11 @@ a { text-decoration: none; }
 
 @font-face {
 	font-family: 'jxn';
-	src:url('/icons/jxn.eot');
-	src:url('/icons/jxn.eot?#iefix') format('embedded-opentype'),
-		url('/icons/jxn.woff') format('woff'),
-		url('/icons/jxn.ttf') format('truetype'),
-		url('/icons/jxn.svg#jxn') format('svg');
+	src:url('/i/jxn.eot');
+	src:url('/i/jxn.eot?#iefix') format('embedded-opentype'),
+		url('/i/jxn.woff') format('woff'),
+		url('/i/jxn.ttf') format('truetype'),
+		url('/i/jxn.svg#jxn') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
