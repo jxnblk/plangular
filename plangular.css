@@ -40,11 +40,19 @@ a { text-decoration: none; }
 .marbo { margin-bottom: 16px; }
 .marl  { margin-left:   16px; }
 
+.tappad { 
+  min-height: 48px;
+  line-height: 48px;
+  padding: 0 8px;
+}
+
 .sq48 { width: 48px; height: 48px; }
 .sq64 { width: 64px; height: 64px; }
 
 .hi48 { height: 48px; }
 .hi64 { height: 64px; }
+
+.w100 { width: 100%; }
 
 .lh48 { line-height: 48px;}
 .lh64 { line-height: 64px;}
@@ -168,48 +176,18 @@ you can use the generic selector below, but it's slower:
 	-webkit-font-smoothing: antialiased;
 }
 
-.i-carat:before {
-	content: "\21";
-}
-.i-loading:before {
-	content: "\e000";
-}
-.i-link:before {
-	content: "\e001";
-}
-.i-skip:before {
-	content: "\e002";
-}
-.i-forward:before {
-	content: "\e003";
-}
-.i-pause:before {
-	content: "\e004";
-}
-.i-play:before {
-	content: "\e005";
-}
-.i-cog:before {
-	content: "\e006";
-}
-.i-action:before {
-	content: "\e008";
-}
-.i-repost:before {
-	content: "\e009";
-}
-.i-loop:before {
-	content: "\e00a";
-}
-.i-heart:before {
-	content: "\e00d";
-}
-.i-volume-off:before {
-	content: "\e018";
-}
-.i-waveform:before {
-	content: "\e01c";
-}
-.i-shuffle:before {
-	content: "\e01f";
-}
+.i-carat:before { content: "\21"; }
+.i-loading:before { content: "\e000"; }
+.i-link:before { content: "\e001"; }
+.i-skip:before { content: "\e002"; }
+.i-forward:before { content: "\e003"; }
+.i-pause:before { content: "\e004"; }
+.i-play:before { content: "\e005"; }
+.i-cog:before { content: "\e006"; }
+.i-action:before { content: "\e008"; }
+.i-repost:before { content: "\e009"; }
+.i-loop:before { content: "\e00a"; }
+.i-heart:before { content: "\e00d"; }
+.i-volume-off:before { content: "\e018"; }
+.i-waveform:before { content: "\e01c"; }
+.i-shuffle:before { content: "\e01f"; }

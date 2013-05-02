@@ -39,8 +39,6 @@ plangular.factory('soundcloud', function() {
       resolve:    function($scope, params){
                     SC.get('/resolve.json?url=http://soundcloud.com' + $scope.urlPath , function(data){
                      $scope.$apply(function () {
-                       //console.log('resolved data');
-                       //console.log(data);
                        $scope.resolveData = data;
                      });
                     });
@@ -54,38 +52,42 @@ plangular.factory('soundcloud', function() {
 plangular.factory('player', function($rootScope, audio, soundcloud) {
     var player,
         track,
-        paused = false,
-          // Check where this is defined
-          //clientID = soundcloud.clientID,
+        //paused = false,
         currentTimePercentage = audio.currentTime;
         
     player = {
 
       track: track,
       playing: false,
+      paused: false,
 
       play: function(track) {
-      
-        if (!paused) {
+        if (!player.paused) {
           audio.src = track.stream_url + '?client_id=' + clientID;
         };
         audio.play();
         player.playing = true;
-        paused = false;
+        player.paused = false;
       },
 
       pause: function(track) {
         if (player.playing) {
           audio.pause();
           player.playing = false;
-          paused = true;
+          player.paused = true;
         }
       },
+      
+      stop: function(track) {
+        audio.pause();
+        player.playing = false;
+        player.paused = false;
+      }
       
     };
     
     audio.addEventListener('ended', function() {
-      $rootScope.$apply(player.pause());
+      $rootScope.$apply(player.stop());
     }, false);
 
     return player;
@@ -113,11 +115,18 @@ plangular.filter('playTime', function() {
   });
   
   
-plangular.controller('PlangularCtrl', ['$scope', 'soundcloud', 'player', function($scope, soundcloud, player) {
+plangular.controller('PlangularCtrl', ['$scope', 'soundcloud', 'player', 'audio', function($scope, soundcloud, player, audio) {
 
+    $scope.audio = audio;
     $scope.player = player;
     $scope.trackURL = 'http://soundcloud.com/j_faraday/easy';
     soundcloud.getTrack($scope);
+    
+    $scope.updateTrack = function(trackURL){
+      $scope.trackURL = trackURL;
+      player.stop();
+      soundcloud.getTrack($scope);
+    };
       
   }]);
   

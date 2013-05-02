@@ -1,22 +1,29 @@
-<div class="plangular dkgry" ng-controller="PlangularCtrl" ng-switch on="player.playing">
+<div class="plangular dkgry" ng-controller="PlangularCtrl" ng-switch on="player.playing || player.paused">
 <h1 class="marbo">Plangular</h1>
+
+
+
+<form ng-submit="updateTrack(trackURL)">
+  <label class="sm">SoundCloud URL:</label>
+  <input ng-model="trackURL" class="tappad h4 marbo w100">
+</form>
   
-  <div class="player" id="{{track.permalink}}" ng-class="{playing: player.playing}">
+  <div class="player" id="{{track.permalink}}" ng-class="{'playing bg-prime': player.playing || player.paused}">
     
-    <a href="" class="play sq64 lh1 center midgry" ng-click="player.play(track)" ng-hide="player.playing"><i class="i-play h4 disb anim-hack anim-popin"></i></a>
+    <a href="" class="play sq64 lh1 center" ng-class="{midgry: !player.paused, 'wht bg-prime': player.paused}" ng-click="player.play(track)" ng-hide="player.playing"><i class="i-play h4 disb anim-hack anim-popin"></i></a>
     <a href="" class="pause sq64 lh1 center wht bg-prime" ng-click="player.pause(track)" ng-show="player.playing"><i class="i-pause h4 disb anim-hack anim-popin"></i></a>
     
     <div class="bd posrel hi64">
-      <h2 class="artist posrel z128 marl h6 lh5 marto- reg" ng-class="{wht: player.playing}">{{track.user.username}}</h2>
-      <h3 class="title posrel z128 marl h4 lh4 " ng-class="{wht: player.playing}">{{track.title}}</h3>
-      <div class="time-span posabs to0 r0 bo0 l0 bg-dkgry" ng-switch-when="true" ng-controller="ScrubberCtrl">
+      <h2 class="artist posrel z128 marl h6 lh5 marto- reg" ng-class="{wht: player.playing || player.paused}">{{track.user.username}}</h2>
+      <h3 class="title posrel z128 marl h4 lh4 " ng-class="{wht: player.playing || player.paused}">{{track.title}}</h3>
+      <div class="time-span posabs to0 r0 bo0 l0 bg-dkgry2" ng-switch-when="true" ng-controller="ScrubberCtrl">
         <div class="scrubber posabs to0 r0 bo0 l0 z256" ng-click="seekTo($event)"></div>
         <div class="buffer posabs to0 bo0 l0 bg-dkgry" style="width: {{currentBufferPercentage}}%"></div>
         <div class="played posabs to0 bo0 l0 bg-prime" style="width: {{currentTimePercentage}}%"></div>
-        <p class="time wht marto- marr posabs to0 r0 sm anim-hack anim-slideleft" ng-show="durationMS">{{currentTimeMS | playTime}} | {{durationMS | playTime}}</p>
+        <p class="time wht marto- marr posabs to0 r0 sm anim-hack anim-slideleft" ng-show="audio.readyState == 4">{{currentTimeMS | playTime}} | {{durationMS | playTime}}</p>
       </div>
     </div>
 
-  </div>
+  </div>  
   
 </div>
