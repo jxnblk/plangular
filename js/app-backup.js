@@ -4,10 +4,57 @@ var plangular = angular.module('plangular', []);
 var clientID = '0d33361983f16d2527b01fbf6408b7d7';
 SC.initialize({ client_id: clientID });
   
-
+// plangular.factory('player', function($rootScope, audio) {
+//     var player,
+//         track,
+//         currentTimePercentage = audio.currentTime;   
+//     player = {
+//       track: track,
+//       playing: false,
+//       paused: false,
+//       play: function(track) {
+//         console.log('clicked play ' + track);
+//         if (!player.paused) {
+//           audio.src = track + '?client_id=' + clientID;
+//         };
+//         audio.play();
+//         player.playing = true;
+//         player.paused = false;
+//       },
+//       pause: function(track) {
+//         if (player.playing) {
+//           audio.pause();
+//           player.playing = false;
+//           player.paused = true;
+//         }
+//       }
+//     };
+//     audio.addEventListener('ended', function() {
+//       $rootScope.$apply(player.pause());
+//     }, false);
+//     return player;
+//   });
+   
+// plangular.factory('audio', function($document, $rootScope) {
+//     var audio = $document[0].createElement('audio');  
+//     return audio;
+//   });
   
   
-
+// plangular.filter('playTime', function() {
+//     return function(ms) {
+//       var hours = Math.floor(ms / 36e5),
+//           mins = '0' + Math.floor((ms % 36e5) / 6e4),
+//           secs = '0' + Math.floor((ms % 6e4) / 1000);
+//           mins = mins.substr(mins.length - 2);
+//           secs = secs.substr(secs.length - 2);
+//       if (hours){
+//         return hours+':'+mins+':'+secs;  
+//       } else {
+//         return mins+':'+secs;  
+//       }; 
+//     };
+//   });
   
   
 plangular.controller('PlangularCtrl', ['$scope', 'player', 'audio', function($scope, player, audio) {
@@ -78,10 +125,10 @@ plangular.directive('plangular', function ($document) {
 
     return {
       restrict: 'A',
-      template: '<div class="plangular" id="{{src}}">{{track.user.username}} – {{track.title}}</div>'
-        + '<a href="" class="plangular-play" ng-click="player.play({{track.stream_url}})" ng-hide="player.playing">Play</a>'
-        + '<a href="" class="plangular-pause" ng-click="player.pause({{track.stream_url}})" ng-show="player.playing">Pause</a>'
-        + '<pre>{{track}}</pre>',
+      // template: '<div class="plangular" id="{{src}}">{{track.user.username}} – {{track.title}}</div>'
+      //   + '<a href="" class="plangular-play" ng-click="player.play({{track.stream_url}})" ng-hide="player.playing">Play</a>'
+      //   + '<a href="" class="plangular-pause" ng-click="player.pause({{track.stream_url}})" ng-show="player.playing">Pause</a>'
+      //   + '<pre>{{track}}</pre>',
       scope: {
         src: '='
       },
@@ -104,17 +151,3 @@ plangular.directive('plangular', function ($document) {
   
 
 
-// plangular.filter('playTime', function() {
-//     return function(ms) {
-//       var hours = Math.floor(ms / 36e5),
-//           mins = '0' + Math.floor((ms % 36e5) / 6e4),
-//           secs = '0' + Math.floor((ms % 6e4) / 1000);
-//           mins = mins.substr(mins.length - 2);
-//           secs = secs.substr(secs.length - 2);
-//       if (hours){
-//         return hours+':'+mins+':'+secs;  
-//       } else {
-//         return mins+':'+secs;  
-//       }; 
-//     };
-//   });
