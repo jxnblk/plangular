@@ -115,9 +115,9 @@ Use these examples to get started quickly
 ## Note About SoundCloud API
 
 According to the SoundCloud API terms you must:
-1. Credit the user as the creator of the content
-2. Credit SoundCloud as the source
-3. Include a link to the sound on SoundCloud (i.e. a link using `track.permalink_url`)
+- Credit the user as the creator of the content
+- Credit SoundCloud as the source
+- Include a link to the sound on SoundCloud (i.e. a link using `track.permalink_url`)
 
 Read more here: http://developers.soundcloud.com/docs/api/terms-of-use#branding
 
