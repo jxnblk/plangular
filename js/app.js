@@ -45,30 +45,27 @@ plangular.controller('PlangularCtrl', ['$scope', 'player', 'audio', function($sc
 //   }]);
 
 plangular.directive('plangular', function ($document) {
-    
-    var audio = $document[0].createElement('audio');  
-
-    var player,
-        track,
-        currentTimePercentage = audio.currentTime;   
-    player = {
+    var audio = $document[0].createElement('audio');
+    var track,
+        currentTimePercentage;
+    var player = {
       track: track,
       playing: false,
       paused: false,
       play: function(track) {
-        console.log('clicked play ' + track);
-        if (!player.paused) {
-          audio.src = track + '?client_id=' + clientID;
+        player.track = track;
+        if (player.paused != track) {
+          audio.src = track.stream_url + '?client_id=' + clientID;
         };
         audio.play();
-        player.playing = true;
+        player.playing = track;
         player.paused = false;
       },
       pause: function(track) {
         if (player.playing) {
           audio.pause();
           player.playing = false;
-          player.paused = true;
+          player.paused = track;
         }
       }
     };
@@ -78,10 +75,10 @@ plangular.directive('plangular', function ($document) {
 
     return {
       restrict: 'A',
-      template: '<div class="plangular" id="{{src}}">{{track.user.username}} – {{track.title}}</div>'
-        + '<a href="" class="plangular-play" ng-click="player.play({{track.stream_url}})" ng-hide="player.playing">Play</a>'
-        + '<a href="" class="plangular-pause" ng-click="player.pause({{track.stream_url}})" ng-show="player.playing">Pause</a>'
-        + '<pre>{{track}}</pre>',
+      // template: '<div class="plangular" id="{{src}}">{{track.user.username}} – {{track.title}}</div>'
+      //   + '<a href="" class="plangular-play" ng-click="player.play(track)" ng-hide="player.playing">Play</a>'
+      //   + '<a href="" class="plangular-pause" ng-click="player.pause(track)" ng-show="player.playing">Pause</a>'
+      //   + '<pre>{{track}}</pre>',
       scope: {
         src: '='
       },
@@ -91,9 +88,22 @@ plangular.directive('plangular', function ($document) {
            scope.track = data;
          });
         });
+        scope.player = player;
+        scope.audio = audio;
         console.log("I N I T I A L I Z I N G   P L A N G U L A R : " + scope.src);
-      },
-      player: player
+        audio.addEventListener('timeupdate', function() {
+          if (scope.track == player.track){
+            scope.$apply(function() {
+              scope.currentTime = (audio.currentTime * 1000).toFixed();
+              scope.duration = (audio.duration * 1000).toFixed();
+            });  
+          };
+        }, false);
+        scope.seekTo = function($event){
+          var xpos = $event.offsetX / $event.target.offsetWidth;
+          audio.currentTime = (xpos * audio.duration);
+        };
+      }
     }
   });
   

@@ -5,6 +5,11 @@
   <title>Plangular</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="plangular.css"/>
+
+  <script src="//connect.soundcloud.com/sdk.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.1.4/angular.min.js"></script>
+  <script src="js/app.js"></script> 
+
 </head>
 <body>
 
@@ -15,35 +20,31 @@
 
 
 <main>
-  <article class="wrap marto marbo">
+  <article class="wrap marto marbo" ng-app="plangular">
+
+    <h1>Now Playing: {{player.playing}}</h1>
   
-  <!-- <div ng-app="plangular" ng-switch on="player.playing || player.paused" class="plangular dkgry"> -->
-    <!-- Plangular Directive -->
-    <div ng-app="plangular" src="'http://soundcloud.com/jxnblk/how-fast'" plangular>
-      Loading...
+    <div src="'http://soundcloud.com/jxnblk/how-fast'" plangular>
+      <span ng-hide="track">Loading...</span>
+      <div ng-show="track">
+        <pre>{{track.user.username}} - {{track.title}} (player.playing: {{player.playing.title}})</pre>
+        <a href="" ng-click="player.play(track)">Play</a>
+        <a href="" ng-click="player.pause(track)">Pause</a>
+        <progress value="{{ currentTime / duration}}" ng-click="seekTo($event)"></progress>
+        <pre>{{currentTime}} | {{duration}}</pre>
+      </div>
     </div>
-      
-      <!-- <div class="player" id="{{track.permalink}}" ng-class="{'playing bg-prime': player.playing || player.paused}">
-        
-        <a href="" class="play sq64 lh1 center" ng-class="{midgry: !player.paused, 'wht bg-prime': player.paused}" ng-click="player.play(track)" ng-hide="player.playing"><i class="i-play h4 disb anim-hack anim-popin"></i></a>
-        <a href="" class="pause sq64 lh1 center wht bg-prime" ng-click="player.pause(track)" ng-show="player.playing"><i class="i-pause h4 disb anim-hack anim-popin"></i></a>
-        
-        <div class="bd posrel hi64">
-          <h2 class="artist posrel z128 marl h6 lh5 marto- reg" ng-class="{wht: player.playing || player.paused}">{{track.user.username}}</h2>
-          <h3 class="title posrel z128 marl h4 lh4 " ng-class="{wht: player.playing || player.paused}">{{track.title}}</h3>
-          <div class="time-span posabs to0 r0 bo0 l0 bg-dkgry2" ng-switch-when="true" ng-controller="ScrubberCtrl">
-            <div class="scrubber posabs to0 r0 bo0 l0 z256" ng-click="seekTo($event)"></div>
-            <div class="buffer posabs to0 bo0 l0 bg-dkgry" style="width: {{currentBufferPercentage}}%"></div>
-            <div class="played posabs to0 bo0 l0 bg-prime" style="width: {{currentTimePercentage}}%"></div>
-            <p class="time wht marto- marr posabs to0 r0 sm anim-hack anim-slideleft" ng-show="audio.readyState == 4">{{currentTimeMS | playTime}} | {{durationMS | playTime}}</p>
-          </div>
-        </div>
 
-      </div> -->
-
-       
-      
-    <!-- </div> -->
+    <div src="'http://soundcloud.com/jxnblk/california-extended'" plangular>
+      <span ng-hide="track">Loading...</span>
+      <div ng-show="track">
+        <pre>{{track.user.username}} - {{track.title}} (player.playing: {{player.playing.title}})</pre>
+        <a href="" ng-click="player.play(track)">Play</a>
+        <a href="" ng-click="player.pause(track)">Pause</a>
+        <progress value="{{ currentTime / duration}}" ng-click="seekTo($event)"></progress>
+        <pre>{{currentTime}} | {{duration}}</pre>
+      </div>
+    </div>
 
   </article>
 </main>
@@ -53,9 +54,9 @@
 </footer>
 
 <!-- Note to include JS requirements -->
-<script src="//connect.soundcloud.com/sdk.js"></script>
+<!-- <script src="//connect.soundcloud.com/sdk.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.1.4/angular.min.js"></script>
-<script src="js/app.js"></script> 
+<script src="js/app.js"></script>  -->
  
 </body>
 </html>
