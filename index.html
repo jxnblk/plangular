@@ -232,7 +232,7 @@
 &lt;script src=&quot;//ajax.googleapis.com/ajax/libs/angularjs/1.1.4/angular.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;js/plangular.js&quot;&gt;&lt;/script&gt;</code></pre>
       </div>
-      <p>Note: Linking to these in the head should prevent Angular content from flickering on page load.</p>
+      <p>Note: Linking to these in the <code>&lt;head&gt;</code> tag should prevent Angular content from flickering on page load.</p>
     </article>
 
     <article class="mb2">
@@ -245,7 +245,7 @@
 
     <article class="mb2">
       <h1 class="h2">Include the Track Info</h1>
-      <p class="h4 mb1">Use Angular bindings to include information about the track.</p>
+      <p class="h4 mb1">Use Angular bindings to include information about the track. You can use any of the data from the <a href="#soundcloud-reference">SoundCloud JSON Object</a></p>
       <div class="bg-light-gray pad1 over-scroll rounded">
 <pre class="m0"><code ng-non-bindable><span class="mid-gray">&lt;div plangular data-src=&quot;'http://soundcloud.com/jxnblk/plangular'&quot;&gt;</span>
   &lt;p&gt;{{ track.user.username }}&lt;/p&gt;
@@ -274,13 +274,9 @@
       <div class="bg-light-gray pad1 over-scroll rounded">
         <pre class="m0"><code ng-non-bindable><span class="mid-gray">&lt;progress value=&quot;{{ currentTime / duration }}&quot;</span> ng-click=&quot;seekTo($event)&quot;<span class="mid-gray">&gt;{{ currentTime / duration }}&lt;/progress&gt;</span></code></pre>
       </div>
+      
 
     </article>
-
-  
-
-  <!-- <a href="" ng-click="player.play(track)" ng-hide="player.playing == track"><i class="icon-play"></i></a>
-  <a href="" ng-click="player.pause()" ng-show="player.playing == track"><i class="icon-pause"></i></a> -->
 
   </section>
 
@@ -293,9 +289,9 @@
       <p class="h4">Need to write this too.</p>
     </article>
 
-    <article>
+    <article id="soundcloud-reference">
       <h2 class="h3">Example SoundCloud JSON Data</h2>
-      <p class="h4 mb1">Any of these objects can be referenced in Plangular using Angular bindings. For example, to get the track title, simply use <code ng-non-bindable class="green">{{ track.title }}</code> in your markup.</p>
+      <p class="h4 mb1">Any of this data can be referenced in Plangular using Angular bindings. For example, to get the track title, simply use <code ng-non-bindable class="green">{{ track.title }}</code> in your markup.</p>
       <div class="bg-light-gray pad1 over-scroll rounded">
         <pre plangular src="'http://soundcloud.com/mrsjxn/touch-this'" class="mb2"><samp>{{ track | json }}</samp></pre>
       </div>
