@@ -12,8 +12,7 @@
 
   <script src="//connect.soundcloud.com/sdk.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.1.4/angular.min.js"></script>
-  <script src="js/plangular.js"></script> 
-  <script src="js/showdown.js"></script>
+  <script src="plangular.js"></script>
 
 </head>
 <body ng-app="plangular">
@@ -36,12 +35,12 @@
 
 <div class="pad4-res">
 
-<main class="mb4">
+<main class="bd mb4">
 
   <section class="mb4">
 
     <h1 class="reg">Examples</h1>
-    <p class="h4 mb2">There's a million ways to skin a cat. Here's a few of them.</p>
+    <p class="h4 mb2">There's a million ways to skin a cat. Here's just a few of them.</p>
 
     <div class="bd"> <!-- .grid-1 container -->
 
@@ -222,78 +221,17 @@
 
   <section class="mb4">
 
-    <h1 class="reg">Usage</h1>
-    <p>See the <a href="http://github.com/jxnblk/Plangular">README.md</a> file on Github.</p>
+    <h1 class="reg">Get Started</h1>
+    <p class="h4 mb1">Read about how to use Plangular and start building your own players.</p>
+    <a href="http://github.com/jxnblk/Plangular" class="h4 btn btn-big btn-green">View on Github</a>
 
   </section>
 
-<!--   <section class="mb4">
-
-    <h1 class="reg">Usage</h1>
-    <p class="h3 mb2">Plangular is very customizable. If you're not comfortable with basic AngularJS, the player templates might be an easier place to start.</p>
-
-    <article class="mb2">
-      <h1 class="h2">Include JS Files</h1>
-      <p class="h4 mb1">Download the plangular.js file and add it to your project, then add the following script tags to your HTML:</p>
-      <div class="bg-light-gray pad1 over-scroll rounded">
-<pre class="m0"><code>&lt;script src=&quot;//connect.soundcloud.com/sdk.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;//ajax.googleapis.com/ajax/libs/angularjs/1.1.4/angular.min.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;js/plangular.js&quot;&gt;&lt;/script&gt;</code></pre>
-      </div>
-      <p>Note: Linking to these in the <code>&lt;head&gt;</code> tag should prevent Angular content from flickering on page load.</p>
-    </article>
-
-    <article class="mb2">
-      <h1 class="h2">Create the Player</h1>
-      <p class="h4 mb1">Use any HTML element and add the <code class="green">plangular</code> and <code class="green">data-src</code> attributes, with the SoundCloud URL for the sound you would like to use.</p>
-      <div class="bg-light-gray pad1 over-scroll rounded">
-<pre class="m0"><code>&lt;div plangular data-src=&quot;'http://soundcloud.com/jxnblk/plangular'&quot;&gt;&lt;/div&gt;</code></pre>
-      </div>
-    </article>
-
-    <article class="mb2">
-      <h1 class="h2">Include the Track Info</h1>
-      <p class="h4 mb1">Use Angular bindings to include information about the track. You can use any of the data from the <a href="#soundcloud-reference">SoundCloud JSON Object</a></p>
-      <div class="bg-light-gray pad1 over-scroll rounded">
-<pre class="m0"><code ng-non-bindable><span class="mid-gray">&lt;div plangular data-src=&quot;'http://soundcloud.com/jxnblk/plangular'&quot;&gt;</span>
-  &lt;p&gt;{{ track.user.username }}&lt;/p&gt;
-  &lt;h1&gt;{{ track.title }}&lt;/h1&gt;
-<span class="mid-gray">&lt;div&gt;</span></code></pre>
-      </div>
-    </article>
-
-    <article class="mb2">
-      
-      <h1 class="h2">Use Plangular Variables</h1>
-      
-      <p class="h4 mb1">Add Play/Pause controls. Use <code class="green">ng-hide</code> and <code class="green">ng-show</code> to conditionally show and hide the controls when the track is playing.</p>
-      <div class="bg-light-gray pad1 mb2 over-scroll rounded">
-        <pre class="m0"><code ng-non-bindable>&lt;a href=&quot;&quot; ng-click=&quot;player.play(track)&quot; ng-hide=&quot;player.playing == track&quot;&gt;Play&lt;/a&gt;
-&lt;a href=&quot;&quot; ng-click=&quot;player.pause()&quot; ng-show=&quot;player.playing == track&quot;&gt;Pause&lt;/a&gt;</code></pre>
-      </div>
-
-      <p class="h4 mb1">Plangular includes basic variables to display the sound's time and duration. The <code class="green">playTime</code> filter will convert milliseconds to hh:mm:ss format.</p>
-      <div class="bg-light-gray pad1 mb2 over-scroll rounded">
-        <pre class="m0"><code ng-non-bindable>&lt;progress value=&quot;{{ currentTime / duration }}&quot;&gt;{{ currentTime / duration }}&lt;/progress&gt;
-&lt;small&gt;{{ currentTime | playTime }} | {{ duration | playTime }}&lt;/small&gt;</code></pre>
-      </div>
-      
-      <p class="h4 mb1">Add the <code class="green">seekTo()</code> function to add scrubbing.</p>
-      <div class="bg-light-gray pad1 over-scroll rounded">
-        <pre class="m0"><code ng-non-bindable><span class="mid-gray">&lt;progress value=&quot;{{ currentTime / duration }}&quot;</span> ng-click=&quot;seekTo($event)&quot;<span class="mid-gray">&gt;{{ currentTime / duration }}&lt;/progress&gt;</span></code></pre>
-      </div>
-      
-
-    </article>
-
-  </section> -->
-
-
-
 </main>
 
-<footer class="">
-  <p>Powered by SoundCloud. Made with love by <a href="http://jxnblk.com">Jxnblk</a></p>
+<footer class="media">
+  <a href="https://twitter.com/intent/tweet?text=P%20L%20A%20N%20G%20U%20L%20A%20R%0AA%20Highly%20Customizable%20SoundCloud%20Player&amp;url=http%3A%2F%2Fjxnblk.github.io%2FPlangular%2F" class="img btn btn-med btn-green h4 mr2" target="_blank">Tweet</a>
+  <p class="bd tappad">Powered by SoundCloud. Made with love by <a href="http://jxnblk.com">Jxnblk</a></p>
 </footer>
 
 </div>

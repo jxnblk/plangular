@@ -112,11 +112,28 @@ Use these examples to get started quickly
 
 ---
 
+## Note About SoundCloud API
+
+According to the SoundCloud API terms you must:
+1. Credit the user as the creator of the content
+2. Credit SoundCloud as the source
+3. Include a link to the sound on SoundCloud (i.e. a link using `track.permalink_url`)
+
+Read more here: http://developers.soundcloud.com/docs/api/terms-of-use#branding
+
 ## Reference
 
 ### Plangular
 
-    plangular 
+- `plangular` - The Angular directive for Plangular
+- `data-src` - The data attribute to set the SoundCloud link
+- `track` - The object returned from the SoundCloud API
+- `player.play(track)` - Function for playing the track
+- `player.pause()` - Function for pausing
+- `currentTime` - Current time in milliseconds for the currently playing track
+- `duration` - Duration of the track in milliseconds
+- `playTime` - Angular filter to convert milliseconds to hh:mm:ss format
+- `seekTo($event)` - Click function for scrubbing
 
 ### SoundCloud API
 
