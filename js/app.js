@@ -4,7 +4,7 @@ var plangular = angular.module('plangular', []);
 var clientID = '0d33361983f16d2527b01fbf6408b7d7';
 SC.initialize({ client_id: clientID });
 
-plangular.directive('plangular', function ($document) {
+plangular.directive('plangular', function ($document, $rootScope) {
     var audio = $document[0].createElement('audio');
     var player = {
       track: false,
