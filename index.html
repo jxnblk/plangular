@@ -9,66 +9,130 @@
 
   <script src="//connect.soundcloud.com/sdk.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.1.4/angular.min.js"></script>
-  <script src="js/app.js"></script> 
+  <script src="js/plangular.js"></script> 
 
 </head>
 <body>
 
-<div class="pad2">
+<div class="pad4-res">
 
-<header class="mb2">
-  <h1 class="h1 reg">Plangular</h1>
-  <p>A Highly Customizable SoundCloud Player – Built with AngularJS</p>
+<header class="mb4">
+  <h1 class="reg">Plangular</h1>
+  <p class="h4">A Highly Customizable SoundCloud Player – Built with AngularJS</p>
 </header>
 
 
-<main ng-app="plangular" class="mb2">
+<main ng-app="plangular" class="mb4">
 
-  <section class="mb2">
+  <section class="mb4">
 
-    <h1 class="h2 reg mb2">Examples</h1>
+    <h1 class="reg mb2">Examples</h1>
+
+    <article plangular src="'http://soundcloud.com/jxnblk/american-party'" class="media mb4">
+      <div class="img mr1">
+        <a href="" ng-click="player.play(track)" ng-hide="player.playing == track" 
+          class="btn sq48 sq48-text btn-dark circle">
+            <i class="icon-play db anim-popin"></i>
+        </a>
+        <a href="" ng-click="player.pause()" ng-show="player.playing == track"
+          class="btn sq48 sq48-text btn-dark circle">
+            <i class="icon-pause db anim-popin"></i>
+        </a>
+      </div>
+      <div class="bd">
+        <p class="db mid-gray lh1">{{ track.user.username }}</p>
+        <h1 class="h3"><a ng-href="{{ track.permalink_url }}" class="dark-gray">{{ track.title }}</a></h1>
+      </div>
+    </article>
     
-    <article src="'http://soundcloud.com/jxnblk/how-fast'" plangular class="mb2">
+    <article plangular src="'http://soundcloud.com/jxnblk/how-fast'" class="mb4">
       <span ng-hide="track">Loading...</span>
       <div ng-show="track" class="media">
         <div class="img mr1">
-          <a href="" ng-click="player.play(track)" ng-hide="player.playing == track" class="btn btn-sq64 btn-link"><i class="icon-play db h3 anim-popin"></i></a>
-          <a href="" ng-click="player.pause()" ng-show="player.playing == track" class="btn btn-sq64 btn-link"><i class="icon-pause db h3 anim-popin"></i></a>
+          <a href="" ng-click="player.play(track)" ng-hide="player.playing == track" 
+            class="btn sq64 sq64-text rounded btn-link">
+              <i class="icon-play db h3 anim-popin"></i>
+          </a>
+          <a href="" ng-click="player.pause()" ng-show="player.playing == track"
+            class="btn sq64 sq64-text rounded btn-link">
+              <i class="icon-pause db h3 anim-popin"></i>
+          </a>
         </div>
         <div class="bd">
-          <h2 class="dib p lh1 reg mid-gray"> {{ track.user.username }}</h2>
-          <time class="fr small lh1 mid-gray">{{ currentTime | playTime }} | {{ duration | playTime }}</time>
-          <h1 class="h2 lh1 reg">{{ track.title }}</h1>
+          <!-- <h2 class="p lh1 reg mid-gray"> {{ track.user.username }}</h2> -->
+          <h1 class="h2 lh1 reg">{{ track.user.username }} – {{ track.title }}</h1>
           <progress value="{{ currentTime / duration}}" ng-click="seekTo($event)" class="progress w100">{{ currentTime / duration}}</progress>
-          
+          <time class="fl small mid-gray">{{ currentTime | playTime }} | {{ duration | playTime }}</time>
           <a ng-href="{{ track.permalink_url }}" class="fr small mid-gray">View on SoundCloud</a>
         </div>
       </div>
     </article>
     
 
-    <article src="'http://soundcloud.com/jxnblk/tall-girls-extended'" plangular class="mb2">
+    <article plangular src="'http://soundcloud.com/jxnblk/tall-girls-extended'" class="mb4">
       <span ng-hide="track">Loading...</span>
-      <div ng-show="track" class="media">
-        <div class="img sq96 mr1">
-          <img ng-src="{{ track.artwork_url }}" class="w100" />
-        </div>
-        <div class="bd">
-          <h1 class="h3 reg">{{ track.user.username }} - {{ track.title }}</h1>
-          <div class="media">
-            <div class="img mt-5 mr1">
-              <a href="" ng-click="player.play(track)" ng-hide="player.playing == track" class="btn btn-med btn-link"><i class="icon-play db p"></i></a>
-              <a href="" ng-click="player.pause()" ng-show="player.playing == track" class="btn btn-med btn-link"><i class="icon-pause db p"></i></a>
-            </div>
-            <div class="bd pos-rel">
-              <progress value="{{ currentTime / duration}}"  class="progress pos-abs top right bottom left w100 hi100"></progress>
-              <img ng-src="{{ track.waveform_url }}" class="db pos-rel z2 w100 hi64 sc-waveform-whiten" />
-              <div class="pos-abs fill z3" ng-click="seekTo($event)"></div>
-              <time class="pos-abs top right z2 mt1 mr1 small mid-gray">{{ currentTime | playTime }} | {{ duration | playTime }}</time>
-            </div>
+      <div ng-show="track">
+        
+        <h1 class="h3 reg">{{ track.user.username }} - {{ track.title }}</h1>
+        <div class="media">
+          <div class="img mt-5 mr1">
+            <a href="" ng-click="player.play(track)" ng-hide="player.playing == track" class="btn btn-med btn-link"><i class="icon-play db p"></i></a>
+            <a href="" ng-click="player.pause()" ng-show="player.playing == track" class="btn btn-med btn-link"><i class="icon-pause db p"></i></a>
           </div>
-          <a ng-href="{{ track.permalink_url }}" class="fr small mid-gray">View on SoundCloud</a>
+          <div class="bd pos-rel">
+            <progress value="{{ currentTime / duration}}"  class="progress pos-abs top right bottom left w100 hi100"></progress>
+            <img ng-src="{{ track.waveform_url }}" class="db pos-rel z2 w100 hi64 sc-waveform-whiten" />
+            <div class="pos-abs fill z3" ng-click="seekTo($event)"></div>
+            <time class="pos-abs top right z2 mt1 mr1 small mid-gray">{{ currentTime | playTime }} | {{ duration | playTime }}</time>
+          </div>
         </div>
+        <a ng-href="{{ track.permalink_url }}" class="fr small mid-gray">View on SoundCloud</a>
+        
+      </div>
+    </article>
+
+    <article plangular src="'http://soundcloud.com/mrsjxn/touch-this'" class="media mb4">
+      <div class="img sq128 mr1 pos-rel">
+        <img ng-src="{{ track.artwork_url }}" class="w100" />
+        <a href="" ng-click="player.play(track)" ng-hide="player.playing == track" class="db pos-abs fill sq64 sq64-text circle btn-dark"><i class="icon-play db h3"></i></a>
+        <a href="" ng-click="player.pause()" ng-show="player.playing == track" class="db pos-abs fill sq64 sq64-text circle btn-dark"><i class="icon-pause db h3"></i></a>
+      </div>
+      <div class="bd">
+        <h2 class="p lh1 reg mid-gray"> {{ track.user.username }}</h2>
+        <h1 class="h2 reg"><a ng-href="{{ track.permalink_url }}" class="dark-gray">{{ track.title }}</a></h1>
+        <div class="bd pos-rel">
+          <progress value="{{ currentTime / duration}}"  class="progress pos-abs top right bottom left w100 hi100"></progress>
+          <img ng-src="{{ track.waveform_url }}" class="db pos-rel z2 w100 hi64 sc-waveform-whiten" />
+          <div class="pos-abs fill z3" ng-click="seekTo($event)"></div>
+        </div>
+      </div>
+    </article>
+
+  </section>
+
+  <section class="mb4">
+
+    <h1 class="reg">Usage</h1>
+
+    <p class="h4">Obviously, I need to write this section.</p>
+
+  </section>
+
+  <section class="mb4">
+
+    <h1 class="reg mb2">Reference</h1>
+
+    <article class="mb2">
+      <h1 class="h3">Plangular Hooks</h1>
+      <p class="h4">Need to write this too.</p>
+    </article>
+
+    <article>
+      <h2 class="h3">Example SoundCloud JSON Data</h2>
+      <p class="h4 mb1">Any of these objects can be referenced within Plangular. For example, to get the track title, simply use <code ng-non-bindable class="p bg-light-gray rounded">{{ track.title }}</code> in your markup.</p>
+
+      <div class="bg-light-gray pad1 max-hi256 over-scroll rounded">
+        <pre plangular src="'http://soundcloud.com/mrsjxn/touch-this'" class="mb2">{{ track | json }}</pre>
       </div>
     </article>
 
@@ -77,7 +141,7 @@
 </main>
 
 <footer class="">
-  <p>Made with love by <a href="http://jxnblk.com">Jxnblk</a></p>
+  <p>Powered by SoundCloud. Made with love by <a href="http://jxnblk.com">Jxnblk</a></p>
 </footer>
 
 </div>

@@ -43,7 +43,7 @@ plangular.directive('plangular', function ($document, $rootScope) {
         scope.audio = audio;
         scope.currentTime = 0;
         scope.duration = 0;
-        console.log("I N I T I A L I Z I N G   P L A N G U L A R : " + scope.src);
+        console.log("P L A N G U L I Z I N G : " + scope.src);
         audio.addEventListener('timeupdate', function() {
           if (scope.track == player.track){
             scope.$apply(function() {
