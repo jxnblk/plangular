@@ -236,6 +236,7 @@ small, .small { font-size: 12px; }
 .light-gray    { color: #eee; }
 .bg-light-gray { background-color: #eee; }
 .white         { color: #fff; }
+a.white:hover  { color: rgba(255,255,255,.8); }
 .bg-white      { background-color: #fff; }
 
 .red { color: #f60; }
@@ -306,6 +307,36 @@ small, .small { font-size: 12px; }
   /* -webkit-transform: translate3d(0, 0, 0); */
 }
 
+
+/* Header Waveform */
+
+.header-waveform {
+  /*height: 256px;*/
+  overflow-x: hidden;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin-top: 64px;
+}
+
+.header-bg {
+  background-size: 1600%;
+  background-image: url(images/plangular-waveform-3.svg);
+  background-position: left center;
+  background-repeat: repeat-x;
+}
+
+.header-waveform-img {
+  display: block;
+  /*width: 800%;*/
+  height: 128px;
+  opacity: 1;
+  position: relative;
+  -webkit-transition: left linear .2s;
+  left: 100%;
+}
 
 /* Radicons */
 

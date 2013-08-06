@@ -15,18 +15,27 @@
   <script src="js/plangular.js"></script> 
 
 </head>
-<body>
+<body ng-app="plangular">
 
 
 
-<header class="pad4-res bg-green white">
-  <h1 class="massive">Plangular</h1>
-  <p class="h4">A Highly Customizable SoundCloud Player – Built with AngularJS</p>
+<header plangular data-src="'http://soundcloud.com/jxnblk/plangular'" class="pad4-res bg-green white pos-rel">
+  <div class="media">
+    <a href="" ng-click="player.play(track)" class="img mt1 mr1 white pos-rel z2"><i class="icon-play db h1"></i></a> 
+    <div class="bd">
+      <h1 class="massive">Plangular</h1>
+      <p class="h4">A Highly Customizable SoundCloud Player – Built with AngularJS</p>
+    </div>
+  </div>
+  <div class="header-waveform">
+    <!-- <img src="images/plangular-waveform-5.svg" class="header-waveform-img" style="left: -{{ (currentTime/duration) * 1600 }}%" /> -->
+    <img src="images/plangular-waveform-5.svg" class="header-waveform-img" style="left: -{{ (currentTime/duration) * 26214 }}px" />
+  </div>
 </header>
 
 <div class="pad4-res">
 
-<main ng-app="plangular" class="mb4">
+<main class="mb4">
 
   <section class="mb4">
 
@@ -106,7 +115,6 @@
             </a>
           </div>
           <div class="bd">
-            <!-- <h2 class="p lh1 reg mid-gray"> {{ track.user.username }}</h2> -->
             <h1 class="h2 lh1 reg">{{ track.user.username }} – {{ track.title }}</h1>
             <progress value="{{ currentTime / duration}}" ng-click="seekTo($event)" class="progress progress-green w100">
               {{ currentTime / duration}}
