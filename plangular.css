@@ -22,6 +22,10 @@ a:hover {
 
 h1, h2, h3 { line-height: 1.25; }
 h1, .h1 { font-size: 48px; }
+.h1-res { font-size: 24px; }
+@media screen and (min-width: 640px) {
+  .h1-res { font-size: 48px; }
+}
 h2, .h2 { font-size: 32px; }
 h3, .h3 { font-size: 24px; }
 h4, .h4 { font-size: 20px; }

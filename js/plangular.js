@@ -26,7 +26,6 @@ plangular.directive('plangular', function ($document, $rootScope) {
       }
     };
     audio.addEventListener('ended', function() {
-      // need to figure this out
       $rootScope.$apply(player.pause());
     }, false);
 
@@ -68,10 +67,15 @@ plangular.filter('playTime', function() {
           secs = '0' + Math.floor((ms % 6e4) / 1000);
           mins = mins.substr(mins.length - 2);
           secs = secs.substr(secs.length - 2);
-      if (hours){
-        return hours+':'+mins+':'+secs;  
+      if(!isNaN(secs)){
+        if (hours){
+          return hours+':'+mins+':'+secs;  
+        } else {
+          return mins+':'+secs;  
+        };
       } else {
-        return mins+':'+secs;  
-      }; 
+        return '00:00';
+      };
+         
     };
   });
