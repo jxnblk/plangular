@@ -1,4 +1,4 @@
 Plangular
 =========
 
-Angular SoundCloud Player (WIP)
+A Highly Customizable SoundCloud Player Built with AngularJS
