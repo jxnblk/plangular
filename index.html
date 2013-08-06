@@ -15,38 +15,40 @@
 
 <header class="wrap marto marbo">
   <h1>Plangular</h1>
-  <p>An embeddable SoundCloud player built with AngularJS</p>
+  <p>A Highly Customizable SoundCloud Player Built with AngularJS</p>
 </header>
 
 
-<main>
-  <article class="wrap marto marbo" ng-app="plangular">
-
-    <h1>Now Playing: {{player.playing}}</h1>
+<main ng-app="plangular" class="wrap marto marbo">
   
+  <article class="marbo">
     <div src="'http://soundcloud.com/jxnblk/how-fast'" plangular>
       <span ng-hide="track">Loading...</span>
       <div ng-show="track">
-        <pre>{{track.user.username}} - {{track.title}} (player.playing: {{player.playing.title}})</pre>
-        <a href="" ng-click="player.play(track)">Play</a>
-        <a href="" ng-click="player.pause(track)">Pause</a>
+        <p>{{track.user.username}}</p>
+        <h1>{{track.title}}</h1>
+        <a href="" ng-click="player.play(track)" ng-hide="player.playing == track">Play</a>
+        <a href="" ng-click="player.pause()" ng-show="player.playing == track">Pause</a>
         <progress value="{{ currentTime / duration}}" ng-click="seekTo($event)"></progress>
-        <pre>{{currentTime}} | {{duration}}</pre>
+        <time>{{ currentTime | playTime }} | {{ duration | playTime }}</time>
       </div>
     </div>
+  </article>
 
+  <article class="marbo">
     <div src="'http://soundcloud.com/jxnblk/california-extended'" plangular>
       <span ng-hide="track">Loading...</span>
       <div ng-show="track">
-        <pre>{{track.user.username}} - {{track.title}} (player.playing: {{player.playing.title}})</pre>
-        <a href="" ng-click="player.play(track)">Play</a>
-        <a href="" ng-click="player.pause(track)">Pause</a>
+        <p>{{track.user.username}}</p>
+        <h1>{{track.title}}</h1>
+        <a href="" ng-click="player.play(track)" ng-hide="player.playing == track">Play</a>
+        <a href="" ng-click="player.pause()" ng-show="player.playing == track">Pause</a>
         <progress value="{{ currentTime / duration}}" ng-click="seekTo($event)"></progress>
-        <pre>{{currentTime}} | {{duration}}</pre>
+        <time>{{ currentTime | playTime }} | {{ duration | playTime }}</time>
       </div>
     </div>
-
   </article>
+
 </main>
 
 <footer class="wrap marto marbo">
