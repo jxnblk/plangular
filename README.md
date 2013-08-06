@@ -3,12 +3,13 @@ Plangular
 
 A Highly Customizable SoundCloud Player –  Built with AngularJS
 
-[http://jxnblk.github.io/Plangular]
+See examples and more here:
+http://jxnblk.github.io/Plangular
 
 ---
 
 ## Usage
-Plangular is very customizable. If you're not comfortable with basic AngularJS, the player templates might be an easier place to start.
+Plangular is very customizable. If you're not comfortable with basic AngularJS, the player templates below might be an easier place to start.
 
 ### Include JS Files
 Download the plangular.js file and add it to your project, then add the following script tags to your HTML:
@@ -16,6 +17,13 @@ Download the plangular.js file and add it to your project, then add the followin
     <script src="//connect.soundcloud.com/sdk.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.1.4/angular.min.js"></script>
     <script src="js/plangular.js"></script>
+
+### Initialize the Angular App
+Include the `ng-app` attribute in a containing element.
+
+    <body ng-app="plangular">
+      ...
+    </body>
 
 ### Create the Player
 Use any HTML element and add the `plangular` and `data-src` attributes, with the SoundCloud URL for the sound you would like to use.
@@ -51,5 +59,123 @@ To use images and links in the track object, use Angular's `ng-src` and `ng-href
     <img ng-src="{{ track.waveform_url }}" alt="waveform" />
 
 Note: The waveform image that the SoundCloud API provides is a 1200 x 280px PNG with a light gray frame and transparent middle. To show progress use absolute positioning with the waveform in front. The light gray color is #efefef.
+
+### Style with CSS
+Add classes, custom images, and whatever else your heart desires. Have fun!
+
+---
+
+## Example Templates
+Use these examples to get started quickly
+
+### Bare Bones
+    
+    <div plangular data-src="'http://soundcloud.com/jxnblk/plangular'">
+      <a href="" ng-click="player.play(track)" ng-hide="player.playing == track">Play</a>
+      <a href="" ng-click="player.pause()" ng-show="player.playing == track">Pause</a>
+      <h1>{{ track.user.username }} - {{ track.title }}</h1>
+    </div>
+
+### Progress Bar
+
+    <div plangular data-src="'http://soundcloud.com/jxnblk/plangular'" class="media">
+      <a href="" ng-click="player.play(track)" ng-hide="player.playing == track" class="img">Play</a>
+      <a href="" ng-click="player.pause()" ng-show="player.playing == track" class="img">Pause</a>
+      <div class="bd">
+        <p>{{ track.user.username }}</p>
+        <h1><a ng-href="{{ track.permalink_url }}">{{ track.title }}</a></h1>
+        <progress value="{{ currentTime / duration }}" ng-click="seekTo($event)">{{ currentTime / duration }}</progress>
+        <small>{{ currentTime | playTime }} | {{ duration | playTime }}</small>
+      </div>
+    </div>
+
+### Artwork and Waveform
+
+    <div plangular data-src="'http://soundcloud.com/jxnblk/plangular'" class="media">
+      <img ng-src="{{ track.artwork_url }}" class="img" />
+      <div class="bd">
+        <div class="media">
+          <a href="" ng-click="player.play(track)" ng-hide="player.playing == track" class="img">Play</a>
+          <a href="" ng-click="player.pause()" ng-show="player.playing == track" class="img">Pause</a>
+          <div class="bd">
+            <p>{{ track.user.username }}</p>
+            <h1><a ng-href="{{ track.permalink_url }}">{{ track.title }}</a></h1>
+          </div>
+        </div>
+        <div ng-click="seekTo($event)">
+          <progress value="{{ currentTime / duration }}">{{ currentTime / duration }}</progress>
+          <img ng-src="{{ track.waveform_url }}" />
+        </div>
+        <small>{{ currentTime | playTime }} | {{ duration | playTime }}</small>
+      </div>
+    </div>
+
+---
+
+## Reference
+
+### Plangular
+
+    plangular 
+
+### SoundCloud API
+
+Example JSON object:
+    
+    {
+      "kind": "track",
+      "id": 104286869,
+      "created_at": "2013/08/06 18:40:58 +0000",
+      "user_id": 1561,
+      "duration": 10058,
+      "commentable": true,
+      "state": "finished",
+      "original_content_size": 1764044,
+      "sharing": "public",
+      "tag_list": "Vocal",
+      "permalink": "plangular",
+      "streamable": true,
+      "embeddable_by": "all",
+      "downloadable": false,
+      "purchase_url": null,
+      "label_id": null,
+      "purchase_title": null,
+      "genre": "FX",
+      "title": "Plangular",
+      "description": "",
+      "label_name": null,
+      "release": null,
+      "track_type": null,
+      "key_signature": null,
+      "isrc": null,
+      "video_url": null,
+      "bpm": null,
+      "release_year": null,
+      "release_month": null,
+      "release_day": null,
+      "original_format": "wav",
+      "license": "all-rights-reserved",
+      "uri": "http://api.soundcloud.com/tracks/104286869",
+      "user": {
+        "id": 1561,
+        "kind": "user",
+        "permalink": "jxnblk",
+        "username": "Jxnblk",
+        "uri": "http://api.soundcloud.com/users/1561",
+        "permalink_url": "http://soundcloud.com/jxnblk",
+        "avatar_url": "http://i1.sndcdn.com/avatars-000022806518-7o90vj-large.jpg?5ffe3cd"
+      },
+      "permalink_url": "http://soundcloud.com/jxnblk/plangular",
+      "artwork_url": null,
+      "waveform_url": "http://w1.sndcdn.com/2t0q2x8lbAVJ_m.png",
+      "stream_url": "http://api.soundcloud.com/tracks/104286869/stream",
+      "playback_count": 51,
+      "download_count": 0,
+      "favoritings_count": 1,
+      "comment_count": 0,
+      "attachments_uri": "http://api.soundcloud.com/tracks/104286869/attachments"
+    }
+
+See http://developers.soundcloud.com/docs/api/reference#users for more details
 
 

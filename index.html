@@ -13,6 +13,7 @@
   <script src="//connect.soundcloud.com/sdk.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.1.4/angular.min.js"></script>
   <script src="js/plangular.js"></script> 
+  <script src="js/showdown.js"></script>
 
 </head>
 <body ng-app="plangular">
@@ -222,6 +223,13 @@
   <section class="mb4">
 
     <h1 class="reg">Usage</h1>
+    <p>See the <a href="http://github.com/jxnblk/Plangular">README.md</a> file on Github.</p>
+
+  </section>
+
+<!--   <section class="mb4">
+
+    <h1 class="reg">Usage</h1>
     <p class="h3 mb2">Plangular is very customizable. If you're not comfortable with basic AngularJS, the player templates might be an easier place to start.</p>
 
     <article class="mb2">
@@ -278,26 +286,9 @@
 
     </article>
 
-  </section>
+  </section> -->
 
-  <section class="mb4">
 
-    <h1 class="reg mb2">Reference</h1>
-
-    <article class="mb2">
-      <h1 class="h3">Plangular Hooks</h1>
-      <p class="h4">Need to write this too.</p>
-    </article>
-
-    <article id="soundcloud-reference">
-      <h2 class="h3">Example SoundCloud JSON Data</h2>
-      <p class="h4 mb1">Any of this data can be referenced in Plangular using Angular bindings. For example, to get the track title, simply use <code ng-non-bindable class="green">{{ track.title }}</code> in your markup.</p>
-      <div class="bg-light-gray pad1 over-scroll rounded">
-        <pre plangular src="'http://soundcloud.com/mrsjxn/touch-this'" class="mb2"><samp>{{ track | json }}</samp></pre>
-      </div>
-    </article>
-
-  </section>
 
 </main>
 
@@ -306,18 +297,6 @@
 </footer>
 
 </div>
-
-<script>
-  // plangular.filter('escapeHTML', function(text) {
-  //   if (text) {
-  //     return text.
-  //         replace(/&/g, '&amp;').
-  //         replace(/</g, '&lt;').
-  //         replace(/>/g, '&gt;');
-  //   }
-  //   return '';
-  // });
-</script>
  
 </body>
 </html>
