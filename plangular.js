@@ -1,3 +1,13 @@
+/*
+
+        PLANGULAR
+        A Highly Customizable SoundCloud Player
+
+        http://jxnblk.github.io/Plangular
+
+ */
+
+
 'use strict';
 
 var plangular = angular.module('plangular', []);
