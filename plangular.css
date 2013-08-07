@@ -153,6 +153,10 @@ code, pre, samp, .mono { font-family: 'Source Code Pro', monospace; }
 .img   { float: left; }
 .bd    { overflow: hidden; }
 
+@media screen and (max-width: 512px) {
+  .media-fold .bd { clear: both; }
+}
+
 .btn { display: inline-block; }
 
 .btn-med {
@@ -235,7 +239,10 @@ code, pre, samp, .mono { font-family: 'Source Code Pro', monospace; }
 }
 .btn-dark:hover {
   color: #fff;
+  background-color: rgba(0,0,0,.5);
 }
+
+.btn-scale:active { -webkit-transform: scale(.9); }
 
 /* Themes */
 
