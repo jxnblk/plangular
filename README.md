@@ -121,6 +121,14 @@ According to the SoundCloud API terms you must:
 
 Read more here: http://developers.soundcloud.com/docs/api/terms-of-use#branding
 
+---
+
+## Troubleshooting
+
+Don't ask me why, but SoundCloud provides an option for users to prevent streaming to third-party apps. If your sound isn't play or has stopped playing check the `track.streamable` variable. If it's set to false, there's no way to play that sound with the API.
+
+---
+
 ## Reference
 
 ### Plangular
