@@ -300,12 +300,40 @@ a.white:hover  { color: rgba(255,255,255,.8); }
 }
 .anim-slideleft { -webkit-animation: slideleft .2s ease; } 
 
-
 .anim-hack {
   -webkit-backface-visibility: hidden;
   -webkit-perspective: 1000;
-  /* -webkit-transform: translate3d(0, 0, 0); */
 }
+
+@-webkit-keyframes float-up {
+  0%   { opacity: 0; top: 4rem; }
+  100% { opacity: 1; top: 0; }
+}
+ 
+.float-up {
+  opacity: 0;
+  position: relative;
+  -webkit-animation-name: float-up;
+  -webkit-animation-duration: .3s;
+  -webkit-animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes fade-in {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.fade-in {
+  opacity: 0;
+  -webkit-animation-name: fade-in;
+  -webkit-animation-duration: 2s;
+  -webkit-animation-fill-mode: forwards;
+}
+ 
+.anim-delay-1 { -webkit-animation-delay: .1s; }
+.anim-delay-2 { -webkit-animation-delay: .2s; }
+.anim-delay-3 { -webkit-animation-delay: .3s; }
+.anim-delay-4 { -webkit-animation-delay: .4s; }
 
 
 /* Header Waveform */
