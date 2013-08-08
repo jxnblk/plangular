@@ -214,11 +214,17 @@
       </article>
 
       <article plangular data-src="'https://soundcloud.com/jxnblk/sets/magic-summer'" class="grid-1 media mb2">
+
         <h1>{{ playlist.title }}</h1>
-        <a href="" ng-click="playPlaylist()">Play</a> | <a href="" ng-click="player.pause()">Pause</a> | <a href="" ng-click="previous()">Previous</a> | <a href="" ng-click="next()">Next</a>
+        <div>
+          <a href="" ng-click="player.previous(playlist)">Previous</a>
+          <a href="" ng-click="player.playPlaylist(playlist)" ng-hide="player.tracks == playlist.tracks && player.playing">Play</a>
+          <a href="" ng-click="player.pause()" ng-show="player.tracks == playlist.tracks && player.playing">Pause</a>
+          <a href="" ng-click="player.next(playlist)">Next</a>
+        </div>
         <div ng-repeat="track in playlist.tracks">
           <div class="img mr1">
-            <a href="" ng-click="player.play(track, $index)" ng-hide="player.playing == track" 
+            <a href="" ng-click="player.play(playlist.tracks, $index)" ng-hide="player.playing == track" 
               class="sq32 sq32-text mid-gray">
                 <i class="icon-play db anim-popin"></i>
             </a>
@@ -228,7 +234,7 @@
             </a>
           </div>
           <p class="bd p reg tappad-small"><a ng-href="{{ track.permalink_url }}" class="dark-gray">
-            {{ track.user.username }} – {{ track.title }} [{{ $index }}]
+            {{ track.user.username }} – {{ track.title }}
           </a></p>
         </div>
         <!-- <pre>{{ playlist | json }}</pre> -->
