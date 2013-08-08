@@ -64,10 +64,11 @@
       </article>
 
       <article plangular data-src="'http://soundcloud.com/mrsjxn/bbb'" class="grid-1 mb4">
-        <div class="asp-16o9 bg-center bg-cover pos-rel" style="background-image: url(images/mrsjxn.jpg)">
-          <div class="pos-abs top right left mt1 center white">
-            <h1 class="caps reg">{{ track.title }}</h1>
-          </div>
+        <div class="asp-16o9 bg-center bg-cover pos-rel" style="background-image: url(images/zoe.jpg)">
+          
+          <p class="p pad1 caps caps-tracked center white">{{ track.user.username }}</p>
+          <h1 class="massive reg center white">{{ track.title }}</h1>
+        
           <div class="media pos-abs right bottom left">
             <div class="img sq48 sq48-text">
               <a href="" ng-click="player.play(track)" ng-hide="player.playing == track" 
@@ -245,7 +246,7 @@
     <div class="bd">
 
       <article plangular data-src="'https://soundcloud.com/jxnblk/sets/magic-summer'" class="grid-1 mb2 bd bg-light-gray rounded">
-        <div class="pad1 bd bg-mid-gray white">
+        <div class="pad1 bd bg-dark-gray white">
           <p>{{ playlist.user.username }}</h1>
           <h1>{{ playlist.title }}</h1>
           <div class="media mb1">
@@ -256,14 +257,14 @@
               <a href="" ng-click="player.next(playlist)" class="fl white"><i class="icon-skip p tappad"></i></a>
             </div>
             <div class="bd">
-              <progress value="{{ currentTime / duration}}" ng-click="seekTo($event)" class="mt1 progress progress-white progress-gray-alt w100">{{ currentTime / duration}}</progress>
+              <progress value="{{ currentTime / duration}}" ng-click="seekTo($event)" class="mt1 progress progress-gray w100">{{ currentTime / duration}}</progress>
               <small class="fl">{{ currentTime | playTime }}</small>
               <small class="fr">{{ duration | playTime }}</small>
             </div>
           </div>
         </div>
         <div class="pad1 bd">
-          <ol class="">
+          <ol class="mid-gray">
             <li ng-repeat="track in playlist.tracks" class="ml2"><a href="" ng-click="player.play(playlist.tracks, $index)" class="db" ng-class="{'mid-gray': player.playing != track, 'dark-gray': player.playing == track}">
               <strong>{{ track.user.username }}</strong> - {{ track.title }}
             </a></li>
@@ -272,15 +273,15 @@
         </div>
       </article>
 
-      <article plangular data-src="'https://soundcloud.com/jxnblk/sets/march-on'" class="grid-1 mb2 bd bg-light-gray mid-gray rounded">
+      <article plangular data-src="'https://soundcloud.com/jxnblk/sets/march-on'" class="grid-1 mb2 bd bg-light-gray rounded">
         <div class="asp-3o1 bd bg-center bg-cover pos-rel" style="background-image: url(images/march-on.jpg)"></div>
         <div class="pad1 bd">
           <div class="center">
             <div class="dib">
-              <a href="" ng-click="player.previous(playlist)" class="fl mr1 mid-gray"><i class="icon-previous p tappad"></i></a>
-              <a href="" ng-click="player.playPlaylist(playlist)" ng-hide="player.tracks == playlist.tracks && player.playing" class="fl mid-gray"><i class="icon-play h2 tappad"></i></a>
-              <a href="" ng-click="player.pause()" ng-show="player.tracks == playlist.tracks && player.playing" class="fl mid-gray"><i class="icon-pause h2 tappad"></i></a>
-              <a href="" ng-click="player.next(playlist)" class="fl ml1 mid-gray"><i class="icon-skip p tappad"></i></a>
+              <a href="" ng-click="player.previous(playlist)" class="fl mr1 dark-gray"><i class="icon-previous p tappad"></i></a>
+              <a href="" ng-click="player.playPlaylist(playlist)" ng-hide="player.tracks == playlist.tracks && player.playing" class="fl dark-gray"><i class="icon-play h2 tappad"></i></a>
+              <a href="" ng-click="player.pause()" ng-show="player.tracks == playlist.tracks && player.playing" class="fl dark-gray"><i class="icon-pause h2 tappad"></i></a>
+              <a href="" ng-click="player.next(playlist)" class="fl ml1 dark-gray"><i class="icon-skip p tappad"></i></a>
             </div>
           </div>
           <div class="bd mb1">
@@ -290,7 +291,7 @@
           </div>
           
           <ol class="max-hi256 over-scroll">
-            <li ng-repeat="track in playlist.tracks" class="ml2"><a href="" ng-click="player.play(playlist.tracks, $index)" class="db" ng-class="{'mid-gray': player.playing != track, 'dark-gray': player.playing == track}">
+            <li ng-repeat="track in playlist.tracks" class="ml2"><a href="" ng-click="player.play(playlist.tracks, $index)" class="db tappad" ng-class="{'dark-gray': player.playing != track}">
               <strong>{{ track.user.username }}</strong> - {{ track.title }}
             </a></li>
           </ol>
