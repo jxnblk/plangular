@@ -22,11 +22,20 @@ plangular.directive('plangular', function ($document, $rootScope) {
       track: false,
       playing: false,
       paused: false,
-      play: function(track) {
-        player.track = track;
-        if (player.paused != track) audio.src = track.stream_url + '?client_id=' + clientID;
+      tracks: null,
+      i: null,
+      play: function(tracks, i) {
+        console.log('play $index: ' + i);
+        if (i == null) {
+          tracks = new Array(tracks);
+          i = 0;
+        };
+        player.tracks = tracks;
+        player.track = tracks[i];
+        player.i = i;
+        if (player.paused != player.track) audio.src = player.track.stream_url + '?client_id=' + clientID;
         audio.play();
-        player.playing = track;
+        player.playing = player.track;
         player.paused = false;
       },
       pause: function() {
@@ -34,6 +43,23 @@ plangular.directive('plangular', function ($document, $rootScope) {
         if (player.playing) {
           player.paused = player.playing;
           player.playing = false;  
+        };
+      },
+      // Functions for playlists (i.e. sets)
+      playPlaylist: function(playlist) {
+        if (player.tracks == playlist.tracks && player.paused) player.play(player.tracks, player.i);
+        else player.play(playlist.tracks, 0);
+      },
+      next: function(playlist) {
+        if (playlist.tracks == player.tracks && player.i + 1 < playlist.tracks.length) {
+          player.i++;
+          player.play(playlist.tracks, player.i);
+        };
+      },
+      previous: function(playlist) {
+        if (playlist.tracks == player.tracks && player.i > 0) {
+          player.i = player.i - 1;
+          player.play(playlist.tracks, player.i);
         };
       }
     };
@@ -48,7 +74,12 @@ plangular.directive('plangular', function ($document, $rootScope) {
       link: function (scope, elem, attrs) {
         SC.get('/resolve.json?url=' + scope.src , function(data){
          scope.$apply(function () {
-           scope.track = data;
+            // Handle playlists (i.e. sets)
+            if (data.tracks) scope.playlist = data;
+            // Handle single track
+            else if (data.kind == 'track') scope.track = data;
+            // Handle all other data
+            else scope.data = data;
          });
         });
         scope.player = player;
@@ -92,3 +123,4 @@ plangular.filter('playTime', function() {
       };
     };
   });
+
