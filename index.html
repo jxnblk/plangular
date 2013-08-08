@@ -214,33 +214,28 @@
       </article>
 
       <article plangular data-src="'https://soundcloud.com/jxnblk/sets/magic-summer'" class="grid-1 media mb2">
-
         <h1>{{ playlist.title }}</h1>
-        
         <div class="bd">
           <a href="" ng-click="player.previous(playlist)" class="fl mid-gray"><i class="icon-previous p tappad"></i></a>
           <a href="" ng-click="player.playPlaylist(playlist)" ng-hide="player.tracks == playlist.tracks && player.playing" class="fl mid-gray"><i class="icon-play h3 tappad"></i></a>
           <a href="" ng-click="player.pause()" ng-show="player.tracks == playlist.tracks && player.playing" class="fl mid-gray"><i class="icon-pause h3 tappad"></i></a>
           <a href="" ng-click="player.next(playlist)" class="fl mid-gray"><i class="icon-skip p tappad"></i></a>
         </div>
-        
-        <div ng-repeat="track in playlist.tracks">
-          <div class="img mr1">
-            <a href="" ng-click="player.play(playlist.tracks, $index)" ng-hide="player.playing == track" 
-              class="sq32 sq32-text mid-gray">
-                <i class="icon-play db anim-popin"></i>
-            </a>
-            <a href="" ng-click="player.pause()" ng-show="player.playing == track"
-              class="sq32 sq32-text mid-gray">
-                <i class="icon-pause db anim-popin"></i>
-            </a>
-          </div>
-          <p class="bd p reg tappad-small"><a ng-href="{{ track.permalink_url }}" class="dark-gray">
-            {{ track.user.username }} – {{ track.title }}
-          </a></p>
+        <div>
+          <p>{{ currentTime | playTime }} | {{ duration | playTime }}</p>
+          <progress value="{{ currentTime / duration}}" ng-click="seekTo($event)" class="progress progress-green w100">
+            {{ currentTime / duration}}
+          </progress>
         </div>
-        <!-- <pre>{{ playlist | json }}</pre> -->
+        <div>
+          <a href="" ng-repeat="track in playlist.tracks" ng-click="player.play(playlist.tracks, $index)" class="media db" ng-class="{'dark-gray': player.playing != track}">
+            <div class="img mr1">{{ $index + 1 }}</div>
+            <div class="bd">{{ track.user.username }} – {{ track.title }}</div>
+          </a>
+        </div>
       </article>
+
+      <!-- http://soundcloud.com/jxnblk/sets/happy-holla-daze -->
 
       <article class="grid-1 mb2">
         

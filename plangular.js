@@ -17,6 +17,23 @@ SC.initialize({ client_id: clientID });
 plangular.directive('plangular', function ($document, $rootScope) {
     // Define the audio engine
     var audio = $document[0].createElement('audio');
+
+    // Pause the player when the audio has ended
+        // audio.addEventListener('ended', function() {
+        //   console.log('player ended');
+        //   $rootScope.$apply(function(){
+        //     player.pause();
+        //   });
+        //   // console.log('player tracks lenght ' + player.tracks.length);
+        //   // if (player.tracks.length > 0) {
+        //   //   console.log('play next track');
+        //   //   $rootScope.$apply(player.next());
+        //   // } else {
+        //   //   $rootScope.$apply(player.pause());  
+        //   // };
+        // }, false);
+
+
     // Define the player object
     var player = {
       track: false,
@@ -25,7 +42,6 @@ plangular.directive('plangular', function ($document, $rootScope) {
       tracks: null,
       i: null,
       play: function(tracks, i) {
-        console.log('play $index: ' + i);
         if (i == null) {
           tracks = new Array(tracks);
           i = 0;
@@ -51,9 +67,14 @@ plangular.directive('plangular', function ($document, $rootScope) {
         else player.play(playlist.tracks, 0);
       },
       next: function(playlist) {
-        if (playlist.tracks == player.tracks && player.i + 1 < playlist.tracks.length) {
+        if (playlist && playlist.tracks == player.tracks && player.i + 1 < playlist.tracks.length) {
           player.i++;
           player.play(playlist.tracks, player.i);
+        } else if (player.i+1 < player.tracks.length) {
+          player.i++;
+          player.play(player.tracks, player.i);
+        } else {
+          player.pause();
         };
       },
       previous: function(playlist) {
@@ -63,10 +84,15 @@ plangular.directive('plangular', function ($document, $rootScope) {
         };
       }
     };
-    // Pause the player when the audio has ended
+
     audio.addEventListener('ended', function() {
-      $rootScope.$apply(player.pause());
+      $rootScope.$apply(function(){
+        if (player.tracks.length > 0) player.next();
+        else player.pause();
+      });
+      
     }, false);
+
     // Returns the player, audio, track, and other objects
     return {
       restrict: 'A',
@@ -86,15 +112,17 @@ plangular.directive('plangular', function ($document, $rootScope) {
         scope.audio = audio;
         scope.currentTime = 0;
         scope.duration = 0;
+
         // Updates the currentTime and duration for the audio
         audio.addEventListener('timeupdate', function() {
-          if (scope.track == player.track){
+          if (scope.track == player.track || (scope.playlist && scope.playlist.tracks == player.tracks)){
             scope.$apply(function() {
               scope.currentTime = (audio.currentTime * 1000).toFixed();
               scope.duration = (audio.duration * 1000).toFixed();
             });  
           };
         }, false);
+
         // Handle click events for seeking
         scope.seekTo = function($event){
           var xpos = $event.offsetX / $event.target.offsetWidth;
