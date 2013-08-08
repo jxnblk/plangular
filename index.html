@@ -86,7 +86,7 @@
         <div class="img mr1">
           <a href="" ng-click="player.play(track)" ng-hide="player.playing == track" 
             class="btn sq48 sq48-text btn-dark circle">
-              <i class="icon-play db anim-popin"></i>
+              <i class="icon-play icon-nudge-right db anim-popin"></i>
           </a>
           <a href="" ng-click="player.pause()" ng-show="player.playing == track"
             class="btn sq48 sq48-text btn-dark circle">
@@ -99,7 +99,7 @@
         </div>
       </article>
       
-      <article plangular data-src="'http://soundcloud.com/jxnblk/how-fast'" class="grid-1 mb4">
+      <article plangular data-src="'http://soundcloud.com/jxnblk/everything-you-do-to-me'" class="grid-1 mb4">
         <span ng-hide="track">Loading...</span>
         <div ng-show="track" class="media">
           <div class="img mr1">
@@ -175,7 +175,7 @@
           <img ng-src="{{ track.artwork_url }}" class="w100" />
           <a href="" ng-click="player.play(track)" ng-hide="player.playing == track" 
             class="db pos-abs fill sq64 sq64-text circle btn-dark anim-popin">
-            <i class="icon-play db h3"></i></a>
+            <i class="icon-play icon-nudge-right db h3"></i></a>
           <a href="" ng-click="player.pause()" ng-show="player.playing == track"
             class="db pos-abs fill sq64 sq64-text circle btn-dark anim-popin">
             <i class="icon-pause db h3"></i></a>
@@ -211,6 +211,35 @@
           </div>
         </div>
         <a ng-href="{{ track.permalink_url }}" class="fr mt1 small mid-gray">View on SoundCloud</a>
+      </article>
+
+      <article plangular data-src="'https://soundcloud.com/jxnblk/sets/magic-summer'" class="grid-1 media mb2">
+        <h1>{{ track.title }}</h1>
+        <div ng-repeat="setTrack in track.tracks">
+          <div class="img mr1">
+            <a href="" ng-click="player.play(setTrack)" ng-hide="player.playing == setTrack" 
+              class="sq32 sq32-text mid-gray">
+                <i class="icon-play db anim-popin"></i>
+            </a>
+            <a href="" ng-click="player.pause()" ng-show="player.playing == setTrack"
+              class="sq32 sq32-text mid-gray">
+                <i class="icon-pause db anim-popin"></i>
+            </a>
+          </div>
+          <h1 class="bd h4 reg tappad-small"><a ng-href="{{ setTrack.permalink_url }}" class="dark-gray">
+            {{ setTrack.user.username }} – {{ setTrack.title }}
+          </a></h1>
+        </div>
+      </article>
+
+      <article plangular data-src="'http://soundcloud.com/jxnblk'" class="grid-1 media mb2">
+        <img ng-src="{{ track.avatar_url }}" class="img mr1" />
+        <div class="bd">
+          <h1><a ng-href="{{ track.permalink_url }}">{{ track.username }}</a></h1>
+          <p ng-bind-html-unsafe="track.description"></p>
+          <p class="bold">{{ track.followers_count }} Followers | {{ track.followings_count }} Following</p>
+        </div>
+        <!-- <pre>{{ track | json }}</pre> -->
       </article>
 
     </div>

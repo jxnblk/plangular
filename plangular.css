@@ -18,7 +18,7 @@ a:hover {
   color: #0d5;
 }
 
-.wrap { margin-right: auto; margin-left: 0; }
+.wrap { margin-right: auto; margin-left: auto; }
 
 h1, h2, h3 { line-height: 1.25; }
 h1, .h1 { font-size: 48px; }
@@ -414,3 +414,8 @@ a.white:hover  { color: rgba(255,255,255,.8); }
 .icon-previous:before { content: "\2190"; }
 .icon-rewind:before { content: "\290e"; }
 .icon-heart:before { content: "\2665"; }
+
+.icon-nudge-right {
+  position: relative;
+  left: .125em;
+}
