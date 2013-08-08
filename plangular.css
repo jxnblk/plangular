@@ -41,7 +41,7 @@ code, pre, samp, .mono { font-family: 'Source Code Pro', monospace; }
 
 .bold { font-weight: bold; }
 .reg  { font-weight: normal; }
-.caps { text-transform: uppercase; letter-spacing: .1em; }
+.caps { text-transform: uppercase; letter-spacing: .2em; }
 
 .lh1 { line-height: 1; }
 
@@ -189,6 +189,12 @@ code, pre, samp, .mono { font-family: 'Source Code Pro', monospace; }
   padding-bottom: 56.25%;
 }
 
+.asp-3o1 {
+  width: 100%;
+  height: 0;
+  padding-bottom: 33.33%;
+}
+
 .grid-1 {
   float: left;
   width: 100%;
@@ -281,6 +287,9 @@ a.white:hover  { color: rgba(255,255,255,.8); }
 
 .progress-gray::-webkit-progress-value { background-color: #999; }
 .progress-gray-alt::-webkit-progress-bar { background-color: #ddd; }
+
+.progress-white::-webkit-progress-value { background-color: #fff; }
+
 .progress-link::-webkit-progress-value { background-color: #0cf; }
 .progress-red::-webkit-progress-value { background-color: #f60; }
 .progress-green::-webkit-progress-value { background-color: #0e6; }
