@@ -22,8 +22,10 @@ plangular.directive('plangular', function ($document, $rootScope) {
       track: false,
       playing: false,
       paused: false,
-      play: function(track) {
+      i: null,
+      play: function(track, i) {
         player.track = track;
+        if (i != null) player.i = i;
         if (player.paused != track) audio.src = track.stream_url + '?client_id=' + clientID;
         audio.play();
         player.playing = track;
@@ -51,7 +53,8 @@ plangular.directive('plangular', function ($document, $rootScope) {
             if (data.tracks) {
               scope.playlist = data;
               scope.next = function() {
-                console.log(scope.playlist);
+                player.i++;
+                player.play(scope.playlist.tracks[player.i], player.i);
               };
             } 
             else if (data.kind == 'track') scope.track = data;

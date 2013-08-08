@@ -218,7 +218,7 @@
         <a href="" ng-click="next()">Next</a>
         <div ng-repeat="track in playlist.tracks">
           <div class="img mr1">
-            <a href="" ng-click="player.play(track)" ng-hide="player.playing == track" 
+            <a href="" ng-click="player.play(track, $index)" ng-hide="player.playing == track" 
               class="sq32 sq32-text mid-gray">
                 <i class="icon-play db anim-popin"></i>
             </a>
@@ -227,10 +227,11 @@
                 <i class="icon-pause db anim-popin"></i>
             </a>
           </div>
-          <h1 class="bd h4 reg tappad-small"><a ng-href="{{ track.permalink_url }}" class="dark-gray">
-            {{ track.user.username }} – {{ track.title }}
-          </a></h1>
+          <p class="bd p reg tappad-small"><a ng-href="{{ track.permalink_url }}" class="dark-gray">
+            {{ track.user.username }} – {{ track.title }} [{{ $index }}]
+          </a></p>
         </div>
+        <!-- <pre>{{ playlist | json }}</pre> -->
       </article>
 
       <article class="grid-1 mb2">
