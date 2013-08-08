@@ -48,9 +48,14 @@ plangular.directive('plangular', function ($document, $rootScope) {
       link: function (scope, elem, attrs) {
         SC.get('/resolve.json?url=' + scope.src , function(data){
          scope.$apply(function () {
-           if (data.tracks) scope.playlist = data;
-           else if (data.kind == 'track') scope.track = data;
-           else scope.data = data;
+            if (data.tracks) {
+              scope.playlist = data;
+              scope.next = function() {
+                console.log(scope.playlist);
+              };
+            } 
+            else if (data.kind == 'track') scope.track = data;
+            else scope.data = data;
          });
         });
         scope.player = player;
@@ -94,3 +99,4 @@ plangular.filter('playTime', function() {
       };
     };
   });
+
