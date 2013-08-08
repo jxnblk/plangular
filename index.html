@@ -232,14 +232,38 @@
         </div>
       </article>
 
-      <article plangular data-src="'http://soundcloud.com/jxnblk'" class="grid-1 media mb2">
-        <img ng-src="{{ track.avatar_url }}" class="img mr1" />
-        <div class="bd">
-          <h1><a ng-href="{{ track.permalink_url }}">{{ track.username }}</a></h1>
-          <p ng-bind-html-unsafe="track.description"></p>
-          <p class="bold">{{ track.followers_count }} Followers | {{ track.followings_count }} Following</p>
+      <article class="grid-1 mb2">
+        
+        <h1>Users</h1>
+        <p class="mb1">You can also use Plangular to display users and other data.</p>
+        
+        <div plangular data-src="'http://soundcloud.com/mr_mrs'" class="media mb1">
+          <img ng-src="{{ data.avatar_url }}" class="img mr1" />
+          <div class="bd">
+            <h2><a ng-href="{{ data.permalink_url }}">{{ data.username }}</a></h2>
+            <p ng-bind-html-unsafe="data.description"></p>
+            <p class="bold">{{ data.followers_count }} Followers | {{ data.followings_count }} Following</p>
+          </div>
         </div>
-        <!-- <pre>{{ track | json }}</pre> -->
+
+        <div plangular data-src="'http://soundcloud.com/mrsjxn'" class="media mb1">
+          <img ng-src="{{ data.avatar_url }}" class="img mr1" />
+          <div class="bd">
+            <h2><a ng-href="{{ data.permalink_url }}">{{ data.username }}</a></h2>
+            <p ng-bind-html-unsafe="data.description"></p>
+            <p class="bold">{{ data.followers_count }} Followers | {{ data.followings_count }} Following</p>
+          </div>
+        </div>
+
+        <div plangular data-src="'http://soundcloud.com/jxnblk'" class="media mb1">
+          <img ng-src="{{ data.avatar_url }}" class="img mr1" />
+          <div class="bd">
+            <h2><a ng-href="{{ data.permalink_url }}">{{ data.username }}</a></h2>
+            <p ng-bind-html-unsafe="data.description"></p>
+            <p class="bold">{{ data.followers_count }} Followers | {{ data.followings_count }} Following</p>
+          </div>
+        </div>
+
       </article>
 
     </div>
