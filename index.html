@@ -214,20 +214,20 @@
       </article>
 
       <article plangular data-src="'https://soundcloud.com/jxnblk/sets/magic-summer'" class="grid-1 media mb2">
-        <h1>{{ track.title }}</h1>
-        <div ng-repeat="setTrack in track.tracks">
+        <h1>{{ playlist.title }}</h1>
+        <div ng-repeat="track in playlist.tracks">
           <div class="img mr1">
-            <a href="" ng-click="player.play(setTrack)" ng-hide="player.playing == setTrack" 
+            <a href="" ng-click="player.play(track)" ng-hide="player.playing == track" 
               class="sq32 sq32-text mid-gray">
                 <i class="icon-play db anim-popin"></i>
             </a>
-            <a href="" ng-click="player.pause()" ng-show="player.playing == setTrack"
+            <a href="" ng-click="player.pause()" ng-show="player.playing == track"
               class="sq32 sq32-text mid-gray">
                 <i class="icon-pause db anim-popin"></i>
             </a>
           </div>
-          <h1 class="bd h4 reg tappad-small"><a ng-href="{{ setTrack.permalink_url }}" class="dark-gray">
-            {{ setTrack.user.username }} – {{ setTrack.title }}
+          <h1 class="bd h4 reg tappad-small"><a ng-href="{{ track.permalink_url }}" class="dark-gray">
+            {{ track.user.username }} – {{ track.title }}
           </a></h1>
         </div>
       </article>

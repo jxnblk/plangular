@@ -48,7 +48,9 @@ plangular.directive('plangular', function ($document, $rootScope) {
       link: function (scope, elem, attrs) {
         SC.get('/resolve.json?url=' + scope.src , function(data){
          scope.$apply(function () {
-           scope.track = data;
+           if (data.tracks) scope.playlist = data;
+           else if (data.kind == 'track') scope.track = data;
+           else scope.data = data;
          });
         });
         scope.player = player;
