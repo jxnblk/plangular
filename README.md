@@ -60,6 +60,14 @@ To use images and links in the track object, use Angular's `ng-src` and `ng-href
 
 Note: The waveform image that the SoundCloud API provides is a 1200 x 280px PNG with a light gray frame and transparent middle. To show progress use absolute positioning with the waveform in front. The light gray color is #efefef.
 
+### Additional Options
+
+To add a loading state while Plangular is getting data from SoundCloud, you can use `ng-show` and `ng-hide` to display different states.
+    
+    <span ng-hide="track">Loading...</span>
+    <div ng-show="track"><!-- Player --></div>
+    
+
 ### Style with CSS
 Add classes, custom images, and whatever else your heart desires. Have fun!
 
