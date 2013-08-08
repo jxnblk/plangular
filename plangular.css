@@ -42,6 +42,7 @@ code, pre, samp, .mono { font-family: 'Source Code Pro', monospace; }
 .bold { font-weight: bold; }
 .reg  { font-weight: normal; }
 .caps { text-transform: uppercase; letter-spacing: .2em; }
+.caps-tracked { letter-spacing: .5em; }
 
 .lh1 { line-height: 1; }
 
