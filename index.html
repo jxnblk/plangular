@@ -197,7 +197,7 @@
             <div class="img sq48 sq48-text">
               <a href="" ng-click="player.play(track)" ng-hide="player.playing == track" 
                 class="db white anim-popin">
-                <i class="icon-play db h3 "></i></a>
+                <i class="icon-play db h3"></i></a>
               <a href="" ng-click="player.pause()" ng-show="player.playing == track"
                 class="db white anim-popin">
                 <i class="icon-pause db h3"></i></a>
@@ -216,12 +216,14 @@
       <article plangular data-src="'https://soundcloud.com/jxnblk/sets/magic-summer'" class="grid-1 media mb2">
 
         <h1>{{ playlist.title }}</h1>
-        <div>
-          <a href="" ng-click="player.previous(playlist)">Previous</a>
-          <a href="" ng-click="player.playPlaylist(playlist)" ng-hide="player.tracks == playlist.tracks && player.playing">Play</a>
-          <a href="" ng-click="player.pause()" ng-show="player.tracks == playlist.tracks && player.playing">Pause</a>
-          <a href="" ng-click="player.next(playlist)">Next</a>
+        
+        <div class="bd">
+          <a href="" ng-click="player.previous(playlist)" class="fl mid-gray"><i class="icon-previous p tappad"></i></a>
+          <a href="" ng-click="player.playPlaylist(playlist)" ng-hide="player.tracks == playlist.tracks && player.playing" class="fl mid-gray"><i class="icon-play h3 tappad"></i></a>
+          <a href="" ng-click="player.pause()" ng-show="player.tracks == playlist.tracks && player.playing" class="fl mid-gray"><i class="icon-pause h3 tappad"></i></a>
+          <a href="" ng-click="player.next(playlist)" class="fl mid-gray"><i class="icon-skip p tappad"></i></a>
         </div>
+        
         <div ng-repeat="track in playlist.tracks">
           <div class="img mr1">
             <a href="" ng-click="player.play(playlist.tracks, $index)" ng-hide="player.playing == track" 
