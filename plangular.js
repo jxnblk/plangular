@@ -53,8 +53,16 @@ plangular.directive('plangular', function ($document, $rootScope) {
             if (data.tracks) {
               scope.playlist = data;
               scope.next = function() {
-                player.i++;
-                player.play(scope.playlist.tracks[player.i], player.i);
+                if (player.i + 1 < scope.playlist.tracks.length) {
+                  player.i++;
+                  player.play(scope.playlist.tracks[player.i], player.i);
+                };
+              };
+              scope.previous = function() {
+                if (player.i > 0) {
+                  player.i = player.i - 1;
+                  player.play(scope.playlist.tracks[player.i], player.i);
+                };
               };
             } 
             else if (data.kind == 'track') scope.track = data;
