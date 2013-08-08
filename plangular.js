@@ -67,14 +67,20 @@ plangular.directive('plangular', function ($document, $rootScope) {
         else player.play(playlist.tracks, 0);
       },
       next: function(playlist) {
-        if (playlist && playlist.tracks == player.tracks && player.i + 1 < playlist.tracks.length) {
-          player.i++;
-          player.play(playlist.tracks, player.i);
-        } else if (player.i+1 < player.tracks.length) {
-          player.i++;
-          player.play(player.tracks, player.i);
-        } else {
-          player.pause();
+        if (!playlist){
+          if (player.i+1 < player.tracks.length) {
+            player.i++;
+            player.play(player.tracks, player.i);
+          } else {
+            player.pause();
+          };
+        } else if (playlist && playlist.tracks == player.tracks) {
+          if (player.i + 1 < player.tracks.length) {
+            player.i++;
+            player.play(playlist.tracks, player.i);
+          } else {
+            player.pause();
+          };
         };
       },
       previous: function(playlist) {

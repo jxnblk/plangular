@@ -26,7 +26,6 @@
     </div>
   </div>
   <div class="header-waveform">
-    <!-- <img src="images/plangular-waveform-5.svg" class="header-waveform-img" style="left: -{{ (currentTime/duration) * 1600 }}%" /> -->
     <img src="images/plangular-waveform-5.svg" class="header-waveform-img" style="left: -{{ (currentTime/duration) * 26214 }}px" />
   </div>
 </header>
@@ -213,29 +212,56 @@
         <a ng-href="{{ track.permalink_url }}" class="fr mt1 small mid-gray">View on SoundCloud</a>
       </article>
 
-      <article plangular data-src="'https://soundcloud.com/jxnblk/sets/magic-summer'" class="grid-1 media mb2">
-        <h1>{{ playlist.title }}</h1>
-        <div class="bd">
-          <a href="" ng-click="player.previous(playlist)" class="fl mid-gray"><i class="icon-previous p tappad"></i></a>
-          <a href="" ng-click="player.playPlaylist(playlist)" ng-hide="player.tracks == playlist.tracks && player.playing" class="fl mid-gray"><i class="icon-play h3 tappad"></i></a>
-          <a href="" ng-click="player.pause()" ng-show="player.tracks == playlist.tracks && player.playing" class="fl mid-gray"><i class="icon-pause h3 tappad"></i></a>
-          <a href="" ng-click="player.next(playlist)" class="fl mid-gray"><i class="icon-skip p tappad"></i></a>
-        </div>
-        <div>
-          <p>{{ currentTime | playTime }} | {{ duration | playTime }}</p>
-          <progress value="{{ currentTime / duration}}" ng-click="seekTo($event)" class="progress progress-green w100">
-            {{ currentTime / duration}}
-          </progress>
-        </div>
-        <div>
-          <a href="" ng-repeat="track in playlist.tracks" ng-click="player.play(playlist.tracks, $index)" class="media db" ng-class="{'dark-gray': player.playing != track}">
-            <div class="img mr1">{{ $index + 1 }}</div>
-            <div class="bd">{{ track.user.username }} – {{ track.title }}</div>
-          </a>
+      <article plangular data-src="'https://soundcloud.com/jxnblk/sets/magic-summer'" class="grid-1 mb2 bg-light-gray rounded">
+        <div class="pad1 bd">
+          <p>{{ playlist.user.username }}</h1>
+          <h1>{{ playlist.title }}</h1>
+          <div class="media mb1">
+            <div class="img mr1">
+              <a href="" ng-click="player.previous(playlist)" class="fl mid-gray"><i class="icon-previous p tappad"></i></a>
+              <a href="" ng-click="player.playPlaylist(playlist)" ng-hide="player.tracks == playlist.tracks && player.playing" class="fl mid-gray"><i class="icon-play h3 tappad"></i></a>
+              <a href="" ng-click="player.pause()" ng-show="player.tracks == playlist.tracks && player.playing" class="fl mid-gray"><i class="icon-pause h3 tappad"></i></a>
+              <a href="" ng-click="player.next(playlist)" class="fl mid-gray"><i class="icon-skip p tappad"></i></a>
+            </div>
+            <div class="bd">
+              <progress value="{{ currentTime / duration}}" ng-click="seekTo($event)" class="mt1 progress progress-gray progress-gray-alt w100">{{ currentTime / duration}}</progress>
+              <small class="fl">{{ currentTime | playTime }}</small>
+              <small class="fr">{{ duration | playTime }}</small>
+            </div>
+          </div>
+          <ol class="">
+            <li ng-repeat="track in playlist.tracks" class="ml2"><a href="" ng-click="player.play(playlist.tracks, $index)" class="db" ng-class="{'mid-gray': player.playing != track, 'dark-gray': player.playing == track}">
+              <strong>{{ track.user.username }}</strong> - {{ track.title }}
+            </a></li>
+          </ol>
+          <a ng-href="{{ playlist.permalink_url }}" class="fr small mid-gray">View on SoundCloud</a>
         </div>
       </article>
 
-      <!-- http://soundcloud.com/jxnblk/sets/happy-holla-daze -->
+      <article plangular data-src="'https://soundcloud.com/jxnblk/sets/happy-holla-daze'" class="grid-1 mb2 bg-light-gray rounded">
+        <div class="pad1 bd">
+          <h1>{{ playlist.title }}</h1>
+          <div class="media mb1">
+            <div class="img mr1">
+              <a href="" ng-click="player.previous(playlist)" class="fl mid-gray"><i class="icon-previous p tappad"></i></a>
+              <a href="" ng-click="player.playPlaylist(playlist)" ng-hide="player.tracks == playlist.tracks && player.playing" class="fl mid-gray"><i class="icon-play h3 tappad"></i></a>
+              <a href="" ng-click="player.pause()" ng-show="player.tracks == playlist.tracks && player.playing" class="fl mid-gray"><i class="icon-pause h3 tappad"></i></a>
+              <a href="" ng-click="player.next(playlist)" class="fl mid-gray"><i class="icon-skip p tappad"></i></a>
+            </div>
+            <div class="bd">
+              <progress value="{{ currentTime / duration}}" ng-click="seekTo($event)" class="mt1 progress progress-gray progress-gray-alt w100">{{ currentTime / duration}}</progress>
+              <small class="fl">{{ currentTime | playTime }}</small>
+              <small class="fr">{{ duration | playTime }}</small>
+            </div>
+          </div>
+          <ol class="">
+            <li ng-repeat="track in playlist.tracks" class="ml2"><a href="" ng-click="player.play(playlist.tracks, $index)" class="db" ng-class="{'mid-gray': player.playing != track, 'dark-gray': player.playing == track}">
+              <strong>{{ track.user.username }}</strong> - {{ track.title }}
+            </a></li>
+          </ol>
+          <a ng-href="{{ playlist.permalink_url }}" class="fr small mid-gray">View on SoundCloud</a>
+        </div>
+      </article>
 
       <article class="grid-1 mb2">
         
