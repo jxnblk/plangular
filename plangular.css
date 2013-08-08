@@ -272,7 +272,6 @@ a.white:hover  { color: rgba(255,255,255,.8); }
 
 .progress {
   -webkit-appearance: none;
-  background-color: #eee;
 }
 .progress::-webkit-progress-bar {
   -webkit-appearance: none;
@@ -280,10 +279,15 @@ a.white:hover  { color: rgba(255,255,255,.8); }
 }
 .progress::-webkit-progress-value { -webkit-appearance: none; }
 
-.progress-gray::-webkit-progress-value { background-color: #444; }
+.progress-gray::-webkit-progress-value { background-color: #999; }
+.progress-gray-alt::-webkit-progress-bar { background-color: #ddd; }
 .progress-link::-webkit-progress-value { background-color: #0cf; }
 .progress-red::-webkit-progress-value { background-color: #f60; }
 .progress-green::-webkit-progress-value { background-color: #0e6; }
+
+.progress-white-bg::-webkit-progress-bar {
+  background-color: #fff;
+}
 
 
 /* Animations */
