@@ -215,7 +215,7 @@
 
       <article plangular data-src="'https://soundcloud.com/jxnblk/sets/magic-summer'" class="grid-1 media mb2">
         <h1>{{ playlist.title }}</h1>
-        <a href="" ng-click="previous()">Previous</a> | <a href="" ng-click="next()">Next</a>
+        <a href="" ng-click="playPlaylist()">Play</a> | <a href="" ng-click="player.pause()">Pause</a> | <a href="" ng-click="previous()">Previous</a> | <a href="" ng-click="next()">Next</a>
         <div ng-repeat="track in playlist.tracks">
           <div class="img mr1">
             <a href="" ng-click="player.play(track, $index)" ng-hide="player.playing == track" 

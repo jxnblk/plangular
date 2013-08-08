@@ -52,6 +52,10 @@ plangular.directive('plangular', function ($document, $rootScope) {
          scope.$apply(function () {
             if (data.tracks) {
               scope.playlist = data;
+              scope.playPlaylist = function() {
+                if (player.paused) player.play(player.paused, player.i);
+                else player.play(scope.playlist.tracks[0], 0);
+              };
               scope.next = function() {
                 if (player.i + 1 < scope.playlist.tracks.length) {
                   player.i++;
