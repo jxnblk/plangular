@@ -246,10 +246,10 @@
     <div class="bd">
 
       <article plangular data-src="'https://soundcloud.com/jxnblk/sets/magic-summer'" class="grid-1 mb2 bd bg-light-gray rounded">
-        <div class="pad1 bd bg-dark-gray white">
-          <p class="mid-gray">{{ playlist.user.username }}</h1>
-          <h1>{{ playlist.title }}</h1>
-          <div class="media mb1">
+        <div class="pad1 bd bg-center bg-cover white shadow-darken" style="background-image: url(images/plants.jpg)">
+          <p>{{ playlist.user.username }}</h1>
+          <h1 class="">{{ playlist.title }}</h1>
+          <div class="media">
             <div class="img mr1">
               <a href="" ng-click="player.previous(playlist)" class="fl white"><i class="icon-previous p tappad"></i></a>
               <a href="" ng-click="player.playPlaylist(playlist)" ng-hide="player.tracks == playlist.tracks && player.playing" class="fl white"><i class="icon-play h3 tappad"></i></a>

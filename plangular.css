@@ -273,6 +273,9 @@ a.white:hover  { color: rgba(255,255,255,.8); }
 .green { color: #0e6; }
 .bg-green { background-color: #0e6; }
 
+.text-shadow { text-shadow: 0 1px 2px rgba(0,0,0,.3); }
+.shadow-darken { box-shadow: inset 0 -16px 128px rgba(0,0,0,0.8); }
+
 .sc-waveform-whiten { -webkit-filter: contrast(200%); }
 
 .bg-center { background-position: center; background-repeat: no-repeat; }
@@ -292,10 +295,11 @@ a.white:hover  { color: rgba(255,255,255,.8); }
 .progress-gray-alt::-webkit-progress-bar { background-color: #ddd; }
 
 .progress-white::-webkit-progress-value { background-color: #fff; }
-.progress-white::-webkit-progress-bar { background-color: #999; }
+.progress-white::-webkit-progress-bar { background-color: rgba(255,255,255,.4); }
+
+
 
 .progress-link::-webkit-progress-value { background-color: #0cf; }
-.progress-red::-webkit-progress-value { background-color: #f60; }
 .progress-green::-webkit-progress-value { background-color: #0e6; }
 
 .progress-white-bg::-webkit-progress-bar {
