@@ -255,11 +255,13 @@ code, pre, samp, .mono { font-family: 'Source Code Pro', monospace; }
 
 .dark-gray     { color: #444; }
 .bg-dark-gray  { background-color: #444; }
+a.dark-gray:hover { color: #666; }
 .link          { color: #0cf; }
 .bg-link       { background-color: #0cf; }
 
 .mid-gray      { color: #999; }
 .bg-mid-gray   { background-color: #999; }
+a.mid-gray:hover { color: #666; }
 .light-gray    { color: #eee; }
 .bg-light-gray { background-color: #eee; }
 .white         { color: #fff; }
@@ -290,6 +292,7 @@ a.white:hover  { color: rgba(255,255,255,.8); }
 .progress-gray-alt::-webkit-progress-bar { background-color: #ddd; }
 
 .progress-white::-webkit-progress-value { background-color: #fff; }
+.progress-white::-webkit-progress-bar { background-color: #999; }
 
 .progress-link::-webkit-progress-value { background-color: #0cf; }
 .progress-red::-webkit-progress-value { background-color: #f60; }

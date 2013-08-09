@@ -58,7 +58,7 @@ plangular.directive('plangular', function ($document, $rootScope) {
         audio.pause();
         if (player.playing) {
           player.paused = player.playing;
-          player.playing = false;  
+          player.playing = false;
         };
       },
       // Functions for playlists (i.e. sets)
