@@ -247,7 +247,7 @@
 
       <article plangular data-src="'https://soundcloud.com/jxnblk/sets/magic-summer'" class="grid-1 mb2 bd bg-light-gray rounded">
         <div class="pad1 bd bg-dark-gray white">
-          <p>{{ playlist.user.username }}</h1>
+          <p class="mid-gray">{{ playlist.user.username }}</h1>
           <h1>{{ playlist.title }}</h1>
           <div class="media mb1">
             <div class="img mr1">
@@ -257,7 +257,7 @@
               <a href="" ng-click="player.next(playlist)" class="fl white"><i class="icon-skip p tappad"></i></a>
             </div>
             <div class="bd">
-              <progress value="{{ currentTime / duration}}" ng-click="seekTo($event)" class="mt1 progress progress-gray w100">{{ currentTime / duration}}</progress>
+              <progress value="{{ currentTime / duration}}" ng-click="seekTo($event)" class="mt1 progress progress-white w100">{{ currentTime / duration}}</progress>
               <small class="fl">{{ currentTime | playTime }}</small>
               <small class="fr">{{ duration | playTime }}</small>
             </div>
@@ -265,7 +265,7 @@
         </div>
         <div class="pad1 bd">
           <ol class="mid-gray">
-            <li ng-repeat="track in playlist.tracks" class="ml2"><a href="" ng-click="player.play(playlist.tracks, $index)" class="db" ng-class="{'mid-gray': player.playing != track, 'dark-gray': player.playing == track}">
+            <li ng-repeat="track in playlist.tracks" class="ml2"><a href="" ng-click="player.play(playlist.tracks, $index)" class="db" ng-class="{ 'dark-gray': (player.playing || player.paused) != track, 'mid-gray': (player.playing || player.paused) == track }">
               <strong>{{ track.user.username }}</strong> - {{ track.title }}
             </a></li>
           </ol>
@@ -285,13 +285,13 @@
             </div>
           </div>
           <div class="bd mb1">
-            <progress value="{{ currentTime / duration}}" ng-click="seekTo($event)" class="mt1 progress progress-gray progress-gray-alt w100">{{ currentTime / duration}}</progress>
+            <progress value="{{ currentTime / duration }}" ng-click="seekTo($event)" class="mt1 progress progress-gray progress-gray-alt w100">{{ currentTime / duration}}</progress>
             <small class="fl">{{ currentTime | playTime }}</small>
             <small class="fr">{{ duration | playTime }}</small>
           </div>
           
           <ol class="max-hi256 over-scroll">
-            <li ng-repeat="track in playlist.tracks" class="ml2"><a href="" ng-click="player.play(playlist.tracks, $index)" class="db tappad" ng-class="{'dark-gray': player.playing != track}">
+            <li ng-repeat="track in playlist.tracks" class="ml2"><a href="" ng-click="player.play(playlist.tracks, $index)" class="db" ng-class="{ 'dark-gray': (player.playing || player.paused) != track, 'mid-gray': (player.playing || player.paused) == track }">
               <strong>{{ track.user.username }}</strong> - {{ track.title }}
             </a></li>
           </ol>
