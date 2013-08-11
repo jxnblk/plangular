@@ -301,35 +301,35 @@
 
     </div>
 
-    <h2>Users &amp; More</h2>
-    <p class="h4 mb2">Plangular can also display users and other data.</p>
+    <!--<h2>Users &amp; More</h2>-->
+    <!--<p class="h4 mb2">Plangular can also display users and other data.</p>-->
 
-    <div class="bd">
+    <!--<div class="bd">-->
 
-      <article class="grid-1 mb2">
+    <!--  <article class="grid-1 mb2">-->
                 
-        <div plangular data-src="'http://soundcloud.com/jxnblk'" class="media mb1">
-          <img ng-src="{{ data.avatar_url }}" class="img mr1" />
-          <div class="bd">
-            <h2><a ng-href="{{ data.permalink_url }}" target="_blank" class="dark-gray">{{ data.username }}</a></h2>
-            <p ng-bind-html-unsafe="data.description"></p>
-            <p class="bold">{{ data.followers_count }} Followers | {{ data.followings_count }} Following</p>
-          </div>
-        </div>
+    <!--    <div plangular data-src="'http://soundcloud.com/jxnblk'" class="media mb1">-->
+    <!--      <img ng-src="{{ data.avatar_url }}" class="img mr1" />-->
+    <!--      <div class="bd">-->
+    <!--        <h2><a ng-href="{{ data.permalink_url }}" target="_blank" class="dark-gray">{{ data.username }}</a></h2>-->
+    <!--        <p ng-bind-html-unsafe="data.description"></p>-->
+    <!--        <p class="bold">{{ data.followers_count }} Followers | {{ data.followings_count }} Following</p>-->
+    <!--      </div>-->
+    <!--    </div>-->
 
-      </article>
+    <!--  </article>-->
 
-      <article plangular data-src="'http://soundcloud.com/jxnblk/favorites'" class="grid-1 mb2 bg-light-gray rounded">
-        <div class="pad1">
-          <h1 class="h2 reg">Recently Liked by Jxnblk</h1>
-          <div ng-repeat="track in data | limitTo:4">
-            <a ng-href="{{ track.permalink_url }}" target="_blank" class="h4 dark-gray">{{ track.user.username }} - {{ track.title }}</a>
-          </div>
-          <a href="http://soundcloud.com/jxnblk/likes" target="_blank" class="mid-gray">View More</a>
-        </div>
-      </article>
+    <!--  <article plangular data-src="'http://soundcloud.com/jxnblk/favorites'" class="grid-1 mb2 bg-light-gray rounded">-->
+    <!--    <div class="pad1">-->
+    <!--      <h1 class="h2 reg">Recently Liked by Jxnblk</h1>-->
+    <!--      <div ng-repeat="track in data | limitTo:4">-->
+    <!--        <a ng-href="{{ track.permalink_url }}" target="_blank" class="h4 dark-gray">{{ track.user.username }} - {{ track.title }}</a>-->
+    <!--      </div>-->
+    <!--      <a href="http://soundcloud.com/jxnblk/likes" target="_blank" class="mid-gray">View More</a>-->
+    <!--    </div>-->
+    <!--  </article>-->
 
-    </div>
+    <!--</div>-->
 
   </section>
 
