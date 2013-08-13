@@ -44,6 +44,12 @@ code, pre, samp, .mono { font-family: 'Source Code Pro', monospace; }
 .caps { text-transform: uppercase; letter-spacing: .2em; }
 .caps-tracked { letter-spacing: .5em; }
 
+.truncate {
+  white-space: nowrap;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+}
+
 .lh1 { line-height: 1; }
 
 .pad1 { padding: 16px; }
@@ -150,9 +156,8 @@ code, pre, samp, .mono { font-family: 'Source Code Pro', monospace; }
 .z4 { z-index: 4; }
 
 
-.media { overflow: hidden; }
+.media, .bd { overflow: hidden; }
 .img   { float: left; }
-.bd    { overflow: hidden; }
 
 @media screen and (max-width: 512px) {
   .media-fold .bd { clear: both; }
