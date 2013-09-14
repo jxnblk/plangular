@@ -265,7 +265,7 @@
         </div>
         <div class="pad1 bd">
           <ol class="mid-gray">
-            <li ng-repeat="track in playlist.tracks" class="ml2"><a href="" ng-click="player.play(playlist.tracks, $index)" class="db" ng-class="{ 'dark-gray': (player.playing || player.paused) != track, 'mid-gray': (player.playing || player.paused) == track }">
+            <li ng-repeat="track in playlist.tracks" class="ml2"><a href="" ng-click="player.play(playlist.tracks, $index)" class="db truncate" ng-class="{ 'dark-gray': (player.playing || player.paused) != track, 'mid-gray': (player.playing || player.paused) == track }">
               <strong>{{ track.user.username }}</strong> - {{ track.title }}
             </a></li>
           </ol>

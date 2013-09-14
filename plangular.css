@@ -50,6 +50,10 @@ code, pre, samp, .mono { font-family: 'Source Code Pro', monospace; }
   text-overflow: ellipsis;
 }
 
+.js-truncate {
+  white-space: nowrap;
+}
+
 .lh1 { line-height: 1; }
 
 .pad1 { padding: 16px; }
