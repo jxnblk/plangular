@@ -18,22 +18,6 @@ plangular.directive('plangular', function ($document, $rootScope) {
     // Define the audio engine
     var audio = $document[0].createElement('audio');
 
-    // Pause the player when the audio has ended
-        // audio.addEventListener('ended', function() {
-        //   console.log('player ended');
-        //   $rootScope.$apply(function(){
-        //     player.pause();
-        //   });
-        //   // console.log('player tracks lenght ' + player.tracks.length);
-        //   // if (player.tracks.length > 0) {
-        //   //   console.log('play next track');
-        //   //   $rootScope.$apply(player.next());
-        //   // } else {
-        //   //   $rootScope.$apply(player.pause());  
-        //   // };
-        // }, false);
-
-
     // Define the player object
     var player = {
       track: false,
