@@ -10,14 +10,13 @@
   <link rel="stylesheet" href="plangular.css"/>
   <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,700' rel='stylesheet' type='text/css'>
 
-  <script src="//connect.soundcloud.com/sdk.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.1.4/angular.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.4/angular.min.js"></script>
   <script src="plangular.js"></script>
 
 </head>
 <body ng-app="plangular">
 
-<header plangular data-src="'http://soundcloud.com/jxnblk/plangular'" class="pad4-res bg-green white pos-rel fade-in">
+<header plangular data-src="http://soundcloud.com/jxnblk/plangular" class="pad4-res bg-green white pos-rel fade-in">
   <div class="media">
     <a href="" ng-click="player.play(track)" class="img mt1 mr1 white pos-rel z2 float-up anim-delay-4 btn-scale"><i class="icon-play db h1-res"></i></a>
     <div class="bd float-up anim-delay-2">
@@ -41,7 +40,7 @@
 
     <div class="bd"> <!-- .grid-1 container -->
 
-      <article plangular data-src="'http://soundcloud.com/mrsjxn/homeworkrevolution808'" class="grid-1 mb4">
+      <article plangular data-src="http://soundcloud.com/mrsjxn/homeworkrevolution808" class="grid-1 mb4">
         <div class="asp-16o9 bg-center bg-cover pos-rel" style="background-image: url(images/homework-revolution-808.jpg)">
           <div class="media pos-abs right bottom left">
             <div class="img sq48 sq48-text">
@@ -63,7 +62,7 @@
         <a ng-href="{{ track.permalink_url }}" target="_blank" class="fr mt1 small mid-gray">View on SoundCloud</a>
       </article>
 
-      <article plangular data-src="'http://soundcloud.com/mrsjxn/bbb'" class="grid-1 mb4">
+      <article plangular data-src="http://soundcloud.com/mrsjxn/bbb" class="grid-1 mb4">
         <div class="asp-16o9 bg-center bg-cover pos-rel" style="background-image: url(images/zoe.jpg)">
 
           <p class="p pad1 caps caps-tracked center white">{{ track.user.username }}</p>
@@ -89,7 +88,7 @@
         <a ng-href="{{ track.permalink_url }}" target="_blank" class="fr mt1 small mid-gray">View on SoundCloud</a>
       </article>
 
-      <article plangular data-src="'https://soundcloud.com/jxnblk/thank-you'" class="grid-1 media mb2">
+      <article plangular data-src="https://soundcloud.com/jxnblk/thank-you" class="grid-1 media mb2">
         <div class="img mr1">
           <a href="" ng-click="player.play(track)" ng-hide="player.playing == track"
             class="sq32 sq32-text mid-gray">
@@ -105,7 +104,7 @@
         </a></h1>
       </article>
 
-      <article plangular data-src="'https://soundcloud.com/jxnblk/california-extended'" class="grid-1 media mb2">
+      <article plangular data-src="https://soundcloud.com/jxnblk/california-extended" class="grid-1 media mb2">
         <div class="img mr1">
           <a href="" ng-click="player.play(track)" ng-hide="player.playing == track"
             class="sq32 sq32-text mid-gray">
@@ -129,7 +128,7 @@
         </div>
       </article>
 
-      <!-- <article plangular data-src="'http://soundcloud.com/jxnblk/american-party'" class="grid-1 media mb4">
+      <!-- <article plangular data-src="http://soundcloud.com/jxnblk/american-party" class="grid-1 media mb4">
         <div class="img mr1">
           <a href="" ng-click="player.play(track)" ng-hide="player.playing == track"
             class="btn sq48 sq48-text btn-dark circle">
@@ -146,7 +145,7 @@
         </div>
       </article> -->
 
-      <article plangular data-src="'http://soundcloud.com/jxnblk/everything-you-do-to-me'" class="grid-1 mb4">
+      <article plangular data-src="http://soundcloud.com/jxnblk/everything-you-do-to-me" class="grid-1 mb4">
         <span ng-hide="track">Loading...</span>
         <div ng-show="track" class="media">
           <div class="img mr1">
@@ -170,7 +169,7 @@
         </div>
       </article>
 
-      <article plangular data-src="'http://soundcloud.com/jxnblk/dusty-closet'" class="grid-1 media mb4 ">
+      <article plangular data-src="http://soundcloud.com/jxnblk/dusty-closet" class="grid-1 media mb4 ">
         <div class="img sq64 sq64-text">
           <a href="" ng-click="player.play(track)" ng-hide="player.playing == track"
             class="db btn-green">
@@ -191,7 +190,7 @@
         <a ng-href="{{ track.permalink_url }}" target="_blank" class="fr small mid-gray">View on SoundCloud</a>
       </article>
 
-      <article plangular data-src="'http://soundcloud.com/mrsjxn/touch-this'" class="grid-1 media mb4">
+      <article plangular data-src="http://soundcloud.com/mrsjxn/touch-this" class="grid-1 media mb4">
         <div class="img sq128 mr1 pos-rel">
           <img ng-src="{{ track.artwork_url }}" class="w100" />
           <a href="" ng-click="player.play(track)" ng-hide="player.playing == track"
@@ -212,7 +211,7 @@
         </div>
       </article>
 
-      <article plangular data-src="'http://soundcloud.com/jxnblk/tall-girls-extended'" class="grid-1 mb4">
+      <article plangular data-src="http://soundcloud.com/jxnblk/tall-girls-extended" class="grid-1 mb4">
         <span ng-hide="track">Loading...</span>
         <div ng-show="track">
 
@@ -245,7 +244,7 @@
 
     <div class="bd">
 
-      <article plangular data-src="'https://soundcloud.com/jxnblk/sets/magic-summer'" class="grid-1 mb2 bd bg-light-gray rounded">
+      <article plangular data-src="https://soundcloud.com/jxnblk/sets/magic-summer" class="grid-1 mb2 bd bg-light-gray rounded">
         <div class="pad1 bd bg-center bg-cover white shadow-darken" style="background-image: url(images/plants.jpg)">
           <p>{{ playlist.user.username }}</p>
           <h1 class="">{{ playlist.title }}</h1>
@@ -273,7 +272,7 @@
         </div>
       </article>
 
-      <article plangular data-src="'https://soundcloud.com/jxnblk/sets/march-on'" class="grid-1 mb2 bd bg-light-gray rounded">
+      <article plangular data-src="https://soundcloud.com/jxnblk/sets/march-on" class="grid-1 mb2 bd bg-light-gray rounded">
         <div class="asp-3o1 bd bg-center bg-cover pos-rel" style="background-image: url(images/march-on.jpg)"></div>
         <div class="pad1 bd">
           <div class="center">
@@ -308,7 +307,7 @@
 
     <!--  <article class="grid-1 mb2">-->
 
-    <!--    <div plangular data-src="'http://soundcloud.com/jxnblk'" class="media mb1">-->
+    <!--    <div plangular data-src="http://soundcloud.com/jxnblk" class="media mb1">-->
     <!--      <img ng-src="{{ data.avatar_url }}" class="img mr1" />-->
     <!--      <div class="bd">-->
     <!--        <h2><a ng-href="{{ data.permalink_url }}" target="_blank" class="dark-gray">{{ data.username }}</a></h2>-->
@@ -319,7 +318,7 @@
 
     <!--  </article>-->
 
-    <!--  <article plangular data-src="'http://soundcloud.com/jxnblk/favorites'" class="grid-1 mb2 bg-light-gray rounded">-->
+    <!--  <article plangular data-src="http://soundcloud.com/jxnblk/favorites" class="grid-1 mb2 bg-light-gray rounded">-->
     <!--    <div class="pad1">-->
     <!--      <h1 class="h2 reg">Recently Liked by Jxnblk</h1>-->
     <!--      <div ng-repeat="track in data | limitTo:4">-->
