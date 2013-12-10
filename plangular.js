@@ -12,9 +12,8 @@
 
 var plangular = angular.module('plangular', []);
 var clientID = '0d33361983f16d2527b01fbf6408b7d7';
-SC.initialize({ client_id: clientID });
 
-plangular.directive('plangular', function ($document, $rootScope) {
+plangular.directive('plangular', function ($document, $rootScope, $http) {
     // Define the audio engine
     var audio = $document[0].createElement('audio');
 
@@ -88,15 +87,14 @@ plangular.directive('plangular', function ($document, $rootScope) {
       restrict: 'A',
       scope: { src: '=' },
       link: function (scope, elem, attrs) {
-        SC.get('/resolve.json?url=' + scope.src , function(data){
-         scope.$apply(function () {
-            // Handle playlists (i.e. sets)
-            if (data.tracks) scope.playlist = data;
-            // Handle single track
-            else if (data.kind == 'track') scope.track = data;
-            // Handle all other data
-            else scope.data = data;
-         });
+        var params = { url: scope.src, client_id: clientID }
+        $http.get('https://api.soundcloud.com/resolve.json', { params: params }).success(function(data){
+          // Handle playlists (i.e. sets)
+          if (data.tracks) scope.playlist = data;
+          // Handle single track
+          else if (data.kind == 'track') scope.track = data;
+          // Handle all other data
+          else scope.data = data;
         });
         scope.player = player;
         scope.audio = audio;
