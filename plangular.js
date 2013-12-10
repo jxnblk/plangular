@@ -85,9 +85,9 @@ plangular.directive('plangular', function ($document, $rootScope, $http) {
     // Returns the player, audio, track, and other objects
     return {
       restrict: 'A',
-      scope: { src: '=' },
+      scope: true,
       link: function (scope, elem, attrs) {
-        var params = { url: scope.src, client_id: clientID }
+        var params = { url: attrs.src, client_id: clientID }
         $http.get('https://api.soundcloud.com/resolve.json', { params: params }).success(function(data){
           // Handle playlists (i.e. sets)
           if (data.tracks) scope.playlist = data;

@@ -14,9 +14,10 @@ Plangular is very customizable. If you're not comfortable with basic AngularJS, 
 ### Include JS Files
 Download the plangular.js file and add it to your project, then add the following script tags to your HTML:
 
-    <script src="//connect.soundcloud.com/sdk.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.1.4/angular.min.js"></script>
     <script src="js/plangular.js"></script>
+
+Note: Unlike the previous version of Plangular, the SoundCloud SDK is no longer required.
 
 ### Initialize the Angular App
 Include the `ng-app` attribute in a containing element.
@@ -28,7 +29,7 @@ Include the `ng-app` attribute in a containing element.
 ### Create the Player
 Use any HTML element and add the `plangular` and `data-src` attributes, with the SoundCloud URL for the sound you would like to use.
 
-    <div plangular data-src="'http://soundcloud.com/jxnblk/plangular'"></div>
+    <div plangular data-src="http://soundcloud.com/jxnblk/plangular"></div>
 
 ### Include the Track Info
 Use Angular bindings to include information about the track. You can use any of the data from the SoundCloud JSON Object.
@@ -78,7 +79,7 @@ Use these examples to get started quickly
 
 ### Bare Bones
     
-    <div plangular data-src="'http://soundcloud.com/jxnblk/plangular'">
+    <div plangular data-src="http://soundcloud.com/jxnblk/plangular">
       <a href="" ng-click="player.play(track)" ng-hide="player.playing == track">Play</a>
       <a href="" ng-click="player.pause()" ng-show="player.playing == track">Pause</a>
       <h1>{{ track.user.username }} - {{ track.title }}</h1>
@@ -86,7 +87,7 @@ Use these examples to get started quickly
 
 ### Progress Bar
 
-    <div plangular data-src="'http://soundcloud.com/jxnblk/plangular'" class="media">
+    <div plangular data-src="http://soundcloud.com/jxnblk/plangular" class="media">
       <a href="" ng-click="player.play(track)" ng-hide="player.playing == track" class="img">Play</a>
       <a href="" ng-click="player.pause()" ng-show="player.playing == track" class="img">Pause</a>
       <div class="bd">
@@ -99,7 +100,7 @@ Use these examples to get started quickly
 
 ### Artwork and Waveform
 
-    <div plangular data-src="'http://soundcloud.com/jxnblk/plangular'" class="media">
+    <div plangular data-src="http://soundcloud.com/jxnblk/plangular" class="media">
       <img ng-src="{{ track.artwork_url }}" class="img" />
       <div class="bd">
         <div class="media">
