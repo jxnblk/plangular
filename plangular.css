@@ -2,17 +2,25 @@
 
 body, h1, h2, h3, h4, h5, h6, dl, ol, ul, p,
 button, input, select, textarea {
-  margin: 0; }
+  margin: 0;
+}
+
+ol, ul {
+  padding-left: 0;
+}
 
 button, input, select, textarea {
   font-family: inherit;
-  font-size: 100%; }
+  font-size: 100%;
+}
 
 article, aside, details, figcaption, figure, footer, header, main, nav, section, summary {
-  display: block; }
+  display: block;
+}
 
 body {
-  font-family: 'Titillium Web', Helvetica, sans-serif;
+  /* font-family: 'Titillium Web', Helvetica, sans-serif; */
+  font-family: 'Source Sans Pro', 'Hevletica Neue', Helvetica, Arial, sans-serif;
   font-size: 100%;
   line-height: 1.5;
   color: #444;
