@@ -88,7 +88,7 @@ plangular.directive('plangular', function ($document, $rootScope, $http) {
       scope: true,
       link: function (scope, elem, attrs) {
         var params = { url: attrs.src, client_id: clientID }
-        $http.get('//api.soundcloud.com/resolve.json', { params: params }).success(function(data){
+        $http.jsonp('//api.soundcloud.com/resolve.json', { params: params }).success(function(data){
           // Handle playlists (i.e. sets)
           if (data.tracks) scope.playlist = data;
           // Handle single track
