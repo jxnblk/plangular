@@ -10,10 +10,10 @@
 
 'use strict';
 
-var plangular = angular.module('plangular', ['ngResource']);
+var plangular = angular.module('plangular', []);
 var clientID = '0d33361983f16d2527b01fbf6408b7d7';
 
-plangular.directive('plangular', function ($document, $rootScope, $http, $resource) {
+plangular.directive('plangular', function ($document, $rootScope, $http) {
     // Define the audio engine
     var audio = $document[0].createElement('audio');
 
@@ -87,7 +87,7 @@ plangular.directive('plangular', function ($document, $rootScope, $http, $resour
       restrict: 'A',
       scope: true,
       link: function (scope, elem, attrs) {
-        var params = { url: attrs.src, client_id: clientID, callback: jsonp_callback }
+        var params = { url: attrs.src, client_id: clientID, callback: 'JSON_CALLBACK' }
         $http.jsonp('//api.soundcloud.com/resolve.json', { params: params }).success(function(data){
           // Handle playlists (i.e. sets)
           if (data.tracks) scope.playlist = data;
