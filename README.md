@@ -14,7 +14,7 @@ Plangular is very customizable. If you're not comfortable with basic AngularJS, 
 ### Include JS Files
 Download the plangular.js file and add it to your project, then add the following script tags to your HTML:
 
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.4/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.9/angular.min.js"></script>
     <script src="js/plangular.js"></script>
 
 Note: Unlike the previous version of Plangular, the SoundCloud SDK is no longer required.
