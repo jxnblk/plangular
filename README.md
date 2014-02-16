@@ -4,7 +4,7 @@ Plangular
 Easily create custom SoundCloud players with HTML and CSS. Built with AngularJS
 
 See examples and more here:
-http://jxnblk.github.io/Plangular
+http://jxnblk.github.io/plangular
 
 ---
 
