@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <title>Plangular</title>
-  <meta name="description" content="Easily create your own custom SoundCloud player with just HTML and CSS. Built with AngularJS">
+  <meta name="description" content="Create your own custom SoundCloud player with just HTML and CSS. Built with AngularJS">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <link rel="icon" href="favicon.png" />
@@ -19,7 +19,7 @@
 
 <header plangular data-src="http://soundcloud.com/jxnblk/plangular" class="relative min-h100 table bg-dark-gray green">
   <div class="absolute t0 r0 b0 l0 glow-wrap" ng-class="{ 'geo-glow': player.playing == track }" >
-    <svg class="absolute waveform" xmlns="http://www.w3.org/2000/svg" viewBox="8 0 48 32" preserveAspectRatio="none" >
+    <svg class="absolute waveform waveform-large" xmlns="http://www.w3.org/2000/svg" viewBox="8 -2 48 34" preserveAspectRatio="none" >
       <path id="wave" d=" M0 16 C0 16 0 16 0 16 C0 16 0 16 0 16 C4 16 12 0 16 0 C24 0 24 32 32 32 C40 32 40 0 48 0 C56 0 56 16 64 16 ">
         <animate 
           class="animate"
@@ -38,7 +38,7 @@
       </svg>
     </a>
     <h1 class="h1 caps fit mb0">Plangular</h1>
-    <p class="h3 fit mid-gray">Easily create custom SoundCloud players with HTML and CSS.</p>
+    <p class="h3 fit mid-gray">Create custom SoundCloud players with HTML and CSS.</p>
   </div>
   <div class="absolute r0 b0 p1">
     <a href="http://github.com/jxnblk/plangular">View on Github</a>
@@ -199,17 +199,32 @@
   -->
 
 
-  <section class="mb4 measure-wide wrap px-responsive">
-    <h1 class="h2 mb0">Get Started</h1>
-    <p class="h3 mb1">Read about how to use Plangular and start building your own players.</p>
-    <a href="http://github.com/jxnblk/Plangular" class="p button button-big button-blue">View on Github</a>
+  <section class="relative mb4">
+    <svg class="absolute waveform waveform-small" xmlns="http://www.w3.org/2000/svg" viewBox="0 -2 64 34" preserveAspectRatio="none" >
+      <path id="wave" d=" M0 16 C0 16 0 16 0 16 C0 16 0 16 0 16 C4 16 12 0 16 0 C24 0 24 32 32 32 C40 32 40 0 48 0 C56 0 56 16 64 16 ">
+        <animate 
+          class="animate"
+          attributeName="d"
+          from=" M0 16 C0 16 0 16 0 16 C0 16 0 16 0 16 C4 16 12 0 16 0 C24 0 24 32 32 32 C40 32 40 0 48 0 C56 0 56 16 64 16"
+          to="M0 16
+          C8 16 8 0 16 0 C24 0 24 32 32 32
+          C40 32 40 0 48 0 C52 0 60 16 64 16 C64 16 64 16 64 16 C64 16 64 16 64 16"
+          dur="8s"
+          repeatCount="indefinite" />
+      </path>
+    </svg>
+    <div class="relative measure-wide wrap px-responsive">
+      <h1 class="h2 mb0">Create your own</h1>
+      <p class="h3 mb1">Read about how to use Plangular and start building your own players.</p>
+      <a href="http://github.com/jxnblk/Plangular" class="p button button-big button-blue">View on Github</a>
+    </div>
   </section>
 
 </main>
 
 <footer class="px-responsive py1 measure-wide wrap">
   <a
-    href="//twitter.com/intent/tweet?text=Plangular: Easily create custom SoundCloud players with HTML and CSS.&url=http://jxnblk.github.io/Plangular&via=jxnblk"
+    href="//twitter.com/intent/tweet?text=Plangular: Create custom SoundCloud players with HTML and CSS.&url=http://jxnblk.github.io/Plangular&via=jxnblk"
     class="button button-blue mb2"
     target="_blank">
     Tweet

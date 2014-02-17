@@ -15,11 +15,18 @@ html, body { height: 100%; }
 
 .waveform {
   width: 100%;
+  stroke-width: .25;
+  fill: none;
+}
+.waveform-large {
   height: 75%;
   top: 12.5%;
   stroke: $green;
-  stroke-width: .25;
-  fill: none;
+}
+.waveform-small {
+  width: 100%;
+  stroke: rgba($blue,.2);
+  height: 150%;
 }
 .glow-wrap {
   opacity: 0;
