@@ -60,6 +60,7 @@ a {
   transition-duration: .2s;
   transition-timing-function: ease;
   transition: box-shadow , background-color;
+  -webkit-font-smoothing: antialiased;
   &:focus {
     outline: none;
     box-shadow: 0 0 0 2px #fff, 0 0 1px 4px rgba($blue, .5);
@@ -70,6 +71,7 @@ a {
   color: #fff;
   background-color: $blue;
   &:hover {
+    color: #fff;
     background-color: darken($blue, 20%);
   }
 }
@@ -78,9 +80,9 @@ a {
   color: #fff;
   background-color: $mid-gray;
   &:hover {
+    color: #fff;
     background-color: darken($mid-gray, 20%);
   }
-  &:focus {}
 }
 
 .button-green {
@@ -92,6 +94,11 @@ a {
     box-shadow: 0 0 0 4px $dark-gray, 0 0 0 8px rgba($green, .5);
     -webkit-transform: scale(1.05);
     transform: scale(1.05);
+  }
+  &:active {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    box-shadow: inset 0 0 8px $dark-gray;
   }
 }
 
