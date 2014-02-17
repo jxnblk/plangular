@@ -85,10 +85,13 @@ a {
 
 .button-green {
   background-color: $green;
-  transition: box-shadow .2s ease;
+  -webkit-transition: box-shadow .2s ease, -webkit-transform .2s ease;
+  transition: box-shadow .2s ease, transform .2s ease;
   &:hover, &:focus {
     outline: none;
     box-shadow: 0 0 0 4px $dark-gray, 0 0 0 8px rgba($green, .5);
+    -webkit-transform: scale(1.05);
+    transform: scale(1.05);
   }
 }
 
