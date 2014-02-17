@@ -20,15 +20,21 @@
 <header plangular data-src="http://soundcloud.com/jxnblk/plangular" class="relative min-h100 table bg-dark-gray green">
   <div class="absolute t0 r0 b0 l0 glow-wrap" ng-class="{ 'geo-glow': player.playing == track }" >
     <svg class="absolute waveform waveform-large" xmlns="http://www.w3.org/2000/svg" viewBox="8 -2 48 34" preserveAspectRatio="none" >
-      <path id="wave" d=" M0 16 C0 16 0 16 0 16 C0 16 0 16 0 16 C4 16 12 0 16 0 C24 0 24 32 32 32 C40 32 40 0 48 0 C56 0 56 16 64 16 ">
+      <path>
         <animate 
           class="animate"
           attributeName="d"
-          from=" M0 16 C0 16 0 16 0 16 C0 16 0 16 0 16 C4 16 12 0 16 0 C24 0 24 32 32 32 C40 32 40 0 48 0 C56 0 56 16 64 16"
-          to="M0 16 C8 16 8 0 16 0 C24 0 24 32 32 32 C40 32 40 0 48 0 C52 0 60 16 64 16 C64 16 64 16 64 16 C64 16 64 16 64 16"
+          values="
+            M0 16 C0 16 0 16 0 16 C0 16 0 16 0 16 C6 16 8 8 16 8 C24 8 24 32 32 32 C40 32 40 8 48 8 C56 8 58 16 64 16 ;
+            M0 16 C0 16 0 16 0 16 C6 16 8 24 16 24 C24 24 24 0 32 0 C40 0 40 24 48 24 C56 24 58 16 64 16 C64 16 64 16 64 16 ;
+            M0 16 C6 16 8 8 16 8 C24 8 24 32 32 32 C40 32 40 8 48 8 C56 8 58 16 64 16 C64 16 64 16 64 16 C64 16 64 16 64 16 "
           dur=".1s"
           repeatCount="indefinite" />
       </path>
+      <!--
+          from=" M0 16 C0 16 0 16 0 16 C0 16 0 16 0 16 C4 16 12 0 16 0 C24 0 24 32 32 32 C40 32 40 0 48 0 C56 0 56 16 64 16"
+          to="M0 16 C8 16 8 0 16 0 C24 0 24 32 32 32 C40 32 40 0 48 0 C52 0 60 16 64 16 C64 16 64 16 64 16 C64 16 64 16 64 16"
+          -->
     </svg>
   </div>
   <div class="relative table-cell center p-responsive fit">
@@ -49,8 +55,8 @@
 <main class="py-responsive">
 
   <section class="measure-wide wrap px-responsive">
-    <h1 class="h2">Examples</h1>
-    <p class="p mb2">There's a million ways to skin a cat. Here's just a few of them.</p>
+    <h1 class="h2 mb0">Examples</h1>
+    <p class="h3 mb2">There's a million ways to skin a cat. Here's just a few of them.</p>
   </section>
 
   <section plangular data-src="http://soundcloud.com/mrsjxn/bbb" class="measure-wide wrap mb4">
@@ -82,7 +88,7 @@
         </div>
       </div>
     </div>
-    <a ng-href="{{ track.permalink_url }}" target="_blank" class="mt1 small mid-gray">View on SoundCloud</a>
+    <a ng-href="{{ track.permalink_url }}" target="_blank" class="right mt1 small mid-gray">View on SoundCloud</a>
   </section>
 
   <!--
@@ -160,13 +166,13 @@
         </div>
       </div>
     </div>
-    <div class="p1">
+    <div class="p1 clearfix">
       <ol class="ol mid-gray">
         <li ng-repeat="track in playlist.tracks" class="ml2"><a href="" ng-click="player.play(playlist.tracks, $index)" class="block white" ng-class="{ 'white': (player.playing || player.paused) != track, 'blue': (player.playing || player.paused) == track }">
           <strong>{{ track.user.username }}</strong> - {{ track.title }}
         </a></li>
       </ol>
-      <a ng-href="{{ playlist.permalink_url }}" target="_blank" class="fr small mid-gray">View on SoundCloud</a>
+      <a ng-href="{{ playlist.permalink_url }}" target="_blank" class="right small mid-gray">View on SoundCloud</a>
     </div>
   </section>
 
@@ -201,18 +207,24 @@
 
   <section class="relative mb4">
     <svg class="absolute waveform waveform-small" xmlns="http://www.w3.org/2000/svg" viewBox="0 -2 64 34" preserveAspectRatio="none" >
-      <path id="wave" d=" M0 16 C0 16 0 16 0 16 C0 16 0 16 0 16 C4 16 12 0 16 0 C24 0 24 32 32 32 C40 32 40 0 48 0 C56 0 56 16 64 16 ">
-        <animate 
-          class="animate"
-          attributeName="d"
-          from=" M0 16 C0 16 0 16 0 16 C0 16 0 16 0 16 C4 16 12 0 16 0 C24 0 24 32 32 32 C40 32 40 0 48 0 C56 0 56 16 64 16"
-          to="M0 16
-          C8 16 8 0 16 0 C24 0 24 32 32 32
-          C40 32 40 0 48 0 C52 0 60 16 64 16 C64 16 64 16 64 16 C64 16 64 16 64 16"
-          dur="8s"
-          repeatCount="indefinite" />
+      <path>
+        <animate class="animate" attributeName="d"
+          values="
+            M0 16 C0 16 0 16 0 16 C0 16 0 16 0 16 C6 16 8 8 16 8 C24 8 24 32 32 32 C40 32 40 8 48 8 C56 8 58 16 64 16 ;
+            M0 16 C0 16 0 16 0 16 C6 16 8 24 16 24 C24 24 24 0 32 0 C40 0 40 24 48 24 C56 24 58 16 64 16 C64 16 64 16 64 16 ;
+            M0 16 C6 16 8 8 16 8 C24 8 24 32 32 32 C40 32 40 8 48 8 C56 8 58 16 64 16 C64 16 64 16 64 16 C64 16 64 16 64 16 "
+          dur="8s" repeatCount="indefinite" />
+      </path>
+      <path>
+        <animate class="animate" attributeName="d"
+          values="
+            M0 16 C0 16 0 16 0 16 C0 16 0 16 0 16 C6 16 8 8 16 8 C24 8 24 32 32 32 C40 32 40 8 48 8 C56 8 58 16 64 16 ;
+            M0 16 C0 16 0 16 0 16 C6 16 8 24 16 24 C24 24 24 0 32 0 C40 0 40 24 48 24 C56 24 58 16 64 16 C64 16 64 16 64 16 ;
+            M0 16 C6 16 8 8 16 8 C24 8 24 32 32 32 C40 32 40 8 48 8 C56 8 58 16 64 16 C64 16 64 16 64 16 C64 16 64 16 64 16 "
+          dur="5s" repeatCount="indefinite" />
       </path>
     </svg>
+
     <div class="relative measure-wide wrap px-responsive">
       <h1 class="h2 mb0">Create your own</h1>
       <p class="h3 mb1">Read about how to use Plangular and start building your own players.</p>
