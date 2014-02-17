@@ -13,6 +13,35 @@ html, body { height: 100%; }
   vertical-align: middle;
 }
 
+.waveform {
+  width: 100%;
+  height: 75%;
+  top: 12.5%;
+  stroke: $green;
+  stroke-width: .25;
+  fill: none;
+}
+.glow-wrap {
+  opacity: 0;
+}
+@-webkit-keyframes glow {
+    0% { opacity: 0; -webkit-transform: scaleY(.2); }
+   5% { opacity: .9; -webkit-transform: scaleY(1); }
+  100% { opacity: 0; -webkit-transform: scaleY(.2); }
+}
+@keyframes glow {
+    0% { opacity: 0; transform: scaleY(.2); }
+   5% { opacity: .9; transform: scaleY(1); }
+  100% { opacity: 0; transform: scaleY(.2); }
+}
+.geo-glow {
+  -webkit-animation: glow 6s linear;
+          animation: glow 6s linear;
+}
+
+//.px8 { padding-right: 8rem; padding-left: 8rem; }
+.px8 { padding-right: 20%; padding-left: 20%; }
+
 .button-geo {
   .geo-16 {
     position: relative;
@@ -36,3 +65,5 @@ html, body { height: 100%; }
 
 .bg-cover { background-size: cover; }
 .bg-center { background-position: center; }
+
+.outline, .outline * { outline: 1px solid red; }
