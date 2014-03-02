@@ -12,7 +12,7 @@
 
 var plangular = angular.module('plangular', []),
     clientID = '0d33361983f16d2527b01fbf6408b7d7',
-    iconUrl = '/icon-sprite.svg';
+    iconUrl = 'icons/icon-sprite.svg';
 
 plangular.directive('plangular', function ($document, $rootScope, $http) {
     // Define the audio engine
@@ -124,15 +124,18 @@ plangular.directive('plangular', function ($document, $rootScope, $http) {
 
 // Plangular Icons
 plangular.directive('plangularIcon', function() {
-  var xmlHttp = null;
+  var xmlHttp = null,
+      sprite;
   xmlHttp = new XMLHttpRequest();
-  xmlHttp.open( "GET", iconUrl, false );
-  xmlHttp.send( null );
-  var sprite = xmlHttp.responseXML.documentElement;
+  xmlHttp.open('GET', iconUrl, false);
+  xmlHttp.send(null);
+  if(xmlHttp.responseXML) sprite = xmlHttp.responseXML.documentElement;
+  else console.error('Icon sprite not found - check iconUrl variable in plangular.js');
   return {
     restrict: 'A',
     scope: true,
     link: function (scope, elem, attrs) {
+      if (!sprite) return false;
       var el = elem[0],
           id = attrs.plangularIcon,
           svg = sprite.getElementById(id).cloneNode(true);
