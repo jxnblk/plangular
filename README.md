@@ -87,6 +87,8 @@ Use the `plangularIcon` directive to inject SVG icons into your player. This dir
 <div plangular-icon="next"></div>
 ```
 
+Note: Since these are SVGs, use the `fill` attribute to style the color of the icons.
+
 ### Additional Options
 
 To add a loading state while Plangular is getting data from SoundCloud, you can use `ng-show` and `ng-hide` to display different states.
