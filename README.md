@@ -78,7 +78,7 @@ To use images and links in the track object, use Angular's `ng-src` and `ng-href
 Note: The waveform image that the SoundCloud API provides is a 1200 x 280px PNG with a light gray frame and transparent middle. To show progress use absolute positioning with the waveform in front. The light gray color is #efefef.
 
 ### Icons
-Use the `plangularIcon` directive to inject SVG icons into your player. Inline SVGs allow you to style the icons with CSS. This directive requires the `plangular-icons.svg` file.
+Use the `plangularIcon` directive to inject SVG icons into your player. This directive will replace the element with an inline SVG, which allows you to style the icons with CSS. Requires the `plangular-icons.svg` file.
 
 ```html
 <div plangular-icon="play"></div>
