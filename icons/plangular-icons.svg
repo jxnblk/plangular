@@ -12,7 +12,7 @@
     <path d="M0 0 H4 V14 L32 0 V32 L4 18 V32 H0 z" />
   </svg>
 
-  <svg id="next" class="plangular-icon plangular-icon-skip" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" y="128">
+  <svg id="next" class="plangular-icon plangular-icon-next" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" y="128">
     <path d="M0 0 L28 14 V0 H32 V32 H28 V18 L0 32 z" />
   </svg>
 
