@@ -10,8 +10,9 @@
 
 'use strict';
 
-var plangular = angular.module('plangular', []);
-var clientID = '0d33361983f16d2527b01fbf6408b7d7';
+var plangular = angular.module('plangular', []),
+    clientID = '0d33361983f16d2527b01fbf6408b7d7',
+    iconUrl = '/icon-sprite.svg';
 
 plangular.directive('plangular', function ($document, $rootScope, $http) {
     // Define the audio engine
@@ -116,9 +117,33 @@ plangular.directive('plangular', function ($document, $rootScope, $http) {
           var xpos = $event.offsetX / $event.target.offsetWidth;
           audio.currentTime = (xpos * audio.duration);
         };
+
       }
     }
   });
+
+// Plangular Icons
+plangular.directive('plangularIcon', function() {
+  var xmlHttp = null;
+  xmlHttp = new XMLHttpRequest();
+  xmlHttp.open( "GET", iconUrl, false );
+  xmlHttp.send( null );
+  var sprite = xmlHttp.responseXML.documentElement;
+  return {
+    restrict: 'A',
+    scope: true,
+    link: function (scope, elem, attrs) {
+      var el = elem[0],
+          id = attrs.plangularIcon,
+          svg = sprite.getElementById(id).cloneNode(true);
+      svg.removeAttribute('id');
+      svg.setAttribute('class', el.className);
+      svg.classList.add('plangular-icon');
+      svg.classList.add('plangular-icon-' + id);
+      el.parentNode.replaceChild(svg, el);
+    }
+  }
+});
 
 // Filter to convert milliseconds to hours, minutes, seconds
 plangular.filter('playTime', function() {
