@@ -1,0 +1,25 @@
+<svg id="plangular-icon-sprite" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 160" width="32" height="160">
+
+  <!-- remake all these with paths -->
+
+  <svg id="play" class="plangular-icon plangular-icon-play" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" y="32">
+    <polygon points="2,2 30,16 2,30"/>
+  </svg>
+
+  <svg id="pause" class="plangular-icon plangular-icon-pause" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" y="64">
+    <rect x="2" y="2" width="10" height="28"/>
+    <rect x="20" y="2" width="10" height="28"/>
+  </svg>
+
+  <svg id="previous" class="plangular-icon plangular-icon-previous" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" y="96">
+    <rect x="2" y="2" width="4" height="28" />
+    <polygon points="28,2 2,16 28,30"/>
+  </svg>
+
+  <svg id="next" class="plangular-icon plangular-icon-skip" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" y="128">
+    <polygon points="2,2 28,16 2,30"/>
+    <rect x="26" y="2" width="4" height="28" />
+  </svg>
+
+</svg>
+

@@ -54,10 +54,10 @@
 
 <main class="py-responsive">
 
-  <section class="measure-wide wrap px-responsive">
+  <header class="measure-wide wrap px-responsive">
     <h1 class="h2 mb0">Examples</h1>
     <p class="h3 mb2">There's a million ways to skin a cat. Here's just a few of them.</p>
-  </section>
+  </header>
 
   <section plangular data-src="http://soundcloud.com/mrsjxn/bbb" class="measure-wide wrap mb4">
     <div class="relative aspect-16o9 bg-center bg-cover" style="background-image: url(site/zoe.jpg)">
@@ -108,7 +108,7 @@
             <div plangular-icon="pause" class="geo-24 geo-white"></div>
           </a>
           <a href="" ng-click="player.next(playlist)" class="button button-geo white">
-            <div plangular-icon="skip" class="geo-24 geo-white"></div>
+            <div plangular-icon="next" class="geo-24 geo-white"></div>
           </a>
         </div>
         <div class="oh mobile-block">
@@ -128,36 +128,7 @@
     </div>
   </section>
 
-  <!--
-  <section plangular data-src="http://soundcloud.com/jxnblk/sets/march-on" class="grid-1 mb2 bd bg-light-gray rounded">
-    <div class="asp-3o1 bd bg-center bg-cover pos-rel" style="background-image: url(site/march-on.jpg)"></div>
-    <div class="pad1 bd">
-      <div class="center">
-        <div class="dib">
-          <a href="" ng-click="player.previous(playlist)" class="fl mr1 dark-gray"><i class="icon-previous p tappad"></i></a>
-          <a href="" ng-click="player.playPlaylist(playlist)" ng-hide="player.tracks == playlist.tracks && player.playing" class="fl dark-gray"><i class="icon-play h2 tappad"></i></a>
-          <a href="" ng-click="player.pause()" ng-show="player.tracks == playlist.tracks && player.playing" class="fl dark-gray"><i class="icon-pause h2 tappad"></i></a>
-          <a href="" ng-click="player.next(playlist)" class="fl ml1 dark-gray"><i class="icon-skip p tappad"></i></a>
-        </div>
-      </div>
-      <div class="bd mb1">
-        <progress value="{{ currentTime / duration }}" ng-click="seekTo($event)" class="mt1 progress progress-gray progress-gray-alt w100">{{ currentTime / duration}}</progress>
-        <small class="fl">{{ currentTime | playTime }}</small>
-        <small class="fr">{{ duration | playTime }}</small>
-      </div>
-
-      <ol class="max-hi256 over-scroll">
-        <li ng-repeat="track in playlist.tracks" class="ml2"><a href="" ng-click="player.play(playlist.tracks, $index)" class="db" ng-class="{ 'dark-gray': (player.playing || player.paused) != track, 'mid-gray': (player.playing || player.paused) == track }">
-          <strong>{{ track.user.username }}</strong> - {{ track.title }}
-        </a></li>
-      </ol>
-      <a ng-href="{{ playlist.permalink_url }}" target="_blank" class="fr small mid-gray">View on SoundCloud</a>
-    </div>
-  </section>
-  -->
-
-
-  <section class="relative mb4">
+  <footer class="relative mb4">
     <svg class="absolute waveform waveform-small" xmlns="http://www.w3.org/2000/svg" viewBox="0 -2 64 34" preserveAspectRatio="none" >
       <path>
         <animate class="animate" attributeName="d"
@@ -182,7 +153,7 @@
       <p class="h3 mb1">Read about how to use Plangular and start building your own players.</p>
       <a href="http://github.com/jxnblk/Plangular" class="p button button-big button-blue">View on Github</a>
     </div>
-  </section>
+  </footer>
 
 </main>
 
