@@ -117,7 +117,6 @@ plangular.directive('plangular', function ($document, $rootScope, $http) {
           var xpos = $event.offsetX / $event.target.offsetWidth;
           audio.currentTime = (xpos * audio.duration);
         };
-
       }
     }
   });
