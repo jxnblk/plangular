@@ -87,9 +87,9 @@ Use the `plangularIcon` directive to inject SVG icons into your player. This dir
 <div plangular-icon="next"></div>
 ```
 
-Note: Since these are SVGs, use the `fill` attribute to style the color of the icons.
 
 #### Example Icon Styling
+Since these are SVGs, use the `fill` attribute to style the color of the icons.
 
 ```html
 <style>
