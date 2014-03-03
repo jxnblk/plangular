@@ -138,9 +138,9 @@ plangular.directive('plangularIcon', function() {
       var el = elem[0],
           id = attrs.plangularIcon,
           svg = sprite.getElementById(id).cloneNode(true);
+      el.className += ' plangular-icon plangular-icon-' + id;
       svg.removeAttribute('id');
       svg.setAttribute('class', el.className);
-      svg.className = svg.className + ' plangular-icon plangular-icon-' + id;
       el.parentNode.replaceChild(svg, el);
     }
   }
