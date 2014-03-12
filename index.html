@@ -31,10 +31,6 @@
           dur=".1s"
           repeatCount="indefinite" />
       </path>
-      <!--
-          from=" M0 16 C0 16 0 16 0 16 C0 16 0 16 0 16 C4 16 12 0 16 0 C24 0 24 32 32 32 C40 32 40 0 48 0 C56 0 56 16 64 16"
-          to="M0 16 C8 16 8 0 16 0 C24 0 24 32 32 32 C40 32 40 0 48 0 C52 0 60 16 64 16 C64 16 64 16 64 16 C64 16 64 16 64 16"
-          -->
     </svg>
   </div>
   <div class="relative table-cell center p-responsive fit">
@@ -83,9 +79,10 @@
           </a>
         </div>
         <div class="oh relative" style="height:3rem">
-          <div class="absolute t0 r0 b0 l0" ng-click="seekTo($event)" style="height:.5rem;margin:1.25rem 0;">
+          <div class="absolute t0 r0 b0 l0" style="height:.5rem;margin:1.25rem 0;">
             <div class="absolute t0 r0 b0 l0 bg-white"></div>
             <div class="absolute t0 b0 l0 bg-green" style="width: {{ (currentTime / duration) * 100 }}%"></div>
+            <div class="absolute t0 r0 b0 l0" ng-click="seekTo($event)"></div>
           </div>
         </div>
       </div>
