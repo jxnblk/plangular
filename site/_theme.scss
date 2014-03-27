@@ -77,12 +77,23 @@ a {
   }
 }
 
-.button-gray {
-  color: #fff;
-  background-color: $mid-gray;
+.button-box {
+  color: $green;
+  box-shadow: inset 0 0 0 2px $green;
+  -webkit-transition: background .2s ease, box-shadow .2s ease, -webkit-transform .2s ease;
+  transition: background .2s ease, box-shadow .2s ease, transform .2s ease;
+  svg {
+    fill: $green;
+  }
   &:hover {
-    color: #fff;
-    background-color: darken($mid-gray, 20%);
+    color: $dark-gray;
+    background-color: $green;
+    box-shadow: 0 0 0 4px $dark-gray, 0 0 0 8px rgba($green, .5);
+    -webkit-transform: scale(1.05);
+    transform: scale(1.05);
+    svg {
+      fill: $dark-gray;
+    }
   }
 }
 

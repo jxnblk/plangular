@@ -1,7 +1,7 @@
 // Type
 
 body {
-  font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, sans-serif;
+  font-family: 'Open Sans', Helvetica, sans-serif;
   line-height: 1.5rem;
   font-weight: 400;
 }
@@ -97,3 +97,8 @@ strong, .bold { font-weight: 600; }
 .leading-3 { line-height: 3rem; }
 .leading-4 { line-height: 4rem; }
 
+.icon {
+  width: 1em;
+  height: 1em;
+  vertical-align: -.0625em;
+}
