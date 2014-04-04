@@ -1,19 +1,25 @@
 // Plangular theme
 
 
-$dark-gray: #1c2226;
-$blue: #00bbdd;
+//$dark-gray: #1c2226;
+//$blue: #00bbdd;
+//$light-gray: #eaeff0;
+//$mid-gray: #a0aab0;
+
+$blue: #0096cc;
 $light-gray: #eaeff0;
-$mid-gray: #a0aab0;
+$mid-gray: #708690;
+$dark-gray: #405660;
 
 //$blue: #0096cc;
+//
 //$light-gray: #eee;
 //$mid-gray: #777;
 //$dark-gray: #333;
 
 $red: #f52;
 $green: #0f6;
-$orange: #fc2;
+//$orange: #fc2;
 
 
 .white { color: #fff; }
@@ -24,7 +30,7 @@ $orange: #fc2;
 
 .red { color: $red; }
 .green { color: $green; }
-.orange { color: $orange; }
+//.orange { color: $orange; }
 
 .bg-white { background-color: #fff; }
 .bg-blue { background-color: $blue; }
@@ -34,7 +40,7 @@ $orange: #fc2;
 
 .bg-red { background-color: $red; }
 .bg-green { background-color: $green; }
-.bg-orange { background-color: $orange; }
+//.bg-orange { background-color: $orange; }
 
 
 // Base theme styles
