@@ -18,22 +18,10 @@
 <body ng-app="plangular" class="">
 
 <header plangular data-src="http://soundcloud.com/jxnblk/plangular" class="relative h100 xmin-h100 xtable bg-dark-gray green">
-  <div class="absolute t0 r0 b0 l0 glow-wrap" ng-class="{ 'geo-glow': player.playing == track }" >
-    <svg class="absolute waveform waveform-large" xmlns="http://www.w3.org/2000/svg" viewBox="8 -2 48 34" preserveAspectRatio="none" >
-      <path>
-        <animate 
-          class="animate"
-          attributeName="d"
-          values="
-            M0 16 C0 16 0 16 0 16 C0 16 0 16 0 16 C6 16 8 8 16 8 C24 8 24 32 32 32 C40 32 40 8 48 8 C56 8 58 16 64 16 ;
-            M0 16 C0 16 0 16 0 16 C6 16 8 24 16 24 C24 24 24 0 32 0 C40 0 40 24 48 24 C56 24 58 16 64 16 C64 16 64 16 64 16 ;
-            M0 16 C6 16 8 8 16 8 C24 8 24 32 32 32 C40 32 40 8 48 8 C56 8 58 16 64 16 C64 16 64 16 64 16 C64 16 64 16 64 16 "
-          dur=".1s"
-          repeatCount="indefinite" />
-      </path>
-    </svg>
+  <div class="absolute t0 r0 b0 l0 glow-wrap" ng-class="{ 'geo-glow': player.playing == track }">
+    <img src="site/waveform-new.svg" class="absolute waveform waveform-large"/>
   </div>
-  <div class="table min-h100">
+  <div class="table min-h100 bg-dark-gray">
     <div class="relative table-cell center p-responsive">
       <a href="" ng-click="player.play(track)" class="h1 plangular-button mb1 button-green rounded">
         <svg class="icon geo-dark-gray" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">

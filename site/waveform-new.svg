@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none" stroke="#0f6" stroke-width="0.25" preserveAspectRatio="none">
+  <path d="
+    M0 16
+    Q8 -4 16 16
+    t16 0 t16 0 t16 0 t16 0
+    t16 0 t16 0 t16 0 t16 0
+    t16 0 t16 0 t16 0 t16 0
+    t16 0 t16 0 t16 0 t16 0
+    t16 0 t16 0 t16 0 t16 0
+    t16 0 t16 0 t16 0 t16 0
+    t16 0 t16 0 t16 0 t16 0
+    t16 0 t16 0 t16 0 t16 0
+    t16 0 t16 0 t16 0 t16 0
+    t16 0 t16 0 t16 0 t16 0
+    t16 0 t16 0 t16 0 t16 0
+    t16 0 t16 0 t16 0 t16 0
+    t16 0 t16 0 t16 0 t16 0
+    t16 0 t16 0 t16 0 t16 0
+    t16 0 t16 0 t16 0 t16 0
+    t16 0 t16 0 t16 0 t16 0
+    t16 0 t16 0 t16 0 t16 0
+    t16 0 t16 0 t16 0 t16 0
+    t16 0 t16 0 t16 0 t16 0
+    t16 0 t16 0 t16 0 t16 0
+    t16 0 t16 0 t16 0 t16 0
+    t16 0 t16 0 t16 0 t16 0
+    t16 0 t16 0 t16 0 t16 0
+    t16 0 t16 0 t16 0 t16 0
+    t16 0 t16 0 t16 0 t16 0
+    t16 0 t16 0 t16 0 t16 0
+    t16 0 t16 0 t16 0 t16 0
+    t16 0 t16 0 t16 0 t16 0
+    t16 0 t16 0 t16 0 t16 0
+    t16 0 t16 0 t16 0 t16 0
+    t16 0 t16 0 t16 0 t16 0
+    t16 0 t16 0 t16 0 t16 0
+    t16 0 t16 0 t16 0 t16 0
+    t16 0 t16 0 t16 0 t16 0
+    t16 0 t16 0 t16 0 t16 0
+    t16 0 t16 0 t16 0 t16 0
+    t16 0 t16 0 t16 0 t16 0
+    t16 0 t16 0 t16 0 t16 0
+    t16 0 t16 0 t16 0 t16 0
+    t16 0 t16 0 t16 0 t16 0
+  ">
+    <animateTransform attributeName="transform" type="translate" values="0 0; -2560 0" dur="10s" repeatCount="indefinite" />
+  </path>
+</svg>

@@ -76,9 +76,12 @@ html, body { height: 100%; }
   text-align: center;
   display: inline-block;
   width: 8em;
-  height: 3em;
-  line-height: 3em;
+  height: 2em;
+  line-height: 2em;
   max-width: 100%;
+  svg {
+    vertical-align: -.125em;
+  }
 }
 
 .bg-cover { background-size: cover; }
