@@ -7,8 +7,8 @@
 
   <link rel="icon" href="favicon.png" />
   <link rel="apple-touch-icon-precomposed" href="apple-touch-icon.png" />
-  <link rel="stylesheet" href="plangular.css"/>
-  <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="plangular.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Titillium+Web:400,700">
 
   <script src="//connect.soundcloud.com/sdk.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.1.4/angular.min.js"></script>
@@ -26,7 +26,7 @@
     </div>
   </div>
   <div class="header-waveform">
-    <img src="images/plangular-waveform-5.svg" class="header-waveform-img" style="left: -{{ (currentTime/duration) * 26214 }}px" />
+    <img src="images/plangular-waveform-5.svg" class="header-waveform-img" style="left: -{{ (currentTime/duration) * 26214 }}px">
   </div>
 </header>
 
@@ -193,7 +193,7 @@
 
       <article plangular data-src="'http://soundcloud.com/mrsjxn/touch-this'" class="grid-1 media mb4">
         <div class="img sq128 mr1 pos-rel">
-          <img ng-src="{{ track.artwork_url }}" class="w100" />
+          <img ng-src="{{ track.artwork_url }}" class="w100">
           <a href="" ng-click="player.play(track)" ng-hide="player.playing == track"
             class="db pos-abs fill sq64 sq64-text circle btn-dark anim-popin">
             <i class="icon-play icon-nudge-right db h3"></i></a>
@@ -206,7 +206,7 @@
           <h1 class="h2 reg"><a ng-href="{{ track.permalink_url }}" target="_blank" class="dark-gray">{{ track.title }}</a></h1>
           <div class="bd pos-rel">
             <progress value="{{ currentTime / duration}}"  class="progress progress-green pos-abs top right bottom left w100 hi100"></progress>
-            <img ng-src="{{ track.waveform_url }}" class="db pos-rel z2 w100 hi64 sc-waveform-whiten" />
+            <img ng-src="{{ track.waveform_url }}" class="db pos-rel z2 w100 hi64 sc-waveform-whiten">
             <div class="pos-abs fill z3" ng-click="seekTo($event)"></div>
           </div>
         </div>
@@ -228,7 +228,7 @@
             </div>
             <div class="bd pos-rel">
               <progress value="{{ currentTime / duration}}"  class="progress progress-green pos-abs top right bottom left w100 hi100"></progress>
-              <img ng-src="{{ track.waveform_url }}" class="db pos-rel z2 w100 hi64 sc-waveform-whiten" />
+              <img ng-src="{{ track.waveform_url }}" class="db pos-rel z2 w100 hi64 sc-waveform-whiten">
               <div class="pos-abs fill z3" ng-click="seekTo($event)"></div>
               <small class="pos-abs top right z2 mt1 mr1 mid-gray">{{ currentTime | playTime }} | {{ duration | playTime }}</small>
             </div>
