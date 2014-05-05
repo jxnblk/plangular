@@ -88,38 +88,43 @@ plangular.directive('plangular', function ($document, $rootScope, $http) {
       restrict: 'A',
       scope: true,
       link: function (scope, elem, attrs) {
-        var params = { url: attrs.src, client_id: clientID, callback: 'JSON_CALLBACK' }
-        var protocol = (location.protocol === 'https:') ? 'https:' : 'http:'
-        $http.jsonp(protocol +'//api.soundcloud.com/resolve.json', { params: params }).success(function(data){
-          // Handle playlists (i.e. sets)
-          if (data.tracks) scope.playlist = data;
-          // Handle single track
-          else if (data.kind == 'track') scope.track = data;
-          // Handle all other data
-          else scope.data = data;
-        });
-        scope.player = player;
-        scope.audio = audio;
-        scope.currentTime = 0;
-        scope.duration = 0;
+          attrs.$observe('plangular',function(){
+            if((attrs.src == undefined || attrs.src == null) &&(attrs.plangular != null)){
+              attrs.src = attrs.plangular;
+            }    
+            var params = { url: attrs.src, client_id: clientID, callback: 'JSON_CALLBACK' }
+            var protocol = (location.protocol === 'https:') ? 'https:' : 'http:'
+            $http.jsonp(protocol +'//api.soundcloud.com/resolve.json', { params: params }).success(function(data){
+              // Handle playlists (i.e. sets)
+              if (data.tracks) scope.playlist = data;
+              // Handle single track
+              else if (data.kind == 'track') scope.track = data;
+              // Handle all other data
+              else scope.data = data;
+            });
+          scope.player = player;
+          scope.audio = audio;
+          scope.currentTime = 0;
+          scope.duration = 0;
 
-        // Updates the currentTime and duration for the audio
-        audio.addEventListener('timeupdate', function() {
-          if (scope.track == player.track || (scope.playlist && scope.playlist.tracks == player.tracks)){
-            scope.$apply(function() {
-              scope.currentTime = (audio.currentTime * 1000).toFixed();
-              scope.duration = (audio.duration * 1000).toFixed();
-            });  
+          // Updates the currentTime and duration for the audio
+          audio.addEventListener('timeupdate', function() {
+            if (scope.track == player.track || (scope.playlist && scope.playlist.tracks == player.tracks)){
+              scope.$apply(function() {
+                scope.currentTime = (audio.currentTime * 1000).toFixed();
+                scope.duration = (audio.duration * 1000).toFixed();
+              });  
+            };
+          }, false);
+
+          // Handle click events for seeking
+          scope.seekTo = function($event){
+            var xpos = $event.offsetX / $event.target.offsetWidth;
+            audio.currentTime = (xpos * audio.duration);
           };
-        }, false);
-
-        // Handle click events for seeking
-        scope.seekTo = function($event){
-          var xpos = $event.offsetX / $event.target.offsetWidth;
-          audio.currentTime = (xpos * audio.duration);
-        };
+        });
       }
-    }
+    };
   });
 
 // Plangular Icons
@@ -144,7 +149,7 @@ plangular.directive('plangularIcon', function() {
       svg.setAttribute('class', el.className);
       el.parentNode.replaceChild(svg, el);
     }
-  }
+  };
 });
 
 // Filter to convert milliseconds to hours, minutes, seconds
