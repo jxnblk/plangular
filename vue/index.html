@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Plangular</title>
+  <meta name="description" content="Create your own custom SoundCloud player with just HTML and CSS. Built with AngularJS">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="icon" href="favicon.png" />
+  <link rel="stylesheet" href="../site/style.css"/>
+
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/vue/0.10.6/vue.min.js"></script>
+  <script src="../v-plangular.js"></script>
+
+</head>
+<body id="vm" class="p2 bg-dark-gray">
+
+  <div v-component="soundcloud" class="red">
+    <pre>Global Player (no v-src attribute)</pre>
+    <pre><h1>{{ player.currentTrack.user.username }} - {{ player.currentTrack.title }} </h1></pre>
+    <button class="red button button-box" v-on="click: player.playPause(player.tracks, player.i)">
+      <span v-if="!player.playing"><svg v-icon="'play'"></svg></span>
+      <span v-if="player.playing"><svg v-icon="'pause'"></svg></span>
+      Play/Pause
+    </button>
+    <button class="red button button-box" v-on="click: player.previous()">
+      <svg v-icon="'previous'"></svg>
+      Previous
+    </button>
+    <button class="red button button-box" v-on="click: player.next()">
+      Next
+      <svg v-icon="'next'"></svg>
+    </button>
+    <pre>{{ player.currentTime | duration }} / {{ player.duration | duration }} </pre>
+    <svg v-icon="'play'"></svg>
+    <svg v-icon="'pause'"></svg>
+  </div>
+
+
+  <div v-component="soundcloud" v-src="'http://soundcloud.com/jxnblk/really-wanna'">
+    <h2><a href="#{{ permalink }}" v-on="click: playPause(index)"> {{ user.username }} {{ title }} {{ index }} </a></h2>
+  </div>
+
+  <div v-component="soundcloud" v-src="'http://soundcloud.com/jxnblk/let-go'">
+    <h2><a href="#{{ permalink }}" v-on="click: playPause(index)"> {{ user.username }} {{ title }} {{ index }} </a></h2>
+  </div>
+
+  <div v-component="soundcloud" v-src="'http://soundcloud.com/mrsjxn/no-love'">
+    <h2><a href="#{{ permalink }}" v-on="click: playPause(index)"> {{ user.username }} {{ title }} {{ index }} </a></h2>
+  </div>
+
+<script>
+  var vm = new Vue({ el: '#vm' });
+</script>
+
+</body>
+</html>
