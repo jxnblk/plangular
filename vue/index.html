@@ -15,10 +15,10 @@
 </head>
 <body id="vm" class="p2 bg-dark-gray">
 
-  <div v-component="soundcloud" class="red">
+  <div v-component="plangular" class="red">
     <pre>Global Player (no v-src attribute)</pre>
     <pre><h1>{{ player.currentTrack.user.username }} - {{ player.currentTrack.title }} </h1></pre>
-    <button class="red button button-box" v-on="click: player.playPause(player.tracks, player.i)">
+    <button class="red button button-box" v-on="click: player.playPause(player.tracks[player.i], player.i)">
       <span v-if="!player.playing"><svg v-icon="'play'"></svg></span>
       <span v-if="player.playing"><svg v-icon="'pause'"></svg></span>
       Play/Pause
@@ -37,18 +37,27 @@
   </div>
 
 
-  <div v-component="soundcloud" v-src="'http://soundcloud.com/jxnblk/really-wanna'">
+  <div v-component="plangular" v-src="'http://soundcloud.com/jxnblk/really-wanna'">
     <h2><a href="#{{ permalink }}" class="red" v-on="click: playPause(index)"> {{ index }}. {{ user.username }} {{ title }} </a></h2>
   </div>
 
-  <div v-component="soundcloud" v-src="'http://soundcloud.com/jxnblk/let-go'">
+  <div v-component="plangular" v-src="'http://soundcloud.com/jxnblk/let-go'">
     <h2><a href="#{{ permalink }}" class="red" v-on="click: playPause(index)"> {{ index }}. {{ user.username }} {{ title }} </a></h2>
   </div>
 
-  <div v-component="soundcloud" v-src="'http://soundcloud.com/mrsjxn/no-love'">
+  <div v-component="plangular" v-src="'http://soundcloud.com/mrsjxn/no-love'">
     <h2><a href="#{{ permalink }}" class="red" v-on="click: playPause(index)"> {{ index }}. {{ user.username }} {{ title }} </a></h2>
   </div>
 
+<div v-component="plangular" class="red">
+<pre class="h4" style="word-wrap:break-word;white-space:pre-wrap">
+{{ player.tracks.length }}
+---
+{{ player.tracks }}
+---
+{{ player }}
+</pre>
+</div>
 <script>
   var vm = new Vue({ el: '#vm' });
 </script>
