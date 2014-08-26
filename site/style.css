@@ -489,20 +489,16 @@ a {
     background-color: #00bfff;
     box-shadow: 0 0 0 2px rgba(0, 191, 255, 0.5); }
 
-.button-box {
+.button-stroke, .button-box {
   background-color: transparent;
   box-shadow: inset 0 0 0 2px;
   -webkit-transition: background 0.2s ease, box-shadow 0.2s ease, -webkit-transform 0.2s ease;
   transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
-  fill: currentColor; }
-  .button-box:hover {
-    color: #405660;
-    background-color: currentColor;
-    box-shadow: 0 0 0 4px #405660, 0 0 0 8px rgba(0, 255, 102, 0.5);
-    -webkit-transform: scale(1.05);
-    transform: scale(1.05); }
-    .button-box:hover svg {
-      fill: #405660; }
+  fill: currentcolor; }
+  .button-stroke:hover, .button-box:hover {
+    background-color: rgba(0, 0, 0, 0.25);
+    box-shadow: inset 0 0 0 3px;
+    fill: currentcolor; }
 
 .button-green {
   color: #405660;

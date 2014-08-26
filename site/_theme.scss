@@ -83,6 +83,7 @@ a {
   }
 }
 
+.button-stroke,
 .button-box {
   //color: $green;
   //box-shadow: inset 0 0 0 2px $green;
@@ -90,17 +91,17 @@ a {
   box-shadow: inset 0 0 0 2px;
   -webkit-transition: background .2s ease, box-shadow .2s ease, -webkit-transform .2s ease;
   transition: background .2s ease, box-shadow .2s ease, transform .2s ease;
-  fill: currentColor;
+  fill: currentcolor;
   &:hover {
-    color: $dark-gray;
+    //color: $dark-gray;
     //background-color: $green;
-    background-color: currentColor;
-    box-shadow: 0 0 0 4px $dark-gray, 0 0 0 8px rgba($green, .5);
-    -webkit-transform: scale(1.05);
-    transform: scale(1.05);
-    svg {
-      fill: $dark-gray;
-    }
+    //background-color: $blue;
+    background-color: rgba(#000,.25);
+    //box-shadow: 0 0 0 2px $dark-gray, 0 0 0 4px;
+    box-shadow: inset 0 0 0 3px;
+    //-webkit-transform: scale(1.05);
+    //transform: scale(1.05);
+    fill: currentcolor;
   }
 }
 

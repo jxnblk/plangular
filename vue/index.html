@@ -38,15 +38,15 @@
 
 
   <div v-component="soundcloud" v-src="'http://soundcloud.com/jxnblk/really-wanna'">
-    <h2><a href="#{{ permalink }}" v-on="click: playPause(index)"> {{ user.username }} {{ title }} {{ index }} </a></h2>
+    <h2><a href="#{{ permalink }}" class="red" v-on="click: playPause(index)"> {{ index }}. {{ user.username }} {{ title }} </a></h2>
   </div>
 
   <div v-component="soundcloud" v-src="'http://soundcloud.com/jxnblk/let-go'">
-    <h2><a href="#{{ permalink }}" v-on="click: playPause(index)"> {{ user.username }} {{ title }} {{ index }} </a></h2>
+    <h2><a href="#{{ permalink }}" class="red" v-on="click: playPause(index)"> {{ index }}. {{ user.username }} {{ title }} </a></h2>
   </div>
 
   <div v-component="soundcloud" v-src="'http://soundcloud.com/mrsjxn/no-love'">
-    <h2><a href="#{{ permalink }}" v-on="click: playPause(index)"> {{ user.username }} {{ title }} {{ index }} </a></h2>
+    <h2><a href="#{{ permalink }}" class="red" v-on="click: playPause(index)"> {{ index }}. {{ user.username }} {{ title }} </a></h2>
   </div>
 
 <script>
