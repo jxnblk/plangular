@@ -8,31 +8,19 @@ var audio = require('./audio');
 var Player = function() {
 
   var player = {};
-  //player.audio = audio;
   player.i = 0;
   player.playing = false;
   player.tracks = [];
-  // Playlist for single tracks
-  player.playlist = [];
+  player.playlist = []; // Deprecate? Playlist for single tracks
   player.currentTrack = {};
   player.currentTime = 0;
   player.duration = 0;
 
-  player.play = function(track, i) {
-    console.log('player.play', track, i);
-    if (i == null) {
-      console.log('i cant be null anymore');
-      //tracks = new Array(tracks);
-    }
-    if (track == null) {
-      console.log('aint no track');
-      var track = this.tracks[i] || this.tracks[0];
-    }
+  player.play = function(i) {
+    if (i == null) console.log('i cant be null anymore');
+    var track = this.tracks[i] || this.tracks[0];
     this.i = i || 0;
-    //this.tracks = tracks;
-    // consider removing this?
-    this.currentTrack = this.tracks[this.i];
-    //var track = this.tracks[this.i];
+    this.currentTrack = this.tracks[this.i]; // consider removing this?
     if (track.tracks) {
       console.log('its a playlist so we need to handle this');
     }
@@ -47,15 +35,14 @@ var Player = function() {
     this.playing = false;
   };
 
-  player.playPause = function(track, i) {
-    //if (!tracks) return false;
-    if (!track) console.error('no track - we have issues');
+  player.playPause = function(i) {
+    var track = this.tracks[i];
     if (track.tracks && this.playing != track.tracks[i]) {
       console.log('its a playlist and its not playing so play it player');
-      this.play(track, i);
+      this.play(i);
     } else if (this.playing != track) {
       console.log('we could be playing this but you playing');
-      this.play(track, i);
+      this.play(i);
     } else {
       this.pause();
     }
@@ -66,25 +53,23 @@ var Player = function() {
     // Need to handle soundcloud playlists
     if (this.i < this.tracks.length - 1) {
       this.i++;
-      this.play(this.tracks, this.i);
+      this.play(this.i);
     }
   };
 
   player.previous = function() {
     if (this.i > 0) {
       this.i--;
-      this.play(this.tracks, this.i);
+      this.play(this.i);
     }
   };
 
   player.load = function(track, index) {
     this.tracks[index] = track;
-    console.log('load', this.tracks, index);
   };
 
   player.seek = function(e) {
     if (!audio.seekable) return false;
-    //console.log(e, e.layerX, e.srcElement.offsetWidth, e.layerX / e.srcElement.offsetWidth);
     var percent = e.layerX / e.srcElement.offsetWidth;
     var time = percent * audio.duration;
     audio.currentTime = time;

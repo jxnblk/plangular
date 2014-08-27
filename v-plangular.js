@@ -1,1 +1,828 @@
-!function a(b,c,d){function e(g,h){if(!c[g]){if(!b[g]){var i="function"==typeof require&&require;if(!h&&i)return i(g,!0);if(f)return f(g,!0);throw new Error("Cannot find module '"+g+"'")}var j=c[g]={exports:{}};b[g][0].call(j.exports,function(a){var c=b[g][1][a];return e(c?c:a)},j,j.exports,a,b,c,d)}return c[g].exports}for(var f="function"==typeof require&&require,g=0;g<d.length;g++)e(d[g]);return e}({1:[function(a,b){function c(){}function d(a,b,d){function g(){h.parentNode.removeChild(h),window[o]=c}"function"==typeof b&&(d=b,b={}),b||(b={});var h,i,j=b.prefix||"__jp",k=b.param||"callback",l=null!=b.timeout?b.timeout:6e4,m=encodeURIComponent,n=document.getElementsByTagName("script")[0]||document.head,o=j+f++;l&&(i=setTimeout(function(){g(),d&&d(new Error("Timeout"))},l)),window[o]=function(a){e("jsonp got",a),i&&clearTimeout(i),g(),d&&d(null,a)},a+=(~a.indexOf("?")?"&":"?")+k+"="+m(o),a=a.replace("?&","?"),e('jsonp req "%s"',a),h=document.createElement("script"),h.src=a,n.parentNode.insertBefore(h,n)}var e=a("debug")("jsonp");b.exports=d;var f=0},{debug:2}],2:[function(a,b,c){function d(){return"WebkitAppearance"in document.documentElement.style||window.console&&(console.firebug||console.exception&&console.table)||navigator.userAgent.toLowerCase().match(/firefox\/(\d+)/)&&parseInt(RegExp.$1,10)>=31}function e(){var a=arguments,b=this.useColors;if(a[0]=(b?"%c":"")+this.namespace+(b?" %c":" ")+a[0]+(b?"%c ":" ")+"+"+c.humanize(this.diff),!b)return a;var d="color: "+this.color;a=[a[0],d,"color: inherit"].concat(Array.prototype.slice.call(a,1));var e=0,f=0;return a[0].replace(/%[a-z%]/g,function(a){"%%"!==a&&(e++,"%c"===a&&(f=e))}),a.splice(f,0,d),a}function f(){return"object"==typeof console&&"function"==typeof console.log&&Function.prototype.apply.call(console.log,console,arguments)}function g(a){try{null==a?localStorage.removeItem("debug"):localStorage.debug=a}catch(b){}}function h(){var a;try{a=localStorage.debug}catch(b){}return a}c=b.exports=a("./debug"),c.log=f,c.formatArgs=e,c.save=g,c.load=h,c.useColors=d,c.colors=["lightseagreen","forestgreen","goldenrod","dodgerblue","darkorchid","crimson"],c.formatters.j=function(a){return JSON.stringify(a)},c.enable(h())},{"./debug":3}],3:[function(a,b,c){function d(){return c.colors[k++%c.colors.length]}function e(a){function b(){}function e(){var a=e,b=+new Date,f=b-(j||b);a.diff=f,a.prev=j,a.curr=b,j=b,null==a.useColors&&(a.useColors=c.useColors()),null==a.color&&a.useColors&&(a.color=d());var g=Array.prototype.slice.call(arguments);g[0]=c.coerce(g[0]),"string"!=typeof g[0]&&(g=["%o"].concat(g));var h=0;g[0]=g[0].replace(/%([a-z%])/g,function(b,d){if("%%"===b)return b;h++;var e=c.formatters[d];if("function"==typeof e){var f=g[h];b=e.call(a,f),g.splice(h,1),h--}return b}),"function"==typeof c.formatArgs&&(g=c.formatArgs.apply(a,g));var i=e.log||c.log||console.log.bind(console);i.apply(a,g)}b.enabled=!1,e.enabled=!0;var f=c.enabled(a)?e:b;return f.namespace=a,f}function f(a){c.save(a);for(var b=(a||"").split(/[\s,]+/),d=b.length,e=0;d>e;e++)b[e]&&(a=b[e].replace(/\*/g,".*?"),"-"===a[0]?c.skips.push(new RegExp("^"+a.substr(1)+"$")):c.names.push(new RegExp("^"+a+"$")))}function g(){c.enable("")}function h(a){var b,d;for(b=0,d=c.skips.length;d>b;b++)if(c.skips[b].test(a))return!1;for(b=0,d=c.names.length;d>b;b++)if(c.names[b].test(a))return!0;return!1}function i(a){return a instanceof Error?a.stack||a.message:a}c=b.exports=e,c.coerce=i,c.disable=g,c.enable=f,c.enabled=h,c.humanize=a("ms"),c.names=[],c.skips=[],c.formatters={};var j,k=0},{ms:4}],4:[function(a,b){function c(a){var b=/^((?:\d+)?\.?\d+) *(ms|seconds?|s|minutes?|m|hours?|h|days?|d|years?|y)?$/i.exec(a);if(b){var c=parseFloat(b[1]),d=(b[2]||"ms").toLowerCase();switch(d){case"years":case"year":case"y":return c*k;case"days":case"day":case"d":return c*j;case"hours":case"hour":case"h":return c*i;case"minutes":case"minute":case"m":return c*h;case"seconds":case"second":case"s":return c*g;case"ms":return c}}}function d(a){return a>=j?Math.round(a/j)+"d":a>=i?Math.round(a/i)+"h":a>=h?Math.round(a/h)+"m":a>=g?Math.round(a/g)+"s":a+"ms"}function e(a){return f(a,j,"day")||f(a,i,"hour")||f(a,h,"minute")||f(a,g,"second")||a+" ms"}function f(a,b,c){return b>a?void 0:1.5*b>a?Math.floor(a/b)+" "+c:Math.ceil(a/b)+" "+c+"s"}var g=1e3,h=60*g,i=60*h,j=24*i,k=365.25*j;b.exports=function(a,b){return b=b||{},"string"==typeof a?c(a):b.long?e(a):d(a)}},{}],5:[function(a,b){(function(a){"use strict";var c=a.audio||document.createElement("audio");b.exports=c}).call(this,"undefined"!=typeof self?self:"undefined"!=typeof window?window:{})},{}],6:[function(){"use strict";Vue.filter("duration",function(a){var b=Math.floor(a/3600),c="0"+Math.floor(a%3600/60),d="0"+Math.floor(a%60);return c=c.substr(c.length-2),d=d.substr(d.length-2),isNaN(d)?"00:00":b?b+":"+c+":"+d:c+":"+d})},{}],7:[function(a){(function(b){"use strict";a("jsonp");a("./soundcloud"),a("./icons"),a("./duration-filter"),b.plangular={},plangular.clientID="0d33361983f16d2527b01fbf6408b7d7",plangular.api="http://api.soundcloud.com/resolve.json",plangular.data={}}).call(this,"undefined"!=typeof self?self:"undefined"!=typeof window?window:{})},{"./duration-filter":6,"./icons":8,"./soundcloud":10,jsonp:1}],8:[function(){"use strict";var a={play:"M0 0 L32 16 L0 32 z",pause:"M0 0 H12 V32 H0 z M20 0 H32 V32 H20 z",previous:"M0 0 H4 V14 L32 0 V32 L4 18 V32 H0 z",next:"M0 0 L28 14 V0 H32 V32 H28 V18 L0 32 z",twitter:"M2 4 C6 8 10 12 15 11 A6 6 0 0 1 22 4 A6 6 0 0 1 26 6 A8 8 0 0 0 31 4 A8 8 0 0 1 28 8 A8 8 0 0 0 32 7 A8 8 0 0 1 28 11 A18 18 0 0 1 10 30 A18 18 0 0 1 0 27 A12 12 0 0 0 8 24 A8 8 0 0 1 3 20 A8 8 0 0 0 6 19.5 A8 8 0 0 1 0 12 A8 8 0 0 0 3 13 A8 8 0 0 1 2 4",close:"M4 8 L8 4 L16 12 L24 4 L28 8 L20 16 L28 24 L24 28 L16 20 L8 28 L4 24 L12 16 z",chevronRight:"M12 1 L26 16 L12 31 L8 27 L18 16 L8 5 z",chevronLeft:"M20 1 L24 5 L14 16 L24 27 L20 31 L6 16 z",heart:"M0 10 C0 6, 3 2, 8 2 C12 2, 15 5, 16 6 C17 5, 20 2, 24 2 C30 2, 32 6, 32 10 C32 18, 18 29, 16 30 C14 29, 0 18, 0 10",download:"M10 0 H22 V10 H28 L16 24 L4 10 H10 z M0 26 H32 V32 H0",check:"M1 14 L5 10 L13 18 L27 4 L31 8 L13 26 z"};Vue.directive("icon",function(b){var c=document.createElementNS("http://www.w3.org/2000/svg","path");c.setAttribute("d",a[b]),this.el.appendChild(c);var d=this.el.getAttribute("viewBox")||"0 0 32 32";this.el.setAttribute("viewBox",d),this.el.setAttribute("style","max-height:100%;fill:currentColor"),this.el.classList.add("icon","icon-"+b)})},{}],9:[function(a,b){"use strict";var c=a("./audio"),d=function(){var a={};return a.i=0,a.playing=!1,a.tracks=[],a.playlist=[],a.currentTrack={},a.currentTime=0,a.duration=0,a.play=function(a,b){if(console.log("player.play",a,b),null==b&&console.log("i cant be null anymore"),null==a){console.log("aint no track");var a=this.tracks[b]||this.tracks[0]}this.i=b||0,this.currentTrack=this.tracks[this.i],a.tracks&&console.log("its a playlist so we need to handle this");var d=a.stream_url+"?client_id="+plangular.clientID;d!=c.src&&(c.src=d),c.play(),this.playing=a},a.pause=function(){c.pause(),this.playing=!1},a.playPause=function(a,b){a||console.error("no track - we have issues"),a.tracks&&this.playing!=a.tracks[b]?(console.log("its a playlist and its not playing so play it player"),this.play(a,b)):this.playing!=a?(console.log("we could be playing this but you playing"),this.play(a,b)):this.pause()},a.next=function(){console.log(this,this.playlist),this.i<this.tracks.length-1&&(this.i++,this.play(this.tracks,this.i))},a.previous=function(){this.i>0&&(this.i--,this.play(this.tracks,this.i))},a.load=function(a,b){this.tracks[b]=a,console.log("load",this.tracks,b)},a.seek=function(a){if(!c.seekable)return!1;var b=a.layerX/a.srcElement.offsetWidth,d=b*c.duration;c.currentTime=d},c.addEventListener("timeupdate",function(){a.currentTime=c.currentTime,a.duration=c.duration}),c.addEventListener("ended",function(){a.next()}),a},e=e||new d;b.exports=e},{"./audio":5}],10:[function(a){"use strict";var b=a("jsonp"),c=a("./player"),d=Vue.extend({data:{player:c,play:function(a){var b=this.$data.value,d=plangular.data[b],e=a||null;c.play(d,e)},pause:function(){c.pause()},playPause:function(a){var b=this.$data.value,d=plangular.data[b],e=a||0;c.playPause(d,e)}},directives:{src:function(a){var d=this;d.vm.$data.value=a;for(var e=document.querySelectorAll("[v-src]"),f=0;f<e.length;f++)this.el==e[f]&&(d.vm.$data.index=f);var g=plangular.api+"?url="+a+"&client_id="+plangular.clientID;if(plangular.data[a]){for(var h in plangular.data[a])d.vm.$data[h]=plangular.data[a][h];c.load(plangular.data[a],d.vm.index)}else b(g,function(b,e){plangular.data[a]=e;for(var f in e)d.vm.$data[f]=e[f];c.load(plangular.data[a],d.vm.index)})}}});Vue.component("plangular",d)},{"./player":9,jsonp:1}]},{},[7]);
+(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+/**
+ * Module dependencies
+ */
+
+var debug = require('debug')('jsonp');
+
+/**
+ * Module exports.
+ */
+
+module.exports = jsonp;
+
+/**
+ * Callback index.
+ */
+
+var count = 0;
+
+/**
+ * Noop function.
+ */
+
+function noop(){}
+
+/**
+ * JSONP handler
+ *
+ * Options:
+ *  - param {String} qs parameter (`callback`)
+ *  - timeout {Number} how long after a timeout error is emitted (`60000`)
+ *
+ * @param {String} url
+ * @param {Object|Function} optional options / callback
+ * @param {Function} optional callback
+ */
+
+function jsonp(url, opts, fn){
+  if ('function' == typeof opts) {
+    fn = opts;
+    opts = {};
+  }
+  if (!opts) opts = {};
+
+  var prefix = opts.prefix || '__jp';
+  var param = opts.param || 'callback';
+  var timeout = null != opts.timeout ? opts.timeout : 60000;
+  var enc = encodeURIComponent;
+  var target = document.getElementsByTagName('script')[0] || document.head;
+  var script;
+  var timer;
+
+  // generate a unique id for this request
+  var id = prefix + (count++);
+
+  if (timeout) {
+    timer = setTimeout(function(){
+      cleanup();
+      if (fn) fn(new Error('Timeout'));
+    }, timeout);
+  }
+
+  function cleanup(){
+    script.parentNode.removeChild(script);
+    window[id] = noop;
+  }
+
+  window[id] = function(data){
+    debug('jsonp got', data);
+    if (timer) clearTimeout(timer);
+    cleanup();
+    if (fn) fn(null, data);
+  };
+
+  // add qs component
+  url += (~url.indexOf('?') ? '&' : '?') + param + '=' + enc(id);
+  url = url.replace('?&', '?');
+
+  debug('jsonp req "%s"', url);
+
+  // create script
+  script = document.createElement('script');
+  script.src = url;
+  target.parentNode.insertBefore(script, target);
+}
+
+},{"debug":2}],2:[function(require,module,exports){
+
+/**
+ * This is the web browser implementation of `debug()`.
+ *
+ * Expose `debug()` as the module.
+ */
+
+exports = module.exports = require('./debug');
+exports.log = log;
+exports.formatArgs = formatArgs;
+exports.save = save;
+exports.load = load;
+exports.useColors = useColors;
+
+/**
+ * Colors.
+ */
+
+exports.colors = [
+  'lightseagreen',
+  'forestgreen',
+  'goldenrod',
+  'dodgerblue',
+  'darkorchid',
+  'crimson'
+];
+
+/**
+ * Currently only WebKit-based Web Inspectors, Firefox >= v31,
+ * and the Firebug extension (any Firefox version) are known
+ * to support "%c" CSS customizations.
+ *
+ * TODO: add a `localStorage` variable to explicitly enable/disable colors
+ */
+
+function useColors() {
+  // is webkit? http://stackoverflow.com/a/16459606/376773
+  return ('WebkitAppearance' in document.documentElement.style) ||
+    // is firebug? http://stackoverflow.com/a/398120/376773
+    (window.console && (console.firebug || (console.exception && console.table))) ||
+    // is firefox >= v31?
+    // https://developer.mozilla.org/en-US/docs/Tools/Web_Console#Styling_messages
+    (navigator.userAgent.toLowerCase().match(/firefox\/(\d+)/) && parseInt(RegExp.$1, 10) >= 31);
+}
+
+/**
+ * Map %j to `JSON.stringify()`, since no Web Inspectors do that by default.
+ */
+
+exports.formatters.j = function(v) {
+  return JSON.stringify(v);
+};
+
+
+/**
+ * Colorize log arguments if enabled.
+ *
+ * @api public
+ */
+
+function formatArgs() {
+  var args = arguments;
+  var useColors = this.useColors;
+
+  args[0] = (useColors ? '%c' : '')
+    + this.namespace
+    + (useColors ? ' %c' : ' ')
+    + args[0]
+    + (useColors ? '%c ' : ' ')
+    + '+' + exports.humanize(this.diff);
+
+  if (!useColors) return args;
+
+  var c = 'color: ' + this.color;
+  args = [args[0], c, 'color: inherit'].concat(Array.prototype.slice.call(args, 1));
+
+  // the final "%c" is somewhat tricky, because there could be other
+  // arguments passed either before or after the %c, so we need to
+  // figure out the correct index to insert the CSS into
+  var index = 0;
+  var lastC = 0;
+  args[0].replace(/%[a-z%]/g, function(match) {
+    if ('%%' === match) return;
+    index++;
+    if ('%c' === match) {
+      // we only are interested in the *last* %c
+      // (the user may have provided their own)
+      lastC = index;
+    }
+  });
+
+  args.splice(lastC, 0, c);
+  return args;
+}
+
+/**
+ * Invokes `console.log()` when available.
+ * No-op when `console.log` is not a "function".
+ *
+ * @api public
+ */
+
+function log() {
+  // This hackery is required for IE8,
+  // where the `console.log` function doesn't have 'apply'
+  return 'object' == typeof console
+    && 'function' == typeof console.log
+    && Function.prototype.apply.call(console.log, console, arguments);
+}
+
+/**
+ * Save `namespaces`.
+ *
+ * @param {String} namespaces
+ * @api private
+ */
+
+function save(namespaces) {
+  try {
+    if (null == namespaces) {
+      localStorage.removeItem('debug');
+    } else {
+      localStorage.debug = namespaces;
+    }
+  } catch(e) {}
+}
+
+/**
+ * Load `namespaces`.
+ *
+ * @return {String} returns the previously persisted debug modes
+ * @api private
+ */
+
+function load() {
+  var r;
+  try {
+    r = localStorage.debug;
+  } catch(e) {}
+  return r;
+}
+
+/**
+ * Enable namespaces listed in `localStorage.debug` initially.
+ */
+
+exports.enable(load());
+
+},{"./debug":3}],3:[function(require,module,exports){
+
+/**
+ * This is the common logic for both the Node.js and web browser
+ * implementations of `debug()`.
+ *
+ * Expose `debug()` as the module.
+ */
+
+exports = module.exports = debug;
+exports.coerce = coerce;
+exports.disable = disable;
+exports.enable = enable;
+exports.enabled = enabled;
+exports.humanize = require('ms');
+
+/**
+ * The currently active debug mode names, and names to skip.
+ */
+
+exports.names = [];
+exports.skips = [];
+
+/**
+ * Map of special "%n" handling functions, for the debug "format" argument.
+ *
+ * Valid key names are a single, lowercased letter, i.e. "n".
+ */
+
+exports.formatters = {};
+
+/**
+ * Previously assigned color.
+ */
+
+var prevColor = 0;
+
+/**
+ * Previous log timestamp.
+ */
+
+var prevTime;
+
+/**
+ * Select a color.
+ *
+ * @return {Number}
+ * @api private
+ */
+
+function selectColor() {
+  return exports.colors[prevColor++ % exports.colors.length];
+}
+
+/**
+ * Create a debugger with the given `namespace`.
+ *
+ * @param {String} namespace
+ * @return {Function}
+ * @api public
+ */
+
+function debug(namespace) {
+
+  // define the `disabled` version
+  function disabled() {
+  }
+  disabled.enabled = false;
+
+  // define the `enabled` version
+  function enabled() {
+
+    var self = enabled;
+
+    // set `diff` timestamp
+    var curr = +new Date();
+    var ms = curr - (prevTime || curr);
+    self.diff = ms;
+    self.prev = prevTime;
+    self.curr = curr;
+    prevTime = curr;
+
+    // add the `color` if not set
+    if (null == self.useColors) self.useColors = exports.useColors();
+    if (null == self.color && self.useColors) self.color = selectColor();
+
+    var args = Array.prototype.slice.call(arguments);
+
+    args[0] = exports.coerce(args[0]);
+
+    if ('string' !== typeof args[0]) {
+      // anything else let's inspect with %o
+      args = ['%o'].concat(args);
+    }
+
+    // apply any `formatters` transformations
+    var index = 0;
+    args[0] = args[0].replace(/%([a-z%])/g, function(match, format) {
+      // if we encounter an escaped % then don't increase the array index
+      if (match === '%%') return match;
+      index++;
+      var formatter = exports.formatters[format];
+      if ('function' === typeof formatter) {
+        var val = args[index];
+        match = formatter.call(self, val);
+
+        // now we need to remove `args[index]` since it's inlined in the `format`
+        args.splice(index, 1);
+        index--;
+      }
+      return match;
+    });
+
+    if ('function' === typeof exports.formatArgs) {
+      args = exports.formatArgs.apply(self, args);
+    }
+    var logFn = enabled.log || exports.log || console.log.bind(console);
+    logFn.apply(self, args);
+  }
+  enabled.enabled = true;
+
+  var fn = exports.enabled(namespace) ? enabled : disabled;
+
+  fn.namespace = namespace;
+
+  return fn;
+}
+
+/**
+ * Enables a debug mode by namespaces. This can include modes
+ * separated by a colon and wildcards.
+ *
+ * @param {String} namespaces
+ * @api public
+ */
+
+function enable(namespaces) {
+  exports.save(namespaces);
+
+  var split = (namespaces || '').split(/[\s,]+/);
+  var len = split.length;
+
+  for (var i = 0; i < len; i++) {
+    if (!split[i]) continue; // ignore empty strings
+    namespaces = split[i].replace(/\*/g, '.*?');
+    if (namespaces[0] === '-') {
+      exports.skips.push(new RegExp('^' + namespaces.substr(1) + '$'));
+    } else {
+      exports.names.push(new RegExp('^' + namespaces + '$'));
+    }
+  }
+}
+
+/**
+ * Disable debug output.
+ *
+ * @api public
+ */
+
+function disable() {
+  exports.enable('');
+}
+
+/**
+ * Returns true if the given mode name is enabled, false otherwise.
+ *
+ * @param {String} name
+ * @return {Boolean}
+ * @api public
+ */
+
+function enabled(name) {
+  var i, len;
+  for (i = 0, len = exports.skips.length; i < len; i++) {
+    if (exports.skips[i].test(name)) {
+      return false;
+    }
+  }
+  for (i = 0, len = exports.names.length; i < len; i++) {
+    if (exports.names[i].test(name)) {
+      return true;
+    }
+  }
+  return false;
+}
+
+/**
+ * Coerce `val`.
+ *
+ * @param {Mixed} val
+ * @return {Mixed}
+ * @api private
+ */
+
+function coerce(val) {
+  if (val instanceof Error) return val.stack || val.message;
+  return val;
+}
+
+},{"ms":4}],4:[function(require,module,exports){
+/**
+ * Helpers.
+ */
+
+var s = 1000;
+var m = s * 60;
+var h = m * 60;
+var d = h * 24;
+var y = d * 365.25;
+
+/**
+ * Parse or format the given `val`.
+ *
+ * Options:
+ *
+ *  - `long` verbose formatting [false]
+ *
+ * @param {String|Number} val
+ * @param {Object} options
+ * @return {String|Number}
+ * @api public
+ */
+
+module.exports = function(val, options){
+  options = options || {};
+  if ('string' == typeof val) return parse(val);
+  return options.long
+    ? long(val)
+    : short(val);
+};
+
+/**
+ * Parse the given `str` and return milliseconds.
+ *
+ * @param {String} str
+ * @return {Number}
+ * @api private
+ */
+
+function parse(str) {
+  var match = /^((?:\d+)?\.?\d+) *(ms|seconds?|s|minutes?|m|hours?|h|days?|d|years?|y)?$/i.exec(str);
+  if (!match) return;
+  var n = parseFloat(match[1]);
+  var type = (match[2] || 'ms').toLowerCase();
+  switch (type) {
+    case 'years':
+    case 'year':
+    case 'y':
+      return n * y;
+    case 'days':
+    case 'day':
+    case 'd':
+      return n * d;
+    case 'hours':
+    case 'hour':
+    case 'h':
+      return n * h;
+    case 'minutes':
+    case 'minute':
+    case 'm':
+      return n * m;
+    case 'seconds':
+    case 'second':
+    case 's':
+      return n * s;
+    case 'ms':
+      return n;
+  }
+}
+
+/**
+ * Short format for `ms`.
+ *
+ * @param {Number} ms
+ * @return {String}
+ * @api private
+ */
+
+function short(ms) {
+  if (ms >= d) return Math.round(ms / d) + 'd';
+  if (ms >= h) return Math.round(ms / h) + 'h';
+  if (ms >= m) return Math.round(ms / m) + 'm';
+  if (ms >= s) return Math.round(ms / s) + 's';
+  return ms + 'ms';
+}
+
+/**
+ * Long format for `ms`.
+ *
+ * @param {Number} ms
+ * @return {String}
+ * @api private
+ */
+
+function long(ms) {
+  return plural(ms, d, 'day')
+    || plural(ms, h, 'hour')
+    || plural(ms, m, 'minute')
+    || plural(ms, s, 'second')
+    || ms + ' ms';
+}
+
+/**
+ * Pluralization helper.
+ */
+
+function plural(ms, n, name) {
+  if (ms < n) return;
+  if (ms < n * 1.5) return Math.floor(ms / n) + ' ' + name;
+  return Math.ceil(ms / n) + ' ' + name + 's';
+}
+
+},{}],5:[function(require,module,exports){
+(function (global){
+// Audio element
+
+'use strict';
+
+var audio = global.audio || document.createElement('audio');
+
+module.exports = audio;
+
+
+}).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{}],6:[function(require,module,exports){
+// Vue filter to turn milliseconds into mm:ss
+
+'use strict';
+
+
+Vue.filter('duration', function(value) {
+
+  var hours = Math.floor(value/3600),
+      minutes = '0' + Math.floor((value % 3600) / 60),
+      seconds = '0' + Math.floor((value % 60));
+
+  minutes = minutes.substr(minutes.length - 2);
+  seconds = seconds.substr(seconds.length - 2);
+
+  if (!isNaN(seconds)) {
+    if (hours) {
+      return hours + ':' + minutes + ':' + seconds;
+    } else {
+      return minutes + ':' + seconds;
+    }
+  } else {
+    return '00:00';
+  }
+
+});
+
+
+},{}],7:[function(require,module,exports){
+(function (global){
+/*
+
+        PLANGULAR
+        A Highly Customizable SoundCloud Player
+
+        Vuejs Version
+
+        http://jxnblk.github.io/Plangular
+
+ */
+
+
+// To do:
+// - player playlist for all tracks in vm
+// - soundcloud playlists
+
+'use strict';
+
+var jsonp = require('jsonp');
+require('./soundcloud');
+require('./icons');
+require('./duration-filter');
+
+global.plangular = {};
+plangular.clientID = '0d33361983f16d2527b01fbf6408b7d7';
+plangular.api = 'http://api.soundcloud.com/resolve.json';
+plangular.data = {};
+
+
+
+}).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{"./duration-filter":6,"./icons":8,"./soundcloud":10,"jsonp":1}],8:[function(require,module,exports){
+/*
+
+  Vue Icons directive
+ 
+  Icons from Geomicons Open http://jxnblk.github.io/geomicons-open
+ 
+  Usage:
+
+    <svg v-icon="'play'"></svg>
+
+*/
+
+'use strict';
+
+
+var sprite = {
+  play: 'M0 0 L32 16 L0 32 z',
+  pause: 'M0 0 H12 V32 H0 z M20 0 H32 V32 H20 z',
+  previous: 'M0 0 H4 V14 L32 0 V32 L4 18 V32 H0 z',
+  next: 'M0 0 L28 14 V0 H32 V32 H28 V18 L0 32 z',
+  twitter: 'M2 4 C6 8 10 12 15 11 A6 6 0 0 1 22 4 A6 6 0 0 1 26 6 A8 8 0 0 0 31 4 A8 8 0 0 1 28 8 A8 8 0 0 0 32 7 A8 8 0 0 1 28 11 A18 18 0 0 1 10 30 A18 18 0 0 1 0 27 A12 12 0 0 0 8 24 A8 8 0 0 1 3 20 A8 8 0 0 0 6 19.5 A8 8 0 0 1 0 12 A8 8 0 0 0 3 13 A8 8 0 0 1 2 4',
+  close: 'M4 8 L8 4 L16 12 L24 4 L28 8 L20 16 L28 24 L24 28 L16 20 L8 28 L4 24 L12 16 z',
+  chevronRight: 'M12 1 L26 16 L12 31 L8 27 L18 16 L8 5 z',
+  chevronLeft: 'M20 1 L24 5 L14 16 L24 27 L20 31 L6 16 z',
+  heart: 'M0 10 C0 6, 3 2, 8 2 C12 2, 15 5, 16 6 C17 5, 20 2, 24 2 C30 2, 32 6, 32 10 C32 18, 18 29, 16 30 C14 29, 0 18, 0 10',
+  download: 'M10 0 H22 V10 H28 L16 24 L4 10 H10 z M0 26 H32 V32 H0',
+  check: 'M1 14 L5 10 L13 18 L27 4 L31 8 L13 26 z'
+};
+
+Vue.directive('icon', function(value) {
+  var path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+  path.setAttribute('d', sprite[value]);
+  this.el.appendChild(path);
+  var vb = this.el.getAttribute('viewBox') || '0 0 32 32';
+  this.el.setAttribute('viewBox', vb);
+  // Inherit fill from color and prevent layout nonsense
+  this.el.setAttribute('style', 'max-height:100%;fill:currentColor');
+  this.el.classList.add('icon', 'icon-' + value);
+});
+
+
+},{}],9:[function(require,module,exports){
+// Audio player
+
+'use strict';
+
+
+var audio = require('./audio');
+
+var Player = function() {
+
+  var player = {};
+  player.i = 0;
+  player.playing = false;
+  player.tracks = [];
+  player.playlist = []; // Deprecate? Playlist for single tracks
+  player.currentTrack = {};
+  player.currentTime = 0;
+  player.duration = 0;
+
+  player.play = function(i) {
+    if (i == null) console.log('i cant be null anymore');
+    var track = this.tracks[i] || this.tracks[0];
+    this.i = i || 0;
+    this.currentTrack = this.tracks[this.i]; // consider removing this?
+    if (track.tracks) {
+      console.log('its a playlist so we need to handle this');
+    }
+    var src = track.stream_url + '?client_id=' + plangular.clientID;
+    if (src != audio.src) audio.src = src;
+    audio.play();
+    this.playing = track;
+  };
+
+  player.pause = function() {
+    audio.pause();
+    this.playing = false;
+  };
+
+  player.playPause = function(i) {
+    var track = this.tracks[i];
+    if (track.tracks && this.playing != track.tracks[i]) {
+      console.log('its a playlist and its not playing so play it player');
+      this.play(i);
+    } else if (this.playing != track) {
+      console.log('we could be playing this but you playing');
+      this.play(i);
+    } else {
+      this.pause();
+    }
+  };
+
+  player.next = function() {
+    console.log(this, this.playlist);
+    // Need to handle soundcloud playlists
+    if (this.i < this.tracks.length - 1) {
+      this.i++;
+      this.play(this.i);
+    }
+  };
+
+  player.previous = function() {
+    if (this.i > 0) {
+      this.i--;
+      this.play(this.i);
+    }
+  };
+
+  player.load = function(track, index) {
+    this.tracks[index] = track;
+  };
+
+  player.seek = function(e) {
+    if (!audio.seekable) return false;
+    var percent = e.layerX / e.srcElement.offsetWidth;
+    var time = percent * audio.duration;
+    audio.currentTime = time;
+  };
+
+  audio.addEventListener('timeupdate', function() {
+    player.currentTime = audio.currentTime;
+    player.duration = audio.duration;
+  });
+
+  audio.addEventListener('ended', function(){
+    player.next();
+  });
+
+  return player;
+
+};
+
+var player = player || new Player();
+
+module.exports = player;
+
+
+},{"./audio":5}],10:[function(require,module,exports){
+// Vue Plangular component
+
+'use strict';
+
+
+var jsonp = require('jsonp');
+var player = require('./player');
+
+var Plangular = Vue.extend({
+
+  data: {
+    
+    player: player,
+
+    play: function() {
+      player.play(this.index);
+    },
+
+    pause: function() {
+      player.pause();
+    },
+
+    playPause: function() {
+      player.playPause(this.index);
+    }
+
+  },
+
+  directives: {
+
+    'src': function(value) {
+
+      var self = this;
+      self.vm.$data.value = value;
+
+      var elements = document.querySelectorAll('[v-src]');
+      for (var i = 0; i < elements.length; i++) {
+        if (this.el == elements[i]) {
+          self.vm.$data.index = i;
+        }
+      }
+
+      var apiUrl = plangular.api + '?url=' + value + '&client_id=' + plangular.clientID;
+
+      if (plangular.data[value]) {
+        for (var key in plangular.data[value]) {
+          self.vm.$data[key] = plangular.data[value][key];
+        }
+        player.load(plangular.data[value], self.vm.index);
+      } else {
+        jsonp(apiUrl, function(error, response) {
+          plangular.data[value] = response;
+          for (var key in response) {
+            self.vm.$data[key] = response[key];
+          }
+          player.load(plangular.data[value], self.vm.index);
+        });
+      }
+
+    }
+
+  }
+
+});
+
+Vue.component('plangular', Plangular);
+
+
+},{"./player":9,"jsonp":1}]},{},[7])

@@ -11,7 +11,7 @@ var exec = require('child_process').exec;
 gulp.task('compilejs', function() {
   gulp.src('./src/v-plangular.js')
     .pipe(browserify())
-    .pipe(uglify())
+    //.pipe(uglify())
     .pipe(gulp.dest('./'));
 });
 

@@ -12,22 +12,16 @@ var Plangular = Vue.extend({
     
     player: player,
 
-    play: function(i) {
-      var url = this.$data.value;
-      var track = plangular.data[url]; // Also sends full playlist for player to handle
-      var index = i || null;
-      player.play(track, index);
+    play: function() {
+      player.play(this.index);
     },
 
     pause: function() {
       player.pause();
     },
 
-    playPause: function(i) {
-      var url = this.$data.value;
-      var track = plangular.data[url];
-      var index = i || 0;
-      player.playPause(track, index);
+    playPause: function() {
+      player.playPause(this.index);
     }
 
   },
@@ -47,6 +41,7 @@ var Plangular = Vue.extend({
       }
 
       var apiUrl = plangular.api + '?url=' + value + '&client_id=' + plangular.clientID;
+
       if (plangular.data[value]) {
         for (var key in plangular.data[value]) {
           self.vm.$data[key] = plangular.data[value][key];
@@ -61,8 +56,11 @@ var Plangular = Vue.extend({
           player.load(plangular.data[value], self.vm.index);
         });
       }
+
     }
+
   }
+
 });
 
 Vue.component('plangular', Plangular);
