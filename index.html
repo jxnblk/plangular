@@ -13,11 +13,21 @@
 
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.9/angular.min.js"></script>
   <script src="plangular.js"></script>
+  <script>
+    var app = angular.module('app', ['plangular']);
+    app.controller('HomeCtrl', function($scope) {
+      $scope.tracks = [
+        'http://soundcloud.com/jxnblk/let-go',
+        'http://soundcloud.com/jxnblk/really-wanna',
+        'http://soundcloud.com/mrsjxn/no-love'
+      ];
+    });
+  </script>
 
 </head>
-<body ng-app="plangular" class="">
+<body ng-app="app" class="">
 
-<header plangular data-src="http://soundcloud.com/jxnblk/plangular" class="relative h100 xmin-h100 xtable bg-dark-gray green">
+<header plangular="http://soundcloud.com/jxnblk/plangular" class="relative h100 xmin-h100 xtable bg-dark-gray green">
   <div class="absolute t0 r0 b0 l0 glow-wrap" ng-class="{ 'geo-glow': player.playing == track }">
     <img src="site/waveform-new.svg" class="absolute waveform waveform-large"/>
   </div>
@@ -57,7 +67,7 @@
     <p class="h3 mb2">There's a million ways to skin a cat. Here's just a few of them.</p>
   </header>
 
-  <section plangular data-src="http://soundcloud.com/mrsjxn/bbb" class="measure-wide wrap mb4">
+  <section plangular="http://soundcloud.com/mrsjxn/bbb" class="measure-wide wrap mb4">
     <div class="relative aspect-16o9 bg-center bg-cover" style="background-image: url(site/zoe.jpg)">
       <p class="h3 p2 caps caps-tracked center white">{{ track.user.username }}</p>
       <h1 class="h1 regular center white">{{ track.title }}</h1>
@@ -91,7 +101,7 @@
   </section>
 
 
-  <section plangular data-src="http://soundcloud.com/jxnblk/sets/magic-summer" class="measure-wide wrap mb4 oh bg-dark-gray rounded">
+  <section plangular="http://soundcloud.com/jxnblk/sets/magic-summer" class="measure-wide wrap mb4 oh bg-dark-gray rounded">
     <div class="p-responsive mobile-center bg-center bg-cover white shadow-darken" style="background-image: url(site/plants.jpg)">
       <p class="p mb0">{{ playlist.user.username }}</p>
       <h1 class="h1">{{ playlist.title }}</h1>
@@ -165,6 +175,19 @@
   </a>
   <p class="">Powered by SoundCloud. Made with love by <a href="http://jxnblk.com">Jxnblk</a></p>
 </footer>
+
+<div class="py4 bg-light-gray" ng-controller="HomeCtrl">
+  <pre>Test area</pre>
+  <ul>
+    <li ng-repeat="track in tracks">{{ track }}</li>
+  </ul>
+  <div class="p1 m1 border" ng-repeat="track in tracks">
+    <div plangular="{{ track }}">
+      plangular
+      {{ track.title }} 
+    </div>
+  </div>
+</div>
 
 </body>
 </html>
