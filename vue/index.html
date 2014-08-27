@@ -47,6 +47,21 @@
     <h2><a href="#{{ permalink }}" class="red" v-on="click: playPause()"> {{ index }}. {{ user.username }} {{ title }} </a></h2>
   </div>
 
+  <div class="red" v-component="plangular" v-src="'http://soundcloud.com/jxnblk/sets/yello'">
+    <h2>
+      <a href="#{{ permalink }}" class="red" v-on="click: playPause()">
+        {{ index }}. {{ user.username }} - {{ title }}
+      </a>
+    </h2>
+    <div v-repeat="track: tracks">
+      <h3>
+        <a href="#{{ track.permalink }}" class="red" v-on="click: playPause($index)">
+          {{ track.user.username }} - {{ track.title }}
+        </a>
+      </h3>
+    </div>
+  </div>
+
   <div v-component="plangular" v-src="'http://soundcloud.com/mrsjxn/no-love'">
     <h2><a href="#{{ permalink }}" class="red" v-on="click: playPause()"> {{ index }}. {{ user.username }} {{ title }} </a></h2>
   </div>
