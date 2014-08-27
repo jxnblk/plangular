@@ -12,16 +12,16 @@ var Plangular = Vue.extend({
     
     player: player,
 
-    play: function(setIndex) {
-      player.play(this.index, setIndex);
+    play: function(playlistIndex) {
+      player.play(this.index, playlistIndex);
     },
 
     pause: function() {
       player.pause();
     },
 
-    playPause: function(setIndex) {
-      player.playPause(this.index, setIndex);
+    playPause: function(playlistIndex) {
+      player.playPause(this.index, playlistIndex);
     }
 
   },

@@ -18,7 +18,7 @@
   <div v-component="plangular" class="red">
     <pre>Global Player (no v-src attribute)</pre>
     <pre><h1>{{ player.currentTrack.user.username }} - {{ player.currentTrack.title }} </h1></pre>
-    <button class="red button button-box" v-on="click: player.playPause(player.i)">
+    <button class="red button button-box" v-on="click: player.playPause(player.i, player.playlistIndex)">
       <span v-if="!player.playing"><svg v-icon="'play'"></svg></span>
       <span v-if="player.playing"><svg v-icon="'pause'"></svg></span>
       Play/Pause
