@@ -18,8 +18,8 @@ var Player = function() {
 
   player.play = function(i, playlistIndex) {
     if (i == null) console.log('i cant be null no more');
-    var track = this.tracks[i] || this.tracks[0];
     this.i = i || 0;
+    var track = this.tracks[this.i];
     if (track.tracks) {
       this.playlistIndex = playlistIndex;
       this.playing = track.tracks[playlistIndex];

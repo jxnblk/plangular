@@ -33,7 +33,7 @@
   </div>
   <div class="table min-h100 bg-dark-gray">
     <div class="relative table-cell center p-responsive">
-      <a href="" ng-click="player.play(track)" class="h1 plangular-button mb1 button-green rounded">
+      <a href="" ng-click="play()" class="h1 plangular-button mb1 button-green rounded">
         <svg class="icon geo-dark-gray" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
           <polygon points="2,2 30,16 2,30"/>
         </svg>
@@ -70,15 +70,15 @@
   <section plangular="http://soundcloud.com/mrsjxn/bbb" class="measure-wide wrap mb4">
     <div class="relative aspect-16o9 bg-center bg-cover" style="background-image: url(site/zoe.jpg)">
       <p class="h3 p2 caps caps-tracked center white">{{ track.user.username }}</p>
-      <h1 class="h1 regular center white">{{ track.title }}</h1>
+      <h1 class="h1 regular center white">{{ index }}. {{ track.title }}</h1>
 
       <div class="clearfix absolute r0 b0 l0 mr1">
         <div class="left">
-          <a href ng-click="player.play(track)" ng-hide="player.playing == track"
+          <a href ng-click="play()" ng-hide="player.playing == track"
             class="button button-geo anim-popin">
             <div plangular-icon="play" class="geo-24 geo-white"></div>
           </a>
-          <a href="" ng-click="player.pause()" ng-show="player.playing == track"
+          <a href="" ng-click="pause()" ng-show="player.playing == track"
             class="button button-geo anim-popin">
             <div plangular-icon="pause" class="geo-24 geo-white"></div>
           </a>
@@ -87,7 +87,7 @@
           <div class="absolute t0 r0 b0 l0" style="height:.5rem;margin:1.25rem 0;">
             <div class="absolute t0 r0 b0 l0 bg-white"></div>
             <div class="absolute t0 b0 l0 bg-green" style="width: {{ (currentTime / duration) * 100 }}%"></div>
-            <div class="absolute t0 r0 b0 l0" ng-click="seekTo($event)"></div>
+            <div class="absolute t0 r0 b0 l0" ng-click="seek($event)"></div>
           </div>
         </div>
       </div>
@@ -104,7 +104,7 @@
   <section plangular="http://soundcloud.com/jxnblk/sets/magic-summer" class="measure-wide wrap mb4 oh bg-dark-gray rounded">
     <div class="p-responsive mobile-center bg-center bg-cover white shadow-darken" style="background-image: url(site/plants.jpg)">
       <p class="p mb0">{{ playlist.user.username }}</p>
-      <h1 class="h1">{{ playlist.title }}</h1>
+      <h1 class="h1">{{ index }}. {{ playlist.title }}</h1>
       <div class="clearfix">
         <div class="left mr1 mobile-block">
           <a href="" ng-click="player.previous(playlist)" class="button button-geo white">
@@ -122,8 +122,8 @@
         </div>
         <div class="oh mobile-block">
           <progress value="{{ currentTime / duration}}" ng-click="seekTo($event)" class="mt1 progress progress-white w100">{{ currentTime / duration}}</progress>
-          <small class="left">{{ currentTime | playTime }}</small>
-          <small class="right">{{ duration | playTime }}</small>
+          <small class="left">{{ currentTime | duration }}</small>
+          <small class="right">{{ duration | duration }}</small>
         </div>
       </div>
     </div>
@@ -176,15 +176,20 @@
   <p class="">Powered by SoundCloud. Made with love by <a href="http://jxnblk.com">Jxnblk</a></p>
 </footer>
 
-<div class="py4 bg-light-gray" ng-controller="HomeCtrl">
+<div class="py4 white bg-mid-gray" ng-controller="HomeCtrl">
   <pre>Test area</pre>
-  <ul>
-    <li ng-repeat="track in tracks">{{ track }}</li>
-  </ul>
+  <div plangular>
+    <button ng-click="player.previous()">Previous</button>
+    <button ng-click="player.next()">Next</button>
+  </div>
   <div class="p1 m1 border" ng-repeat="track in tracks">
     <div plangular="{{ track }}">
       plangular
-      {{ track.title }} 
+      {{ index }}. {{ track.title }} 
+      <button ng-click="playPause()">Play/Pause</button>
+      <button ng-click="play()">Play</button>
+      <button ng-click="pause()">Pause</button>
+      <code>{{ currentTime | duration }} - {{ duration | duration }} {{ currentTime / duration * 100 + '%' }}</code>
     </div>
   </div>
 </div>

@@ -18,64 +18,92 @@ var plangular = angular.module('plangular', []),
     iconUrl = 'icons/plangular-icons.svg';
 
 plangular.directive('plangular', function ($document, $rootScope, $http) {
+
   // Define the audio engine
   var audio = $document[0].createElement('audio');
 
   // Define the player object
   var player = {
-    track: false,
+ 
+    currentTrack: false,
     playing: false,
-    paused: false,
-    tracks: null,
-    i: null,
-    play: function(tracks, i) {
-      if (i == null) {
-        tracks = new Array(tracks);
-        i = 0;
-      };
-      player.tracks = tracks;
-      player.track = tracks[i];
-      player.i = i;
-      if (player.paused != player.track) audio.src = player.track.stream_url + '?client_id=' + clientID;
-      audio.play();
-      player.playing = player.track;
-      player.paused = false;
+    tracks: [],
+    i: 0,
+    playlistIndex: 0,
+    data: {},
+
+    load: function(track, index) {
+      this.tracks[index] = track;
     },
+
+    play: function(index, playlistIndex) {
+      this.i = index || 0;
+      var track = this.tracks[this.i];
+      if (track.tracks) {
+        this.playlistIndex = playlistIndex || 0;
+        this.playing = track.tracks[this.playlistIndex];
+        var src = track.tracks[this.playlistIndex].stream_url + '?client_id=' + clientID;
+      } else {
+        this.playing = track;
+        var src = track.stream_url + '?client_id=' + clientID;
+      }
+      this.currentTrack = this.playing;
+      if (src != audio.src) audio.src = src;
+      audio.play();
+    },
+
     pause: function() {
       audio.pause();
-      if (player.playing) {
-        player.paused = player.playing;
-        player.playing = false;
-      };
+      this.playing = false;
     },
-    // Functions for playlists (i.e. sets)
-    playPlaylist: function(playlist) {
-      if (player.tracks == playlist.tracks && player.paused) player.play(player.tracks, player.i);
-      else player.play(playlist.tracks, 0);
+
+    playPause: function(i, playlistIndex) {
+      var track = this.tracks[i];
+      if (track.tracks && this.playing != track.tracks[playlistIndex]) {
+        console.log('its a playlist and its not playing so play it player');
+        this.play(i, playlistIndex);
+      } else if (!track.tracks && this.playing != track) {
+        console.log('we could be playing this but you playing');
+        this.play(i);
+      } else {
+        this.pause();
+      }
     },
-    next: function(playlist) {
-      if (!playlist){
-        if (player.i+1 < player.tracks.length) {
-          player.i++;
-          player.play(player.tracks, player.i);
+
+    next: function() {
+      var playlist = this.tracks[this.i].tracks || null;
+      if (playlist && this.playlistIndex < playlist.length - 1) {
+        this.playlistIndex++;
+        this.play(this.i, this.playlistIndex);
+      } else if (this.i < this.tracks.length - 1) {
+        this.i++;
+        // Handle advancing to new playlist
+        var playlist = this.tracks[this.i].tracks || null;
+        if (this.tracks[this.i].tracks) {
+          this.playlistIndex = 0;
+          this.play(this.i, this.playlistIndex);
         } else {
-          player.pause();
-        };
-      } else if (playlist && playlist.tracks == player.tracks) {
-        if (player.i + 1 < player.tracks.length) {
-          player.i++;
-          player.play(playlist.tracks, player.i);
-        } else {
-          player.pause();
-        };
-      };
+          this.play(this.i);
+        }
+      }
     },
-    previous: function(playlist) {
-      if (playlist.tracks == player.tracks && player.i > 0) {
-        player.i = player.i - 1;
-        player.play(playlist.tracks, player.i);
-      };
+
+    previous: function() {
+      var playlist = this.tracks[this.i].tracks || null;
+      if (playlist && this.playlistIndex > 0) {
+        this.playlistIndex--;
+        this.play(this.i, this.playlistIndex);
+      } else if (this.i > 0) {
+        this.i--;
+        if (this.tracks[this.i].tracks) {
+          this.playlistIndex = this.tracks[this.i].tracks.length - 1;
+          this.play(this.i, this.playlistIndex);
+        } else {
+          this.play(this.i);
+        }
+      }
     }
+
   };
 
   audio.addEventListener('ended', function() {
@@ -86,29 +114,62 @@ plangular.directive('plangular', function ($document, $rootScope, $http) {
     
   }, false);
 
+  // Global index for plangular instances
+  var index = 0;
+
   // Returns the player, audio, track, and other objects
   return {
+
     restrict: 'A',
     scope: true,
+
     link: function (scope, elem, attrs) {
+
       var src = attrs.plangular;
       var params = { url: src, client_id: clientID, callback: 'JSON_CALLBACK' }
-      $http.jsonp('//api.soundcloud.com/resolve.json', { params: params }).success(function(data){
-        // Handle playlists (i.e. sets)
-        if (data.tracks) scope.playlist = data;
-        // Handle single track
-        else if (data.kind == 'track') scope.track = data;
-        // Handle all other data
-        else scope.data = data;
-      });
+
       scope.player = player;
       scope.audio = audio;
       scope.currentTime = 0;
       scope.duration = 0;
+      scope.index = index;
+      index++;
+
+      if (!src) {
+        console.log('no src');
+      } else if (player.data[src]) {
+        scope.track = player.data[src];
+      } else {
+        $http.jsonp('//api.soundcloud.com/resolve.json', { params: params }).success(function(data){
+          scope.track = data;
+          player.data[src] = data;
+          player.load(data, scope.index);
+        });
+      }
+
+      scope.play = function(playlistIndex) {
+        player.play(scope.index, playlistIndex);
+      };
+
+      scope.pause = function() {
+        player.pause();
+      };
+
+      scope.playPause = function(playlistIndex) {
+        player.playPause(scope.index, playlistIndex);
+      };
+
+      scope.next = function() {
+        player.next();
+      };
+
+      scope.previous = function() {
+        player.previous();
+      };
 
       // Updates the currentTime and duration for the audio
       audio.addEventListener('timeupdate', function() {
-        if (scope.track == player.track || (scope.playlist && scope.playlist.tracks == player.tracks)){
+        if (scope.track == player.tracks[player.i]){
           scope.$apply(function() {
             scope.currentTime = (audio.currentTime * 1000).toFixed();
             scope.duration = (audio.duration * 1000).toFixed();
@@ -117,13 +178,18 @@ plangular.directive('plangular', function ($document, $rootScope, $http) {
       }, false);
 
       // Handle click events for seeking
-      scope.seekTo = function($event){
+      scope.seek = function($event){
+        if (!audio.readyState) return false;
         var xpos = $event.offsetX / $event.target.offsetWidth;
         audio.currentTime = (xpos * audio.duration);
       };
+
     }
+
   }
+
 });
+
 
 // Plangular Icons
 plangular.directive('plangularIcon', function() {
@@ -180,8 +246,9 @@ plangular.directive('plangularIcon', function() {
 
 });
 
+
 // Filter to convert milliseconds to hours, minutes, seconds
-plangular.filter('playTime', function() {
+plangular.filter('duration', function() {
   return function(ms) {
     var hours = Math.floor(ms / 36e5),
         mins = '0' + Math.floor((ms % 36e5) / 6e4),
@@ -200,5 +267,7 @@ plangular.filter('playTime', function() {
   };
 });
 
+
 })();
+
 
