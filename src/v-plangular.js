@@ -9,11 +9,6 @@
 
  */
 
-
-// To do:
-// - player playlist for all tracks in vm
-// - soundcloud playlists
-
 'use strict';
 
 var jsonp = require('jsonp');

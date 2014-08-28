@@ -3,6 +3,8 @@
         PLANGULAR
         A Highly Customizable SoundCloud Player
 
+        Angular Version
+
         http://jxnblk.github.io/Plangular
 
  */
@@ -89,9 +91,7 @@ plangular.directive('plangular', function ($document, $rootScope, $http) {
     restrict: 'A',
     scope: true,
     link: function (scope, elem, attrs) {
-      console.log('scope', scope, 'attrs', attrs.plangular, 'src', attrs.src);
       var src = attrs.plangular;
-      console.log(src);
       var params = { url: src, client_id: clientID, callback: 'JSON_CALLBACK' }
       $http.jsonp('//api.soundcloud.com/resolve.json', { params: params }).success(function(data){
         // Handle playlists (i.e. sets)
@@ -155,7 +155,6 @@ plangular.directive('plangularIcon', function() {
       if (!sprite[id]) {
         var availableIcons = '';
         for (var key in sprite) {
-          console.log(key);
           availableIcons += key + ', ';
         };
         console.error(
