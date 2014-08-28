@@ -5,6 +5,7 @@
 
 var jsonp = require('jsonp');
 var player = require('./player');
+var plangular = require('./v-plangular');
 
 var Plangular = Vue.extend({
 

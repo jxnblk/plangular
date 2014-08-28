@@ -4,6 +4,7 @@
 
 
 var audio = require('./audio');
+var plangular = require('./v-plangular');
 
 var Player = function() {
 
