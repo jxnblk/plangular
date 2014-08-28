@@ -33,7 +33,7 @@
   </div>
   <div class="table min-h100 bg-dark-gray">
     <div class="relative table-cell center p-responsive">
-      <a href="" ng-click="play()" class="h1 plangular-button mb1 button-green rounded">
+      <a href="" ng-click="playPause()" class="h1 plangular-button mb1 button-green rounded">
         <svg class="icon geo-dark-gray" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
           <polygon points="2,2 30,16 2,30"/>
         </svg>
@@ -103,25 +103,25 @@
 
   <section plangular="http://soundcloud.com/jxnblk/sets/magic-summer" class="measure-wide wrap mb4 oh bg-dark-gray rounded">
     <div class="p-responsive mobile-center bg-center bg-cover white shadow-darken" style="background-image: url(site/plants.jpg)">
-      <p class="p mb0">{{ playlist.user.username }}</p>
-      <h1 class="h1">{{ index }}. {{ playlist.title }}</h1>
+      <p class="p mb0">{{ track.user.username }}</p>
+      <h1 class="h1">{{ index }}. {{ track.title }}</h1>
       <div class="clearfix">
         <div class="left mr1 mobile-block">
-          <a href="" ng-click="player.previous(playlist)" class="button button-geo white">
+          <a href="" ng-click="previous()" class="button button-geo white">
             <div plangular-icon="previous" class="geo-24 geo-white"></div>
           </a>
-          <a href="" ng-click="player.playPlaylist(playlist)" ng-hide="player.tracks == playlist.tracks && player.playing" class="button button-geo anim-popin">
+          <a href="" ng-click="play(player.playlistIndex)" ng-hide="player.playing" class="button button-geo anim-popin">
             <div plangular-icon="play" class="geo-24 geo-white"></div>
           </a>
-          <a href="" ng-click="player.pause()" ng-show="player.tracks == playlist.tracks && player.playing" class="button button-geo white anim-popin">
+          <a href="" ng-click="pause()" ng-show="player.playing" class="button button-geo white anim-popin">
             <div plangular-icon="pause" class="geo-24 geo-white"></div>
           </a>
-          <a href="" ng-click="player.next(playlist)" class="button button-geo white">
+          <a href="" ng-click="next()" class="button button-geo white">
             <div plangular-icon="next" class="geo-24 geo-white"></div>
           </a>
         </div>
         <div class="oh mobile-block">
-          <progress value="{{ currentTime / duration}}" ng-click="seekTo($event)" class="mt1 progress progress-white w100">{{ currentTime / duration}}</progress>
+          <progress value="{{ currentTime / duration}}" ng-click="seek($event)" class="mt1 progress progress-white w100">{{ currentTime / duration }}</progress>
           <small class="left">{{ currentTime | duration }}</small>
           <small class="right">{{ duration | duration }}</small>
         </div>
@@ -129,11 +129,11 @@
     </div>
     <div class="p1 clearfix">
       <ol class="ol mid-gray">
-        <li ng-repeat="track in playlist.tracks" class="ml2"><a href="" ng-click="player.play(playlist.tracks, $index)" class="block white" ng-class="{ 'white': (player.playing || player.paused) != track, 'blue': (player.playing || player.paused) == track }">
+        <li ng-repeat="track in track.tracks" class="ml2"><a href="" ng-click="playPause($index)" class="block white" ng-class="{ 'white': player.currentTrack != track, 'blue': player.currentTrack == track }">
           <strong>{{ track.user.username }}</strong> - {{ track.title }}
         </a></li>
       </ol>
-      <a ng-href="{{ playlist.permalink_url }}" target="_blank" class="right small mid-gray">View on SoundCloud</a>
+      <a ng-href="{{ track.permalink_url }}" target="_blank" class="right small mid-gray">View on SoundCloud</a>
     </div>
   </section>
 
@@ -176,6 +176,7 @@
   <p class="">Powered by SoundCloud. Made with love by <a href="http://jxnblk.com">Jxnblk</a></p>
 </footer>
 
+<!--
 <div class="py4 white bg-mid-gray" ng-controller="HomeCtrl">
   <pre>Test area</pre>
   <div plangular>
@@ -193,6 +194,7 @@
     </div>
   </div>
 </div>
+-->
 
 </body>
 </html>

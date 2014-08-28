@@ -78,8 +78,8 @@ plangular.directive('plangular', function ($document, $rootScope, $http) {
       } else if (this.i < this.tracks.length - 1) {
         this.i++;
         // Handle advancing to new playlist
-        var playlist = this.tracks[this.i].tracks || null;
         if (this.tracks[this.i].tracks) {
+          var playlist = this.tracks[this.i].tracks || null;
           this.playlistIndex = 0;
           this.play(this.i, this.playlistIndex);
         } else {
@@ -132,11 +132,13 @@ plangular.directive('plangular', function ($document, $rootScope, $http) {
       scope.audio = audio;
       scope.currentTime = 0;
       scope.duration = 0;
-      scope.index = index;
-      index++;
+      if (src) {
+        scope.index = index;
+        index++;
+      }
 
       if (!src) {
-        console.log('no src');
+        //console.log('no src');
       } else if (player.data[src]) {
         scope.track = player.data[src];
       } else {
