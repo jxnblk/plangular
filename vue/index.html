@@ -71,8 +71,17 @@
     <h2><a href="#{{ permalink }}" class="red" v-on="click: playPause()"> {{ user.username }} {{ title }} </a></h2>
   </div>
 
+  <h3>Testing v-repeat</h3>
+  <div v-repeat="ptrack : trackUrls" v-component="plangular" v-src="ptrack">
+    <pre>p username: {{ user.username }}</pre>
+    <pre>p title {{ title }}</pre>
+  </div>
 
-<script> var vm = new Vue({ el: '#vm' }); </script>
+<script>
+  var data = {};
+  data.trackUrls = ['http://soundcloud.com/jxnblk/let-go', 'http://soundcloud.com/jxnblk/really-wanna'];
+  var vm = new Vue({ el: '#vm', data: data });
+</script>
 
 </body>
 </html>

@@ -1,29 +1,33 @@
 Plangular
 =========
 
-Create custom SoundCloud players with HTML and CSS. Built with AngularJS
+Create custom SoundCloud players with HTML and CSS.
 
-See examples and more here:
 http://jxnblk.github.io/plangular
 
 ---
 
-Contents:
-- Usage
-- Angular Version
-- Vuejs Version
-- Reference
-- Changes from version 1.0
+Table of Contents:
+- [Usage](#usage)
+  - [Angular Version](#angular-version)
+  - [Vuejs Version](#vuejs-version)
+- [Reference](#reference)
+- [Changes from Version 1.0](#changes-from-version-1.0)
 
 ---
 
 ## Usage
-Plangular comes in two versions. One built with AngularJS and the other with Vuejs. If you're not currently using one of these frameworks, the Vuejs version's total javascript should be smaller when considering the size of the libraries, and might be more performant. _Note: this has not been tested yet._
+Plangular comes in *two versions*.
+One built with AngularJS and the other with Vuejs.
+If you're not currently using one of these frameworks,
+the Vuejs version's total javascript should be smaller when considering the size of the libraries,
+and might be more performant.
+_Note: this has not been tested yet._
 
 ## Vuejs Version
 
 ### Include JS Files
-Download the `v-plangular.js` file and include it in your project:
+Download the `v-plangular.js` file and include it in your project along with Vuejs:
 
 ```html
 <script src="http://cdnjs.cloudflare.com/ajax/libs/vue/0.10.6/vue.min.js"></script>
@@ -38,28 +42,43 @@ Use any HTML element and add `v-component="plangular"` and `v-src="http://soundc
 ```
 
 ### Include the Track Info
-Use template bindings to include information about the track. You can use any data from the SoundCloud JSON Object.
+Use template bindings to include information about the track. You can use any data from the SoundCloud API response.
 
 ```html
 <p>{{ user.username }}</p>
 <h1>{{ title }}</h1>
+<!-- or in the track object -->
+<p>{{ track.user.username }}</p>
+<h1>{{ track.title }}</h1>
 ```
 
-### Use Plangular Variables
-Add Play/Pause controls. Use `v-if` or `v-show` to conditionally show and hide the controls when the track is playing.
+### Add Play/Pause Controls
+Use `v-if` or `v-show` to conditionally show and hide the controls when the track is playing.
 
 ```html
-<a href="" v-on="click: play()" v-if="player.playing != track">Play</a>
-<a href="" v-on="click: pause()" v-if="player.playing == track">Pause</a>
+<button v-on="click: play()" v-if="player.playing != track">Play</button>
+<button v-on="click: pause()" v-if="player.playing == track">Pause</button>
 ```
 
-Plangular includes basic variables to display the sound's time and duration. The `duration` filter will convert milliseconds to hh:mm:ss format.
+### Next/Previous Controls
+Plangular will cycle through all instances in a view or through tracks in a SoundCloud playlist. Use the `previous()` and `next()` methods to skip between tracks.
 
 ```html
-<progress value="{{ player.currentTime / player.duration || 0 }}">{{ player.currentTime / duration }}</progress>
+<button v-on="click: previous()">Previous</button>
+<button v-on="click: next()">Next</button>
+```
+
+### Show Current Time and Duration
+Plangular includes basic variables to display the sound's time and duration.
+The `duration` filter will convert milliseconds to hh:mm:ss format.
+_Note: the player object is global for all instances. Scoped versions are in the works._
+
+```html
+<progress value="{{ player.currentTime / player.duration || 0 }}">{{ player.currentTime / player.duration }}</progress>
 <small>{{ player.currentTime | duration }} | {{ player.duration | duration }}</small>
 ```
 
+### Add a Scrubber Control
 Add the `player.seek()` method to add scrubbing.
 
 ```html
@@ -96,7 +115,7 @@ var myApp = angular.module('myApp', ['plangular']);
 ```
 
 ### Create the Player
-Use any HTML element and add the `plangular` and `data-src` attributes, with the SoundCloud URL for the sound you would like to use.
+Use any HTML element and add the `plangular` attributes, with the SoundCloud URL for the sound you would like to use.
 
 ```html
 <div plangular data-src="http://soundcloud.com/jxnblk/plangular"></div>
@@ -352,7 +371,7 @@ See http://developers.soundcloud.com/docs/api/reference#users for more details
 
 ---
 
-## Changes from version 1.0
+## Changes from Version 1.0
 - Tracks are now passed through the plangular attribute, instead of `data-src`.
   E.g. `<div plangular="http://soundcloud.com/jxnblk/plangular"></div>`
 - [ ] Rename `playTime` to `duration`
