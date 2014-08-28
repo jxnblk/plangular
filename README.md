@@ -8,26 +8,91 @@ http://jxnblk.github.io/plangular
 
 ---
 
+Contents:
+- Usage
+- Angular Version
+- Vuejs Version
+- Reference
+- Changes from version 1.0
+
+---
+
 ## Usage
-Plangular is very customizable. If you're not comfortable with basic AngularJS, the player templates below might be an easier place to start.
+Plangular comes in two versions. One built with AngularJS and the other with Vuejs. If you're not currently using one of these frameworks, the Vuejs version's total javascript should be smaller when considering the size of the libraries, and might be more performant. _Note: this has not been tested yet._
+
+## Vuejs Version
 
 ### Include JS Files
-Download the plangular.js file and add it to your project, then add the following script tags to your HTML:
+Download the `v-plangular.js` file and include it in your project:
+
+```html
+<script src="http://cdnjs.cloudflare.com/ajax/libs/vue/0.10.6/vue.min.js"></script>
+<script src="js/v-plangular.js"></script>
+```
+
+### Create the Player
+Use any HTML element and add `v-component="plangular"` and `v-src="http://soundcloud.com/jxnblk/plangular"` with the SoundCloud URL for the sound you would like to use.
+
+```html
+<div v-component="plangular" v-src="http://soundcloud.com/jxnblk/plangular"></div>
+```
+
+### Include the Track Info
+Use template bindings to include information about the track. You can use any data from the SoundCloud JSON Object.
+
+```html
+<p>{{ user.username }}</p>
+<h1>{{ title }}</h1>
+```
+
+### Use Plangular Variables
+Add Play/Pause controls. Use `v-if` or `v-show` to conditionally show and hide the controls when the track is playing.
+
+```html
+<a href="" v-on="click: play()" v-if="player.playing != track">Play</a>
+<a href="" v-on="click: pause()" v-if="player.playing == track">Pause</a>
+```
+
+Plangular includes basic variables to display the sound's time and duration. The `duration` filter will convert milliseconds to hh:mm:ss format.
+
+```html
+<progress value="{{ player.currentTime / player.duration || 0 }}">{{ player.currentTime / duration }}</progress>
+<small>{{ player.currentTime | duration }} | {{ player.duration | duration }}</small>
+```
+
+Add the `player.seek()` method to add scrubbing.
+
+```html
+<progress value="{{ player.currentTime / player.duration || 0 }}" v-on="click: player.seek($event)">{{ player.currentTime / player.duration }}</progress>
+```
+
+---
+
+## Angular Version
+
+### Include JS Files
+Download the `ng-plangular.js` file and include it in your project:
 
 ```html
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.9/angular.min.js"></script>
 <script src="js/plangular.js"></script>
 ```
 
-Note: Unlike the previous version of Plangular, the SoundCloud SDK is no longer required.
-
 ### Initialize the Angular App
 Include the `ng-app` attribute in a containing element.
+
+For standalone applications, you can pass `plangular` as the app.
 
 ```html
 <body ng-app="plangular">
   ...
 </body>
+```
+
+Or, for use within a larger Angular app, simply include the dependency in your app definition.
+
+```js
+var myApp = angular.module('myApp', ['plangular']);
 ```
 
 ### Create the Player
@@ -77,8 +142,11 @@ To use images and links in the track object, use Angular's `ng-src` and `ng-href
 
 Note: The waveform image that the SoundCloud API provides is a 1200 x 280px PNG with a light gray frame and transparent middle. To show progress use absolute positioning with the waveform in front. The light gray color is #efefef.
 
+### Using the private SoundCloud waveform API
+`TK`
+
 ### Icons
-Use the `plangularIcon` directive to inject SVG icons into your player. This directive will replace the element with an inline SVG, which allows you to style the icons with CSS. Requires the `plangular-icons.svg` file.
+Use the `plangularIcon` directive to inject Geomicons Open SVG icons into your player. This directive will replace the element with an inline SVG, which allows you to style the icons with CSS.
 
 ```html
 <div plangular-icon="play"></div>
@@ -86,6 +154,9 @@ Use the `plangularIcon` directive to inject SVG icons into your player. This dir
 <div plangular-icon="previous"></div>
 <div plangular-icon="next"></div>
 ```
+
+#### Included Icons
+`TK`
 
 
 #### Example Icon Styling
@@ -103,6 +174,9 @@ Since these are SVGs, use the `fill` attribute to style the color of the icons.
 </style>
 <div plangular-icon="play" class="icon icon-white"></div>
 ```
+
+### Creating a Global Player
+`TK`
 
 ### Additional Options
 
@@ -277,6 +351,12 @@ Example JSON object:
 See http://developers.soundcloud.com/docs/api/reference#users for more details
 
 ---
+
+## Changes from version 1.0
+- Tracks are now passed through the plangular attribute, instead of `data-src`.
+  E.g. `<div plangular="http://soundcloud.com/jxnblk/plangular"></div>`
+- [ ] Rename `playTime` to `duration`
+- [ ] Allow previous next to work globally for all tracks in the player.
 
 [MIT License](http://opensource.org/licenses/MIT)
 

@@ -31,6 +31,7 @@
       Next
       <svg v-icon="'next'"></svg>
     </button>
+    <progress style="width:100%" v-on="click: player.seek($event)" value="{{ player.currentTime / player.duration || 0 }}">{{ player.currentTime / duration }}</progress>
     <pre>{{ player.currentTime | duration }} / {{ player.duration | duration }} </pre>
     <svg v-icon="'play'"></svg>
     <svg v-icon="'pause'"></svg>
@@ -39,8 +40,8 @@
 
   <div v-component="plangular" v-src="'http://soundcloud.com/jxnblk/really-wanna'">
     <h2><a href="#{{ permalink }}" class="red" v-on="click: playPause()"> {{ index }}. {{ user.username }} {{ title }} </a></h2>
-    <button class="red button button-small button-box" v-on="click: play()">play()</button>
-    <button class="red button button-small button-box" v-on="click: pause()">pause()</button>
+    <button v-if="player.playing != track" class="red button button-small button-box" v-on="click: play()">play()</button>
+    <button v-if="player.playing == track" class="red button button-small button-box" v-on="click: pause()">pause()</button>
   </div>
 
   <div v-component="plangular" v-src="'http://soundcloud.com/jxnblk/let-go'">
@@ -68,6 +69,9 @@
 
 <div v-component="plangular" class="red">
 <pre class="h4" style="word-wrap:break-word;white-space:pre-wrap">
+data:
+{{ $data }}
+---
 {{ player.tracks.length }}
 ---
 {{ player.tracks }}

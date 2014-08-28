@@ -748,9 +748,9 @@ var Player = function() {
   };
 
   player.seek = function(e) {
-    if (!audio.seekable) return false;
-    var percent = e.layerX / e.srcElement.offsetWidth;
-    var time = percent * audio.duration;
+    if (!audio.readyState) return false;
+    var percent = e.offsetX / e.srcElement.offsetWidth;
+    var time = percent * audio.duration || 0;
     audio.currentTime = time;
   };
 
@@ -784,8 +784,13 @@ var player = require('./player');
 var Plangular = Vue.extend({
 
   data: {
-    
     player: player,
+    index: null,
+    value: null,
+    track: null
+  },
+
+  methods: {
 
     play: function(playlistIndex) {
       player.play(this.index, playlistIndex);
@@ -806,12 +811,12 @@ var Plangular = Vue.extend({
     'src': function(value) {
 
       var self = this;
-      self.vm.$data.value = value;
+      self.vm.value = value;
 
       var elements = document.querySelectorAll('[v-src]');
       for (var i = 0; i < elements.length; i++) {
         if (this.el == elements[i]) {
-          self.vm.$data.index = i;
+          self.vm.index = i;
         }
       }
 
@@ -821,6 +826,7 @@ var Plangular = Vue.extend({
         for (var key in plangular.data[value]) {
           self.vm.$data[key] = plangular.data[value][key];
         }
+        self.vm.track = plangular.data[value];
         player.load(plangular.data[value], self.vm.index);
       } else {
         jsonp(apiUrl, function(error, response) {
@@ -828,6 +834,7 @@ var Plangular = Vue.extend({
           for (var key in response) {
             self.vm.$data[key] = response[key];
           }
+          self.vm.track = plangular.data[value];
           player.load(plangular.data[value], self.vm.index);
         });
       }
