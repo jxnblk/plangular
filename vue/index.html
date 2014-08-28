@@ -8,47 +8,51 @@
 
   <link rel="icon" href="favicon.png" />
   <link rel="stylesheet" href="../site/style.css"/>
+  <style> .helvetica { font-family: 'Helvetica Neue', sans-serif; } .avenir { font-family: 'Avenir Next', Avenir, Helvetica, sans-serif } .monospace { font-family: 'Source Code Pro', monospace } .icon { position:relative; top:.125em; } </style>
+  <link href='http://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
 
   <script src="http://cdnjs.cloudflare.com/ajax/libs/vue/0.10.6/vue.min.js"></script>
   <script src="../v-plangular.js"></script>
 
 </head>
-<body id="vm" class="p2 bg-dark-gray">
+<body id="vm" class="monospace p2 red bg-dark-gray">
 
-  <div v-component="plangular" class="red">
-    <pre>Global Player (no v-src attribute)</pre>
-    <pre><h1>{{ player.currentTrack.user.username }} - {{ player.currentTrack.title }} </h1></pre>
-    <button class="red button button-box" v-on="click: player.playPause(player.i, player.playlistIndex)">
-      <span v-if="!player.playing"><svg v-icon="'play'"></svg></span>
-      <span v-if="player.playing"><svg v-icon="'pause'"></svg></span>
-      Play/Pause
-    </button>
-    <button class="red button button-box" v-on="click: player.previous()">
-      <svg v-icon="'previous'"></svg>
-      Previous
-    </button>
-    <button class="red button button-box" v-on="click: player.next()">
-      Next
-      <svg v-icon="'next'"></svg>
-    </button>
-    <progress style="width:100%" v-on="click: player.seek($event)" value="{{ player.currentTime / player.duration || 0 }}">{{ player.currentTime / duration }}</progress>
+  <div v-component="plangular" class="mb2 red">
+    <pre class="mb2">Global Player (no v-src attribute)</pre>
+    <h1 class="h5 avenir regular caps mb0"> {{ player.currentTrack.user.username || '&nbsp;'}} </h1>
+    <h1 class="helvetica"> {{ player.currentTrack.title || '&nbsp;' }} </h1>
+    <div class="center table mb1">
+      <div class="table-cell px2">
+        <button class="red button" v-on="click: player.previous()">
+          <svg v-icon="'previous'"></svg>
+        </button>
+      </div>
+      <div class="table-cell px2">
+        <button class="h3 red button" v-on="click: player.playPause(player.i, player.playlistIndex)">
+          <span v-if="!player.playing"><svg v-icon="'play'"></svg></span>
+          <span v-if="player.playing"><svg v-icon="'pause'"></svg></span>
+        </button>
+      </div>
+      <div class="table-cell px2">
+        <button class="red button" v-on="click: player.next()">
+          <svg v-icon="'next'"></svg>
+        </button>
+      </div>
+    </div>
+    <progress class="progress progress-white w100" v-on="click: player.seek($event)" value="{{ player.currentTime / player.duration || 0 }}">{{ player.currentTime / duration }}</progress>
     <pre>{{ player.currentTime | duration }} / {{ player.duration | duration }} </pre>
-    <svg v-icon="'play'"></svg>
-    <svg v-icon="'pause'"></svg>
   </div>
 
 
-  <div v-component="plangular" v-src="'http://soundcloud.com/jxnblk/really-wanna'">
-    <h2><a href="#{{ permalink }}" class="red" v-on="click: playPause()"> {{ index }}. {{ user.username }} {{ title }} </a></h2>
-    <button v-if="player.playing != track" class="red button button-small button-box" v-on="click: play()">play()</button>
-    <button v-if="player.playing == track" class="red button button-small button-box" v-on="click: pause()">pause()</button>
+  <div class="" v-component="plangular" v-src="'http://soundcloud.com/jxnblk/really-wanna'">
+    <h2><a href="#{{ permalink }}" class="red" v-on="click: playPause()"> {{ user.username }} {{ title }} </a></h2>
   </div>
 
   <div v-component="plangular" v-src="'http://soundcloud.com/jxnblk/let-go'">
-    <h2><a href="#{{ permalink }}" class="red" v-on="click: playPause()"> {{ index }}. {{ user.username }} {{ title }} </a></h2>
+    <h2><a href="#{{ permalink }}" class="red" v-on="click: playPause()"> {{ user.username }} {{ title }} </a></h2>
   </div>
 
-  <div class="red" v-component="plangular" v-src="'http://soundcloud.com/jxnblk/sets/yello'">
+  <div class="py3 red" v-component="plangular" v-src="'http://soundcloud.com/jxnblk/sets/yello'">
     <h2>
       <a href="#{{ permalink }}" class="red" v-on="click: playPause()">
         {{ index }}. {{ user.username }} - {{ title }}
@@ -64,24 +68,11 @@
   </div>
 
   <div v-component="plangular" v-src="'http://soundcloud.com/mrsjxn/no-love'">
-    <h2><a href="#{{ permalink }}" class="red" v-on="click: playPause()"> {{ index }}. {{ user.username }} {{ title }} </a></h2>
+    <h2><a href="#{{ permalink }}" class="red" v-on="click: playPause()"> {{ user.username }} {{ title }} </a></h2>
   </div>
 
-<div v-component="plangular" class="red">
-<pre class="h4" style="word-wrap:break-word;white-space:pre-wrap">
-data:
-{{ $data }}
----
-{{ player.tracks.length }}
----
-{{ player.tracks }}
----
-{{ player }}
-</pre>
-</div>
-<script>
-  var vm = new Vue({ el: '#vm' });
-</script>
+
+<script> var vm = new Vue({ el: '#vm' }); </script>
 
 </body>
 </html>

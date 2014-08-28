@@ -474,6 +474,7 @@ a {
 
 .button {
   border-radius: 0.25rem;
+  background-color: transparent;
   transition-duration: 0.2s;
   transition-timing-function: ease;
   transition: box-shadow, background-color;
