@@ -6,13 +6,13 @@
   <meta name="description" content="Create your own custom SoundCloud player with just HTML and CSS. Built with AngularJS">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <link rel="icon" href="favicon.png" />
-  <link rel="apple-touch-icon-precomposed" href="apple-touch-icon.png" />
-  <link rel="stylesheet" href="site/style.css"/>
+  <link rel="icon" href="docs/favicon.png" />
+  <link rel="docs/apple-touch-icon-precomposed" href="apple-touch-icon.png" />
+  <link rel="stylesheet" href="docs/style.css"/>
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
 
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.9/angular.min.js"></script>
-  <script src="ng-plangular.min.js"></script>
+  <script src="ng-plangular.js"></script>
 
   <script>
     var app = angular.module('app', ['plangular']);
@@ -30,7 +30,7 @@
 
 <header plangular="http://soundcloud.com/jxnblk/plangular" class="relative h100 xmin-h100 xtable bg-dark-gray green">
   <div class="absolute t0 r0 b0 l0 glow-wrap" ng-class="{ 'geo-glow': player.playing == track }">
-    <img src="site/waveform-new.svg" class="absolute waveform waveform-large"/>
+    <img src="docs/waveform-new.svg" class="absolute waveform waveform-large"/>
   </div>
   <div class="table min-h100 bg-dark-gray">
     <div class="relative table-cell center p-responsive">
@@ -69,7 +69,7 @@
   </header>
 
   <section plangular="http://soundcloud.com/mrsjxn/bbb" class="measure-wide wrap mb4">
-    <div class="relative aspect-16o9 bg-center bg-cover" style="background-image: url(site/zoe.jpg)">
+    <div class="relative aspect-16o9 bg-center bg-cover" style="background-image: url(docs/zoe.jpg)">
       <p class="h3 p2 caps caps-tracked center white">{{ track.user.username }}</p>
       <h1 class="h1 regular center white">{{ track.title }}</h1>
 
@@ -103,7 +103,7 @@
 
 
   <section plangular="http://soundcloud.com/jxnblk/sets/magic-summer" class="measure-wide wrap mb4 oh bg-dark-gray rounded">
-    <div class="p-responsive mobile-center bg-center bg-cover white shadow-darken" style="background-image: url(site/plants.jpg)">
+    <div class="p-responsive mobile-center bg-center bg-cover white shadow-darken" style="background-image: url(docs/plants.jpg)">
       <p class="p mb0">{{ track.user.username }}</p>
       <h1 class="h1">{{ track.title }}</h1>
       <div class="clearfix">

@@ -8,12 +8,8 @@ var sass = require('gulp-sass');
 var uglify = require('gulp-uglifyjs');
 var watch = require('gulp-watch');
 
-var exec = require('child_process').exec;
-
-
 gulp.task('compilejs', function() {
   gulp.src('./src/v-plangular.js')
-    //.pipe(browserify({ standalone: 'plangular' }))
     .pipe(browserify())
     .pipe(gulp.dest('./'))
     .pipe(uglify())
