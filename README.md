@@ -19,55 +19,56 @@ Table of Contents:
 
 
 ## Usage
-Plangular comes in *two versions*.
+Plangular comes in **two versions**.
 One built with AngularJS and the other with Vuejs.
 If you're not currently using one of these frameworks,
 the Vuejs version's total javascript should be smaller when considering the size of the libraries,
 and might be more performant.
+
 _Note: this has not been tested yet._
 
-The Plangular properties and methods are roughly the same for both versions, with minor difference in syntax between Angular and Vuejs. Examples are provided for both versions.
+The Plangular properties and methods are roughly the same for both versions,
+with minor difference in syntax between Angular and Vuejs.
+Examples are provided for both versions.
 
 ---
 
 ### Include JS Files
-#### Vuejs
-Download the `v-plangular.js` file and include it in your project along with Vuejs:
+
+**Vuejs**
+Download `v-plangular.min.js` and include it in your project along with Vuejs:
 
 ```html
-<script src="http://cdnjs.cloudflare.com/ajax/libs/vue/0.10.6/vue.min.js"></script>
-<script src="js/v-plangular.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/vue/0.10.6/vue.min.js"></script>
+<script src="js/v-plangular.min.js"></script>
 ```
 
-#### Angular
-Download the `ng-plangular.js` file and include it in your project along with Angular:
+**Angular**
+Download the `ng-plangular.min.js` file and include it in your project along with Angular:
 ```html
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.9/angular.min.js"></script>
-<script src="js/ng-plangular.js"></script>
+<script src="js/ng-plangular.min.js"></script>
 ```
 
 ### Initialize the App
-Plangular is a directive that needs to exist within an Angular or Vuejs app.
-The app needs to be bootstrapped on any parent element before Plangular will work.
+An Angular or Vuejs app needs to be bootstrapped on a parent element before Plangular will work.
 
-#### Vuejs
+**Vuejs**
 ```html
 <body id="vm">
   <script> var vm = new Vue({ el: '#vm' }) </script>
 </body>
 ```
 
-#### Angular
+**Angular**
 Include the `ng-app` attribute in a containing element.
 For standalone applications, you can pass `plangular` as the app.
 
 ```html
-<body ng-app="plangular">
-  ...
-</body>
+<body ng-app="plangular"></body>
 ```
 
-Or, for use within a larger Angular app, simply include the dependency in your app definition.
+Or, for use within a larger Angular app, include the dependency in your app definition.
 
 ```js
 var myApp = angular.module('myApp', ['plangular']);
@@ -77,11 +78,12 @@ var myApp = angular.module('myApp', ['plangular']);
 Create a new player instance using the SoundCloud url for your track.
 This will return data from the SoundCloud API and other properties and methods to control playback.
 
-#### Vuejs
+**Vuejs**
 ```html
 <div v-component="plangular" v-src="http://soundcloud.com/jxnblk/plangular"></div>
 ```
-#### Angular
+
+**Angular**
 ```html
 <div plangular="http://soundcloud.com/jxnblk/plangular"></div>
 ```
@@ -101,7 +103,7 @@ Use template bindings to include information about the track. You can use any da
 Use the `play()`, `pause()`, or `playPause()` methods to play the track.
 Use template conditionals to show and hide controls based on the player state.
 
-#### Vuejs
+**Vuejs**
 ```html
 <button v-on="click: playPause()">Play/Pause</button>
 <!-- or -->
@@ -109,7 +111,7 @@ Use template conditionals to show and hide controls based on the player state.
 <button v-on="click: pause()" v-if="player.playing == track">Pause</button>
 ```
 
-#### Angular
+**Angular**
 ```html
 <button ng-click="playPause()">Play/Pause</button>
 <!-- or -->
@@ -121,13 +123,13 @@ Use template conditionals to show and hide controls based on the player state.
 Plangular will cycle through all instances in a view and through tracks in a SoundCloud playlist.
 Use the `previous()` and `next()` methods to skip between tracks.
 
-#### Vuejs
+**Vuejs**
 ```html
 <button v-on="click: previous()">Previous</button>
 <button v-on="click: next()">Next</button>
 ```
 
-#### Angular
+**Angular**
 ```html
 <button ng-click="previous()">Previous</button>
 <button ng-click="next()">Next</button>
@@ -141,17 +143,16 @@ The `prettyTime` filter will convert milliseconds to hh:mm:ss format.
 <progress value="{{ currentTime / duration || 0 }}">{{ currentTime / duration }}</progress>
 <small>{{ currentTime | prettyTime }} | {{ duration | prettyTime }}</small>
 ```
-_Note: Syntax is identical for Angular and Vuejs_
 
 ### Add a Scrubber Control
 Add the `seek()` method to add scrubbing.
 
-_Vuejs_
+**Vuejs**
 ```html
 <progress value="{{ currentTime / duration || 0 }}" v-on="click: seek($event)">{{ currentTime / duration }}</progress>
 ```
 
-_Angular_
+**Angular**
 ```html
 <progress value="{{ currentTime / duration || 0 }}" ng-click="seek($event)">{{ currentTime / duration }}</progress>
 ```
@@ -159,13 +160,13 @@ _Angular_
 ### Add Images and Links
 To use images and links in the track object, use Angular's or Vuejs's custom directives.
 
-#### Vuejs
+**Vuejs**
 ```html
 <img v-attr="src: track.artwork_url" alt="{{ track.title }}" />
 <img v-attr="src: track.waveform_url" alt="waveform" />
 ```
 
-#### Angular
+**Angular**
 ```html
 <a ng-href="{{ track.permalink_url }}">View on SoundCloud</a>
 <img ng-src="{{ track.artwork_url  }}" alt="{{ track.title }}" />
@@ -182,12 +183,12 @@ Note: The waveform image that the SoundCloud API provides is a 1200 x 280px PNG 
 Use the `plangular-icon` directive to inject icons into your player.
 This directive must be used on an `svg` element.
 
-#### Vuejs
+**Vuejs**
 ```html
 <svg v-plangular-icon="play"></svg>
 ```
 
-#### Angular
+**Angular**
 ```html
 <svg plangular-icon="play"></svg>
 ```
@@ -205,13 +206,13 @@ The included icons are a subset of [Geomicons Open](http://jxnblk.github.io/geom
 ### Loading States
 Use template conditionals to show a loading state.
 
-#### Vuejs
+**Vuejs**
 ```html
 <span v-if="!track">Loading...</span>
 <div v-if="track"><!-- Player --></div>
 ```
 
-#### Angular
+**Angular**
 ```html
 <span ng-hide="track">Loading...</span>
 <div ng-show="track"><!-- Player --></div>
@@ -223,9 +224,9 @@ Use template conditionals to show a loading state.
 ### Creating a Global Player
 `TK`
  
-### Style with CSS
-Add classes, custom images, and whatever else your heart desires. Have fun!
-
+### SoundCloud Playlists
+`TK`
+ 
 
 ---
 
@@ -234,6 +235,20 @@ Add classes, custom images, and whatever else your heart desires. Have fun!
 
 ### Bare Bones
     
+**Vuejs**
+```html
+<div v-component="plangular" v-src="http://soundcloud.com/jxnblk/plangular">
+  <button v-on="click: play()" v-if="player.playing != track">
+    <svg v-plangular-icon="play"></svg>
+  </button>
+  <button v-on="click: pause()" v-if="player.playing == track">
+    <svg v-plangular-icon="pause"></svg>
+  </button>
+  <h1>{{ track.user.username }} - {{ track.title }}</h1>
+</div>
+```
+    
+**Angular**
 ```html
 <div plangular="http://soundcloud.com/jxnblk/plangular">
   <button ng-click="play()" ng-hide="player.playing == track">
@@ -329,7 +344,7 @@ Example JSON object:
 
 See http://developers.soundcloud.com/docs/api/reference#users for more details
 
-### Note About SoundCloud API
+### Using the SoundCloud API
 
 According to the SoundCloud API terms you must:
 - Credit the user as the creator of the content
@@ -340,8 +355,9 @@ Read more here: http://developers.soundcloud.com/docs/api/terms-of-use#branding
 
 ### Troubleshooting
 
-Don't ask me why, but SoundCloud provides an option for users to prevent streaming to third-party apps. If your sound isn't play or has stopped playing check the `track.streamable` variable. If it's set to false, there's no way to play that sound with the API.
-
+SoundCloud provides an option for users to prevent streaming to third-party apps.
+If your sound isn't playing check the `track.streamable` variable.
+If it's set to false, there is no way to play that sound with the API.
 
 
 ---
