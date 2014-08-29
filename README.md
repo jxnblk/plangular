@@ -1,5 +1,4 @@
-Plangular
-=========
+# Plangular
 
 Create custom SoundCloud players with HTML and CSS.
 
@@ -9,8 +8,8 @@ http://jxnblk.github.io/plangular
 
 Table of Contents:
 - [Usage](#usage)
-  - [Angular Version](#angular-version)
   - [Vuejs Version](#vuejs-version)
+  - [Angular Version](#angular-version)
 - [Reference](#reference)
 - [Changes from Version 1.0](#changes-from-version-1.0)
 
@@ -23,6 +22,12 @@ If you're not currently using one of these frameworks,
 the Vuejs version's total javascript should be smaller when considering the size of the libraries,
 and might be more performant.
 _Note: this has not been tested yet._
+
+Read the documentation for the version you plan to use:
+- [Vuejs Version](#vuejs-version)
+- [Angular Version](#angular-version)
+
+---
 
 ## Vuejs Version
 
@@ -85,6 +90,16 @@ Add the `player.seek()` method to add scrubbing.
 <progress value="{{ player.currentTime / player.duration || 0 }}" v-on="click: player.seek($event)">{{ player.currentTime / player.duration }}</progress>
 ```
 
+### Add Images and Links
+`TK`
+
+### Using the private SoundCloud waveform API
+`TK`
+
+### Icons
+`TK`
+
+-- end vuejs version
 ---
 
 ## Angular Version
@@ -118,37 +133,49 @@ var myApp = angular.module('myApp', ['plangular']);
 Use any HTML element and add the `plangular` attributes, with the SoundCloud URL for the sound you would like to use.
 
 ```html
-<div plangular data-src="http://soundcloud.com/jxnblk/plangular"></div>
+<div plangular="http://soundcloud.com/jxnblk/plangular"></div>
 ```
 
 ### Include the Track Info
-Use Angular bindings to include information about the track. You can use any of the data from the SoundCloud JSON Object.
+Use template bindings to include information about the track. You can use any data from the SoundCloud API response.
 
 ```html
 <p>{{ track.user.username }}</p>
 <h1>{{ track.title }}</h1>
 ```
 
-### Use Plangular Variables
-Add Play/Pause controls. Use `ng-hide` and `ng-show` to conditionally show and hide the controls when the track is playing.
+### Add Play/Pause Controls
+Use `ng-if`, `ng-show`, or `ng-hide` to conditionally show and hide the controls when the track is playing.
 
 ```html
-<a href="" ng-click="player.play(track)" ng-hide="player.playing == track">Play</a>
-<a href="" ng-click="player.pause()" ng-show="player.playing == track">Pause</a>
+<button ng-click="play()" ng-if="player.playing != track">Play</button>
+<button ng-click="pause()" ng-if="player.playing == track">Pause</button>
 ```
 
-Plangular includes basic variables to display the sound's time and duration. The playTime filter will convert milliseconds to hh:mm:ss format.
+### Next/Previous Controls
+Plangular will cycle through all instances in a view or through tracks in a SoundCloud playlist. Use the `previous()` and `next()` methods to skip between tracks.
 
 ```html
-<progress value="{{ currentTime / duration }}">{{ currentTime / duration }}</progress>
-<small>{{ currentTime | playTime }} | {{ duration | playTime }}</small>
+<button ng-click="previous()">Previous</button>
+<button ng-click="next()">Next</button>
 ```
 
-Add the seekTo() function to add scrubbing.
+### Show Current Time and Duration
+Plangular includes basic variables to display the sound's time and duration.
+The `duration` filter will convert milliseconds to hh:mm:ss format.
 
 ```html
-<progress value="{{ currentTime / duration }}" ng-click="seekTo($event)">{{ currentTime / duration }}</progress>
+<progress value="{{ currentTime / duration || 0 }}">{{ currentTime / duration }}</progress>
+<small>{{ currentTime | duration }} | {{ duration | duration }}</small>
 ```
+
+### Add a Scrubber Control
+Add the `player.seek()` method to add scrubbing.
+
+```html
+<progress value="{{ player.currentTime / player.duration || 0 }}" v-on="click: player.seek($event)">{{ player.currentTime / player.duration }}</progress>
+```
+
 
 ### Add Images and Links
 To use images and links in the track object, use Angular's `ng-src` and `ng-href` attributes.
@@ -159,7 +186,7 @@ To use images and links in the track object, use Angular's `ng-src` and `ng-href
 <img ng-src="{{ track.waveform_url }}" alt="waveform" />
 ```
 
-Note: The waveform image that the SoundCloud API provides is a 1200 x 280px PNG with a light gray frame and transparent middle. To show progress use absolute positioning with the waveform in front. The light gray color is #efefef.
+Note: The waveform image that the SoundCloud API provides is a 1200 x 280px PNG with a light gray frame and transparent middle. To show progress use absolute positioning with the waveform in front. The light gray color is `#efefef`.
 
 ### Using the private SoundCloud waveform API
 `TK`
@@ -167,37 +194,37 @@ Note: The waveform image that the SoundCloud API provides is a 1200 x 280px PNG 
 ### Icons
 Use the `plangularIcon` directive to inject Geomicons Open SVG icons into your player. This directive will replace the element with an inline SVG, which allows you to style the icons with CSS.
 
-```html
-<div plangular-icon="play"></div>
-<div plangular-icon="pause"></div>
-<div plangular-icon="previous"></div>
-<div plangular-icon="next"></div>
-```
+    ```html
+    <div plangular-icon="play"></div>
+    <div plangular-icon="pause"></div>
+    <div plangular-icon="previous"></div>
+    <div plangular-icon="next"></div>
+    ```
 
-#### Included Icons
-`TK`
+    #### Included Icons
+    `TK`
 
 
-#### Example Icon Styling
-Since these are SVGs, use the `fill` attribute to style the color of the icons.
+    #### Example Icon Styling
+    Since these are SVGs, use the `fill` attribute to style the color of the icons.
 
-```html
-<style>
-  .icon {
-    width: 2rem;
-    height: 2rem;
-  }
-  .icon-white {
-    fill: #fff;
-  }
-</style>
-<div plangular-icon="play" class="icon icon-white"></div>
-```
+    ```html
+    <style>
+      .icon {
+        width: 2rem;
+        height: 2rem;
+      }
+      .icon-white {
+        fill: #fff;
+      }
+    </style>
+    <div plangular-icon="play" class="icon icon-white"></div>
+    ```
 
 ### Creating a Global Player
 `TK`
 
-### Additional Options
+### Loading States
 
 To add a loading state while Plangular is getting data from SoundCloud, you can use `ng-show` and `ng-hide` to display different states.
     
@@ -217,13 +244,13 @@ Use these examples to get started quickly
 ### Bare Bones
     
 ```html
-<div plangular data-src="http://soundcloud.com/jxnblk/plangular">
-  <a href="" ng-click="player.play(track)" ng-hide="player.playing == track">
+<div plangular="http://soundcloud.com/jxnblk/plangular">
+  <button ng-click="player.play(track)" ng-hide="player.playing == track">
     <div plangular-icon="play"></div>
-  </a>
-  <a href="" ng-click="player.pause()" ng-show="player.playing == track">
+  </button>
+  <button ng-click="player.pause()" ng-show="player.playing == track">
     <div plangular-icon="pause"></div>
-  </a>
+  </button>
   <h1>{{ track.user.username }} - {{ track.title }}</h1>
 </div>
 ```
@@ -231,18 +258,18 @@ Use these examples to get started quickly
 ### Progress Bar
 
 ```html
-<div plangular data-src="http://soundcloud.com/jxnblk/plangular" class="media">
-  <a href="" ng-click="player.play(track)" ng-hide="player.playing == track" class="img">
+<div plangular="http://soundcloud.com/jxnblk/plangular" class="media">
+  <button ng-click="player.play(track)" ng-hide="player.playing == track" class="left">
     <div plangular-icon="play"></div>
-  </a>
-  <a href="" ng-click="player.pause()" ng-show="player.playing == track" class="img">
+  </button>
+  <button ng-click="player.pause()" ng-show="player.playing == track" class="left">
     <div plangular-icon="pause"></div>
-  </a>
-  <div class="bd">
+  </button>
+  <div class="media-body">
     <p>{{ track.user.username }}</p>
     <h1><a ng-href="{{ track.permalink_url }}">{{ track.title }}</a></h1>
-    <progress value="{{ currentTime / duration }}" ng-click="seekTo($event)">{{ currentTime / duration }}</progress>
-    <small>{{ currentTime | playTime }} | {{ duration | playTime }}</small>
+    <progress value="{{ currentTime / duration }}" ng-click="seek($event)">{{ currentTime / duration }}</progress>
+    <small>{{ currentTime | duration }} | {{ duration | duration }}</small>
   </div>
 </div>
 ```
@@ -250,26 +277,26 @@ Use these examples to get started quickly
 ### Artwork and Waveform
 
 ```html
-<div plangular data-src="http://soundcloud.com/jxnblk/plangular" class="media">
-  <img ng-src="{{ track.artwork_url }}" class="img" />
-  <div class="bd">
+<div plangular="http://soundcloud.com/jxnblk/plangular" class="media">
+  <img ng-src="{{ track.artwork_url }}" class="left" />
+  <div class="media-body">
     <div class="media">
-      <a href="" ng-click="player.play(track)" ng-hide="player.playing == track" class="img">
+      <button ng-click="player.play(track)" ng-hide="player.playing == track" class="left">
         <div plangular-icon="play"></div>
-      </a>
-      <a href="" ng-click="player.pause()" ng-show="player.playing == track" class="img">
+      </button>
+      <button ng-click="player.pause()" ng-show="player.playing == track" class="left">
         <div plangular-icon="pause"></div>
-      </a>
-      <div class="bd">
+      </button>
+      <div class="media-body">
         <p>{{ track.user.username }}</p>
         <h1><a ng-href="{{ track.permalink_url }}">{{ track.title }}</a></h1>
       </div>
     </div>
-    <div ng-click="seekTo($event)">
+    <div ng-click="seek($event)">
       <progress value="{{ currentTime / duration }}">{{ currentTime / duration }}</progress>
       <img ng-src="{{ track.waveform_url }}" />
     </div>
-    <small>{{ currentTime | playTime }} | {{ duration | playTime }}</small>
+    <small>{{ currentTime | duration }} | {{ duration | duration }}</small>
   </div>
 </div>
 ```
@@ -298,14 +325,13 @@ Don't ask me why, but SoundCloud provides an option for users to prevent streami
 ### Plangular
 
 - `plangular` - The Angular directive for Plangular
-- `data-src` - The data attribute to set the SoundCloud link
 - `track` - The object returned from the SoundCloud API
-- `player.play(track)` - Function for playing the track
+- `player.play()` - Function for playing the track
 - `player.pause()` - Function for pausing
 - `currentTime` - Current time in milliseconds for the currently playing track
 - `duration` - Duration of the track in milliseconds
-- `playTime` - Angular filter to convert milliseconds to hh:mm:ss format
-- `seekTo($event)` - Click function for scrubbing
+- `duration` - Angular filter to convert milliseconds to hh:mm:ss format
+- `seek($event)` - Click function for scrubbing
 
 ### SoundCloud API
 
@@ -372,10 +398,11 @@ See http://developers.soundcloud.com/docs/api/reference#users for more details
 ---
 
 ## Changes from Version 1.0
+- Simpler player methods
 - Tracks are now passed through the plangular attribute, instead of `data-src`.
   E.g. `<div plangular="http://soundcloud.com/jxnblk/plangular"></div>`
-- [ ] Rename `playTime` to `duration`
-- [ ] Allow previous next to work globally for all tracks in the player.
+- The `playTime` filter is now called `duration`.
+- Next and previous methods now work for all tracks on a page.
 
 [MIT License](http://opensource.org/licenses/MIT)
 
