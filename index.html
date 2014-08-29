@@ -12,7 +12,7 @@
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
 
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.9/angular.min.js"></script>
-  <script src="ng-plangular.js"></script>
+  <script src="ng-plangular.min.js"></script>
 
   <script>
     var app = angular.module('app', ['plangular']);
@@ -77,11 +77,11 @@
         <div class="left">
           <a href ng-click="play()" ng-hide="player.playing == track"
             class="button button-geo anim-popin">
-            <svg plangular-icon="play" class="geo-24 geo-white"></svg>
+            <svg plangular-icon="play" class="geo-24 white"></svg>
           </a>
           <a href="" ng-click="pause()" ng-show="player.playing == track"
             class="button button-geo anim-popin">
-            <svg plangular-icon="pause" class="geo-24 geo-white"></svg>
+            <svg plangular-icon="pause" class="geo-24 white"></svg>
           </a>
         </div>
         <div class="oh relative" style="height:3rem">
@@ -109,16 +109,16 @@
       <div class="clearfix">
         <div class="left mr1 mobile-block">
           <a href="" ng-click="previous()" class="button button-geo white">
-            <svg plangular-icon="previous" class="geo-24 geo-white"></svg>
+            <svg plangular-icon="previous" class="geo-24 white"></svg>
           </a>
           <a href="" ng-click="play(player.playlistIndex)" ng-hide="player.playing" class="button button-geo anim-popin">
-            <svg plangular-icon="play" class="geo-24 geo-white"></svg>
+            <svg plangular-icon="play" class="geo-24 white"></svg>
           </a>
           <a href="" ng-click="pause()" ng-show="player.playing" class="button button-geo white anim-popin">
-            <svg plangular-icon="pause" class="geo-24 geo-white"></svg>
+            <svg plangular-icon="pause" class="geo-24 white"></svg>
           </a>
           <a href="" ng-click="next()" class="button button-geo white">
-            <svg plangular-icon="next" class="geo-24 geo-white"></svg>
+            <svg plangular-icon="next" class="geo-24 white"></svg>
           </a>
         </div>
         <div class="oh mobile-block">

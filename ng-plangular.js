@@ -16,12 +16,10 @@
 var plangular = angular.module('plangular', []),
     clientID = '0d33361983f16d2527b01fbf6408b7d7';
 
-plangular.directive('plangular', function ($document, $rootScope, $http) {
+plangular.directive('plangular', ['$http', function ($http) {
 
-  // Define the audio engine
-  var audio = $document[0].createElement('audio');
+  var audio = document.createElement('audio');
 
-  // Define the player object
   var player = {
  
     currentTrack: false,
@@ -119,17 +117,12 @@ plangular.directive('plangular', function ($document, $rootScope, $http) {
   }, false);
 
   audio.addEventListener('ended', function() {
-    $rootScope.$apply(function(){
-      if (player.tracks.length > 0) player.next();
-      else player.pause();
-    });
-    
+    if (player.tracks.length > 0) player.next();
+    else player.pause();
   }, false);
 
-  // Global index for plangular instances
   var index = 0;
 
-  // Returns the player, audio, track, and other objects
   return {
 
     restrict: 'A',
@@ -208,7 +201,7 @@ plangular.directive('plangular', function ($document, $rootScope, $http) {
 
   }
 
-});
+}]);
 
 
 // Plangular Icons
@@ -251,7 +244,7 @@ plangular.directive('plangularIcon', function() {
 
       el.classList.add('plangular-icon', 'plangular-icon-'+id);
       el.setAttribute('viewBox', '0 0 32 32');
-      el.setAttribut('style', 'max-height:100%;fill:currentColor');
+      el.setAttribute('style', 'max-height:100%;fill:currentColor');
       path.setAttribute('d', sprite[id]);
       el.appendChild(path);
  
