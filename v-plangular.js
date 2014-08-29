@@ -788,6 +788,7 @@ module.exports=require(6)
 
 
 var jsonp = require('jsonp');
+var audio = require('./audio');
 var player = require('./player');
 var plangular = require('./v-plangular');
 
@@ -797,7 +798,29 @@ var Plangular = Vue.extend({
     player: player,
     index: null,
     value: null,
-    track: null
+    track: null,
+    time: 0,
+    dur: 0
+  },
+
+  computed: {
+    currentTime: function() {
+      if (player.tracks[player.i] == this.track) {
+        this.time = player.currentTime;
+        return this.time;
+      } else {
+        this.time = 0;
+        return this.time;
+      }
+    },
+    duration: function() {
+      if (player.tracks[player.i] == this.track) {
+        this.dur = player.duration;
+        return this.dur;
+      } else {
+        return this.dur;
+      }
+    }
   },
 
   methods: {
@@ -812,6 +835,12 @@ var Plangular = Vue.extend({
 
     playPause: function(playlistIndex) {
       player.playPause(this.index, playlistIndex);
+    },
+
+    seek: function(e) {
+      if (player.tracks[player.i] == this.track) {
+        player.seek(e);
+      }
     }
 
   },
@@ -849,6 +878,11 @@ var Plangular = Vue.extend({
         });
       }
 
+      //audio.addEventListener('timeupdate', function() {
+      //  player.currentTime = audio.currentTime;
+      //  player.duration = audio.duration;
+      //});
+
     }
 
   }
@@ -858,4 +892,4 @@ var Plangular = Vue.extend({
 Vue.component('plangular', Plangular);
 
 
-},{"./player":7,"./v-plangular":10,"jsonp":1}]},{},[6])
+},{"./audio":5,"./player":7,"./v-plangular":10,"jsonp":1}]},{},[6])

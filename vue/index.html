@@ -46,10 +46,14 @@
 
   <div class="" v-component="plangular" v-src="'http://soundcloud.com/jxnblk/really-wanna'">
     <h2><a href="#{{ permalink }}" class="red" v-on="click: playPause()"> {{ user.username }} {{ title }} </a></h2>
+    <progress class="progress progress-white w100" v-on="click: seek($event)" value="{{ currentTime / duration || 0 }}">{{ currentTime / duration }}</progress>
+    <pre>{{ currentTime | duration }} - {{ duration | duration }}</pre>
   </div>
 
   <div v-component="plangular" v-src="'http://soundcloud.com/jxnblk/let-go'">
     <h2><a href="#{{ permalink }}" class="red" v-on="click: playPause()"> {{ user.username }} {{ title }} </a></h2>
+    <progress class="progress progress-white w100" v-on="click: seek($event)" value="{{ currentTime / duration || 0 }}">{{ currentTime / duration }}</progress>
+    <pre>{{ currentTime | duration }} - {{ duration | duration }}</pre>
   </div>
 
   <div class="py3 red" v-component="plangular" v-src="'http://soundcloud.com/jxnblk/sets/yello'">

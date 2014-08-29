@@ -31,6 +31,8 @@ plangular.directive('plangular', function ($document, $rootScope, $http) {
     i: 0,
     playlistIndex: 0,
     data: {},
+    currentTime: 0,
+    duration: 0,
 
     load: function(track, index) {
       this.tracks[index] = track;
@@ -102,9 +104,20 @@ plangular.directive('plangular', function ($document, $rootScope, $http) {
           this.play(this.i);
         }
       }
+    },
+
+    seek: function(e) {
+      if (!audio.readyState) return false;
+      var xpos = e.offsetX / e.target.offsetWidth;
+      audio.currentTime = (xpos * audio.duration);
     }
 
   };
+
+  audio.addEventListener('timeupdate', function() {
+    player.currentTime = (audio.currentTime * 1000).toFixed();
+    player.duration = (audio.duration * 1000).toFixed();
+  }, false);
 
   audio.addEventListener('ended', function() {
     $rootScope.$apply(function(){
@@ -173,17 +186,21 @@ plangular.directive('plangular', function ($document, $rootScope, $http) {
       audio.addEventListener('timeupdate', function() {
         if (scope.track == player.tracks[player.i]){
           scope.$apply(function() {
-            scope.currentTime = (audio.currentTime * 1000).toFixed();
-            scope.duration = (audio.duration * 1000).toFixed();
+            scope.currentTime = player.currentTime;
+            scope.duration = player.duration;
           });  
         };
       }, false);
 
+      // scope.currentTime = (player.tracks[player.i] == scope.track) ? player.currentTime : 0;
+      // var dur = 0;
+      // scope.duration = (player.tracks[player.i] == scope.track) ? (dur = player.duration) : dur;
+      
       // Handle click events for seeking
-      scope.seek = function($event){
-        if (!audio.readyState) return false;
-        var xpos = $event.offsetX / $event.target.offsetWidth;
-        audio.currentTime = (xpos * audio.duration);
+      scope.seek = function(e){
+        if (player.tracks[player.i] == scope.track) {
+          player.seek(e);
+        }
       };
 
     }
