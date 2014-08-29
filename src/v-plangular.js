@@ -28,5 +28,5 @@ var jsonp = require('jsonp');
 require('./v-soundcloud');
 
 require('./v-icons');
-require('./v-duration-filter');
+require('./v-pretty-time');
 

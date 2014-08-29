@@ -76,11 +76,11 @@
         <div class="left">
           <a href ng-click="play()" ng-hide="player.playing == track"
             class="button button-geo anim-popin">
-            <div plangular-icon="play" class="geo-24 geo-white"></div>
+            <svg plangular-icon="play" class="geo-24 geo-white"></svg>
           </a>
           <a href="" ng-click="pause()" ng-show="player.playing == track"
             class="button button-geo anim-popin">
-            <div plangular-icon="pause" class="geo-24 geo-white"></div>
+            <svg plangular-icon="pause" class="geo-24 geo-white"></svg>
           </a>
         </div>
         <div class="oh relative" style="height:3rem">
@@ -108,22 +108,22 @@
       <div class="clearfix">
         <div class="left mr1 mobile-block">
           <a href="" ng-click="previous()" class="button button-geo white">
-            <div plangular-icon="previous" class="geo-24 geo-white"></div>
+            <svg plangular-icon="previous" class="geo-24 geo-white"></svg>
           </a>
           <a href="" ng-click="play(player.playlistIndex)" ng-hide="player.playing" class="button button-geo anim-popin">
-            <div plangular-icon="play" class="geo-24 geo-white"></div>
+            <svg plangular-icon="play" class="geo-24 geo-white"></svg>
           </a>
           <a href="" ng-click="pause()" ng-show="player.playing" class="button button-geo white anim-popin">
-            <div plangular-icon="pause" class="geo-24 geo-white"></div>
+            <svg plangular-icon="pause" class="geo-24 geo-white"></svg>
           </a>
           <a href="" ng-click="next()" class="button button-geo white">
-            <div plangular-icon="next" class="geo-24 geo-white"></div>
+            <svg plangular-icon="next" class="geo-24 geo-white"></svg>
           </a>
         </div>
         <div class="oh mobile-block">
           <progress value="{{ currentTime / duration}}" ng-click="seek($event)" class="mt1 progress progress-white w100">{{ currentTime / duration }}</progress>
-          <small class="left">{{ currentTime | duration }}</small>
-          <small class="right">{{ duration | duration }}</small>
+          <small class="left">{{ currentTime | prettyTime }}</small>
+          <small class="right">{{ duration | prettyTime }}</small>
         </div>
       </div>
     </div>
@@ -186,11 +186,11 @@
   <div class="p1 m1 border" ng-repeat="track in tracks">
     <div plangular="{{ track }}">
       plangular
-      {{ index }}. {{ track.title }} 
+      {{ index }}. {{ title }}  {{ user.username }}
       <button ng-click="playPause()">Play/Pause</button>
       <button ng-click="play()">Play</button>
       <button ng-click="pause()">Pause</button>
-      <code>{{ currentTime | duration }} - {{ duration | duration }} {{ currentTime / duration * 100 + '%' }}</code>
+      <code>{{ currentTime | prettyTime }} - {{ duration | prettyTime }} {{ currentTime / duration * 100 + '%' }}</code>
     </div>
   </div>
 </div>

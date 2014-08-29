@@ -3,7 +3,7 @@
 'use strict';
 
 
-Vue.filter('duration', function(value) {
+Vue.filter('prettyTime', function(value) {
 
   var hours = Math.floor(value/3600),
       minutes = '0' + Math.floor((value % 3600) / 60),

@@ -94,11 +94,6 @@ var Plangular = Vue.extend({
         });
       }
 
-      //audio.addEventListener('timeupdate', function() {
-      //  player.currentTime = audio.currentTime;
-      //  player.duration = audio.duration;
-      //});
-
     }
 
   }

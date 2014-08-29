@@ -14,8 +14,7 @@
 'use strict';
 
 var plangular = angular.module('plangular', []),
-    clientID = '0d33361983f16d2527b01fbf6408b7d7',
-    iconUrl = 'icons/plangular-icons.svg';
+    clientID = '0d33361983f16d2527b01fbf6408b7d7';
 
 plangular.directive('plangular', function ($document, $rootScope, $http) {
 
@@ -115,8 +114,8 @@ plangular.directive('plangular', function ($document, $rootScope, $http) {
   };
 
   audio.addEventListener('timeupdate', function() {
-    player.currentTime = (audio.currentTime * 1000).toFixed();
-    player.duration = (audio.duration * 1000).toFixed();
+    player.currentTime = audio.currentTime;
+    player.duration = audio.duration;
   }, false);
 
   audio.addEventListener('ended', function() {
@@ -150,13 +149,21 @@ plangular.directive('plangular', function ($document, $rootScope, $http) {
         index++;
       }
 
+      function addKeys(track) {
+        for (var key in track) {
+          scope[key] = track[key];
+        }
+      }
+
       if (!src) {
         //console.log('no src');
       } else if (player.data[src]) {
         scope.track = player.data[src];
+        addKeys(scope.track);
       } else {
         $http.jsonp('//api.soundcloud.com/resolve.json', { params: params }).success(function(data){
           scope.track = data;
+          addKeys(scope.track);
           player.data[src] = data;
           player.load(data, scope.index);
         });
@@ -182,7 +189,6 @@ plangular.directive('plangular', function ($document, $rootScope, $http) {
         player.previous();
       };
 
-      // Updates the currentTime and duration for the audio
       audio.addEventListener('timeupdate', function() {
         if (scope.track == player.tracks[player.i]){
           scope.$apply(function() {
@@ -191,10 +197,6 @@ plangular.directive('plangular', function ($document, $rootScope, $http) {
           });  
         };
       }, false);
-
-      // scope.currentTime = (player.tracks[player.i] == scope.track) ? player.currentTime : 0;
-      // var dur = 0;
-      // scope.duration = (player.tracks[player.i] == scope.track) ? (dur = player.duration) : dur;
       
       scope.seek = function(e){
         if (player.tracks[player.i] == scope.track) {
@@ -220,9 +222,7 @@ plangular.directive('plangularIcon', function() {
     close: 'M4 8 L8 4 L16 12 L24 4 L28 8 L20 16 L28 24 L24 28 L16 20 L8 28 L4 24 L12 16 z',
     chevronRight: 'M12 1 L26 16 L12 31 L8 27 L18 16 L8 5 z',
     chevronLeft: 'M20 1 L24 5 L14 16 L24 27 L20 31 L6 16 z',
-    heart: 'M0 10 C0 6, 3 2, 8 2 C12 2, 15 5, 16 6 C17 5, 20 2, 24 2 C30 2, 32 6, 32 10 C32 18, 18 29, 16 30 C14 29, 0 18, 0 10',
-    download: 'M10 0 H22 V10 H28 L16 24 L4 10 H10 z M0 26 H32 V32 H0',
-    check: 'M1 14 L5 10 L13 18 L27 4 L31 8 L13 26 z'
+    heart: 'M0 10 C0 6, 3 2, 8 2 C12 2, 15 5, 16 6 C17 5, 20 2, 24 2 C30 2, 32 6, 32 10 C32 18, 18 29, 16 30 C14 29, 0 18, 0 10'
   };
 
   return {
@@ -233,7 +233,6 @@ plangular.directive('plangularIcon', function() {
 
       var el = elem[0],
           id = attrs.plangularIcon,
-          svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg'),
           path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
 
       if (!sprite[id]) {
@@ -250,13 +249,11 @@ plangular.directive('plangularIcon', function() {
         return false;
       }
 
-      el.className += ' plangular-icon plangular-icon-' + id;
-      svg.setAttribute('class', el.className);
-      var vb = el.getAttribute('viewBox') || '0 0 32 32';
-      svg.setAttribute('viewBox', vb);
+      el.classList.add('plangular-icon', 'plangular-icon-'+id);
+      el.setAttribute('viewBox', '0 0 32 32');
+      el.setAttribut('style', 'max-height:100%;fill:currentColor');
       path.setAttribute('d', sprite[id]);
-      svg.appendChild(path);
-      el.parentNode.replaceChild(svg, el);
+      el.appendChild(path);
  
     }
 
@@ -266,11 +263,11 @@ plangular.directive('plangularIcon', function() {
 
 
 // Filter to convert milliseconds to hours, minutes, seconds
-plangular.filter('duration', function() {
-  return function(ms) {
-    var hours = Math.floor(ms / 36e5),
-        mins = '0' + Math.floor((ms % 36e5) / 6e4),
-        secs = '0' + Math.floor((ms % 6e4) / 1000);
+plangular.filter('prettyTime', function() {
+  return function(value) {
+    var hours = Math.floor(value / 3600),
+        mins = '0' + Math.floor((value % 3600) / 60),
+        secs = '0' + Math.floor((value % 60));
         mins = mins.substr(mins.length - 2);
         secs = secs.substr(secs.length - 2);
     if(!isNaN(secs)){
