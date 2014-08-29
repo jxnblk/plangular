@@ -36,6 +36,7 @@ Examples are provided for both versions.
 ### Include JS Files
 
 **Vuejs**
+
 Download `v-plangular.min.js` and include it in your project along with Vuejs:
 
 ```html
@@ -44,6 +45,7 @@ Download `v-plangular.min.js` and include it in your project along with Vuejs:
 ```
 
 **Angular**
+
 Download the `ng-plangular.min.js` file and include it in your project along with Angular:
 ```html
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.9/angular.min.js"></script>
@@ -61,6 +63,7 @@ An Angular or Vuejs app needs to be bootstrapped on a parent element before Plan
 ```
 
 **Angular**
+
 Include the `ng-app` attribute in a containing element.
 For standalone applications, you can pass `plangular` as the app.
 
