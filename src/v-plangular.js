@@ -29,4 +29,5 @@ require('./v-soundcloud');
 
 require('./v-icons');
 require('./v-pretty-time');
+//require('./v-waveform');
 

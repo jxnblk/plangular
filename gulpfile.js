@@ -24,9 +24,9 @@ gulp.task('compilejs', function() {
 
 
 gulp.task('sass', function() {
-  gulp.src('./site/style.scss')
+  gulp.src('./docs/style.scss')
     .pipe(sass({ options: { outputStyle: 'compressed' } }))
-    .pipe(gulp.dest('./site'));
+    .pipe(gulp.dest('./docs'));
 });
 
 

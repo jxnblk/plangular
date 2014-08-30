@@ -24,7 +24,7 @@
     <h1 class="helvetica"> {{ player.currentTrack.title || '&nbsp;' }} </h1>
     <div class="center table mb1">
       <div class="table-cell px2">
-        <button class="red button" v-on="click: player.previous()">
+        <button class="red button" v-on="click: previous()">
           <svg v-plangular-icon="'previous'"></svg>
         </button>
       </div>
@@ -35,7 +35,7 @@
         </button>
       </div>
       <div class="table-cell px2">
-        <button class="red button" v-on="click: player.next()">
+        <button class="red button" v-on="click: next()">
           <svg v-plangular-icon="'next'"></svg>
         </button>
       </div>
@@ -66,14 +66,14 @@
         {{ index }}. {{ user.username }} - {{ title }}
       </a>
     </h2>
-    <button class="red button" v-on="click: player.previous()">
+    <button class="red button" v-on="click: previous()">
       <svg v-plangular-icon="'previous'"></svg>
     </button>
     <button class="h3 red button" v-on="click: playPause(player.playlistIndex)">
       <span v-if="!player.playing"><svg v-plangular-icon="'play'"></svg></span>
       <span v-if="player.playing"><svg v-plangular-icon="'pause'"></svg></span>
     </button>
-    <button class="red button" v-on="click: player.next()">
+    <button class="red button" v-on="click: next()">
       <svg v-plangular-icon="'next'"></svg>
     </button>
     <progress class="progress progress-white w100" v-on="click: seek($event)" value="{{ currentTime / duration || 0 }}">{{ currentTime / duration }}</progress>
@@ -97,14 +97,14 @@
         {{ index }}. {{ user.username }} - {{ title }}
       </a>
     </h2>
-    <button class="red button" v-on="click: player.previous()">
+    <button class="red button" v-on="click: previous()">
       <svg v-plangular-icon="'previous'"></svg>
     </button>
     <button class="h3 red button" v-on="click: playPause(player.playlistIndex)">
       <span v-if="!player.playing"><svg v-plangular-icon="'play'"></svg></span>
       <span v-if="player.playing"><svg v-plangular-icon="'pause'"></svg></span>
     </button>
-    <button class="red button" v-on="click: player.next()">
+    <button class="red button" v-on="click: next()">
       <svg v-plangular-icon="'next'"></svg>
     </button>
     <progress class="progress progress-white w100" v-on="click: seek($event)" value="{{ currentTime / duration || 0 }}">{{ currentTime / duration }}</progress>
@@ -117,9 +117,9 @@
   </div>
 
   <h3>Testing v-repeat</h3>
-  <div v-repeat="ptrack : trackUrls" v-component="plangular" v-src="ptrack">
-    <pre>p username: {{ user.username }}</pre>
-    <pre>p title {{ title }}</pre>
+  <div v-repeat="sound : trackUrls" v-component="plangular" v-src="sound">
+    <pre>username: {{ user.username }}</pre>
+    <pre>title: {{ title }}</pre>
   </div>
 
 <script>

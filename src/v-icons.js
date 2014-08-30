@@ -30,7 +30,8 @@ Vue.directive('plangular-icon', function(value) {
   this.el.appendChild(path);
     //var vb = this.el.getAttribute('viewBox') || '0 0 32 32';
   this.el.setAttribute('viewBox', '0 0 32 32');
-  this.el.setAttribute('style', 'max-height:100%;fill:currentColor');
-  this.el.classList.add('icon', 'icon-' + value);
+  this.el.setAttribute('style', 'max-height:100%');
+  this.el.setAttribute('fill', 'currentColor');
+  this.el.classList.add('plangular-icon', 'plangular-icon-' + value);
 });
 

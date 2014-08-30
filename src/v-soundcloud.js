@@ -57,7 +57,11 @@ var Plangular = Vue.extend({
       if (player.tracks[player.i] == this.track) {
         player.seek(e);
       }
-    }
+    },
+
+    previous: function() { player.previous() },
+
+    next: function() { player.next() }
 
   },
 

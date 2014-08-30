@@ -589,6 +589,7 @@ require('./v-soundcloud');
 
 require('./v-icons');
 require('./v-pretty-time');
+//require('./v-waveform');
 
 
 },{"./v-icons":8,"./v-pretty-time":10,"./v-soundcloud":11,"jsonp":1}],7:[function(require,module,exports){
@@ -746,8 +747,9 @@ Vue.directive('plangular-icon', function(value) {
   this.el.appendChild(path);
     //var vb = this.el.getAttribute('viewBox') || '0 0 32 32';
   this.el.setAttribute('viewBox', '0 0 32 32');
-  this.el.setAttribute('style', 'max-height:100%;fill:currentColor');
-  this.el.classList.add('icon', 'icon-' + value);
+  this.el.setAttribute('style', 'max-height:100%');
+  this.el.setAttribute('fill', 'currentColor');
+  this.el.classList.add('plangular-icon', 'plangular-icon-' + value);
 });
 
 
@@ -841,7 +843,11 @@ var Plangular = Vue.extend({
       if (player.tracks[player.i] == this.track) {
         player.seek(e);
       }
-    }
+    },
+
+    previous: function() { player.previous() },
+
+    next: function() { player.next() }
 
   },
 

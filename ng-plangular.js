@@ -33,6 +33,9 @@ plangular.directive('plangular', ['$http', function ($http) {
 
     load: function(track, index) {
       this.tracks[index] = track;
+      if (!this.playing && !this.i && index == 0) {
+        this.currentTrack = this.tracks[0];
+      }
     },
 
     play: function(index, playlistIndex) {
@@ -84,6 +87,8 @@ plangular.directive('plangular', ['$http', function ($http) {
         } else {
           this.play(this.i);
         }
+      } else if (this.i >= this.tracks.length -1) {
+        this.pause();
       }
     },
 
@@ -244,7 +249,8 @@ plangular.directive('plangularIcon', function() {
 
       el.classList.add('plangular-icon', 'plangular-icon-'+id);
       el.setAttribute('viewBox', '0 0 32 32');
-      el.setAttribute('style', 'max-height:100%;fill:currentColor');
+      el.setAttribute('style', 'max-height:100%');
+      el.setAttribute('fill', 'currentColor');
       path.setAttribute('d', sprite[id]);
       el.appendChild(path);
  

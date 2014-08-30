@@ -106,7 +106,7 @@ strong, .bold {
 .leading-4 {
   line-height: 4rem; }
 
-.icon {
+.plangular-icon, .icon {
   width: 1em;
   height: 1em;
   vertical-align: -0.0625em; }
@@ -603,31 +603,6 @@ html, body {
 .px8 {
   padding-right: 20%;
   padding-left: 20%; }
-
-.button-geo .geo-16 {
-  position: relative;
-  top: 2px; }
-.button-geo .geo-24 {
-  position: relative;
-  top: 4px; }
-
-.geo-16 {
-  width: 16px;
-  height: 16px; }
-
-.geo-24 {
-  width: 24px;
-  height: 24px; }
-
-.geo-32 {
-  width: 32px;
-  height: 32px; }
-
-.geo-white {
-  fill: #fff; }
-
-.geo-dark-gray {
-  fill: #405660; }
 
 .aspect-16o9 {
   width: 100%;
