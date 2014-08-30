@@ -16,7 +16,7 @@
   <script src="../../v-plangular.min.js"></script>
 
 </head>
-<body id="vm" class="monospace p2 red bg-dark-gray">
+<body id="vm" class="avenir p2 red bg-dark-gray">
 
   <div v-component="plangular" class="mb2 red">
     <pre class="mb2">Global Player (no v-src attribute)</pre>
@@ -42,20 +42,23 @@
     </div>
     <progress class="progress progress-white w100" v-on="click: player.seek($event)" value="{{ player.currentTime / player.duration || 0 }}">{{ player.currentTime / duration }}</progress>
     <pre>{{ player.currentTime | prettyTime }} / {{ player.duration | prettyTime }} </pre>
+    <img v-attr="src: player.currentTrack.artwork_url"> 
+    <img v-attr="src: player.currentTrack.waveform_url" class="fit">
   </div>
 
 
   <div class="" v-component="plangular" v-src="'http://soundcloud.com/jxnblk/really-wanna'">
-    <h2><a href="#{{ permalink }}" class="red" v-on="click: playPause()"> {{ user.username }} {{ title }} </a></h2>
+    <h2><a href="#{{ permalink }}" class="" v-on="click: playPause()" v-class="(player.currentTrack == track) ? 'white' : 'red'"> {{ user.username }} {{ title }} </a></h2>
     <progress class="progress progress-white w100" v-on="click: seek($event)" value="{{ currentTime / duration || 0 }}">{{ currentTime / duration }}</progress>
     <pre>{{ currentTime | prettyTime }} - {{ duration | prettyTime }}</pre>
   </div>
 
   <div v-component="plangular" v-src="'http://soundcloud.com/jxnblk/let-go'">
-    <h2><a href="#{{ permalink }}" class="red" v-on="click: playPause()"> {{ user.username }} {{ title }} </a></h2>
+    <h2><a href="#{{ permalink }}" class="" v-on="click: playPause()" v-class="(player.currentTrack == track) ? 'white' : 'red'"> {{ user.username }} {{ title }} </a></h2>
     <progress class="progress progress-white w100" v-on="click: seek($event)" value="{{ currentTime / duration || 0 }}">{{ currentTime / duration }}</progress>
     <pre>{{ currentTime | prettyTime }} - {{ duration | prettyTime }}</pre>
   </div>
+
 
   <div class="py3 red" v-component="plangular" v-src="'http://soundcloud.com/jxnblk/sets/yello'">
     <h2>
@@ -63,17 +66,54 @@
         {{ index }}. {{ user.username }} - {{ title }}
       </a>
     </h2>
+    <button class="red button" v-on="click: player.previous()">
+      <svg v-plangular-icon="'previous'"></svg>
+    </button>
+    <button class="h3 red button" v-on="click: playPause(player.playlistIndex)">
+      <span v-if="!player.playing"><svg v-plangular-icon="'play'"></svg></span>
+      <span v-if="player.playing"><svg v-plangular-icon="'pause'"></svg></span>
+    </button>
+    <button class="red button" v-on="click: player.next()">
+      <svg v-plangular-icon="'next'"></svg>
+    </button>
+    <progress class="progress progress-white w100" v-on="click: seek($event)" value="{{ currentTime / duration || 0 }}">{{ currentTime / duration }}</progress>
+    <pre>{{ currentTime | prettyTime }} - {{ duration | prettyTime }}</pre>
     <div v-repeat="track: tracks">
-      <h3>
-        <a href="#{{ track.permalink }}" class="red" v-on="click: playPause($index)">
-          {{ track.user.username }} - {{ track.title }}
-        </a>
-      </h3>
+      <a href="#{{ track.permalink }}" class="" v-on="click: playPause($index)" v-class="(player.currentTrack == track) ? 'white' : 'red'">
+        {{ track.user.username }} - {{ track.title }}
+      </a>
     </div>
   </div>
 
+
   <div v-component="plangular" v-src="'http://soundcloud.com/mrsjxn/no-love'">
-    <h2><a href="#{{ permalink }}" class="red" v-on="click: playPause()"> {{ user.username }} {{ title }} </a></h2>
+    <h2><a href="#{{ permalink }}" class="red" v-on="click: playPause()" v-class="player.playing == track ? 'white' : 'red'"> {{ user.username }} {{ title }} </a></h2>
+  </div>
+
+
+  <div class="py3 red" v-component="plangular" v-src="'https://soundcloud.com/broccolini/sets/sexy-summer'">
+    <h2>
+      <a href="#{{ permalink }}" class="red" v-on="click: playPause()">
+        {{ index }}. {{ user.username }} - {{ title }}
+      </a>
+    </h2>
+    <button class="red button" v-on="click: player.previous()">
+      <svg v-plangular-icon="'previous'"></svg>
+    </button>
+    <button class="h3 red button" v-on="click: playPause(player.playlistIndex)">
+      <span v-if="!player.playing"><svg v-plangular-icon="'play'"></svg></span>
+      <span v-if="player.playing"><svg v-plangular-icon="'pause'"></svg></span>
+    </button>
+    <button class="red button" v-on="click: player.next()">
+      <svg v-plangular-icon="'next'"></svg>
+    </button>
+    <progress class="progress progress-white w100" v-on="click: seek($event)" value="{{ currentTime / duration || 0 }}">{{ currentTime / duration }}</progress>
+    <pre>{{ currentTime | prettyTime }} - {{ duration | prettyTime }}</pre>
+    <div v-repeat="track: tracks">
+      <a href="#{{ track.permalink }}" class="" v-on="click: playPause($index)" v-class="(player.currentTrack == track) ? 'white' : 'red'">
+        {{ track.user.username }} - {{ track.title }}
+      </a>
+    </div>
   </div>
 
   <h3>Testing v-repeat</h3>

@@ -13,7 +13,7 @@ var Player = function() {
   player.playlistIndex = 0;
   player.playing = false;
   player.tracks = [];
-  player.currentTrack = player.tracks[player.i];
+  player.currentTrack = null;
   player.currentTime = 0;
   player.duration = 0;
 
@@ -43,6 +43,7 @@ var Player = function() {
     var track = this.tracks[i];
     if (track.tracks && this.playing != track.tracks[playlistIndex]) {
       console.log('its a playlist and its not playing so play it player');
+      if (!playlistIndex) playlistIndex = 0;
       this.play(i, playlistIndex);
     } else if (!track.tracks && this.playing != track) {
       console.log('we could be playing this but you playing');
@@ -88,6 +89,9 @@ var Player = function() {
 
   player.load = function(track, index) {
     this.tracks[index] = track;
+    if (!this.playing && !this.i && index == 0) {
+      this.currentTrack = this.tracks[0];
+    }
   };
 
   player.seek = function(e) {
