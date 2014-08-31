@@ -1,218 +1,249 @@
-Plangular
-=========
+# Plangular
 
-Create custom SoundCloud players with HTML and CSS. Built with AngularJS
+Create custom SoundCloud players with HTML and CSS.
 
-See examples and more here:
 http://jxnblk.github.io/plangular
+
+[Examples](http://jxnblk.github.io/plangular/docs/examples)
 
 ---
 
-## Usage
-Plangular is very customizable. If you're not comfortable with basic AngularJS, the player templates below might be an easier place to start.
+
+Table of Contents:
+- [Getting Started](#getting-started)
+- [Reference](#reference)
+- [Changes from Version 1.0](#changes-from-version-1.0)
+
+
+---
+
+
+## Getting Started
+Plangular comes in **two versions**.
+One built with AngularJS and the other with Vuejs.
+If you're not currently using one of these frameworks,
+the Vuejs version's total javascript should be smaller when considering the size of the libraries,
+and might be more performant.
+
+_Note: this has not been tested yet._
+
+The Plangular properties and methods are roughly the same for both versions,
+with minor difference in syntax between Angular and Vuejs.
+Examples are provided for both versions.
+
+---
 
 ### Include JS Files
-Download the plangular.js file and add it to your project, then add the following script tags to your HTML:
+
+**Vuejs**
+
+Download `v-plangular.min.js` and include it in your project along with Vuejs:
 
 ```html
-<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.9/angular.min.js"></script>
-<script src="js/plangular.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/vue/0.10.6/vue.min.js"></script>
+<script src="js/v-plangular.min.js"></script>
 ```
 
-Note: Unlike the previous version of Plangular, the SoundCloud SDK is no longer required.
+**Angular**
 
-### Initialize the Angular App
-Include the `ng-app` attribute in a containing element.
-
+Download the `ng-plangular.min.js` file and include it in your project along with Angular:
 ```html
-<body ng-app="plangular">
-  ...
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.9/angular.min.js"></script>
+<script src="js/ng-plangular.min.js"></script>
+```
+
+### Initialize the App
+An Angular or Vuejs app needs to be bootstrapped on a parent element before Plangular will work.
+
+**Vuejs**
+```html
+<body id="vm">
+  <script> var vm = new Vue({ el: '#vm' }) </script>
 </body>
 ```
 
-### Create the Player
-Use any HTML element and add the `plangular` and `data-src` attributes, with the SoundCloud URL for the sound you would like to use.
+**Angular**
+
+Include the `ng-app` attribute in a containing element.
+For standalone applications, you can pass `plangular` as the app.
 
 ```html
-<div plangular data-src="http://soundcloud.com/jxnblk/plangular"></div>
+<body ng-app="plangular"></body>
+```
+
+Or, for use within a larger Angular app, include the dependency in your app definition.
+
+```js
+var myApp = angular.module('myApp', ['plangular']);
+```
+
+### Create the Player
+Create a new player instance using the SoundCloud url for your track.
+This will return data from the SoundCloud API and other properties and methods to control playback.
+
+**Vuejs**
+```html
+<div v-component="plangular" v-src="http://soundcloud.com/jxnblk/plangular"></div>
+```
+
+**Angular**
+```html
+<div plangular="http://soundcloud.com/jxnblk/plangular"></div>
 ```
 
 ### Include the Track Info
-Use Angular bindings to include information about the track. You can use any of the data from the SoundCloud JSON Object.
+Use template bindings to include information about the track. You can use any data from the SoundCloud API response.
 
 ```html
+<p>{{ user.username }}</p>
+<h1>{{ title }}</h1>
+<!-- or in the track object -->
 <p>{{ track.user.username }}</p>
 <h1>{{ track.title }}</h1>
 ```
 
-### Use Plangular Variables
-Add Play/Pause controls. Use `ng-hide` and `ng-show` to conditionally show and hide the controls when the track is playing.
+### Add Play/Pause Controls
+Use the `play()`, `pause()`, or `playPause()` methods to play the track.
+Use template conditionals to show and hide controls based on the player state.
 
+**Vuejs**
 ```html
-<a href="" ng-click="player.play(track)" ng-hide="player.playing == track">Play</a>
-<a href="" ng-click="player.pause()" ng-show="player.playing == track">Pause</a>
+<button v-on="click: playPause()">Play/Pause</button>
+<!-- or -->
+<button v-on="click: play()" v-if="player.playing != track">Play</button>
+<button v-on="click: pause()" v-if="player.playing == track">Pause</button>
 ```
 
-Plangular includes basic variables to display the sound's time and duration. The playTime filter will convert milliseconds to hh:mm:ss format.
-
+**Angular**
 ```html
-<progress value="{{ currentTime / duration }}">{{ currentTime / duration }}</progress>
-<small>{{ currentTime | playTime }} | {{ duration | playTime }}</small>
+<button ng-click="playPause()">Play/Pause</button>
+<!-- or -->
+<button ng-click="play()" ng-if="player.playing != track">Play</button>
+<button ng-click="pause()" ng-if="player.playing == track">Pause</button>
 ```
 
-Add the seekTo() function to add scrubbing.
+### Next/Previous Controls
+Plangular will cycle through all instances in a view and through tracks in a SoundCloud playlist.
+Use the `previous()` and `next()` methods to skip between tracks.
+
+**Vuejs**
+```html
+<button v-on="click: previous()">Previous</button>
+<button v-on="click: next()">Next</button>
+```
+
+**Angular**
+```html
+<button ng-click="previous()">Previous</button>
+<button ng-click="next()">Next</button>
+```
+
+### Show Current Time and Duration
+Plangular includes basic variables to display the sound's time and duration.
+The `prettyTime` filter will convert milliseconds to hh:mm:ss format.
 
 ```html
-<progress value="{{ currentTime / duration }}" ng-click="seekTo($event)">{{ currentTime / duration }}</progress>
+<progress value="{{ currentTime / duration || 0 }}">{{ currentTime / duration }}</progress>
+<small>{{ currentTime | prettyTime }} | {{ duration | prettyTime }}</small>
+```
+
+### Add a Scrubber Control
+Add the `seek()` method to add scrubbing.
+
+**Vuejs**
+```html
+<progress value="{{ currentTime / duration || 0 }}" v-on="click: seek($event)">{{ currentTime / duration }}</progress>
+```
+
+**Angular**
+```html
+<progress value="{{ currentTime / duration || 0 }}" ng-click="seek($event)">{{ currentTime / duration }}</progress>
 ```
 
 ### Add Images and Links
-To use images and links in the track object, use Angular's `ng-src` and `ng-href` attributes.
+To use images and links in the track object, use Angular's or Vuejs's custom directives.
 
+**Vuejs**
+```html
+<img v-attr="src: track.artwork_url" alt="{{ track.title }}" />
+<img v-attr="src: track.waveform_url" alt="waveform" />
+```
+
+**Angular**
 ```html
 <a ng-href="{{ track.permalink_url }}">View on SoundCloud</a>
 <img ng-src="{{ track.artwork_url  }}" alt="{{ track.title }}" />
 <img ng-src="{{ track.waveform_url }}" alt="waveform" />
 ```
 
-Note: The waveform image that the SoundCloud API provides is a 1200 x 280px PNG with a light gray frame and transparent middle. To show progress use absolute positioning with the waveform in front. The light gray color is #efefef.
+Note: The waveform image that the SoundCloud API provides is a 1200 x 280px PNG with a light gray frame and transparent middle. To show progress use absolute positioning with the waveform in front. The light gray color is `#efefef`.
+
 
 ### Icons
-Use the `plangularIcon` directive to inject SVG icons into your player. This directive will replace the element with an inline SVG, which allows you to style the icons with CSS. Requires the `plangular-icons.svg` file.
+Use the `plangular-icon` directive to inject icons into your player.
+This directive must be used on an `svg` element.
 
+**Vuejs**
 ```html
-<div plangular-icon="play"></div>
-<div plangular-icon="pause"></div>
-<div plangular-icon="previous"></div>
-<div plangular-icon="next"></div>
+<svg v-plangular-icon="play"></svg>
 ```
 
-
-#### Example Icon Styling
-Since these are SVGs, use the `fill` attribute to style the color of the icons.
-
+**Angular**
 ```html
-<style>
-  .icon {
-    width: 2rem;
-    height: 2rem;
-  }
-  .icon-white {
-    fill: #fff;
-  }
-</style>
-<div plangular-icon="play" class="icon icon-white"></div>
+<svg plangular-icon="play"></svg>
 ```
 
-### Additional Options
+The included icons are a subset of [Geomicons Open](http://jxnblk.github.io/geomicons-open):
+- play
+- pause
+- previous
+- next
+- close
+- chevronRight
+- chevronLeft
+- heart
 
-To add a loading state while Plangular is getting data from SoundCloud, you can use `ng-show` and `ng-hide` to display different states.
-    
+### Loading States
+Use template conditionals to show a loading state.
+
+**Vuejs**
+```html
+<span v-if="!track">Loading...</span>
+<div v-if="track"><!-- Player --></div>
+```
+
+**Angular**
 ```html
 <span ng-hide="track">Loading...</span>
 <div ng-show="track"><!-- Player --></div>
 ```
-    
-### Style with CSS
-Add classes, custom images, and whatever else your heart desires. Have fun!
+
+<!--
+### Creating a Global Player
+`TK`
+ 
+### SoundCloud Playlists
+`TK`
+--> 
+
 
 ---
 
-## Example Templates
-Use these examples to get started quickly
-
-### Bare Bones
-    
-```html
-<div plangular data-src="http://soundcloud.com/jxnblk/plangular">
-  <a href="" ng-click="player.play(track)" ng-hide="player.playing == track">
-    <div plangular-icon="play"></div>
-  </a>
-  <a href="" ng-click="player.pause()" ng-show="player.playing == track">
-    <div plangular-icon="pause"></div>
-  </a>
-  <h1>{{ track.user.username }} - {{ track.title }}</h1>
-</div>
-```
-
-### Progress Bar
-
-```html
-<div plangular data-src="http://soundcloud.com/jxnblk/plangular" class="media">
-  <a href="" ng-click="player.play(track)" ng-hide="player.playing == track" class="img">
-    <div plangular-icon="play"></div>
-  </a>
-  <a href="" ng-click="player.pause()" ng-show="player.playing == track" class="img">
-    <div plangular-icon="pause"></div>
-  </a>
-  <div class="bd">
-    <p>{{ track.user.username }}</p>
-    <h1><a ng-href="{{ track.permalink_url }}">{{ track.title }}</a></h1>
-    <progress value="{{ currentTime / duration }}" ng-click="seekTo($event)">{{ currentTime / duration }}</progress>
-    <small>{{ currentTime | playTime }} | {{ duration | playTime }}</small>
-  </div>
-</div>
-```
-
-### Artwork and Waveform
-
-```html
-<div plangular data-src="http://soundcloud.com/jxnblk/plangular" class="media">
-  <img ng-src="{{ track.artwork_url }}" class="img" />
-  <div class="bd">
-    <div class="media">
-      <a href="" ng-click="player.play(track)" ng-hide="player.playing == track" class="img">
-        <div plangular-icon="play"></div>
-      </a>
-      <a href="" ng-click="player.pause()" ng-show="player.playing == track" class="img">
-        <div plangular-icon="pause"></div>
-      </a>
-      <div class="bd">
-        <p>{{ track.user.username }}</p>
-        <h1><a ng-href="{{ track.permalink_url }}">{{ track.title }}</a></h1>
-      </div>
-    </div>
-    <div ng-click="seekTo($event)">
-      <progress value="{{ currentTime / duration }}">{{ currentTime / duration }}</progress>
-      <img ng-src="{{ track.waveform_url }}" />
-    </div>
-    <small>{{ currentTime | playTime }} | {{ duration | playTime }}</small>
-  </div>
-</div>
-```
-
----
-
-## Note About SoundCloud API
-
-According to the SoundCloud API terms you must:
-- Credit the user as the creator of the content
-- Credit SoundCloud as the source
-- Include a link to the sound on SoundCloud (i.e. a link using `track.permalink_url`)
-
-Read more here: http://developers.soundcloud.com/docs/api/terms-of-use#branding
-
----
-
-## Troubleshooting
-
-Don't ask me why, but SoundCloud provides an option for users to prevent streaming to third-party apps. If your sound isn't play or has stopped playing check the `track.streamable` variable. If it's set to false, there's no way to play that sound with the API.
-
----
 
 ## Reference
 
-### Plangular
+### Plangular API
 
-- `plangular` - The Angular directive for Plangular
-- `data-src` - The data attribute to set the SoundCloud link
+- `plangular` - The directive for Plangular
 - `track` - The object returned from the SoundCloud API
-- `player.play(track)` - Function for playing the track
-- `player.pause()` - Function for pausing
-- `currentTime` - Current time in milliseconds for the currently playing track
+- `player` - The global player object
+- `play()` - Method for playing the track
+- `pause()` - Method for pausing
+- `playPause()` - Method for toggling playback of the track
+- `currentTime` - Current time in milliseconds.
 - `duration` - Duration of the track in milliseconds
-- `playTime` - Angular filter to convert milliseconds to hh:mm:ss format
-- `seekTo($event)` - Click function for scrubbing
+- `prettyTime` - Filter to convert milliseconds to hh:mm:ss format
+- `seek($event)` - Method for scrubbing
 
 ### SoundCloud API
 
@@ -276,7 +307,40 @@ Example JSON object:
 
 See http://developers.soundcloud.com/docs/api/reference#users for more details
 
+### Using the SoundCloud API
+
+According to the SoundCloud API terms you must:
+- Credit the user as the creator of the content
+- Credit SoundCloud as the source
+- Include a link to the sound on SoundCloud (i.e. a link using `track.permalink_url`)
+
+Read more here: http://developers.soundcloud.com/docs/api/terms-of-use#branding
+
+### Troubleshooting
+
+SoundCloud provides an option for users to prevent streaming to third-party apps.
+If your sound isn't playing check the `track.streamable` variable.
+If it's set to false, there is no way to play that sound with the API.
+
+
 ---
+
+
+## Changes from Version 1.0
+
+- New Vuejs version
+- Simpler player methods
+- **Angular Version:** Tracks are now passed through the plangular attribute, instead of `data-src`.
+  E.g. `<div plangular="http://soundcloud.com/jxnblk/plangular"></div>`
+- The `playTime` filter is now called `prettyTime`.
+- `next()` and `previous()` methods now work for all tracks on a page.
+- Cleaned up player object
+- `currentTime` and `duration` for track or globally on the player object
+- `plangular-icon` must be an svg element
+
+
+---
+
 
 [MIT License](http://opensource.org/licenses/MIT)
 

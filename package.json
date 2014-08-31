@@ -1,0 +1,32 @@
+{
+  "name": "plangular",
+  "version": "0.0.1",
+  "description": "",
+  "main": "gulpfile.js",
+  "dependencies": {},
+  "devDependencies": {
+    "gulp": "^3.8.7",
+    "gulp-browserify": "^0.5.0",
+    "gulp-connect": "~2.0.6",
+    "gulp-uglifyjs": "~0.4.2",
+    "gulp-watch": "~0.6.9",
+    "gulp-sass": "^0.7.3",
+    "jsonp": "0.0.4",
+    "gulp-rename": "^1.2.0",
+    "xhr": "^1.15.0",
+    "gulp-autoprefixer": "0.0.10"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jxnblk/plangular.git"
+  },
+  "author": "Jxnblk",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jxnblk/plangular/issues"
+  },
+  "homepage": "https://github.com/jxnblk/plangular"
+}

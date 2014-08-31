@@ -6,163 +6,168 @@
   <meta name="description" content="Create your own custom SoundCloud player with just HTML and CSS. Built with AngularJS">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <link rel="icon" href="favicon.png" />
-  <link rel="apple-touch-icon-precomposed" href="apple-touch-icon.png" />
-  <link rel="stylesheet" href="site/style.css"/>
-  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
+  <link rel="icon" href="docs/favicon.png" />
+  <link rel="docs/apple-touch-icon-precomposed" href="apple-touch-icon.png" />
+  <link rel="stylesheet" href="docs/autobass.css"/>
+  <link href="http://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
 
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.9/angular.min.js"></script>
-  <script src="plangular.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/vue/0.10.6/vue.min.js"></script>
+  <script src="v-plangular.min.js"></script>
 
 </head>
-<body ng-app="plangular" class="">
+<body id="vm" class="theme-dark-red">
 
-<header plangular data-src="http://soundcloud.com/jxnblk/plangular" class="relative h100 xmin-h100 xtable bg-dark-gray green">
-  <div class="absolute t0 r0 b0 l0 glow-wrap" ng-class="{ 'geo-glow': player.playing == track }">
-    <img src="site/waveform-new.svg" class="absolute waveform waveform-large"/>
-  </div>
-  <div class="table min-h100 bg-dark-gray">
-    <div class="relative table-cell center p-responsive">
-      <a href="" ng-click="player.play(track)" class="h1 plangular-button mb1 button-green rounded">
-        <svg class="icon geo-dark-gray" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-          <polygon points="2,2 30,16 2,30"/>
-        </svg>
-      </a>
-      <h1 class="h1">Plangular</h1>
-      <p class="h3">Create custom SoundCloud players with HTML and CSS.</p>
-      <div class="p1">
-        <a href="http://github.com/jxnblk/plangular" class="button button-green mr1">View on Github</a>
-        <a
-          href="//twitter.com/intent/tweet?text=Plangular: Create custom SoundCloud players with HTML and CSS.&url=http://jxnblk.github.io/plangular&via=jxnblk"
-          class="button button-box"
-          target="_blank">
-          <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-            <path d="M2 4 C6 8 10 12 15 11 A6 6 0 0 1 22 4 A6 6 0 0 1 26 6 A8 8 0 0 0 31 4 A8 8 0 0 1 28 8 A8 8 0 0 0 32 7 A8 8 0 0 1 28 11 A18 18 0 0 1 10 30 A18 18 0 0 1 0 27 A12 12 0 0 0 8 24 A8 8 0 0 1 3 20 A8 8 0 0 0 6 19.5 A8 8 0 0 1 0 12 A8 8 0 0 0 3 13 A8 8 0 0 1 2 4"/>
-          </svg>
-          Tweet
-        </a>
+
+  <header class="table full-height center bg-darken-2" v-component="plangular" v-src="'http://soundcloud.com/jxnblk/plangular'">
+    <div class="table-cell px2 py4">
+      <div class="vhs-zoom-in">
+        <button v-on="click: playPause()" class="h1 button button-circle vhs-flicker-in vhs-delay-1">
+          <svg class="vhs-pop-in" v-if="!player.playing" v-plangular-icon="'play'"></svg>
+          <svg class="vhs-pop-in" v-if="player.playing" v-plangular-icon="'pause'"></svg>
+          <span class="hide">Play/Pause</span>
+        </button>
+      </div>
+      <h1 class="vhs-flicker-in">
+        Plangular
+        <small class="inline-block vhs-flicker-in vhs-delay-3">v2</small>
+      </h1>
+      <p class="vhs-fade-in vhs-delay-4">Create custom SoundCloud players with HTML and CSS</p>
+      <div class="m2 vhs-zoom-in vhs-delay-2">
+        <a href="http://github.com/jxnblk/plangular" class="button vhs-flicker-in vhs-delay-2">View on Github</a>
       </div>
     </div>
-  </div>
-
-</header>
-
-
-<main class="py-responsive">
-
-  <header class="measure-wide wrap px-responsive">
-    <h1 class="h2 mb0">Examples</h1>
-    <p class="h3 mb2">There's a million ways to skin a cat. Here's just a few of them.</p>
   </header>
 
-  <section plangular data-src="http://soundcloud.com/mrsjxn/bbb" class="measure-wide wrap mb4">
-    <div class="relative aspect-16o9 bg-center bg-cover" style="background-image: url(site/zoe.jpg)">
-      <p class="h3 p2 caps caps-tracked center white">{{ track.user.username }}</p>
-      <h1 class="h1 regular center white">{{ track.title }}</h1>
 
-      <div class="clearfix absolute r0 b0 l0 mr1">
-        <div class="left">
-          <a href ng-click="player.play(track)" ng-hide="player.playing == track"
-            class="button button-geo anim-popin">
-            <div plangular-icon="play" class="geo-24 geo-white"></div>
-          </a>
-          <a href="" ng-click="player.pause()" ng-show="player.playing == track"
-            class="button button-geo anim-popin">
-            <div plangular-icon="pause" class="geo-24 geo-white"></div>
-          </a>
+  <section id="features" class="container px2 py4">
+    <h2>Features</h2>
+    <ul>
+      <li>Highly Customizable</li>
+      <li>Versions for both Angular and Vuejs</li>
+      <li>No Javasript Knowledge Required</li>
+    </ul>
+  </section>
+
+
+  <section id="examples" class="container px2 py4">
+    <h2 class="mb1">Examples</h2>
+
+    <div class="table mb1 bg-darken-2 rounded" v-component="plangular" v-src="'http://soundcloud.com/mrsjxn/no-love'">
+      <div class="table-cell p1">
+        <button class="button-icon" v-on="click: playPause()">
+          <svg class="vhs-pop-in" v-if="player.playing != track" v-plangular-icon="'play'"></svg>
+          <svg class="vhs-pop-in" v-if="player.playing == track" v-plangular-icon="'pause'"></svg>
+        </button>
+      </div>
+      <h3 class="table-cell p1 full-width">{{ user.username }} - {{ title }}</h3>
+      <small class="monospace h6 table-cell px1 nowrap">
+        {{ currentTime | prettyTime }} / {{ duration | prettyTime }}
+      </small>
+    </div>
+
+    <div class="table mb1 bg-darken-2 rounded" v-component="plangular" v-src="'http://soundcloud.com/jxnblk/really-wanna'">
+      <div class="table-cell p1">
+        <button class="button-icon" v-on="click: playPause()">
+          <svg class="vhs-pop-in" v-if="player.playing != track" v-plangular-icon="'play'"></svg>
+          <svg class="vhs-pop-in" v-if="player.playing == track" v-plangular-icon="'pause'"></svg>
+        </button>
+      </div>
+      <div class="table-cell px1 full-width">
+        <div class="mt1">{{ user.username }}</div>
+        <h3 class="m0">{{ title }} </h3>
+        <progress class="full-width"
+          v-on="click: player.seek($event)"
+          value="{{ currentTime / duration || 0 }}">
+            {{ currentTime / duration }}
+        </progress>
+      </div>
+    </div>
+
+    <div class="bg-darken-2 rounded" v-component="plangular" v-src="'http://soundcloud.com/jxnblk/sets/yello'">
+      <div class="p2 bg-darken-1">
+        <div class="table">
+          <h3 class="table-cell full-width m0">{{ user.username }}</h3>
+          <small class="monospace h6 table-cell nowrap">{{ currentTime | prettyTime }} - {{ duration | prettyTime }}</small>
         </div>
-        <div class="oh relative" style="height:3rem">
-          <div class="absolute t0 r0 b0 l0" style="height:.5rem;margin:1.25rem 0;">
-            <div class="absolute t0 r0 b0 l0 bg-white"></div>
-            <div class="absolute t0 b0 l0 bg-green" style="width: {{ (currentTime / duration) * 100 }}%"></div>
-            <div class="absolute t0 r0 b0 l0" ng-click="seekTo($event)"></div>
+        <h1 class="m0">{{ title }}</h1>
+        <div class="table">
+          <div class="table-cell">
+            <button class="button-icon" v-on="click: previous()">
+              <svg v-plangular-icon="'previous'"></svg>
+            </button>
+          </div>
+          <div class="table-cell">
+            <button class="h2 button-icon" v-on="click: playPause(player.playlistIndex)">
+              <svg v-if="player.tracks[player.i] != track || !player.playing" v-plangular-icon="'play'"></svg>
+              <svg v-if="player.tracks[player.i] == track && player.playing" v-plangular-icon="'pause'"></svg>
+            </button>
+          </div>
+          <div class="table-cell">
+            <button class="button-icon" v-on="click: next()">
+              <svg v-plangular-icon="'next'"></svg>
+            </button>
+          </div>
+          <div class="table-cell full-width">
+            <div class="px1">
+              <progress class="" v-on="click: seek($event)" value="{{ currentTime / duration || 0 }}">{{ currentTime / duration }}</progress>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <a ng-href="{{ track.permalink_url }}" target="_blank" class="right mt1 small mid-gray">View on SoundCloud</a>
-  </section>
-
-  <section class="measure-wide wrap px-responsive">
-    <h2 class="h2 mb0">Sets</h2>
-    <p class="h3 mb2">Plangular also supports sets.</p>
-  </section>
-
-
-  <section plangular data-src="http://soundcloud.com/jxnblk/sets/magic-summer" class="measure-wide wrap mb4 oh bg-dark-gray rounded">
-    <div class="p-responsive mobile-center bg-center bg-cover white shadow-darken" style="background-image: url(site/plants.jpg)">
-      <p class="p mb0">{{ playlist.user.username }}</p>
-      <h1 class="h1">{{ playlist.title }}</h1>
-      <div class="clearfix">
-        <div class="left mr1 mobile-block">
-          <a href="" ng-click="player.previous(playlist)" class="button button-geo white">
-            <div plangular-icon="previous" class="geo-24 geo-white"></div>
-          </a>
-          <a href="" ng-click="player.playPlaylist(playlist)" ng-hide="player.tracks == playlist.tracks && player.playing" class="button button-geo anim-popin">
-            <div plangular-icon="play" class="geo-24 geo-white"></div>
-          </a>
-          <a href="" ng-click="player.pause()" ng-show="player.tracks == playlist.tracks && player.playing" class="button button-geo white anim-popin">
-            <div plangular-icon="pause" class="geo-24 geo-white"></div>
-          </a>
-          <a href="" ng-click="player.next(playlist)" class="button button-geo white">
-            <div plangular-icon="next" class="geo-24 geo-white"></div>
-          </a>
-        </div>
-        <div class="oh mobile-block">
-          <progress value="{{ currentTime / duration}}" ng-click="seekTo($event)" class="mt1 progress progress-white w100">{{ currentTime / duration}}</progress>
-          <small class="left">{{ currentTime | playTime }}</small>
-          <small class="right">{{ duration | playTime }}</small>
-        </div>
+      <div v-repeat="t : tracks" class="">
+        <a href="#{{ t.title }}" class="block px2 py1 nav-item"
+          v-on="click: playPause($index)"
+          v-class="player.currentTrack == t ? 'bg-darken-3' : ''">
+          <span class="mr1">{{ $index }}.</span>
+          {{ t.user.username }} - {{ t.title }}
+        </a>
       </div>
     </div>
-    <div class="p1 clearfix">
-      <ol class="ol mid-gray">
-        <li ng-repeat="track in playlist.tracks" class="ml2"><a href="" ng-click="player.play(playlist.tracks, $index)" class="block white" ng-class="{ 'white': (player.playing || player.paused) != track, 'blue': (player.playing || player.paused) == track }">
-          <strong>{{ track.user.username }}</strong> - {{ track.title }}
-        </a></li>
-      </ol>
-      <a ng-href="{{ playlist.permalink_url }}" target="_blank" class="right small mid-gray">View on SoundCloud</a>
+
+    <!--
+    <div class="center py2">
+      <a href="docs/examples" class="button">More Examples</a>
     </div>
+    -->
   </section>
 
-  <footer class="relative mb4">
-    <svg class="absolute waveform waveform-small" xmlns="http://www.w3.org/2000/svg" viewBox="0 -2 64 34" preserveAspectRatio="none" >
-      <path>
-        <animate class="animate" attributeName="d"
-          values="
-            M0 16 C0 16 0 16 0 16 C0 16 0 16 0 16 C6 16 8 8 16 8 C24 8 24 32 32 32 C40 32 40 8 48 8 C56 8 58 16 64 16 ;
-            M0 16 C0 16 0 16 0 16 C6 16 8 24 16 24 C24 24 24 0 32 0 C40 0 40 24 48 24 C56 24 58 16 64 16 C64 16 64 16 64 16 ;
-            M0 16 C6 16 8 8 16 8 C24 8 24 32 32 32 C40 32 40 8 48 8 C56 8 58 16 64 16 C64 16 64 16 64 16 C64 16 64 16 64 16 "
-          dur="8s" repeatCount="indefinite" />
-      </path>
-      <path>
-        <animate class="animate" attributeName="d"
-          values="
-            M0 16 C0 16 0 16 0 16 C0 16 0 16 0 16 C6 16 8 8 16 8 C24 8 24 32 32 32 C40 32 40 8 48 8 C56 8 58 16 64 16 ;
-            M0 16 C0 16 0 16 0 16 C6 16 8 24 16 24 C24 24 24 0 32 0 C40 0 40 24 48 24 C56 24 58 16 64 16 C64 16 64 16 64 16 ;
-            M0 16 C6 16 8 8 16 8 C24 8 24 32 32 32 C40 32 40 8 48 8 C56 8 58 16 64 16 C64 16 64 16 64 16 C64 16 64 16 64 16 "
-          dur="5s" repeatCount="indefinite" />
-      </path>
-    </svg>
 
-    <div class="relative measure-wide wrap px-responsive">
-      <h1 class="h2 mb0">Create your own</h1>
-      <p class="h3 mb1">Read about how to use Plangular and start building your own players.</p>
-      <a href="http://github.com/jxnblk/plangular" class="p button button-big button-blue">View on Github</a>
+  <section id="get-started" class="container px2 py4">
+    <h2>Get Started</h2>
+    <p>Learn more on Github and start creating your own players.</p>
+    <div class="py2">
+      <a href="http://github.com/jxnblk/plangular" class="button mr1">Github</a>
+    </div>
+
+    <!--
+    <div class="py2">
+      <h3 class="mb1">Download</h3>
+      <a href="" class="button mr1">Vuejs Version</a>
+      <a href="" class="button">Angular Version</a>
+    </div>
+    -->
+
+    <!--
+    <div class="py2">
+      <h3 class="">CDN Vuejs Version</h3>
+      <pre class="p1 bg-red-alpha rounded">http://d2v52k3cl9vedd.cloudfront.net/basscss.min.css.gz</pre>
+      <h3 class="">CDN Angular Version</h3>
+      <a href="#"><pre class="p1 bg-red-alpha rounded">http://d2v52k3cl9vedd.cloudfront.net/basscss.min.css.gz</pre></a>
+      <input type="text" readonly class="input-readonly monospace red bg-red-alpha" value="http://d2v52k3cl9vedd.cloudfront.net/basscss.min.css.gz" onclick="select()">
+    </div>
+    -->
+ 
+  </section>
+
+
+  <footer class="px2 py4 bg-darken-2">
+    <div class="container">
+      <p class="h6 m0">Made with love by <a href="http://jxnblk.com">Jxnblk</a>.</p>
     </div>
   </footer>
 
-</main>
 
-<footer class="px-responsive py1 measure-wide wrap">
-  <a
-    href="//twitter.com/intent/tweet?text=Plangular: Create custom SoundCloud players with HTML and CSS.&url=http://jxnblk.github.io/plangular&via=jxnblk"
-    class="button button-blue mb2"
-    target="_blank">
-    Tweet
-  </a>
-  <p class="">Powered by SoundCloud. Made with love by <a href="http://jxnblk.com">Jxnblk</a></p>
-</footer>
+<script> var vm = new Vue({ el: '#vm' }); </script>
 
 </body>
 </html>
