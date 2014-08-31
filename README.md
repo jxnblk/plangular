@@ -52,6 +52,16 @@ Download the `ng-plangular.min.js` file and include it in your project along wit
 <script src="js/ng-plangular.min.js"></script>
 ```
 
+Alternatively, you may link to the CDN hosted versions:
+
+```html
+<!-- Vuejs version -->
+<script src="http://d2v52k3cl9vedd.cloudfront.net/plangular/2.0-beta-1/v-plangular.min.js"></script>
+
+<!-- Angular version -->
+<script src="http://d2v52k3cl9vedd.cloudfront.net/plangular/2.0-beta-1/ng-plangular.min.js"></script>
+```
+
 ### Initialize the App
 An Angular or Vuejs app needs to be bootstrapped on a parent element before Plangular will work.
 
