@@ -62,10 +62,8 @@ plangular.directive('plangular', ['$http', function ($http) {
     playPause: function(i, playlistIndex) {
       var track = this.tracks[i];
       if (track.tracks && this.playing != track.tracks[playlistIndex]) {
-        console.log('its a playlist and its not playing so play it player');
         this.play(i, playlistIndex);
       } else if (!track.tracks && this.playing != track) {
-        console.log('we could be playing this but you playing');
         this.play(i);
       } else {
         this.pause();
