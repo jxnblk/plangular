@@ -8,7 +8,7 @@
 
   <link rel="icon" href="docs/favicon.png" />
   <link rel="docs/apple-touch-icon-precomposed" href="apple-touch-icon.png" />
-  <link rel="stylesheet" href="docs/a.css"/>
+  <link rel="stylesheet" href="docs/autobass.css"/>
   <link href="http://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
 
   <script src="//cdnjs.cloudflare.com/ajax/libs/vue/0.10.6/vue.min.js"></script>
@@ -87,7 +87,7 @@
       <div class="p2 bg-darken-1">
         <div class="table">
           <h3 class="table-cell full-width m0">{{ user.username }}</h3>
-          <small class="monospace h6 table-cell nowrap bg-red-alpha">{{ currentTime | prettyTime }} - {{ duration | prettyTime }}</small>
+          <small class="monospace h6 table-cell nowrap">{{ currentTime | prettyTime }} - {{ duration | prettyTime }}</small>
         </div>
         <h1 class="m0">{{ title }}</h1>
         <div class="table">
@@ -108,7 +108,9 @@
             </button>
           </div>
           <div class="table-cell full-width">
-            <progress class="" v-on="click: seek($event)" value="{{ currentTime / duration || 0 }}">{{ currentTime / duration }}</progress>
+            <div class="px1">
+              <progress class="" v-on="click: seek($event)" value="{{ currentTime / duration || 0 }}">{{ currentTime / duration }}</progress>
+            </div>
           </div>
         </div>
       </div>
@@ -122,9 +124,11 @@
       </div>
     </div>
 
+    <!--
     <div class="center py2">
       <a href="docs/examples" class="button">More Examples</a>
     </div>
+    -->
   </section>
 
 
@@ -132,13 +136,18 @@
     <h2>Get Started</h2>
     <p>Learn more on Github and start creating your own players.</p>
     <div class="py2">
-      <a href="" class="button mr1">Github</a>
+      <a href="http://github.com/jxnblk/plangular" class="button mr1">Github</a>
     </div>
+
+    <!--
     <div class="py2">
       <h3 class="mb1">Download</h3>
       <a href="" class="button mr1">Vuejs Version</a>
       <a href="" class="button">Angular Version</a>
     </div>
+    -->
+
+    <!--
     <div class="py2">
       <h3 class="">CDN Vuejs Version</h3>
       <pre class="p1 bg-red-alpha rounded">http://d2v52k3cl9vedd.cloudfront.net/basscss.min.css.gz</pre>
@@ -146,6 +155,8 @@
       <a href="#"><pre class="p1 bg-red-alpha rounded">http://d2v52k3cl9vedd.cloudfront.net/basscss.min.css.gz</pre></a>
       <input type="text" readonly class="input-readonly monospace red bg-red-alpha" value="http://d2v52k3cl9vedd.cloudfront.net/basscss.min.css.gz" onclick="select()">
     </div>
+    -->
+ 
   </section>
 
 
@@ -156,9 +167,7 @@
   </footer>
 
 
-<script>
-  var vm = new Vue({ el: '#vm' });
-</script>
+<script> var vm = new Vue({ el: '#vm' }); </script>
 
 </body>
 </html>

@@ -25,11 +25,7 @@ gulp.task('compilejs', function() {
 
 
 gulp.task('sass', function() {
-  gulp.src('./docs/style.scss')
-    .pipe(sass({ options: { outputStyle: 'compressed' } }))
-    .pipe(prefix())
-    .pipe(gulp.dest('./docs'));
-  gulp.src('./docs/a.scss')
+  gulp.src('./docs/autobass.scss')
     .pipe(sass({ options: { outputStyle: 'compressed' } }))
     .pipe(prefix())
     .pipe(gulp.dest('./docs'));

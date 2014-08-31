@@ -4,13 +4,13 @@ Create custom SoundCloud players with HTML and CSS.
 
 http://jxnblk.github.io/plangular
 
+[Examples](http://jxnblk.github.io/plangular/docs/examples)
 
 ---
 
 
 Table of Contents:
-- [Usage](#usage)
-- [Examples](#examples)
+- [Getting Started](#getting-started)
 - [Reference](#reference)
 - [Changes from Version 1.0](#changes-from-version-1.0)
 
@@ -18,7 +18,7 @@ Table of Contents:
 ---
 
 
-## Usage
+## Getting Started
 Plangular comes in **two versions**.
 One built with AngularJS and the other with Vuejs.
 If you're not currently using one of these frameworks,
@@ -179,9 +179,6 @@ To use images and links in the track object, use Angular's or Vuejs's custom dir
 Note: The waveform image that the SoundCloud API provides is a 1200 x 280px PNG with a light gray frame and transparent middle. To show progress use absolute positioning with the waveform in front. The light gray color is `#efefef`.
 
 
-### Using the private SoundCloud waveform API
-`TK`
-
 ### Icons
 Use the `plangular-icon` directive to inject icons into your player.
 This directive must be used on an `svg` element.
@@ -221,50 +218,13 @@ Use template conditionals to show a loading state.
 <div ng-show="track"><!-- Player --></div>
 ```
 
-### Keyboard Shortcuts
-`TK`
-
+<!--
 ### Creating a Global Player
 `TK`
  
 ### SoundCloud Playlists
 `TK`
- 
-
----
-
-
-## Examples 
-
-### Bare Bones
-    
-**Vuejs**
-```html
-<div v-component="plangular" v-src="http://soundcloud.com/jxnblk/plangular">
-  <button v-on="click: play()" v-if="player.playing != track">
-    <svg v-plangular-icon="play"></svg>
-  </button>
-  <button v-on="click: pause()" v-if="player.playing == track">
-    <svg v-plangular-icon="pause"></svg>
-  </button>
-  <h1>{{ track.user.username }} - {{ track.title }}</h1>
-</div>
-```
-    
-**Angular**
-```html
-<div plangular="http://soundcloud.com/jxnblk/plangular">
-  <button ng-click="play()" ng-hide="player.playing == track">
-    <svg plangular-icon="play"></svg>
-  </button>
-  <button ng-click="pause()" ng-show="player.playing == track">
-    <svg plangular-icon="pause"></svg>
-  </button>
-  <h1>{{ track.user.username }} - {{ track.title }}</h1>
-</div>
-```
-
-[View More Examples](http://jxnblk.github.io/plangular/docs/examples)
+--> 
 
 
 ---
@@ -368,14 +328,15 @@ If it's set to false, there is no way to play that sound with the API.
 
 ## Changes from Version 1.0
 
+- New Vuejs version
 - Simpler player methods
-- Tracks are now passed through the plangular attribute, instead of `data-src`.
+- **Angular Version:** Tracks are now passed through the plangular attribute, instead of `data-src`.
   E.g. `<div plangular="http://soundcloud.com/jxnblk/plangular"></div>`
-- The `playTime` filter is now called `duration`.
-- Next and previous methods now work for all tracks on a page.
+- The `playTime` filter is now called `prettyTime`.
+- `next()` and `previous()` methods now work for all tracks on a page.
 - Cleaned up player object
-- currentTime and duration for track or globally on the player object
-- plangular-icon must be an svg element
+- `currentTime` and `duration` for track or globally on the player object
+- `plangular-icon` must be an svg element
 
 
 ---

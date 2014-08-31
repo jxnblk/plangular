@@ -246,6 +246,7 @@ button, .button {
     box-shadow: 0 0 0 3px rgba(255, 85, 34, 0.5); }
 
 progress {
+  display: block;
   width: 100%;
   height: 2rem;
   padding: 0.75rem 0;
