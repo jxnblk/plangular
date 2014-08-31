@@ -1,0 +1,325 @@
+// Plangular
+
+$breakpoint: 40em;
+
+//$dark-gray: #405660;
+//$dark-gray: #304650;
+$dark-gray: #264049;
+//$dark-gray: #304046;
+//$dark-gray: #203640;
+
+$red: #f52;
+$green: #0f6;
+
+$darken-1: rgba(black, 1/16);
+$darken-2: rgba(black, 1/8);
+$darken-3: rgba(black, 1/4);
+
+$border-radius: 3px;
+
+html { height: 100% }
+body {
+  font-family: 'Avenir Next', Avenir, 'Helvetica Neue', Helvetica, sans-serif;
+  letter-spacing: .05em;
+  margin: 0;
+  height: 100%;
+  color: $red;
+  background-color: $dark-gray;
+}
+
+a {
+  font-weight: 500;
+  color: $red;
+  text-decoration: none;
+  &:hover {
+    background-color: $darken-3;
+  }
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: .2em;
+  margin-top: 1em;
+  margin-bottom: 0;
+  small {
+    font-size: 1rem;
+  }
+}
+
+.h1 { font-size: 2rem }
+
+h2 {
+  font-size: 1.5rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: .2em;
+  margin-top: 1em;
+  margin-bottom: 0;
+}
+
+.h2 { font-size: 1.5rem }
+
+h3 {
+  font-size: 1rem;
+  //font-size: .875rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: .2em;
+  margin-top: 1em;
+  margin-bottom: 0;
+}
+
+p {
+  font-size: 1.25rem;
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+ul {
+  font-size: 1.25rem;
+  padding-left: 2rem;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  margin-left: -2rem;
+}
+
+pre, code, samp, kbd, .monospace {
+  font-family: 'Source Code Pro', Consolas, monospace;
+  font-size: inherit;
+}
+
+pre {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+small, .h6 { font-size: .625rem }
+
+@media (min-width: $breakpoint) {
+  h1, .h1 { font-size: 3rem }
+}
+
+.center { text-align: center }
+.nowrap { white-space: nowrap }
+
+.helvetica {
+  font-family: 'Helvetica Neue', Helvetica, sans-serif;
+  font-weight: bold;
+  letter-spacing: 0;
+  text-transform: 0;
+}
+
+.m0 { margin: 0; }
+.m1 { margin: 1rem }
+.m2 { margin: 2rem }
+
+.mt1 { margin-top: 1rem; }
+.mr1 { margin-right: 1rem; }
+.mb1 { margin-bottom: 1rem; }
+
+.p1 { padding: .5rem }
+.p2 { padding: 1rem }
+.p3 { padding: 2rem }
+.p4 { padding: 4rem }
+
+.px1 { padding-left: .5rem; padding-right: .5rem }
+.px2 { padding-left: 1rem;  padding-right: 1rem }
+.px3 { padding-left: 2rem;  padding-right: 2rem }
+.px4 { padding-left: 4rem;  padding-right: 4rem }
+
+.py1 { padding-top: .5rem; padding-bottom: .5rem }
+.py2 { padding-top: 1rem;  padding-bottom: 1rem }
+.py3 { padding-top: 2rem;  padding-bottom: 2rem }
+.py4 { padding-top: 4rem;  padding-bottom: 4rem }
+
+.container {
+  max-width: 48rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.full-height { min-height: 100% }
+.full-width { width: 100% }
+
+.block { display: block; }
+.inline-block { display: inline-block; }
+.hide { display: none; }
+
+.table {
+  display: table;
+  width: 100%;
+}
+
+.table-fixed { table-layout: fixed }
+
+.table-cell {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+// Buttons
+button, .button {
+  font-family: inherit;
+  font-size: 1.125rem;
+  font-weight: 500;
+  letter-spacing: .1em;
+  line-height: 2.5em;
+  text-decoration: none;
+  padding: .25em 1em;
+  display: inline-block;
+  color: $red;
+  background-color: transparent;
+  border: 0;
+  box-shadow: inset 0 0 0 3px $red;
+  border-radius: $border-radius;
+  transition-property: color, background-color, box-shadow, transform;
+  transition-duration: .1s;
+  transition-timing-function: ease-out;
+  cursor: pointer;
+  &:hover {
+    color: $dark-gray;
+    background-color: $red;
+    box-shadow: inset 0 0 0 3px $red, 0 0 0 3px $dark-gray, 0 0 0 5px rgba($red,.5);
+    transform: scale(17/16);
+  }
+  &:focus {
+    outline: 0;
+    box-shadow: inset 0 0 0 3px $red, 0 0 0 3px $dark-gray, 0 0 0 5px rgba($red,.5);
+  }
+  &:active {
+    transform: scale(31/32);
+    box-shadow: inset 0 2px 6px 0 $darken-3, 0 0 0 3px $dark-gray, 0 0 0 5px $red;
+  }
+}
+
+.button-wide {
+  padding: .25em 3em;
+}
+
+.button-circle {
+  width: 3em;
+  height: 3em;
+  line-height: 3em;
+  padding: 0;
+  border-radius: 50%;
+}
+
+.button-icon {
+  box-shadow: none;
+  &:hover {
+    color: $red;
+    background-color: $darken-1;
+    box-shadow: none;
+  }
+  &:focus {
+    box-shadow: 0 0 0 3px rgba($red,.5);
+  }
+}
+
+
+// Progress
+
+progress {
+  width: 100%;
+  height: 2rem;
+  padding: .75rem 0;
+  -webkit-appearance: none;
+  cursor: pointer;
+  &::-webkit-progress-bar {
+    -webkit-appearance: none;
+    background-color: $darken-2;
+  }
+  &::-webkit-progress-value {
+    -webkit-appearance: none;
+    background-color: $red;
+  }
+}
+
+.plangular-icon {
+  width: 1em;
+  height: 1em;
+  position: relative;
+  top: (3/16) * 1em;
+  top: (7/32) * 1em;
+  //top: (4/16) * 1em;
+}
+
+.plangular-icon-play {
+  left: (2/16) * 1em;
+}
+
+
+// Theme
+.bg-darken-1 { background-color: $darken-1 }
+.bg-darken-2 { background-color: $darken-2 }
+.bg-darken-3 { background-color: $darken-3 }
+
+.bg-red-alpha { background-color: rgba($red,.25) }
+
+.rounded { border-radius: $border-radius; }
+
+// Animations
+
+@keyframes flicker-in {
+    0%   { opacity: 0 }
+   50%   { opacity: .75 }
+   62.5% { opacity: 0 }
+   75%   { opacity: 1 }
+   87.5% { opacity: .5 }
+  100%   { opacity: 1 }
+}
+
+.vhs-flicker-in {
+  opacity: 0;
+  animation-name: flicker-in;
+  animation-duration: .4s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes zoom-in {
+    0% { transform: scale(0) }
+  100% { transform: scale(1) }
+}
+
+.vhs-zoom-in {
+  transform: scale(0);
+  animation-name: zoom-in;
+  animation-duration: .2s;
+  animation-timing-function: ease-in;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fade-in {
+    0% { opacity: 0 }
+  100% { opacity: 1 }
+}
+
+.vhs-fade-in {
+  opacity: 0;
+  animation-name: fade-in;
+  animation-duration: .3s;
+  animation-timing-function: ease-in;
+  animation-fill-mode: forwards;
+}
+
+@keyframes pop-in {
+    0% { transform: scale(0) }
+   75% { transform: scale(1.25) }
+  100% { transform: scale(1) }
+}
+
+.vhs-pop-in {
+  transform: scale(0);
+  animation-name: pop-in;
+  animation-duration: .2s;
+  animation-timing-function: ease-in;
+  animation-fill-mode: forwards;
+}
+
+.vhs-delay-1 { animation-delay: .1s }
+.vhs-delay-2 { animation-delay: .2s }
+.vhs-delay-3 { animation-delay: .3s }
+.vhs-delay-4 { animation-delay: .4s }
+

@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <title>Plangular</title>
@@ -8,8 +9,17 @@
 
   <link rel="icon" href="../favicon.png" />
   <link rel="../apple-touch-icon-precomposed" href="apple-touch-icon.png" />
+  <!--
+  <link rel="stylesheet" href="http://jxnblk.s3.amazonaws.com/basscss.min.css.gz"/>
+  <link rel="stylesheet" href="http://d2v52k3cl9vedd.cloudfront.net/basscss.min.css.gz"/>
+  -->
   <link rel="stylesheet" href="../style.css"/>
-  <style> .helvetica { font-family: 'Helvetica Neue', sans-serif; } .avenir { font-family: 'Avenir Next', Avenir, Helvetica, sans-serif } .monospace { font-family: 'Source Code Pro', monospace } .icon { position:relative; top:.125em; } </style>
+
+
+
+  <style> .helvetica { font-family: 'Helvetica Neue', sans-serif; } .avenir { font-family: 'Avenir Next', Avenir, Helvetica, sans-serif } .monospace { font-family: 'Source Code Pro', monospace } .icon { position:relative; top:.125em; }
+    pre { white-space: pre-wrap; }
+  </style>
   <link href='http://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
 
   <script src="//cdnjs.cloudflare.com/ajax/libs/vue/0.10.6/vue.min.js"></script>
@@ -59,6 +69,18 @@
     <pre>{{ currentTime | prettyTime }} - {{ duration | prettyTime }}</pre>
   </div>
 
+  <!--
+  <div v-component="plangular" v-src="'http://soundcloud.com/jxnblk/sets/yello'">
+    <pre>
+      test player
+      {{ player.currentTrack.title }}
+      {{ track.title }}
+      <span v-if="track.tracks">
+        {{ track.tracks[0].title }}
+      </span>
+    </pre>
+  </div>
+  -->
 
   <div class="py3 red" v-component="plangular" v-src="'http://soundcloud.com/jxnblk/sets/yello'">
     <h2>
@@ -66,12 +88,13 @@
         {{ index }}. {{ user.username }} - {{ title }}
       </a>
     </h2>
+    <pre v-if="player.tracks[player.i]"> {{ player.tracks[player.i].id }} </pre>
     <button class="red button" v-on="click: previous()">
       <svg v-plangular-icon="'previous'"></svg>
     </button>
     <button class="h3 red button" v-on="click: playPause(player.playlistIndex)">
-      <span v-if="!player.playing"><svg v-plangular-icon="'play'"></svg></span>
-      <span v-if="player.playing"><svg v-plangular-icon="'pause'"></svg></span>
+      <svg v-if="player.tracks[player.i] != track || !player.playing" v-plangular-icon="'play'"></svg>
+      <svg v-if="player.playing && player.tracks[player.i] == track" v-plangular-icon="'pause'"></svg>
     </button>
     <button class="red button" v-on="click: next()">
       <svg v-plangular-icon="'next'"></svg>
@@ -101,8 +124,8 @@
       <svg v-plangular-icon="'previous'"></svg>
     </button>
     <button class="h3 red button" v-on="click: playPause(player.playlistIndex)">
-      <span v-if="!player.playing"><svg v-plangular-icon="'play'"></svg></span>
-      <span v-if="player.playing"><svg v-plangular-icon="'pause'"></svg></span>
+      <svg v-if="player.tracks[player.i] != track || !player.playing" v-plangular-icon="'play'"></svg>
+      <svg v-if="player.playing && player.tracks[player.i] == track" v-plangular-icon="'pause'"></svg>
     </button>
     <button class="red button" v-on="click: next()">
       <svg v-plangular-icon="'next'"></svg>

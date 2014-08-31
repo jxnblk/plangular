@@ -18,7 +18,6 @@ var Player = function() {
   player.duration = 0;
 
   player.play = function(i, playlistIndex) {
-    if (i == null) console.log('i cant be null no more');
     this.i = i || 0;
     var track = this.tracks[this.i];
     if (track.tracks) {
@@ -42,11 +41,9 @@ var Player = function() {
   player.playPause = function(i, playlistIndex) {
     var track = this.tracks[i];
     if (track.tracks && this.playing != track.tracks[playlistIndex]) {
-      console.log('its a playlist and its not playing so play it player');
       if (!playlistIndex) playlistIndex = 0;
       this.play(i, playlistIndex);
     } else if (!track.tracks && this.playing != track) {
-      console.log('we could be playing this but you playing');
       this.play(i);
     } else {
       this.pause();

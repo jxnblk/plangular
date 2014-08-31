@@ -475,9 +475,12 @@ a {
 .button {
   border-radius: 0.25rem;
   background-color: transparent;
-  transition-duration: 0.2s;
-  transition-timing-function: ease;
-  transition: box-shadow, background-color;
+  -webkit-transition-duration: 0.2s;
+          transition-duration: 0.2s;
+  -webkit-transition-timing-function: ease;
+          transition-timing-function: ease;
+  -webkit-transition: box-shadow, background-color;
+          transition: box-shadow, background-color;
   -webkit-font-smoothing: antialiased; }
   .button:hover, .button:focus {
     outline: none; }
@@ -511,10 +514,12 @@ a {
     outline: none;
     box-shadow: 0 0 0 4px #405660, 0 0 0 8px rgba(0, 255, 102, 0.5);
     -webkit-transform: scale(1.05);
-    transform: scale(1.05); }
+    -ms-transform: scale(1.05);
+        transform: scale(1.05); }
   .button-green:active {
     -webkit-transform: scale(1);
-    transform: scale(1);
+    -ms-transform: scale(1);
+        transform: scale(1);
     box-shadow: inset 0 0 8px #405660; }
 
 .border {
@@ -532,7 +537,8 @@ a {
   border-radius: 0.25rem; }
 
 .transition-all {
-  transition: all 0.2s ease; }
+  -webkit-transition: all 0.2s ease;
+          transition: all 0.2s ease; }
 
 html, body {
   height: 100%; }
@@ -586,15 +592,18 @@ html, body {
 @keyframes glow {
   0% {
     opacity: 0;
-    transform: scaleY(0.2); }
+    -webkit-transform: scaleY(0.2);
+            transform: scaleY(0.2); }
 
   5% {
     opacity: 0.9;
-    transform: scaleY(1); }
+    -webkit-transform: scaleY(1);
+            transform: scaleY(1); }
 
   100% {
     opacity: 0;
-    transform: scaleY(0.2); } }
+    -webkit-transform: scaleY(0.2);
+            transform: scaleY(0.2); } }
 
 .geo-glow {
   -webkit-animation: glow 6s linear;
@@ -679,13 +688,16 @@ html, body {
 
 @keyframes popin {
   0% {
-    transform: scale(0.2); }
+    -webkit-transform: scale(0.2);
+            transform: scale(0.2); }
 
   80% {
-    transform: scale(1.1); }
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1); }
 
   100% {
-    transform: scale(1); } }
+    -webkit-transform: scale(1);
+            transform: scale(1); } }
 
 .anim-popin {
   -webkit-animation: popin 0.1s;

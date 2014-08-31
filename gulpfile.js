@@ -3,6 +3,7 @@ var gulp = require('gulp');
 
 var browserify = require('gulp-browserify');
 var connect = require('gulp-connect');
+var prefix = require('gulp-autoprefixer');
 var rename = require('gulp-rename');
 var sass = require('gulp-sass');
 var uglify = require('gulp-uglifyjs');
@@ -26,6 +27,11 @@ gulp.task('compilejs', function() {
 gulp.task('sass', function() {
   gulp.src('./docs/style.scss')
     .pipe(sass({ options: { outputStyle: 'compressed' } }))
+    .pipe(prefix())
+    .pipe(gulp.dest('./docs'));
+  gulp.src('./docs/a.scss')
+    .pipe(sass({ options: { outputStyle: 'compressed' } }))
+    .pipe(prefix())
     .pipe(gulp.dest('./docs'));
 });
 
@@ -36,7 +42,7 @@ gulp.task('server', function() {
 
 
 gulp.task('default', ['compilejs', 'sass', 'server'], function() {
-  gulp.watch(['./src/**/*', './site/**/*'], ['compilejs', 'sass']);
+  gulp.watch(['./src/**/*', './docs/**/*'], ['compilejs', 'sass']);
 });
 
 

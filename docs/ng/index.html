@@ -16,9 +16,9 @@
   <script src="../../ng-plangular.min.js"></script>
 
 </head>
-<body ng-app="app" class="avenir p2 red bg-dark-gray">
+<body ng-app="app" plangular ng-controller="MainCtrl" class="avenir p2 red bg-dark-gray">
 
-  <div plangular class="mb2 red">
+  <div class="mb2 red">
     <pre class="mb2">Global Player</pre>
     <h1 class="h5 avenir regular caps mb0"> {{ player.currentTrack.user.username || '&nbsp;'}} </h1>
     <h1 class="helvetica"> {{ player.currentTrack.title || '&nbsp;' }} </h1>
@@ -118,18 +118,16 @@
   </div>
 
 
-  <div ng-controller="RepeatCtrl">
     <h3>Testing ng-repeat</h3>
     <div ng-repeat="sound in trackUrls" plangular="{{ sound }}">
       <code>{{ sound }}</code>
       <pre>username: {{ user.username }}</pre>
       <pre>title {{ title }}</pre>
     </div>
-  </div>
 
 <script>
   var app = angular.module('app', ['plangular']);
-  app.controller('RepeatCtrl', function($scope) {
+  app.controller('MainCtrl', function($scope) {
     $scope.trackUrls = ['http://soundcloud.com/jxnblk/let-go', 'http://soundcloud.com/jxnblk/really-wanna'];
   });
 </script>
