@@ -11,7 +11,8 @@ http://jxnblk.github.io/plangular
 
 Table of Contents:
 - [Getting Started](#getting-started)
-- [Reference](#reference)
+- [Plangular API](#plangular-api)
+- [SoundCloud API](#soundcloud-api)
 - [Changes from Version 1.0](#changes-from-version-1.0)
 
 
@@ -63,9 +64,11 @@ Alternatively, you may link to the CDN hosted versions:
 ```
 
 ### Initialize the App
-An Angular or Vuejs app needs to be bootstrapped on a parent element before Plangular will work.
+Bootstrap the Vuejs or Angular app.
 
 **Vuejs**
+Create a new Vue instance on any parent element.
+
 ```html
 <body id="vm">
   <script> var vm = new Vue({ el: '#vm' }) </script>
@@ -74,26 +77,26 @@ An Angular or Vuejs app needs to be bootstrapped on a parent element before Plan
 
 **Angular**
 
-Include the `ng-app` attribute in a containing element.
+Use the `ng-app` attribute on any parent element.
 For standalone applications, you can pass `plangular` as the app.
 
 ```html
 <body ng-app="plangular"></body>
 ```
 
-Or, for use within a larger Angular app, include the dependency in your app definition.
+Or for use within a larger Angular app, include the dependency in your app definition.
 
 ```js
 var myApp = angular.module('myApp', ['plangular']);
 ```
 
 ### Create the Player
-Create a new player instance using the SoundCloud url for your track.
+Create a new player instance using the SoundCloud URL for your track.
 This will return data from the SoundCloud API and other properties and methods to control playback.
 
 **Vuejs**
 ```html
-<div v-component="plangular" v-src="http://soundcloud.com/jxnblk/plangular"></div>
+<div v-component="plangular" v-src="'http://soundcloud.com/jxnblk/plangular'"></div>
 ```
 
 **Angular**
@@ -171,7 +174,7 @@ Add the `seek()` method to add scrubbing.
 ```
 
 ### Add Images and Links
-To use images and links in the track object, use Angular's or Vuejs's custom directives.
+To use images and links in the track object, use Angular's or Vuejs's custom attributes.
 
 **Vuejs**
 ```html
@@ -195,7 +198,7 @@ This directive must be used on an `svg` element.
 
 **Vuejs**
 ```html
-<svg v-plangular-icon="play"></svg>
+<svg v-plangular-icon="'play'"></svg>
 ```
 
 **Angular**
@@ -224,8 +227,8 @@ Use template conditionals to show a loading state.
 
 **Angular**
 ```html
-<span ng-hide="track">Loading...</span>
-<div ng-show="track"><!-- Player --></div>
+<span ng-if="!track">Loading...</span>
+<div ng-if="track"><!-- Player --></div>
 ```
 
 <!--
@@ -240,22 +243,29 @@ Use template conditionals to show a loading state.
 ---
 
 
-## Reference
+## Plangular API
 
-### Plangular API
-
-- `plangular` - The directive for Plangular
+- `plangular` - The Angular directive or Vuejs component
+- `v-src` - **Vuejs Only** The Vuejs directive used to pass the SoundCloud source URL
 - `track` - The object returned from the SoundCloud API
 - `player` - The global player object
-- `play()` - Method for playing the track
-- `pause()` - Method for pausing
-- `playPause()` - Method for toggling playback of the track
+
+#### Properties
 - `currentTime` - Current time in milliseconds.
 - `duration` - Duration of the track in milliseconds
 - `prettyTime` - Filter to convert milliseconds to hh:mm:ss format
+
+#### Methods
+- `play()` - Method for playing the track
+- `pause()` - Method for pausing
+- `playPause()` - Method for toggling playback of the track
 - `seek($event)` - Method for scrubbing
 
-### SoundCloud API
+
+---
+
+
+## SoundCloud API
 
 Example JSON object:
     
