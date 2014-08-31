@@ -15,15 +15,16 @@
   <script src="v-plangular.min.js"></script>
 
 </head>
-<body id="vm" class="">
+<body id="vm" class="theme-dark-red">
 
 
   <header class="table full-height center bg-darken-2" v-component="plangular" v-src="'http://soundcloud.com/jxnblk/plangular'">
     <div class="table-cell px2 py4">
       <div class="vhs-zoom-in">
-        <button v-on="click: playPause()" class="h1 button-circle vhs-flicker-in vhs-delay-1">
-          <svg v-plangular-icon="'play'"></svg>
-          <span class="hide">Play</span>
+        <button v-on="click: playPause()" class="h1 button button-circle vhs-flicker-in vhs-delay-1">
+          <svg class="vhs-pop-in" v-if="!player.playing" v-plangular-icon="'play'"></svg>
+          <svg class="vhs-pop-in" v-if="player.playing" v-plangular-icon="'pause'"></svg>
+          <span class="hide">Play/Pause</span>
         </button>
       </div>
       <h1 class="vhs-flicker-in">
@@ -112,7 +113,7 @@
         </div>
       </div>
       <div v-repeat="t : tracks" class="">
-        <a href="#{{ t.title }}" class="block px2 py1"
+        <a href="#{{ t.title }}" class="block px2 py1 nav-item"
           v-on="click: playPause($index)"
           v-class="player.currentTrack == t ? 'bg-darken-3' : ''">
           <span class="mr1">{{ $index }}.</span>
@@ -140,16 +141,17 @@
     </div>
     <div class="py2">
       <h3 class="">CDN Vuejs Version</h3>
-      <pre class="p1 bg-darken-2 rounded">http://d2v52k3cl9vedd.cloudfront.net/basscss.min.css.gz</pre>
+      <pre class="p1 bg-red-alpha rounded">http://d2v52k3cl9vedd.cloudfront.net/basscss.min.css.gz</pre>
       <h3 class="">CDN Angular Version</h3>
-      <pre class="p1 bg-darken-2 rounded">http://d2v52k3cl9vedd.cloudfront.net/basscss.min.css.gz</pre>
+      <a href="#"><pre class="p1 bg-red-alpha rounded">http://d2v52k3cl9vedd.cloudfront.net/basscss.min.css.gz</pre></a>
+      <input type="text" readonly class="input-readonly monospace red bg-red-alpha" value="http://d2v52k3cl9vedd.cloudfront.net/basscss.min.css.gz" onclick="select()">
     </div>
   </section>
 
 
   <footer class="px2 py4 bg-darken-2">
     <div class="container">
-      <p class="m0"><small>Made with love by <a href="http://jxnblk.com">Jxnblk</a>.</small></p>
+      <p class="h6 m0">Made with love by <a href="http://jxnblk.com">Jxnblk</a>.</p>
     </div>
   </footer>
 

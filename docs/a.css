@@ -1,3 +1,8 @@
+/*
+
+    A U T O B A S S α
+
+*/
 html {
   height: 100%; }
 
@@ -6,15 +11,20 @@ body {
   letter-spacing: 0.05em;
   margin: 0;
   height: 100%;
-  color: #f52;
-  background-color: #264049; }
+  color: #264049;
+  background-color: white; }
 
 a {
   font-weight: 500;
-  color: #f52;
+  color: #f52; }
+
+button {
+  font-size: inherit; }
+
+.nav-item {
   text-decoration: none; }
-  a:hover {
-    background-color: rgba(0, 0, 0, 0.25); }
+  .nav-item:hover {
+    background-color: rgba(0, 0, 0, 0.125); }
 
 h1 {
   font-size: 2rem;
@@ -69,7 +79,7 @@ pre {
   margin-bottom: 1rem; }
 
 small, .h6 {
-  font-size: 0.625rem; }
+  font-size: 0.75rem; }
 
 @media (min-width: 40em) {
   h1, .h1 {
@@ -182,7 +192,6 @@ small, .h6 {
 
 button, .button {
   font-family: inherit;
-  font-size: 1.125rem;
   font-weight: 500;
   letter-spacing: 0.1em;
   line-height: 2.5em;
@@ -204,18 +213,18 @@ button, .button {
   button:hover, .button:hover {
     color: #264049;
     background-color: #f52;
-    box-shadow: inset 0 0 0 3px #f52, 0 0 0 3px #264049, 0 0 0 5px rgba(255, 85, 34, 0.5);
+    box-shadow: inset 0 0 0 3px #f52, 0 0 0 3px rgba(255, 255, 255, 0.75), 0 0 0 5px rgba(255, 85, 34, 0.5);
     -webkit-transform: scale(1.0625);
         -ms-transform: scale(1.0625);
             transform: scale(1.0625); }
   button:focus, .button:focus {
     outline: 0;
-    box-shadow: inset 0 0 0 3px #f52, 0 0 0 3px #264049, 0 0 0 5px rgba(255, 85, 34, 0.5); }
+    box-shadow: inset 0 0 0 3px #f52, 0 0 0 3px white, 0 0 0 5px rgba(255, 85, 34, 0.5); }
   button:active, .button:active {
     -webkit-transform: scale(0.96875);
         -ms-transform: scale(0.96875);
             transform: scale(0.96875);
-    box-shadow: inset 0 2px 6px 0 rgba(0, 0, 0, 0.25), 0 0 0 3px #264049, 0 0 0 5px #f52; }
+    box-shadow: inset 0 2px 6px 0 rgba(0, 0, 0, 0.25), 0 0 0 3px white, 0 0 0 5px #f52; }
 
 .button-wide {
   padding: 0.25em 3em; }
@@ -259,6 +268,19 @@ progress {
 .plangular-icon-play {
   left: 0.125em; }
 
+.input-readonly {
+  -moz-box-sizing: border-box;
+       box-sizing: border-box;
+  width: 100%;
+  padding: 0 0.5em;
+  line-height: 2em;
+  border: none;
+  border-radius: 3px;
+  background-color: rgba(0, 0, 0, 0.125); }
+
+.red {
+  color: #f52; }
+
 .bg-darken-1 {
   background-color: rgba(0, 0, 0, 0.0625); }
 
@@ -273,6 +295,45 @@ progress {
 
 .rounded {
   border-radius: 3px; }
+
+::-moz-selection {
+  background: rgba(255, 85, 34, 0.25); }
+
+::selection {
+  background: rgba(255, 85, 34, 0.25); }
+
+.theme-dark-red {
+  color: #f52;
+  background-color: #264049; }
+  .theme-dark-red .button {
+    color: #f52;
+    box-shadow: inset 0 0 0 3px #f52;
+    -webkit-transition-property: color, background-color, box-shadow, -webkit-transform;
+            transition-property: color, background-color, box-shadow, transform;
+    -webkit-transition-duration: 0.1s;
+            transition-duration: 0.1s;
+    -webkit-transition-timing-function: ease-out;
+            transition-timing-function: ease-out;
+    cursor: pointer; }
+    .theme-dark-red .button:hover {
+      color: #264049;
+      background-color: #f52;
+      box-shadow: inset 0 0 0 3px #f52, 0 0 0 3px #264049, 0 0 0 5px rgba(255, 85, 34, 0.5);
+      -webkit-transform: scale(1.0625);
+          -ms-transform: scale(1.0625);
+              transform: scale(1.0625); }
+    .theme-dark-red .button:focus {
+      outline: 0;
+      box-shadow: inset 0 0 0 3px #f52, 0 0 0 3px #264049, 0 0 0 5px rgba(255, 85, 34, 0.5); }
+    .theme-dark-red .button:active {
+      -webkit-transform: scale(0.96875);
+          -ms-transform: scale(0.96875);
+              transform: scale(0.96875);
+      box-shadow: inset 0 2px 6px 0 rgba(0, 0, 0, 0.25), 0 0 0 3px #264049, 0 0 0 5px #f52; }
+  .theme-dark-red input::-moz-selection {
+    background: rgba(0, 0, 0, 0.125); }
+  .theme-dark-red input::selection {
+    background: rgba(0, 0, 0, 0.125); }
 
 @-webkit-keyframes flicker-in {
   0% {
