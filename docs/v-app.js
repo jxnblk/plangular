@@ -15,5 +15,3 @@ Vue.filter('logowave', function(value) {
   else return 0;
 });
 
-// Herro
-
