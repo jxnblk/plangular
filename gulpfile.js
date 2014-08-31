@@ -23,6 +23,13 @@ gulp.task('compilejs', function() {
     .pipe(gulp.dest('./'));
 });
 
+gulp.task('docsjs', function() {
+  gulp.src('./docs/v-app.js')
+    .pipe(browserify())
+    .pipe(uglify())
+    .pipe(rename('app.js'))
+    .pipe(gulp.dest('./docs'));
+});
 
 gulp.task('sass', function() {
   gulp.src('./docs/autobass.scss')
@@ -37,8 +44,8 @@ gulp.task('server', function() {
 });
 
 
-gulp.task('default', ['compilejs', 'sass', 'server'], function() {
-  gulp.watch(['./src/**/*', './docs/**/*'], ['compilejs', 'sass']);
+gulp.task('default', ['compilejs', 'docsjs', 'sass', 'server'], function() {
+  gulp.watch(['./src/**/*', './docs/**/*'], ['compilejs', 'docsjs', 'sass']);
 });
 
 

@@ -11,7 +11,7 @@ body {
   letter-spacing: 0.05em;
   margin: 0;
   height: 100%;
-  color: #264049;
+  color: #203036;
   background-color: white; }
 
 a {
@@ -76,7 +76,9 @@ pre, code, samp, kbd, .monospace {
 
 pre {
   margin-top: 0;
-  margin-bottom: 1rem; }
+  margin-bottom: 1rem;
+  white-space: pre-wrap;
+  word-break: break-word; }
 
 small, .h6 {
   font-size: 0.75rem; }
@@ -114,6 +116,9 @@ small, .h6 {
 
 .mb1 {
   margin-bottom: 1rem; }
+
+.mb4 {
+  margin-bottom: 4rem; }
 
 .p1 {
   padding: 0.5rem; }
@@ -190,6 +195,19 @@ small, .h6 {
   display: table-cell;
   vertical-align: middle; }
 
+.relative {
+  position: relative; }
+
+.absolute {
+  position: absolute; }
+
+.absolute-fill {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0; }
+
 button, .button {
   font-family: inherit;
   font-weight: 500;
@@ -211,7 +229,7 @@ button, .button {
           transition-timing-function: ease-out;
   cursor: pointer; }
   button:hover, .button:hover {
-    color: #264049;
+    color: #203036;
     background-color: #f52;
     box-shadow: inset 0 0 0 3px #f52, 0 0 0 3px rgba(255, 255, 255, 0.75), 0 0 0 5px rgba(255, 85, 34, 0.5);
     -webkit-transform: scale(1.0625);
@@ -292,7 +310,7 @@ progress {
   background-color: rgba(0, 0, 0, 0.25); }
 
 .bg-red-alpha {
-  background-color: rgba(255, 85, 34, 0.25); }
+  background-color: rgba(255, 85, 34, 0.125); }
 
 .rounded {
   border-radius: 3px; }
@@ -305,7 +323,7 @@ progress {
 
 .theme-dark-red {
   color: #f52;
-  background-color: #264049; }
+  background-color: #203036; }
   .theme-dark-red .button {
     color: #f52;
     box-shadow: inset 0 0 0 3px #f52;
@@ -317,20 +335,20 @@ progress {
             transition-timing-function: ease-out;
     cursor: pointer; }
     .theme-dark-red .button:hover {
-      color: #264049;
-      background-color: #f52;
-      box-shadow: inset 0 0 0 3px #f52, 0 0 0 3px #264049, 0 0 0 5px rgba(255, 85, 34, 0.5);
+      color: #203036;
+      background-color: rgba(255, 85, 34, 0.875);
+      box-shadow: inset 0 0 0 3px #f52, 0 0 0 3px #203036, 0 0 0 5px rgba(255, 85, 34, 0.5);
       -webkit-transform: scale(1.0625);
           -ms-transform: scale(1.0625);
               transform: scale(1.0625); }
     .theme-dark-red .button:focus {
       outline: 0;
-      box-shadow: inset 0 0 0 3px #f52, 0 0 0 3px #264049, 0 0 0 5px rgba(255, 85, 34, 0.5); }
+      box-shadow: inset 0 0 0 3px #f52, 0 0 0 3px #203036, 0 0 0 5px rgba(255, 85, 34, 0.5); }
     .theme-dark-red .button:active {
       -webkit-transform: scale(0.96875);
           -ms-transform: scale(0.96875);
               transform: scale(0.96875);
-      box-shadow: inset 0 2px 6px 0 rgba(0, 0, 0, 0.25), 0 0 0 3px #264049, 0 0 0 5px #f52; }
+      box-shadow: inset 0 2px 6px 0 rgba(0, 0, 0, 0.25), 0 0 0 3px #203036, 0 0 0 5px #f52; }
   .theme-dark-red input::-moz-selection {
     background: rgba(0, 0, 0, 0.125); }
   .theme-dark-red input::selection {
@@ -493,3 +511,33 @@ progress {
 .vhs-delay-4 {
   -webkit-animation-delay: 0.4s;
           animation-delay: 0.4s; }
+
+@-webkit-keyframes flicker {
+  0% {
+    opacity: 1; }
+
+  100% {
+    opacity: 0; } }
+
+@keyframes flicker {
+  0% {
+    opacity: 1; }
+
+  100% {
+    opacity: 0; } }
+
+.vhs-flicker {
+  -webkit-animation-name: flicker;
+          animation-name: flicker;
+  -webkit-animation-duration: 0.025s;
+          animation-duration: 0.025s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite; }
+
+.transition-opacity {
+  -webkit-transition: opacity 1s linear;
+          transition: opacity 1s linear; }
+
+.transition-bg {
+  -webkit-transition: background 1s linear;
+          transition: background 1s linear; }

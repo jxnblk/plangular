@@ -14,45 +14,58 @@
   <script src="//cdnjs.cloudflare.com/ajax/libs/vue/0.10.6/vue.min.js"></script>
   <script src="v-plangular.min.js"></script>
 
+  <script src="docs/app.js"></script>
+
 </head>
 <body id="vm" class="theme-dark-red">
 
 
-  <header class="table full-height center bg-darken-2" v-component="plangular" v-src="'http://soundcloud.com/jxnblk/plangular'">
-    <div class="table-cell px2 py4">
-      <div class="vhs-zoom-in">
-        <button v-on="click: playPause()" class="h1 button button-circle vhs-flicker-in vhs-delay-1">
-          <svg class="vhs-pop-in" v-if="!player.playing" v-plangular-icon="'play'"></svg>
-          <svg class="vhs-pop-in" v-if="player.playing" v-plangular-icon="'pause'"></svg>
-          <span class="hide">Play/Pause</span>
-        </button>
+  <header class="table full-height center bg-darken-2 transition-bg"
+    v-component="plangular" v-src="'http://soundcloud.com/jxnblk/plangular'">
+    <div class="relative table-cell py4">
+      <div class="relative mb4 vhs-zoom-in">
+        <div class="absolute-fill transition-opacity" v-style="opacity: player.currentTime | logowave">
+          <svg viewBox="0 0 1024 64" style="width:100%;height:100%" v-if="player.playing == track">
+            <path d="M0 32 H1024" stroke="currentColor" stroke-width="2" class="vhs-flicker">
+          </svg>
+        </div>
+        <div class="relative px2">
+          <button v-on="click: playPause()" class="h1 button button-circle vhs-flicker-in vhs-delay-1">
+            <svg class="vhs-pop-in" v-if="player.playing != track" v-plangular-icon="'play'"></svg>
+            <svg class="vhs-pop-in" v-if="player.playing == track" v-plangular-icon="'pause'"></svg>
+            <span class="hide">Play/Pause</span>
+          </button>
+        </div>
       </div>
-      <h1 class="vhs-flicker-in">
-        Plangular
-        <small class="inline-block vhs-flicker-in vhs-delay-3">v2</small>
-      </h1>
-      <p class="vhs-fade-in vhs-delay-4">Create custom SoundCloud players with HTML and CSS</p>
-      <div class="m2 vhs-zoom-in vhs-delay-2">
-        <a href="http://github.com/jxnblk/plangular" class="button vhs-flicker-in vhs-delay-2">View on Github</a>
+      <div class="px2">
+        <h1 class="vhs-flicker-in">
+          Plangular
+          <small class="inline-block vhs-flicker-in vhs-delay-3">v2</small>
+        </h1>
+        <p class="vhs-fade-in vhs-delay-4">Create custom SoundCloud players with HTML and CSS</p>
+        <div class="m2 vhs-zoom-in vhs-delay-2">
+          <a href="http://github.com/jxnblk/plangular" class="button vhs-flicker-in vhs-delay-2">View on Github</a>
+        </div>
       </div>
+      <!--
+      <div v-waveform="waveform_url">
+        <div v-if="waveform.samples" style="background-color:white;height:2px;width:100%" v-style="opacity: (waveform.samples[Math.floor( player.currentTime * 1000 / (track.duration / 1800) )]) / 200 "></div>
+        <svg viewBox="0 0 900 200" width="900" fill="currentColor">
+          <path v-attr="d: waveform.samples | waveform-path"/>
+        </svg>
+      </div>
+      -->
     </div>
+
   </header>
-
-
-  <section id="features" class="container px2 py4">
-    <h2>Features</h2>
-    <ul>
-      <li>Highly Customizable</li>
-      <li>Versions for both Angular and Vuejs</li>
-      <li>No Javasript Knowledge Required</li>
-    </ul>
-  </section>
 
 
   <section id="examples" class="container px2 py4">
     <h2 class="mb1">Examples</h2>
 
-    <div class="table mb1 bg-darken-2 rounded" v-component="plangular" v-src="'http://soundcloud.com/mrsjxn/no-love'">
+    <div class="table mb1 rounded"
+      v-component="plangular" v-src="'http://soundcloud.com/mrsjxn/no-love'"
+      v-class="player.playing == track ? 'bg-red-alpha' : 'bg-darken-2'">
       <div class="table-cell p1">
         <button class="button-icon" v-on="click: playPause()">
           <svg class="vhs-pop-in" v-if="player.playing != track" v-plangular-icon="'play'"></svg>
@@ -65,7 +78,8 @@
       </small>
     </div>
 
-    <div class="table mb1 bg-darken-2 rounded" v-component="plangular" v-src="'http://soundcloud.com/jxnblk/really-wanna'">
+    <div class="table mb1 rounded" v-component="plangular" v-src="'http://soundcloud.com/jxnblk/really-wanna'"
+      v-class="player.playing == track ? 'bg-red-alpha' : 'bg-darken-2'">
       <div class="table-cell p1">
         <button class="button-icon" v-on="click: playPause()">
           <svg class="vhs-pop-in" v-if="player.playing != track" v-plangular-icon="'play'"></svg>
@@ -132,12 +146,22 @@
   </section>
 
 
+  <section id="features" class="container px2 py4">
+    <h2>Features</h2>
+    <ul>
+      <li>Highly Customizable</li>
+      <li>Versions for both Angular and Vuejs</li>
+      <li>No Javasript Knowledge Required</li>
+    </ul>
+  </section>
+
+
   <section id="get-started" class="container px2 py4">
     <h2>Get Started</h2>
     <p>Learn more on Github and start creating your own players.</p>
     <div class="py2">
-      <a href="http://github.com/jxnblk/plangular" class="button mr1">Github</a>
-      <a href="https://github.com/jxnblk/plangular/archive/v2.0-beta.1.zip" class="button mr1">Download v2.0 beta</a>
+      <a href="http://github.com/jxnblk/plangular" class="button mr1 mb1">Github</a>
+      <a href="https://github.com/jxnblk/plangular/archive/v2.0-beta.1.zip" class="button">Download v2.0 beta</a>
     </div>
 
     <div class="py2">
