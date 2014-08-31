@@ -21,7 +21,7 @@ Table of Contents:
 
 ## Getting Started
 Plangular comes in **two versions**.
-One built with AngularJS and the other with Vuejs.
+One built with [AngularJS](https://angularjs.org/) and the other with [Vuejs](http://vuejs.org/).
 If you're not currently using one of these frameworks,
 the Vuejs version's total javascript should be smaller when considering the size of the libraries,
 and might be more performant.
@@ -356,7 +356,7 @@ If it's set to false, there is no way to play that sound with the API.
 - `next()` and `previous()` methods now work for all tracks on a page.
 - Cleaned up player object
 - `currentTime` and `duration` for track or globally on the player object
-- `plangular-icon` must be an svg element
+- `plangular-icon` must be used on an svg element
 
 
 ---
