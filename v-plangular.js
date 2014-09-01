@@ -798,28 +798,39 @@ var Plangular = Vue.extend({
     index: null,
     value: null,
     track: null,
-    time: 0,
-    dur: 0
+    currentTime: 0,
+    duration: 0
   },
 
   computed: {
-    currentTime: function() {
-      if (player.tracks[player.i] == this.track) {
-        this.time = player.currentTime;
-        return this.time;
-      } else {
-        this.time = 0;
-        return this.time;
+    //currentTime: function() {
+    //  if (player.tracks[player.i] == this.track) {
+    //    this.time = player.currentTime;
+    //    return this.time;
+    //  } else {
+    //    return this.time;
+    //  }
+    //},
+    //duration: function() {
+    //  if (player.tracks[player.i] == this.track) {
+    //    if (this.track) console.log('is playing track duration', this.track.duration);
+    //    console.log(player.duration);
+    //    return player.duration;
+    //  } else {
+    //    if (this.track) console.log('track duration', this.track.duration);
+    //    return 0;
+    //  }
+    //}
+  },
+
+  ready: function() {
+    var self = this;
+    audio.addEventListener('timeupdate', function() {
+      if (player.playing == self.track) {
+        self.currentTime = audio.currentTime;
+        //self.duration = audio.duration;
       }
-    },
-    duration: function() {
-      if (player.tracks[player.i] == this.track) {
-        this.dur = player.duration;
-        return this.dur;
-      } else {
-        return this.dur;
-      }
-    }
+    });
   },
 
   methods: {
@@ -876,6 +887,7 @@ var Plangular = Vue.extend({
           for (var key in response) {
             self.vm.$data[key] = response[key];
           }
+          self.vm.duration = response.duration / 1000;
           self.vm.track = plangular.data[value];
           player.load(plangular.data[value], self.vm.index);
         });

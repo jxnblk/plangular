@@ -110,8 +110,9 @@ pre, code, samp, kbd, .monospace {
 pre {
   margin-top: 0;
   margin-bottom: 1rem;
-  white-space: pre-wrap;
-  word-break: break-word;
+  //white-space: pre-wrap;
+  //word-break: break-word;
+  overflow: scroll;
 }
 
 small, .h6 { font-size: .75rem }
@@ -296,10 +297,7 @@ progress {
 
 // Theme
 .red { color: $red }
-//input::selection {
-//  background: $darken-2;
-//}
-
+.dark-gray { color: $dark-gray }
 
 .bg-darken-1 { background-color: $darken-1 }
 .bg-darken-2 { background-color: $darken-2 }
@@ -428,4 +426,6 @@ progress {
 
 .transition-opacity { transition: opacity 1s linear }
 .transition-bg { transition: background 1s linear }
+
+@import 'github-pygments';
 

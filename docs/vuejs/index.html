@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Plangular Docs</title>
+  <meta name="description" content="Create your own custom SoundCloud player with just HTML and CSS. Built with AngularJS">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="icon" href="../../favicon.png" />
+  <link rel="../apple-touch-icon-precomposed" href="apple-touch-icon.png" />
+  <link rel="stylesheet" href="../autobass.css"/>
+  <link href='http://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/vue/0.10.6/vue.min.js"></script>
+  <script src="../../v-plangular.js"></script>
+
+</head>
+<body id="view" class="container p2">
+
+  <header class="py2">
+    <h1 class="m0"><a href="/">Plangular</a></h1>
+    <nav>
+      <a href="../.." class="nav-item p1">Home</a>
+      <a href="." class="nav-item p1">Vuejs Examples</a>
+      <a href="http://github.com/jxnblk/plangular" class="nav-item p1">Github</a>
+    </nav>
+  </header>
+
+  <h2>Vuejs Examples</h2>
+  <ul>
+    <li v-repeat="examples">
+      <a href="#{{ name }}" v-on="click: example = examples[$index]">
+        {{ name }}
+      </a>
+    </li>
+  </ul>
+  <section class="py4">
+    <h3>{{ example.name }}</h3>
+    <div class="bg-darken-1 rounded">
+      <div v-include="example.template"></div>
+      <div class="p2 bg-darken-1">
+        <div v-include-code="example.code"></div>
+      </div>
+    </div>
+  </section>
+
+
+  <script src="app.js"></script>
+
+</body>
+</html>

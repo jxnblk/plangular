@@ -19,7 +19,10 @@
     "marked": "^0.3.2",
     "pygmentize": "^0.5.3",
     "pygmentize-bundled": "^2.1.1",
-    "through2": "^0.6.1"
+    "through2": "^0.6.1",
+    "gulp-header": "^1.0.5",
+    "gulp-footer": "^1.0.5",
+    "partialify": "^3.1.1"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
