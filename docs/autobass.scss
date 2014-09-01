@@ -60,6 +60,9 @@ h1 {
   small {
     font-size: 1rem;
   }
+  a {
+    text-decoration: none;
+  }
 }
 
 .h1 { font-size: 2rem }
@@ -305,6 +308,8 @@ progress {
 .bg-red-alpha { background-color: rgba($red,.125) }
 
 .rounded { border-radius: $border-radius; }
+
+.border { box-shadow: inset 0 0 0 2px }
 
 ::selection { background: rgba($red,.25) }
 

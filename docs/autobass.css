@@ -35,6 +35,8 @@ h1 {
   margin-bottom: 0; }
   h1 small {
     font-size: 1rem; }
+  h1 a {
+    text-decoration: none; }
 
 .h1 {
   font-size: 2rem; }
@@ -314,6 +316,9 @@ progress {
 
 .rounded {
   border-radius: 3px; }
+
+.border {
+  box-shadow: inset 0 0 0 2px; }
 
 ::-moz-selection {
   background: rgba(255, 85, 34, 0.25); }

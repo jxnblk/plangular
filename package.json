@@ -14,7 +14,11 @@
     "jsonp": "0.0.4",
     "gulp-rename": "^1.2.0",
     "xhr": "^1.15.0",
-    "gulp-autoprefixer": "0.0.10"
+    "gulp-autoprefixer": "0.0.10",
+    "gulp-markdown": "^1.0.0",
+    "marked": "^0.3.2",
+    "pygmentize": "^0.5.3",
+    "pygmentize-bundled": "^2.1.1"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

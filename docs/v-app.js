@@ -15,3 +15,40 @@ Vue.filter('logowave', function(value) {
   else return 0;
 });
 
+var xhr = require('xhr');
+
+
+var template = {};
+
+Vue.directive('include', function(value) {
+  console.log(value);
+  var self = this;
+  var data = self.vm.$root.$data;
+  //var data = {};
+  if (template[value]) {
+    self.el.innerHTML = template[value];
+  } else {
+    xhr({ uri: value }, function(error, response) {
+      console.log(response);
+      self.el.innerHTML = response.response;
+      template[value] = response.response;
+      var vm = new Vue({ el: self.el, data: data });
+    });
+  }
+});
+
+Vue.directive('include-code', function(value) {
+  var self = this;
+  var data = self.vm.$root.$data;
+  if (template[value]) {
+    self.el.innerHTML = template[value];
+  } else {
+    xhr({ uri: value }, function(error, response) {
+      console.log(response);
+      template[value] = '<div v-pre>' + response.response + '</div>';
+      self.el.innerHTML = template[value];
+      var vm = new Vue({ el: self.el, data: data });
+    });
+  }
+});
+

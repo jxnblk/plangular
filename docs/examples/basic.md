@@ -1,0 +1,16 @@
+
+```html
+<div v-component="plangular"
+  v-src="'http://soundcloud.com/mrsjxn/bbb'" class="p2 table">
+  <div class="table-cell">
+    <button class="button-icon" v-on="click: playPause()">
+      <svg v-if="player.playing != track" v-plangular-icon="'play'"></svg>
+      <svg v-if="player.playing == track" v-plangular-icon="'pause'"></svg>
+    </button>
+  </div>
+  <div class="table-cell px2 full-width">
+    <h3 class="m0">{{ user.username }} - {{ title }}</h3>
+  </div>
+</div>
+```
+

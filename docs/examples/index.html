@@ -9,27 +9,54 @@
   <link rel="icon" href="../../favicon.png" />
   <link rel="../../apple-touch-icon-precomposed" href="apple-touch-icon.png" />
   <link rel="stylesheet" href="../autobass.css"/>
+  <link rel="stylesheet" href="../github-pygments.css"/>
   <link href='http://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
+
   <script src="//cdnjs.cloudflare.com/ajax/libs/vue/0.10.6/vue.min.js"></script>
   <script src="../../v-plangular.js"></script>
+  <script src="../app.js"></script>
 
 </head>
-<body id="vm" class="">
+<body id="vm" class="xtheme-dark-red">
 
   <header class="p2 theme-dark-red">
-    <h1 class="h2 m0"><a href="/">Plangular</a></h1>
+    <h1 class="m0"><a href="/">Plangular</a></h1>
+    <nav>
+      <a href="../.." class="nav-item p1">Home</a>
+      <a href="." class="nav-item p1">Examples</a>
+      <a href="http://github.com/jxnblk/plangular" class="nav-item p1">Github</a>
+    </nav>
   </header>
 
   <main class="container py3">
 
-    <h1>Examples</h1>
-    <pre>TK</pre>
+
+    <h2>Examples</h2>
+
+    <h3>Basic</h3>
+    <div class="border rounded">
+        <div v-component="plangular" v-src="'http://soundcloud.com/mrsjxn/bbb'" class="p2 table">
+          <div class="table-cell">
+            <button class="button-icon" v-on="click: playPause()">
+              <svg v-if="player.playing != track" v-plangular-icon="'play'"></svg>
+              <svg v-if="player.playing == track" v-plangular-icon="'pause'"></svg>
+            </button>
+          </div>
+          <div class="table-cell px2 full-width">
+            <h3 class="m0">{{ user.username }} - {{ title }}</h3>
+          </div>
+        </div>
+      <div class="p2 bg-darken-1">
+        <div v-include-code="codeExample"></div>
+      </div>
+    </div>
 
   </main>
 
 
 <script>
   var data = {};
+  data.codeExample = 'basic.html';
   data.trackUrls = [];
   var vm = new Vue({ el: '#vm', data: data });
 </script>

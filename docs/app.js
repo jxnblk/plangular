@@ -1,1 +1,407 @@
-!function a(b,c,d){function e(g,h){if(!c[g]){if(!b[g]){var i="function"==typeof require&&require;if(!h&&i)return i(g,!0);if(f)return f(g,!0);throw new Error("Cannot find module '"+g+"'")}var j=c[g]={exports:{}};b[g][0].call(j.exports,function(a){var c=b[g][1][a];return e(c?c:a)},j,j.exports,a,b,c,d)}return c[g].exports}for(var f="function"==typeof require&&require,g=0;g<d.length;g++)e(d[g]);return e}({1:[function(a){a("../src/v-waveform"),Vue.filter("logowave",function(a){if(!a)return 0;var b=[0,1,.8,.3,0];return.2>(a>0)?b[0]:1>a?b[1]:2>a?b[2]:5>a?b[3]:0})},{"../src/v-waveform":9}],2:[function(a,b){function c(a,b){function c(){4===p.readyState&&x()}function e(){var a=null;if(p.response?a=p.response:"text"!==p.responseType&&p.responseType||(a=p.responseText||p.responseXML),w)try{a=JSON.parse(a)}catch(b){}return a}function k(){return 1223===p.status?204:p.status}function l(a){var b=null;if(0===a||a>=400&&600>a){var c=("string"==typeof t?t:!1)||h[String(a).charAt(0)];b=new Error(c),b.statusCode=a}return b}function m(){var a=k(),c=l(a),d={body:e(),statusCode:a,statusText:p.statusText,headers:g(p.getAllResponseHeaders())};b(c,d,d.body)}function n(){var a=k(),c=l(a);p.status=p.statusCode=a,p.body=e(),b(c,p,p.body)}function o(a){b(a,p)}"string"==typeof a&&(a={uri:a}),a=a||{},b=f(b);var p=a.xhr||null;p||(p=a.cors||a.useXDR?new j:new i);var q,r=p.url=a.uri||a.url,s=p.method=a.method||"GET",t=a.body||a.data,u=p.headers=a.headers||{},v=!!a.sync,w=!1,x=a.response?m:n;if("json"in a&&(w=!0,u.Accept="application/json","GET"!==s&&"HEAD"!==s&&(u["Content-Type"]="application/json",t=JSON.stringify(a.json))),p.onreadystatechange=c,p.onload=x,p.onerror=o,p.onprogress=function(){},p.ontimeout=d,p.open(s,r,!v),(a.withCredentials||a.cors&&a.withCredentials!==!1)&&(p.withCredentials=!0),v||(p.timeout="timeout"in a?a.timeout:5e3),p.setRequestHeader)for(q in u)u.hasOwnProperty(q)&&p.setRequestHeader(q,u[q]);else if(a.headers)throw new Error("Headers cannot be set on an XDomainRequest object");return"responseType"in a&&(p.responseType=a.responseType),"beforeSend"in a&&"function"==typeof a.beforeSend&&a.beforeSend(p),p.send(t),p}function d(){}var e=a("global/window"),f=a("once"),g=a("parse-headers"),h={0:"Internal XMLHttpRequest Error",4:"4xx Client Error",5:"5xx Server Error"},i=e.XMLHttpRequest||d,j="withCredentials"in new i?i:e.XDomainRequest;b.exports=c},{"global/window":3,once:4,"parse-headers":8}],3:[function(a,b){(function(a){b.exports="undefined"!=typeof window?window:"undefined"!=typeof a?a:{}}).call(this,"undefined"!=typeof self?self:"undefined"!=typeof window?window:{})},{}],4:[function(a,b){function c(a){var b=!1;return function(){return b?void 0:(b=!0,a.apply(this,arguments))}}b.exports=c,c.proto=c(function(){Object.defineProperty(Function.prototype,"once",{value:function(){return c(this)},configurable:!0})})},{}],5:[function(a,b){function c(a,b,c){if(!g(b))throw new TypeError("iterator must be a function");arguments.length<3&&(c=this),"[object Array]"===h.call(a)?d(a,b,c):"string"==typeof a?e(a,b,c):f(a,b,c)}function d(a,b,c){for(var d=0,e=a.length;e>d;d++)i.call(a,d)&&b.call(c,a[d],d,a)}function e(a,b,c){for(var d=0,e=a.length;e>d;d++)b.call(c,a.charAt(d),d,a)}function f(a,b,c){for(var d in a)i.call(a,d)&&b.call(c,a[d],d,a)}var g=a("is-function");b.exports=c;var h=Object.prototype.toString,i=Object.prototype.hasOwnProperty},{"is-function":6}],6:[function(a,b){function c(a){var b=d.call(a);return"[object Function]"===b||"function"==typeof a&&"[object RegExp]"!==b||"undefined"!=typeof window&&(a===window.setTimeout||a===window.alert||a===window.confirm||a===window.prompt)}b.exports=c;var d=Object.prototype.toString},{}],7:[function(a,b,c){function d(a){return a.replace(/^\s*|\s*$/g,"")}c=b.exports=d,c.left=function(a){return a.replace(/^\s*/,"")},c.right=function(a){return a.replace(/\s*$/,"")}},{}],8:[function(a,b){var c=a("trim"),d=a("for-each");b.exports=function(a){if(!a)return{};var b={};return d(c(a).split("\n"),function(a){var d=a.indexOf(":");b[c(a.slice(0,d)).toLowerCase()]=c(a.slice(d+1))}),b}},{"for-each":5,trim:7}],9:[function(a){"use strict";var b=a("xhr");Vue.directive("waveform",function(a){if(!a)return!1;var c=this,d="http://"+a.replace(/^[^.]*/,"wis");b({uri:d},function(a,b){var d=JSON.parse(b.response);c.vm.$data.waveform=d})}),Vue.filter("waveform-path",function(a){if(!a)return!1;for(var b,c="M0 100 ",d=0,e=8,f=0;f<a.length;f++)d+=a[f],f%e==0&&(b=d/e/2,d=0,c+="V"+(100-b)+" h2 V"+(100+b)+" h-2 V100 m4 0 ");return c})},{xhr:2}]},{},[1]);
+(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+// Docs App
+
+require('../src/v-waveform');
+
+Vue.filter('logowave', function(value) {
+  if (!value) return 0;
+  // Value in is currentTime
+  // Returns opacity level
+  // Plangular sound is 10 seconds
+  var ops = [0, 1, .8, .3, 0];
+  if (0 < value < .2) return ops[0];
+  else if (value < 1) return ops[1];
+  else if (value < 2) return ops[2];
+  else if (value < 5) return ops[3];
+  else return 0;
+});
+
+var xhr = require('xhr');
+
+
+var template = {};
+
+Vue.directive('include', function(value) {
+  console.log(value);
+  var self = this;
+  var data = self.vm.$root.$data;
+  //var data = {};
+  if (template[value]) {
+    self.el.innerHTML = template[value];
+  } else {
+    xhr({ uri: value }, function(error, response) {
+      console.log(response);
+      self.el.innerHTML = response.response;
+      template[value] = response.response;
+      var vm = new Vue({ el: self.el, data: data });
+    });
+  }
+});
+
+Vue.directive('include-code', function(value) {
+  var self = this;
+  var data = self.vm.$root.$data;
+  if (template[value]) {
+    self.el.innerHTML = template[value];
+  } else {
+    xhr({ uri: value }, function(error, response) {
+      console.log(response);
+      template[value] = '<div v-pre>' + response.response + '</div>';
+      self.el.innerHTML = template[value];
+      var vm = new Vue({ el: self.el, data: data });
+    });
+  }
+});
+
+
+},{"../src/v-waveform":9,"xhr":2}],2:[function(require,module,exports){
+var window = require("global/window")
+var once = require("once")
+var parseHeaders = require('parse-headers')
+
+var messages = {
+    "0": "Internal XMLHttpRequest Error",
+    "4": "4xx Client Error",
+    "5": "5xx Server Error"
+}
+
+var XHR = window.XMLHttpRequest || noop
+var XDR = "withCredentials" in (new XHR()) ? XHR : window.XDomainRequest
+
+module.exports = createXHR
+
+function createXHR(options, callback) {
+    if (typeof options === "string") {
+        options = { uri: options }
+    }
+
+    options = options || {}
+    callback = once(callback)
+
+    var xhr = options.xhr || null
+
+    if (!xhr) {
+        if (options.cors || options.useXDR) {
+            xhr = new XDR()
+        }else{
+            xhr = new XHR()
+        }
+    }
+
+    var uri = xhr.url = options.uri || options.url;
+    var method = xhr.method = options.method || "GET"
+    var body = options.body || options.data
+    var headers = xhr.headers = options.headers || {}
+    var sync = !!options.sync
+    var isJson = false
+    var key
+    var load = options.response ? loadResponse : loadXhr
+
+    if ("json" in options) {
+        isJson = true
+        headers["Accept"] = "application/json"
+        if (method !== "GET" && method !== "HEAD") {
+            headers["Content-Type"] = "application/json"
+            body = JSON.stringify(options.json)
+        }
+    }
+
+    xhr.onreadystatechange = readystatechange
+    xhr.onload = load
+    xhr.onerror = error
+    // IE9 must have onprogress be set to a unique function.
+    xhr.onprogress = function () {
+        // IE must die
+    }
+    // hate IE
+    xhr.ontimeout = noop
+    xhr.open(method, uri, !sync)
+                                    //backward compatibility
+    if (options.withCredentials || (options.cors && options.withCredentials !== false)) {
+        xhr.withCredentials = true
+    }
+
+    // Cannot set timeout with sync request
+    if (!sync) {
+        xhr.timeout = "timeout" in options ? options.timeout : 5000
+    }
+
+    if (xhr.setRequestHeader) {
+        for(key in headers){
+            if(headers.hasOwnProperty(key)){
+                xhr.setRequestHeader(key, headers[key])
+            }
+        }
+    } else if (options.headers) {
+        throw new Error("Headers cannot be set on an XDomainRequest object");
+    }
+
+    if ("responseType" in options) {
+        xhr.responseType = options.responseType
+    }
+    
+    if ("beforeSend" in options && 
+        typeof options.beforeSend === "function"
+    ) {
+        options.beforeSend(xhr)
+    }
+
+    xhr.send(body)
+
+    return xhr
+
+    function readystatechange() {
+        if (xhr.readyState === 4) {
+            load()
+        }
+    }
+
+    function getBody() {
+        // Chrome with requestType=blob throws errors arround when even testing access to responseText
+        var body = null
+
+        if (xhr.response) {
+            body = xhr.response
+        } else if (xhr.responseType === 'text' || !xhr.responseType) {
+            body = xhr.responseText || xhr.responseXML
+        }
+
+        if (isJson) {
+            try {
+                body = JSON.parse(body)
+            } catch (e) {}
+        }
+
+        return body
+    }
+
+    function getStatusCode() {
+        return xhr.status === 1223 ? 204 : xhr.status
+    }
+
+    // if we're getting a none-ok statusCode, build & return an error
+    function errorFromStatusCode(status) {
+        var error = null
+        if (status === 0 || (status >= 400 && status < 600)) {
+            var message = (typeof body === "string" ? body : false) ||
+                messages[String(status).charAt(0)]
+            error = new Error(message)
+            error.statusCode = status
+        };
+
+        return error;
+    }
+
+    // will load the data & process the response in a special response object
+    function loadResponse() {
+        var status = getStatusCode();
+        var error = errorFromStatusCode(status);
+        var response = {
+            body: getBody(),
+            statusCode: status,
+            statusText: xhr.statusText,
+            headers: parseHeaders(xhr.getAllResponseHeaders())
+        };
+
+        callback(error, response, response.body);
+    }
+
+    // will load the data and add some response properties to the source xhr
+    // and then respond with that
+    function loadXhr() {
+        var status = getStatusCode()
+        var error = errorFromStatusCode(status)
+
+        xhr.status = xhr.statusCode = status;
+        xhr.body = getBody();
+
+        callback(error, xhr, xhr.body);
+    }
+
+    function error(evt) {
+        callback(evt, xhr)
+    }
+}
+
+
+function noop() {}
+
+},{"global/window":3,"once":4,"parse-headers":8}],3:[function(require,module,exports){
+(function (global){
+if (typeof window !== "undefined") {
+    module.exports = window
+} else if (typeof global !== "undefined") {
+    module.exports = global
+} else {
+    module.exports = {}
+}
+
+}).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{}],4:[function(require,module,exports){
+module.exports = once
+
+once.proto = once(function () {
+  Object.defineProperty(Function.prototype, 'once', {
+    value: function () {
+      return once(this)
+    },
+    configurable: true
+  })
+})
+
+function once (fn) {
+  var called = false
+  return function () {
+    if (called) return
+    called = true
+    return fn.apply(this, arguments)
+  }
+}
+
+},{}],5:[function(require,module,exports){
+var isFunction = require('is-function')
+
+module.exports = forEach
+
+var toString = Object.prototype.toString
+var hasOwnProperty = Object.prototype.hasOwnProperty
+
+function forEach(list, iterator, context) {
+    if (!isFunction(iterator)) {
+        throw new TypeError('iterator must be a function')
+    }
+
+    if (arguments.length < 3) {
+        context = this
+    }
+    
+    if (toString.call(list) === '[object Array]')
+        forEachArray(list, iterator, context)
+    else if (typeof list === 'string')
+        forEachString(list, iterator, context)
+    else
+        forEachObject(list, iterator, context)
+}
+
+function forEachArray(array, iterator, context) {
+    for (var i = 0, len = array.length; i < len; i++) {
+        if (hasOwnProperty.call(array, i)) {
+            iterator.call(context, array[i], i, array)
+        }
+    }
+}
+
+function forEachString(string, iterator, context) {
+    for (var i = 0, len = string.length; i < len; i++) {
+        // no such thing as a sparse string.
+        iterator.call(context, string.charAt(i), i, string)
+    }
+}
+
+function forEachObject(object, iterator, context) {
+    for (var k in object) {
+        if (hasOwnProperty.call(object, k)) {
+            iterator.call(context, object[k], k, object)
+        }
+    }
+}
+
+},{"is-function":6}],6:[function(require,module,exports){
+module.exports = isFunction
+
+var toString = Object.prototype.toString
+
+function isFunction (fn) {
+  var string = toString.call(fn)
+  return string === '[object Function]' ||
+    (typeof fn === 'function' && string !== '[object RegExp]') ||
+    (typeof window !== 'undefined' &&
+     // IE8 and below
+     (fn === window.setTimeout ||
+      fn === window.alert ||
+      fn === window.confirm ||
+      fn === window.prompt))
+};
+
+},{}],7:[function(require,module,exports){
+
+exports = module.exports = trim;
+
+function trim(str){
+  return str.replace(/^\s*|\s*$/g, '');
+}
+
+exports.left = function(str){
+  return str.replace(/^\s*/, '');
+};
+
+exports.right = function(str){
+  return str.replace(/\s*$/, '');
+};
+
+},{}],8:[function(require,module,exports){
+var trim = require('trim')
+  , forEach = require('for-each')
+
+module.exports = function (headers) {
+  if (!headers)
+    return {}
+
+  var result = {}
+
+  forEach(
+      trim(headers).split('\n')
+    , function (row) {
+        var index = row.indexOf(':')
+
+        result[trim(row.slice(0, index)).toLowerCase()] =
+          trim(row.slice(index + 1))
+      }
+  )
+
+  return result
+}
+},{"for-each":5,"trim":7}],9:[function(require,module,exports){
+
+// Vue directive for private SoundCloud waveform API
+// Experimental
+
+'use strict';
+
+var xhr = require('xhr');
+
+Vue.directive('waveform', function(value) {
+  if (!value) return false;
+  var self = this;
+  var waveformUrl = 'http://' + value.replace(/^[^.]*/, 'wis');
+
+  xhr({
+    uri: waveformUrl
+  }, function(error, response) {
+    var data = JSON.parse(response.response);
+    self.vm.$data.waveform = data;
+  });
+
+});
+
+Vue.filter('waveform-path', function(value) {
+  // 900 x 200 viewBox
+  if (!value) return false;
+  var d = 'M0 100 ';
+  var avg = 0;
+  var half;
+  var resolution = 8;
+  for (var i = 0; i < value.length; i++){
+    avg += value[i];
+    if (i%resolution == 0) {
+      half = avg / resolution / 2;
+      avg = 0;
+      d += 'V' + (100 - half) + ' h2 ' + 'V' + (100 + half) + ' h-2 V100 m4 0 ';
+    }
+  }
+  return d;
+});
+
+
+
+},{"xhr":2}]},{},[1])
