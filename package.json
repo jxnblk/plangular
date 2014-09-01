@@ -18,7 +18,8 @@
     "gulp-markdown": "^1.0.0",
     "marked": "^0.3.2",
     "pygmentize": "^0.5.3",
-    "pygmentize-bundled": "^2.1.1"
+    "pygmentize-bundled": "^2.1.1",
+    "through2": "^0.6.1"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
