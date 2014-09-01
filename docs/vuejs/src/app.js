@@ -53,6 +53,9 @@ data.example = data.examples[0];
 
 var view = new Vue({
   el: '#view',
-  data: data
+  data: data,
+  ready: function() {
+    console.log('ready', window.location.hash);
+  }
 });
 

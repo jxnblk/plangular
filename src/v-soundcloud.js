@@ -96,6 +96,7 @@ var Plangular = Vue.extend({
         for (var key in plangular.data[value]) {
           self.vm.$data[key] = plangular.data[value][key];
         }
+        self.vm.duration = plangular.data[value].duration / 1000;
         self.vm.track = plangular.data[value];
         player.load(plangular.data[value], self.vm.index);
       } else {
