@@ -1,0 +1,39 @@
+<div v-component="plangular" v-src="'http://soundcloud.com/jxnblk/sets/yello'">
+    <div class="table mb1">
+      <h3 class="table-cell full-width m0">{{ user.username }}</h3>
+      <small class="h6 table-cell nowrap">{{ currentTime | prettyTime }} - {{ duration | prettyTime }}</small>
+    </div>
+    <h1 class="m0">{{ title }}</h1>
+    <div class="table">
+      <div class="table-cell">
+        <button class="button-icon" v-on="click: previous()">
+          <svg v-plangular-icon="'previous'"></svg>
+        </button>
+      </div>
+      <div class="table-cell">
+        <button class="h2 button-icon" v-on="click: playPause(player.playlistIndex)">
+          <svg v-if="player.tracks[player.i] != track || !player.playing" v-plangular-icon="'play'"></svg>
+          <svg v-if="player.tracks[player.i] == track && player.playing" v-plangular-icon="'pause'"></svg>
+        </button>
+      </div>
+      <div class="table-cell">
+        <button class="button-icon" v-on="click: next()">
+          <svg v-plangular-icon="'next'"></svg>
+        </button>
+      </div>
+      <div class="table-cell full-width">
+        <div class="px1">
+          <progress value="{{ currentTime / duration || 0 }}" v-on="click: seek($event)">{{ currentTime / duration }}</progress>
+        </div>
+      </div>
+    </div>
+  <div v-repeat="t : tracks">
+    <a href="#{{ t.title }}" class="block py1 nav-item"
+      v-on="click: playPause($index)"
+      v-class="player.currentTrack == t ? 'bg-darken-3' : ''">
+      <span class="mr1">{{ $index }}.</span>
+      {{ t.user.username }} - {{ t.title }}
+    </a>
+  </div>
+</div>
+
