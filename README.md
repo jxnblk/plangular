@@ -4,7 +4,7 @@ Create custom SoundCloud players with HTML and CSS.
 
 http://jxnblk.github.io/plangular
 
-[Examples](http://jxnblk.github.io/plangular/docs/examples)
+[Examples](http://jxnblk.github.io/plangular/docs/vuejs)
 
 ---
 
