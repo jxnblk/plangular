@@ -191,6 +191,10 @@ small, .h6 { font-size: .75rem }
   right: 0;
 }
 
+.oh { overflow: hidden }
+.left { float: left }
+.right { float: right }
+
 // Buttons
 button, .button {
   font-family: inherit;

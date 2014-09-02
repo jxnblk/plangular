@@ -209,6 +209,15 @@ small, .h6 {
   left: 0;
   right: 0; }
 
+.oh {
+  overflow: hidden; }
+
+.left {
+  float: left; }
+
+.right {
+  float: right; }
+
 button, .button {
   font-family: inherit;
   font-weight: 500;

@@ -15,32 +15,27 @@
   <script src="../../v-plangular.js"></script>
 
 </head>
-<body id="view" class="container p2">
+<body id="view" class="container py2">
 
-  <header class="py2">
-    <h1 class="h2 m0"><a href="/" class="dark-gray">Plangular</a></h1>
-    <nav>
-      <a href="../.." class="nav-item py1 mr1">Home</a>
-      <a href="." class="nav-item py1 mr1">Vuejs Examples</a>
-      <a href="http://github.com/jxnblk/plangular" class="nav-item py1 mr1">Github</a>
-    </nav>
+  <header class="p2">
+    <h1 class="h2 m0 inline-block"><a href="../.." class="nav-item py1 mr1 dark-gray">Plangular</a></h1>
   </header>
 
-  <h2>Vuejs Examples</h2>
-  <ul>
-    <li v-repeat="examples">
-      <a href="#{{ name }}" class="nav-item" v-on="click: example = examples[$index]" v-class="dark-gray: example == examples[$index]">
+  <h1 class="m0 p2">Vuejs Examples</h1>
+  <h2 class="m0 p2">{{ example.name }}</h2>
+  <div class="oh py2">
+    <div class="right px2">
+      <a href="#{{ id }}" v-repeat="examples" class="block nav-item" v-class="dark-gray: example == examples[$index]">
         {{ name }}
       </a>
-    </li>
-  </ul>
-  <section class="py4">
-    <h2 class="mb1">{{ example.name }}</h2>
-    <div class="bg-darken-1 rounded">
-      <div class="p2" v-include="example.template"></div>
-      <div class="p2 bg-darken-1" v-include-code="example.code"></div>
     </div>
-  </section>
+    <section class="oh px2">
+      <div class="bg-darken-1 rounded">
+        <div class="p2" v-include="example.template"></div>
+        <div class="p2 bg-darken-1" v-include-code="example.code"></div>
+      </div>
+    </section>
+  </div>
 
 
   <script src="app.js"></script>

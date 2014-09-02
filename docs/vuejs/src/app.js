@@ -40,22 +40,40 @@ Vue.component('basic', {
 data.currentView = 'basic';
 
 data.examples = [
-  { name: 'Basic', template: '_basic.html', code: '_basic-code.html' },
-  { name: 'Time and Duration', template: '_time.html', code: '_time-code.html' },
-  { name: 'Conditionals', template: '_conditionals.html', code: '_conditionals-code.html' },
-  { name: 'Progress Bar', template: '_progress-bar.html', code: '_progress-bar-code.html' },
-  { name: 'Icons', template: '_icons.html', code: '_icons-code.html' },
-  { name: 'Global Player', template: '_global-player.html', code: '_global-player-code.html' },
-  { name: 'Playlists', template: '_playlists.html', code: '_playlists-code.html' }
+  { id: 'basic', name: 'Basic', template: '_basic.html', code: '_basic-code.html' },
+  { id: 'time-duration', name: 'Time and Duration', template: '_time.html', code: '_time-code.html' },
+  { id: 'conditionals', name: 'Conditionals', template: '_conditionals.html', code: '_conditionals-code.html' },
+  { id: 'progress-bar', name: 'Progress Bar', template: '_progress-bar.html', code: '_progress-bar-code.html' },
+  { id: 'icons', name: 'Icons', template: '_icons.html', code: '_icons-code.html' },
+  { id: 'global-player', name: 'Global Player', template: '_global-player.html', code: '_global-player-code.html' },
+  { id: 'playlists', name: 'Playlists', template: '_playlists.html', code: '_playlists-code.html' }
 ];
 
 data.example = data.examples[0];
 
+methods = {};
+
+methods.hashupdate = function() {
+  for (var i = 0; i < this.examples.length; i++) {
+    if (this.examples[i].id == window.location.hash.split('#')[1]) {
+      this.example = this.examples[i];
+    }
+  }
+};
+
 var view = new Vue({
   el: '#view',
   data: data,
+  methods: methods,
   ready: function() {
-    console.log('ready', window.location.hash);
+    var self = this;
+    if (window.location.hash) {
+      self.hashupdate();
+    }
+    window.onhashchange = function() {
+      console.log('hashchange');
+      self.hashupdate();
+    };
   }
 });
 

@@ -1,0 +1,33 @@
+<div v-component="plangular">
+  <h2 class="center h6 m0"> {{ player.currentTrack.user.username || '&nbsp;'}} </h2>
+  <h2 class="center m0"> {{ player.currentTrack.title || '&nbsp;' }} </h2>
+  <div class="center table py1">
+    <div class="table-cell px2">
+      <button class="button-icon" v-on="click: previous()">
+        <svg v-plangular-icon="'previous'"></svg>
+      </button>
+    </div>
+    <div class="table-cell px2">
+      <button class="h3 button-icon" v-on="click: player.playPause(player.i, player.playlistIndex)">
+        <span v-if="!player.playing"><svg v-plangular-icon="'play'"></svg></span>
+        <span v-if="player.playing"><svg v-plangular-icon="'pause'"></svg></span>
+      </button>
+    </div>
+    <div class="table-cell px2">
+      <button class="button-icon" v-on="click: next()">
+        <svg v-plangular-icon="'next'"></svg>
+      </button>
+    </div>
+  </div>
+  <progress class="progress progress-white w100" v-on="click: player.seek($event)" value="{{ player.currentTime / player.duration || 0 }}">{{ player.currentTime / duration }}</progress>
+  <p class="h6">{{ player.currentTime | prettyTime }} - {{ player.duration | prettyTime }}</p>
+</div>
+
+<div v-component="plangular" v-src="'http://soundcloud.com/jxnblk/really-wanna'">
+  <a href="#{{ example.id }}" class="block py1 nav-item" v-on="click: playPause()" v-class="dark-gray: player.playing == track">{{ user.username }} - {{ title }}</a>
+</div>
+
+<div v-component="plangular" v-src="'http://soundcloud.com/jxnblk/let-go'">
+  <a href="#{{ example.id }}" class="block py1 nav-item" v-on="click: playPause()" v-class="dark-gray: player.playing == track">{{ user.username }} - {{ title }}</a>
+</div>
+
