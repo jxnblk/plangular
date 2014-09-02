@@ -19,12 +19,10 @@
 
   <header class="p2">
     <h1 class="h3 m0 inline-block"><a href="../.." class="nav-item py1 mr1 dark-gray">Plangular</a></h1>
-    <h2 class="h1 m0">Vuejs Examples</h2>
+    <h2 class="h1 m0">Examples</h2>
+    <a href="." class="nav-item mr1 red">Vuejs</a>
   </header>
 
-  <!--
-  <h2 class="m0 p2">{{ example.name }}</h2>
-  -->
   <div class="oh py2">
     <div class="desktop-right px2 mb1">
       <a href="#{{ id }}" v-repeat="examples" class="inline-block desktop-block nav-item mr1 mb1" v-class="red: example == examples[$index]">
@@ -32,8 +30,8 @@
       </a>
     </div>
     <section class="oh px2">
-      <div class="bg-darken-1 rounded">
-        <div class="p2" v-include="'partials/' + example.template"></div>
+      <div class="bg-darken-1 rounded vhs-fade-in-out xvhs-flicker-in-out" v-show="example" v-animation>
+        <div class="p2 " v-include="'partials/' + example.template"></div>
         <div class="p2 bg-darken-1" v-include-code="'partials/' + example.code"></div>
       </div>
     </section>
@@ -42,10 +40,7 @@
   <footer class="px2 py4">
     <nav class="mb1">
       <a href="../.." class="nav-item py1 mr1">Home</a>
-      <a href="." class="nav-item py1 mr1 red">Vuejs Examples</a>
-      <!--
-      <a href="../angular" class="nav-item py1 mr1">Angular Examples</a>
-      -->
+      <a href="." class="nav-item py1 mr1 red">Examples</a>
       <a href="http://github.com/jxnblk/plangular" class="nav-item py1">Github</a>
     </nav>
     <p class="h6">

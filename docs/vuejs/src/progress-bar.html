@@ -9,10 +9,9 @@
   </div>
   <div class="table-cell px2 full-width">
     <h3 class="m0">{{ user.username }} - {{ title }}</h3>
-    <progress class="full-width"
-      v-on="click: seek($event)"
-      value="{{ currentTime / duration || 0 }}">
-        {{ currentTime / duration }}
+    <progress value="{{ currentTime / duration || 0 }}"
+      v-on="click: seek($event)">
+      {{ currentTime / duration }}
     </progress>
   </div>
 </div>

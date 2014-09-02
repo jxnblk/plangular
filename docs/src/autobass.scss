@@ -373,12 +373,20 @@ progress {
 // Animations
 
 @keyframes flicker-in {
-    0%   { opacity: 0 }
+    0%   { opacity: 0; transform: scale(.9) }
    50%   { opacity: .75 }
    62.5% { opacity: 0 }
    75%   { opacity: 1 }
    87.5% { opacity: .5 }
   100%   { opacity: 1 }
+}
+
+@keyframes flicker-out {
+    0%   { opacity: 1 }
+   25%   { opacity: .75 }
+   50% { opacity: 0 }
+   75% { opacity: .5 }
+  100%   { opacity: 0 }
 }
 
 .vhs-flicker-in {
@@ -387,6 +395,15 @@ progress {
   animation-duration: .4s;
   animation-fill-mode: forwards;
 }
+
+.vhs-flicker-in-out.v-enter {
+  animation: flicker-in .4s;
+}
+
+.vhs-flicker-in-out.v-leave {
+  animation: flicker-out .4s forwards;
+}
+
 
 @keyframes zoom-in {
     0% { transform: scale(0) }
@@ -412,6 +429,17 @@ progress {
   animation-duration: .3s;
   animation-timing-function: ease-in;
   animation-fill-mode: forwards;
+}
+
+
+@keyframes fade-out {
+  from { opacity: 1 } to { opacity: 0 }
+}
+.vhs-fade-in-out.v-enter {
+  animation: fade-in .2s;
+}
+.vhs-fade-in-out.v-leave {
+  animation: fade-out .2s;
 }
 
 @keyframes pop-in {

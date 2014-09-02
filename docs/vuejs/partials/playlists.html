@@ -23,14 +23,17 @@
       </div>
       <div class="table-cell full-width">
         <div class="px1">
-          <progress value="{{ currentTime / duration || 0 }}" v-on="click: seek($event)">{{ currentTime / duration }}</progress>
+          <progress value="{{ currentTime / duration || 0 }}"
+            v-on="click: seek($event)">
+            {{ currentTime / duration }}
+          </progress>
         </div>
       </div>
     </div>
   <div v-repeat="t : tracks">
-    <a href="#{{ t.title }}" class="block py1 nav-item"
+    <a href="#{{ example.id }}" class="block p1 nav-item"
       v-on="click: playPause($index)"
-      v-class="player.currentTrack == t ? 'bg-darken-3' : ''">
+      v-class="player.currentTrack == t ? 'bg-darken-1' : ''">
       <span class="mr1">{{ $index }}.</span>
       {{ t.user.username }} - {{ t.title }}
     </a>

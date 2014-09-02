@@ -22,6 +22,7 @@ var Plangular = Vue.extend({
   ready: function() {
     var self = this;
     audio.addEventListener('timeupdate', function() {
+      // TO DO: handle multiple views
       if (player.tracks[player.i] == self.track) {
         self.currentTime = audio.currentTime;
         self.duration = audio.duration;

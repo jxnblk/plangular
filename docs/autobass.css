@@ -382,7 +382,9 @@ progress {
 
 @-webkit-keyframes flicker-in {
   0% {
-    opacity: 0; }
+    opacity: 0;
+    -webkit-transform: scale(0.9);
+            transform: scale(0.9); }
 
   50% {
     opacity: 0.75; }
@@ -401,7 +403,9 @@ progress {
 
 @keyframes flicker-in {
   0% {
-    opacity: 0; }
+    opacity: 0;
+    -webkit-transform: scale(0.9);
+            transform: scale(0.9); }
 
   50% {
     opacity: 0.75; }
@@ -418,6 +422,38 @@ progress {
   100% {
     opacity: 1; } }
 
+@-webkit-keyframes flicker-out {
+  0% {
+    opacity: 1; }
+
+  25% {
+    opacity: 0.75; }
+
+  50% {
+    opacity: 0; }
+
+  75% {
+    opacity: 0.5; }
+
+  100% {
+    opacity: 0; } }
+
+@keyframes flicker-out {
+  0% {
+    opacity: 1; }
+
+  25% {
+    opacity: 0.75; }
+
+  50% {
+    opacity: 0; }
+
+  75% {
+    opacity: 0.5; }
+
+  100% {
+    opacity: 0; } }
+
 .vhs-flicker-in {
   opacity: 0;
   -webkit-animation-name: flicker-in;
@@ -426,6 +462,14 @@ progress {
           animation-duration: 0.4s;
   -webkit-animation-fill-mode: forwards;
           animation-fill-mode: forwards; }
+
+.vhs-flicker-in-out.v-enter {
+  -webkit-animation: flicker-in 0.4s;
+          animation: flicker-in 0.4s; }
+
+.vhs-flicker-in-out.v-leave {
+  -webkit-animation: flicker-out 0.4s forwards;
+          animation: flicker-out 0.4s forwards; }
 
 @-webkit-keyframes zoom-in {
   0% {
@@ -482,6 +526,28 @@ progress {
           animation-timing-function: ease-in;
   -webkit-animation-fill-mode: forwards;
           animation-fill-mode: forwards; }
+
+@-webkit-keyframes fade-out {
+  from {
+    opacity: 1; }
+
+  to {
+    opacity: 0; } }
+
+@keyframes fade-out {
+  from {
+    opacity: 1; }
+
+  to {
+    opacity: 0; } }
+
+.vhs-fade-in-out.v-enter {
+  -webkit-animation: fade-in 0.2s;
+          animation: fade-in 0.2s; }
+
+.vhs-fade-in-out.v-leave {
+  -webkit-animation: fade-out 0.2s;
+          animation: fade-out 0.2s; }
 
 @-webkit-keyframes pop-in {
   0% {

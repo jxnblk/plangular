@@ -19,15 +19,26 @@
       </button>
     </div>
   </div>
-  <progress class="progress progress-white w100" v-on="click: player.seek($event)" value="{{ player.currentTime / player.duration || 0 }}">{{ player.currentTime / duration }}</progress>
+  <progress value="{{ player.currentTime / player.duration || 0 }}"
+    v-on="click: player.seek($event)">
+    {{ player.currentTime / duration }}
+  </progress>
   <p class="h6">{{ player.currentTime | prettyTime }} - {{ player.duration | prettyTime }}</p>
 </div>
 
 <div v-component="plangular" v-src="'http://soundcloud.com/jxnblk/really-wanna'">
-  <a href="#{{ example.id }}" class="block py1 nav-item" v-on="click: playPause()" v-class="dark-gray: player.playing == track">{{ user.username }} - {{ title }}</a>
+  <a href="#{{ example.id }}" class="block py1 nav-item"
+    v-on="click: playPause()"
+    v-class="dark-gray: player.playing == track">
+    {{ user.username }} - {{ title }}
+  </a>
 </div>
 
 <div v-component="plangular" v-src="'http://soundcloud.com/jxnblk/let-go'">
-  <a href="#{{ example.id }}" class="block py1 nav-item" v-on="click: playPause()" v-class="dark-gray: player.playing == track">{{ user.username }} - {{ title }}</a>
+  <a href="#{{ example.id }}" class="block py1 nav-item"
+    v-on="click: playPause()"
+    v-class="dark-gray: player.playing == track">
+    {{ user.username }} - {{ title }}
+  </a>
 </div>
 

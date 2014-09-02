@@ -33,12 +33,6 @@ Vue.directive('include-code', function(value) {
   }
 });
 
-Vue.component('basic', {
-  template: '#basic'
-});
-
-data.currentView = 'basic';
-
 data.examples = [
   { id: 'basic', name: 'Basic', template: 'basic.html', code: 'basic-code.html' },
   { id: 'time-duration', name: 'Time and Duration', template: 'time.html', code: 'time-code.html' },
@@ -51,9 +45,12 @@ data.examples = [
 
 data.example = data.examples[0];
 
+data.isOpen = true;
+
 methods = {};
 
 methods.hashupdate = function() {
+  //this.example = null;
   for (var i = 0; i < this.examples.length; i++) {
     if (this.examples[i].id == window.location.hash.split('#')[1]) {
       this.example = this.examples[i];
