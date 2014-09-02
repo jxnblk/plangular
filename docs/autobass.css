@@ -22,9 +22,10 @@ button {
   font-size: inherit; }
 
 .nav-item {
-  text-decoration: none; }
+  text-decoration: none;
+  color: #203036; }
   .nav-item:hover {
-    background-color: rgba(0, 0, 0, 0.125); }
+    color: #f52; }
 
 h1 {
   font-size: 2rem;
@@ -59,6 +60,9 @@ h3 {
   letter-spacing: 0.2em;
   margin-top: 1em;
   margin-bottom: 0; }
+
+.h3 {
+  font-size: 1rem; }
 
 p {
   font-size: 1.25rem;
@@ -212,11 +216,13 @@ small, .h6 {
 .oh {
   overflow: hidden; }
 
-.left {
-  float: left; }
-
-.right {
-  float: right; }
+@media (min-width: 40em) {
+  .desktop-block {
+    display: block; }
+  .desktop-left {
+    float: left; }
+  .desktop-right {
+    float: right; } }
 
 button, .button {
   font-family: inherit;
@@ -365,6 +371,10 @@ progress {
           -ms-transform: scale(0.96875);
               transform: scale(0.96875);
       box-shadow: inset 0 2px 6px 0 rgba(0, 0, 0, 0.25), 0 0 0 3px #203036, 0 0 0 5px #f52; }
+  .theme-dark-red .nav-item {
+    color: #f52; }
+    .theme-dark-red .nav-item:hover {
+      background-color: rgba(0, 0, 0, 0.0625); }
   .theme-dark-red input::-moz-selection {
     background: rgba(0, 0, 0, 0.125); }
   .theme-dark-red input::selection {

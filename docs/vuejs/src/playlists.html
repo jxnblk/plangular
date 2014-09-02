@@ -1,9 +1,9 @@
 <div v-component="plangular" v-src="'http://soundcloud.com/jxnblk/sets/yello'">
     <div class="table mb1">
-      <h3 class="table-cell full-width m0">{{ user.username }}</h3>
+      <h3 class="table-cell full-width m0">{{ user.username || '&nbsp;' }}</h3>
       <small class="h6 table-cell nowrap">{{ currentTime | prettyTime }} - {{ duration | prettyTime }}</small>
     </div>
-    <h1 class="m0">{{ title }}</h1>
+    <h1 class="m0">{{ title || '&nbsp;' }}</h1>
     <div class="table">
       <div class="table-cell">
         <button class="button-icon" v-on="click: previous()">

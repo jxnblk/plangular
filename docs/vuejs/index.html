@@ -18,14 +18,16 @@
 <body id="view" class="container py2">
 
   <header class="p2">
-    <h1 class="h2 m0 inline-block"><a href="../.." class="nav-item py1 mr1 dark-gray">Plangular</a></h1>
+    <h1 class="h3 m0 inline-block"><a href="../.." class="nav-item py1 mr1 dark-gray">Plangular</a></h1>
     <h2 class="h1 m0">Vuejs Examples</h2>
   </header>
 
+  <!--
   <h2 class="m0 p2">{{ example.name }}</h2>
+  -->
   <div class="oh py2">
-    <div class="right px2">
-      <a href="#{{ id }}" v-repeat="examples" class="block nav-item" v-class="dark-gray: example == examples[$index]">
+    <div class="desktop-right px2 mb1">
+      <a href="#{{ id }}" v-repeat="examples" class="inline-block desktop-block nav-item mr1 mb1" v-class="red: example == examples[$index]">
         {{ name }}
       </a>
     </div>
@@ -37,6 +39,20 @@
     </section>
   </div>
 
+  <footer class="px2 py4">
+    <nav class="mb1">
+      <a href="../.." class="nav-item py1 mr1">Home</a>
+      <a href="." class="nav-item py1 mr1 red">Vuejs Examples</a>
+      <!--
+      <a href="../angular" class="nav-item py1 mr1">Angular Examples</a>
+      -->
+      <a href="http://github.com/jxnblk/plangular" class="nav-item py1">Github</a>
+    </nav>
+    <p class="h6">
+      Made with love by
+      <a href="http://jxnblk.com">Jxnblk</a>.
+    </p>
+  </footer>
 
   <script src="app.js"></script>
 

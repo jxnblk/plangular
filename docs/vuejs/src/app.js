@@ -71,7 +71,6 @@ var view = new Vue({
       self.hashupdate();
     }
     window.onhashchange = function() {
-      console.log('hashchange');
       self.hashupdate();
     };
   }
