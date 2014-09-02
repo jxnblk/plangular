@@ -40,7 +40,7 @@ Vue.component('basic', {
 data.currentView = 'basic';
 
 data.examples = [
-  { id: 'basic', name: 'Basic', template: '_basic.html', code: '_basic-code.html' },
+  { id: 'basic', name: 'Basic', template: 'basic.html', code: 'basic-code.html' },
   { id: 'time-duration', name: 'Time and Duration', template: '_time.html', code: '_time-code.html' },
   { id: 'conditionals', name: 'Conditionals', template: '_conditionals.html', code: '_conditionals-code.html' },
   { id: 'progress-bar', name: 'Progress Bar', template: '_progress-bar.html', code: '_progress-bar-code.html' },
