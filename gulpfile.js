@@ -30,10 +30,10 @@ gulp.task('compilejs', function() {
 
 gulp.task('docs-pygmentize', function() {
   gulp.src('./docs/vuejs/src/*.html')
-    .pipe(gulp.dest('./docs/vuejs'))
+    .pipe(gulp.dest('./docs/vuejs/partials'))
     .pipe(pygmentize())
     .pipe(rename(function(path) { path.basename += '-code', path.extname = '.html' }))
-    .pipe(gulp.dest('./docs/vuejs/'));
+    .pipe(gulp.dest('./docs/vuejs/partials'));
 });
 
 gulp.task('docs-sass', function() {
