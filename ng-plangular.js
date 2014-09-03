@@ -148,8 +148,19 @@ plangular.directive('plangular', ['$http', function ($http) {
 
       if (src) {
         var elements = document.querySelectorAll('[plangular]');
+        var indexes = [];
+        for(var i = elements.length; i--; indexes.unshift(elements[i]));
         for (var i = 0; i < elements.length; i++) {
-          if (elem[0] == elements[i]) {
+          var a = elements[i].getAttribute('plangular');
+          if (!a) {
+            indexes.splice(i,1);
+          }
+        }
+
+        for (var i = 0; i < indexes.length; i++) {
+          console.log(elem[0], indexes[i], elem[0] == indexes[i]);
+          if (elem[0] == indexes[i]) {
+            console.log('it matches', i);
             scope.index = i;
           }
         }
