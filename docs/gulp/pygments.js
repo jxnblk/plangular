@@ -9,10 +9,10 @@ module.exports = function (options) {
       cb(null, file);
       return;
     }
-    if (file.isStream()) {
-      cb(new gutil.PluginError('gulp-markdown', 'Streaming not supported'));
-      return;
-    }
+    //if (file.isStream()) {
+    //  //cb(new gutil.PluginError('gulp-markdown', 'Streaming not supported'));
+    //  return;
+    //}
     pygmentize({ lang: 'html', format: 'html' }, file.contents.toString(), function(err, result) {
       if (err) return;
       file.contents = new Buffer(result.toString());

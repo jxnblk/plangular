@@ -2,6 +2,7 @@
 var gulp = require('gulp');
 
 var browserify = require('gulp-browserify');
+var cheerio = require('gulp-cheerio');
 var connect = require('gulp-connect');
 var prefix = require('gulp-autoprefixer');
 var rename = require('gulp-rename');
@@ -34,6 +35,14 @@ gulp.task('docs-pygmentize', function() {
     .pipe(pygmentize())
     .pipe(rename(function(path) { path.basename += '-code', path.extname = '.html' }))
     .pipe(gulp.dest('./docs/vuejs/partials'));
+  gulp.src('./docs/angular/src/*.html')
+    .pipe(gulp.dest('./docs/angular/partials'))
+    .pipe(pygmentize())
+    .pipe(cheerio(function($) {
+      $('.highlight').attr('ng-non-bindable', '');
+    }))
+    .pipe(rename(function(path) { path.basename += '-code', path.extname = '.html' }))
+    .pipe(gulp.dest('./docs/angular/partials'));
 });
 
 gulp.task('docs-sass', function() {
@@ -56,6 +65,10 @@ gulp.task('docs-js', function() {
     .pipe(browserify())
     .pipe(uglify())
     .pipe(gulp.dest('./docs/vuejs'));
+  gulp.src('./docs/angular/src/*.js')
+    .pipe(browserify())
+    .pipe(uglify())
+    .pipe(gulp.dest('./docs/angular'));
 });
 
 gulp.task('server', function() {
@@ -63,7 +76,10 @@ gulp.task('server', function() {
 });
 
 gulp.task('default', ['compilejs', 'docs-sass', 'docs-js', 'docs-pygmentize', 'server'], function() {
-  gulp.watch(['./src/**/*', './docs/src/**/*', './docs/vuejs/src/**/*'], ['compilejs', 'docs-sass', 'docs-js', 'docs-pygmentize']);
+  gulp.watch(
+    ['./src/**/*', './docs/src/**/*', './docs/vuejs/src/**/*', './docs/angular/src/**/*'],
+    ['compilejs', 'docs-sass', 'docs-js', 'docs-pygmentize']
+  );
 });
 
 

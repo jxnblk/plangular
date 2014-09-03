@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>NG Plangular</title>
+  <meta name="description" content="Create your own custom SoundCloud player with just HTML and CSS. Built with AngularJS">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="icon" href="../favicon.png" />
+  <link rel="../apple-touch-icon-precomposed" href="apple-touch-icon.png" />
+  <link rel="stylesheet" href="../autobass.css"/>
+  <link href='http://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
+
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.9/angular.min.js"></script>
+  <script src="../../ng-plangular.min.js"></script>
+
+</head>
+<body ng-app="app" plangular ng-controller="MainCtrl" class="avenir p2 red bg-dark-gray">
+
+  <div class="mb2 red">
+    <pre class="mb2">Global Player</pre>
+    <h1 class="h5 avenir regular caps mb0"> {{ player.currentTrack.user.username || '&nbsp;'}} </h1>
+    <h1 class="helvetica"> {{ player.currentTrack.title || '&nbsp;' }} </h1>
+    <div class="center table mb1">
+      <div class="table-cell px2">
+        <button class="red button" ng-click="previous()">
+          <svg plangular-icon="previous"></svg>
+        </button>
+      </div>
+      <div class="table-cell px2">
+        <button class="h3 red button" ng-click="player.playPause(player.i, player.playlistIndex)">
+          <span ng-if="!player.playing"><svg plangular-icon="play"></svg></span>
+          <span ng-if="player.playing"><svg plangular-icon="pause"></svg></span>
+        </button>
+      </div>
+      <div class="table-cell px2">
+        <button class="red button" ng-click="next()">
+          <svg plangular-icon="next"></svg>
+        </button>
+      </div>
+    </div>
+    <progress class="progress progress-white w100" ng-click="player.seek($event)" value="{{ player.currentTime / player.duration || 0 }}">{{ player.currentTime / duration }}</progress>
+    <pre>{{ player.currentTime | prettyTime }} / {{ player.duration | prettyTime }} </pre>
+    <img ng-src="{{ player.currentTrack.artwork_url }}"> 
+    <img ng-src="{{ player.currentTrack.waveform_url }}" class="fit">
+  </div>
+
+
+  <div class="" plangular="http://soundcloud.com/jxnblk/really-wanna">
+    <h2><a href class="" ng-click="playPause()" ng-class="(player.currentTrack == track) ? 'white' : 'red'"> {{ user.username }} {{ title }} </a></h2>
+    <progress class="progress progress-white w100" ng-click="seek($event)" value="{{ currentTime / duration || 0 }}">{{ currentTime / duration }}</progress>
+    <pre>{{ currentTime | prettyTime }} - {{ duration | prettyTime }}</pre>
+  </div>
+
+
+  <div plangular="http://soundcloud.com/jxnblk/let-go">
+    <h2><a href class="" ng-click="playPause()" ng-class="(player.currentTrack == track) ? 'white' : 'red'"> {{ user.username }} {{ title }} </a></h2>
+    <progress class="progress progress-white w100" ng-click="seek($event)" value="{{ currentTime / duration || 0 }}">{{ currentTime / duration }}</progress>
+    <pre>{{ currentTime | prettyTime }} - {{ duration | prettyTime }}</pre>
+  </div>
+
+
+  <div class="py3 red" plangular="http://soundcloud.com/jxnblk/sets/yello">
+    <h2>
+      <a href class="red" ng-click="playPause()">
+        {{ index }}. {{ user.username }} - {{ title }}
+      </a>
+    </h2>
+    <button class="red button" ng-click="previous()">
+      <svg plangular-icon="previous"></svg>
+    </button>
+    <button class="h3 red button" ng-click="playPause(player.playlistIndex)">
+      <span ng-if="!player.playing"><svg plangular-icon="play"></svg></span>
+      <span ng-if="player.playing"><svg plangular-icon="pause"></svg></span>
+    </button>
+    <button class="red button" ng-click="next()">
+      <svg plangular-icon="next"></svg>
+    </button>
+    <progress class="progress progress-white w100" ng-click="seek($event)" value="{{ currentTime / duration || 0 }}">{{ currentTime / duration }}</progress>
+    <pre>{{ currentTime | prettyTime }} - {{ duration | prettyTime }}</pre>
+    <div ng-repeat="track in tracks">
+      <a href class="" ng-click="playPause($index)" ng-class="(player.currentTrack == track) ? 'white' : 'red'">
+        {{ track.user.username }} - {{ track.title }}
+      </a>
+    </div>
+  </div>
+
+
+  <div plangular="http://soundcloud.com/mrsjxn/no-love">
+    <h2><a href class="" ng-click="playPause()" ng-class="player.playing == track ? 'white' : 'red'"> {{ user.username }} {{ title }} </a></h2>
+  </div>
+
+
+  <div class="py3 red" plangular="https://soundcloud.com/broccolini/sets/sexy-summer">
+    <h2>
+      <a href class="red" ng-click="playPause()">
+        {{ index }}. {{ user.username }} - {{ title }}
+      </a>
+    </h2>
+    <button class="red button" ng-click="previous()">
+      <svg plangular-icon="previous"></svg>
+    </button>
+    <button class="h3 red button" ng-click="playPause(player.playlistIndex)">
+      <span ng-if="!player.playing"><svg plangular-icon="play"></svg></span>
+      <span ng-if="player.playing"><svg plangular-icon="pause"></svg></span>
+    </button>
+    <button class="red button" ng-click="next()">
+      <svg plangular-icon="next"></svg>
+    </button>
+    <progress class="progress progress-white w100" ng-click="seek($event)" value="{{ currentTime / duration || 0 }}">{{ currentTime / duration }}</progress>
+    <pre>{{ currentTime | prettyTime }} - {{ duration | prettyTime }}</pre>
+    <div ng-repeat="track in tracks">
+      <a href class="" ng-click="playPause($index)" ng-class="(player.currentTrack == track) ? 'white' : 'red'">
+        {{ track.user.username }} - {{ track.title }}
+      </a>
+    </div>
+  </div>
+
+
+    <h3>Testing ng-repeat</h3>
+    <div ng-repeat="sound in trackUrls" plangular="{{ sound }}">
+      <code>{{ sound }}</code>
+      <pre>username: {{ user.username }}</pre>
+      <pre>title {{ title }}</pre>
+    </div>
+
+<script>
+  var app = angular.module('app', ['plangular']);
+  app.controller('MainCtrl', function($scope) {
+    $scope.trackUrls = ['http://soundcloud.com/jxnblk/let-go', 'http://soundcloud.com/jxnblk/really-wanna'];
+  });
+</script>
+
+</body>
+</html>
