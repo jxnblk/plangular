@@ -5,7 +5,7 @@
 
         Vuejs Version
 
-        http://jxnblk.github.io/Plangular
+        http://jxnblk.github.io/plangular
 
  */
 

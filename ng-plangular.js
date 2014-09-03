@@ -5,7 +5,7 @@
 
         Angular Version
 
-        http://jxnblk.github.io/Plangular
+        http://jxnblk.github.io/plangular
 
  */
 
@@ -60,11 +60,11 @@ plangular.directive('plangular', ['$http', function ($http) {
     },
 
     playPause: function(i, playlistIndex) {
-      var track = this.tracks[i];
-      if (track.tracks && this.playing != track.tracks[playlistIndex]) {
-        this.play(i, playlistIndex);
-      } else if (!track.tracks && this.playing != track) {
+      var track = this.tracks[i] || this.tracks[0];
+      if (!track.tracks && this.playing != track) {
         this.play(i);
+      } else if (track.tracks && this.playing != track.tracks[playlistIndex]) {
+        this.play(i, playlistIndex);
       } else {
         this.pause();
       }
@@ -124,8 +124,6 @@ plangular.directive('plangular', ['$http', function ($http) {
     else player.pause();
   }, false);
 
-  var index = 0;
-
   return {
 
     restrict: 'A',
@@ -140,14 +138,20 @@ plangular.directive('plangular', ['$http', function ($http) {
       scope.audio = audio;
       scope.currentTime = 0;
       scope.duration = 0;
-      if (src) {
-        scope.index = index;
-        index++;
-      }
 
       function addKeys(track) {
         for (var key in track) {
           scope[key] = track[key];
+        }
+        scope.duration = track.duration / 1000;
+      }
+
+      if (src) {
+        var elements = document.querySelectorAll('[plangular]');
+        for (var i = 0; i < elements.length; i++) {
+          if (elem[0] == elements[i]) {
+            scope.index = i;
+          }
         }
       }
 
@@ -156,6 +160,7 @@ plangular.directive('plangular', ['$http', function ($http) {
       } else if (player.data[src]) {
         scope.track = player.data[src];
         addKeys(scope.track);
+        player.load(scope.track, scope.index);
       } else {
         $http.jsonp('//api.soundcloud.com/resolve.json', { params: params }).success(function(data){
           scope.track = data;
@@ -174,7 +179,8 @@ plangular.directive('plangular', ['$http', function ($http) {
       };
 
       scope.playPause = function(playlistIndex) {
-        player.playPause(scope.index, playlistIndex);
+        var i = scope.index || player.i;
+        player.playPause(i, playlistIndex);
       };
 
       scope.next = function() {
@@ -185,17 +191,27 @@ plangular.directive('plangular', ['$http', function ($http) {
         player.previous();
       };
 
-      audio.addEventListener('timeupdate', function() {
-        if (scope.track == player.tracks[player.i]){
+      var time = function() {
+        if (scope.track == player.currentTrack || !scope.track) {
+          //////// !!!!
+          // Match current track ?? Test use cases
+          // Check previous and next methods
+          // scope.track == player.tracks[player.i] // || (scope.track.tracks && scope.track.tracks[player.playlistIndex] == player.playing) ) {
           scope.$apply(function() {
             scope.currentTime = player.currentTime;
             scope.duration = player.duration;
           });  
         };
-      }, false);
+      };
+
+      audio.addEventListener('timeupdate', time, false);
+
+      elem.on('$destroy', function() {
+        audio.removeEventListener('timeupdate', time, false);
+      });
       
       scope.seek = function(e){
-        if (player.tracks[player.i] == scope.track) {
+        if (player.currentTrack == scope.track || !scope.track) {
           player.seek(e);
         }
       };

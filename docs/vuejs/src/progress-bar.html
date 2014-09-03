@@ -8,7 +8,7 @@
     </button>
   </div>
   <div class="table-cell px2 full-width">
-    <h3 class="m0">{{ user.username }} - {{ title }}</h3>
+    <h3 class="m0">{{ index }}. {{ user.username }} - {{ title }}</h3>
     <progress value="{{ currentTime / duration || 0 }}"
       v-on="click: seek($event)">
       {{ currentTime / duration }}
