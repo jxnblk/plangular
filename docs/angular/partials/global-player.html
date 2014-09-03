@@ -1,0 +1,44 @@
+<div plangular>
+  <h2 class="center h6 m0"> {{ player.currentTrack.user.username || '&nbsp;'}} </h2>
+  <h2 class="center m0"> {{ player.currentTrack.title || '&nbsp;' }} </h2>
+  <div class="center table py1">
+    <div class="table-cell px2">
+      <button class="button-icon" ng-click="previous()">
+        <svg plangular-icon="previous"></svg>
+      </button>
+    </div>
+    <div class="table-cell px2">
+      <button class="h3 button-icon" ng-click="player.playPause(player.i, player.playlistIndex)">
+        <span ng-if="!player.playing"><svg plangular-icon="play"></svg></span>
+        <span ng-if="player.playing"><svg plangular-icon="pause"></svg></span>
+      </button>
+    </div>
+    <div class="table-cell px2">
+      <button class="button-icon" ng-click="next()">
+        <svg plangular-icon="next"></svg>
+      </button>
+    </div>
+  </div>
+  <progress value="{{ player.currentTime / player.duration || 0 }}"
+    ng-click="player.seek($event)">
+    {{ player.currentTime / duration }}
+  </progress>
+  <p class="h6">{{ player.currentTime | prettyTime }} - {{ player.duration | prettyTime }}</p>
+</div>
+
+<div plangular="http://soundcloud.com/jxnblk/really-wanna">
+  <a href="#{{ example.id }}" class="block py1 nav-item"
+    ng-click="playPause()"
+    ng-class="{ 'bg-darken-1': player.playing == track }">
+    {{ user.username }} - {{ title }}
+  </a>
+</div>
+
+<div plangular="http://soundcloud.com/jxnblk/let-go">
+  <a href="#{{ example.id }}" class="block py1 nav-item"
+    ng-click="playPause()"
+    ng-class="{ 'bg-darken-1': player.playing == track }">
+    {{ user.username }} - {{ title }}
+  </a>
+</div>
+

@@ -1,0 +1,16 @@
+<div class="table"
+  plangular="http://soundcloud.com/mrsjxn/bbb">
+  <div class="table-cell">
+    <button class="button-icon" ng-click="playPause()">
+      <svg ng-if="player.playing != track" plangular-icon="play"></svg>
+      <svg ng-if="player.playing == track" plangular-icon="pause"></svg>
+    </button>
+  </div>
+  <div class="table-cell px2 full-width">
+    <h3 class="m0">{{ user.username }} - {{ title }}</h3>
+    <progress value="{{ currentTime / duration || 0 }}"
+      ng-click="seek($event)">
+      {{ currentTime / duration }}
+    </progress>
+  </div>
+</div>

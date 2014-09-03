@@ -29,7 +29,7 @@
 <div v-component="plangular" v-src="'http://soundcloud.com/jxnblk/really-wanna'">
   <a href="#{{ example.id }}" class="block py1 nav-item"
     v-on="click: playPause()"
-    v-class="dark-gray: player.playing == track">
+    v-class="bg-darken-1: player.playing == track">
     {{ user.username }} - {{ title }}
   </a>
 </div>
@@ -37,7 +37,7 @@
 <div v-component="plangular" v-src="'http://soundcloud.com/jxnblk/let-go'">
   <a href="#{{ example.id }}" class="block py1 nav-item"
     v-on="click: playPause()"
-    v-class="dark-gray: player.playing == track">
+    v-class="bg-darken-1: player.playing == track">
     {{ user.username }} - {{ title }}
   </a>
 </div>

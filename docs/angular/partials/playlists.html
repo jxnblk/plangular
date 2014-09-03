@@ -1,0 +1,42 @@
+<div plangular="http://soundcloud.com/jxnblk/sets/yello">
+    <div class="table mb1">
+      <h3 class="table-cell full-width m0">{{ user.username || '&nbsp;' }}</h3>
+      <small class="h6 table-cell nowrap">{{ currentTime | prettyTime }} - {{ duration | prettyTime }}</small>
+    </div>
+    <h1 class="m0">{{ title || '&nbsp;' }}</h1>
+    <div class="table">
+      <div class="table-cell">
+        <button class="button-icon" ng-click="previous()">
+          <svg plangular-icon="previous"></svg>
+        </button>
+      </div>
+      <div class="table-cell">
+        <button class="h2 button-icon" ng-click="playPause(player.playlistIndex)">
+          <svg ng-if="player.tracks[player.i] != track || !player.playing" plangular-icon="play"></svg>
+          <svg ng-if="player.tracks[player.i] == track && player.playing" plangular-icon="pause"></svg>
+        </button>
+      </div>
+      <div class="table-cell">
+        <button class="button-icon" ng-click="next()">
+          <svg plangular-icon="next"></svg>
+        </button>
+      </div>
+      <div class="table-cell full-width">
+        <div class="px1">
+          <progress value="{{ currentTime / duration || 0 }}"
+            ng-click="seek($event)">
+            {{ currentTime / duration }}
+          </progress>
+        </div>
+      </div>
+    </div>
+  <div ng-repeat="t in tracks">
+    <a href="#{{ example.id }}" class="block p1 nav-item"
+      ng-click="playPause($index)"
+      ng-class="{ 'bg-darken-1': player.currentTrack == t }">
+      <span class="mr1">{{ $index }}.</span>
+      {{ t.user.username }} - {{ t.title }}
+    </a>
+  </div>
+</div>
+

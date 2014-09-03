@@ -49,7 +49,7 @@ Download `v-plangular.min.js` and include it in your project along with Vuejs:
 
 Download the `ng-plangular.min.js` file and include it in your project along with Angular:
 ```html
-<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.9/angular.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"></script>
 <script src="js/ng-plangular.min.js"></script>
 ```
 
