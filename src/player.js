@@ -93,7 +93,8 @@ var Player = function() {
 
   player.seek = function(e) {
     if (!audio.readyState) return false;
-    var percent = e.offsetX / e.srcElement.offsetWidth;
+    var percent = e.offsetX / e.target.offsetWidth || (e.layerX - e.target.offsetLeft) / e.target.offsetWidth;
+    console.log(e, e.target.offsetLeft, e.offsetX, e.target.offsetWidth);
     var time = percent * audio.duration || 0;
     audio.currentTime = time;
   };

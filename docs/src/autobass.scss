@@ -271,8 +271,10 @@ button, .button {
 progress {
   display: block;
   width: 100%;
-  height: 2rem;
-  padding: .75rem 0;
+  height: .5rem;
+  margin: .75rem 0;
+  background-color: $darken-2;
+  border: 0;
   -webkit-appearance: none;
   cursor: pointer;
   &::-webkit-progress-bar {
@@ -281,6 +283,9 @@ progress {
   }
   &::-webkit-progress-value {
     -webkit-appearance: none;
+    background-color: $red;
+  }
+  &::-moz-progress-bar {
     background-color: $red;
   }
 }
