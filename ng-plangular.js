@@ -108,7 +108,7 @@ plangular.directive('plangular', ['$http', function ($http) {
 
     seek: function(e) {
       if (!audio.readyState) return false;
-      var xpos = e.offsetX / e.target.offsetWidth;
+      var xpos = (e.offsetX || e.layerX - e.target.offsetLeft) / e.target.offsetWidth;
       audio.currentTime = (xpos * audio.duration);
     }
 
