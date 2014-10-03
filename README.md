@@ -265,6 +265,22 @@ Use template conditionals to show a loading state.
 ---
 
 
+## Configuring Plangular
+
+#### plangularConfigProvider *(AngularJS only)*
+
+Plangular works out of the box, but if you want to configure it to use your own Soundcloud client ID, you can modify `plangularConfigProvider` in a config block:
+
+```js
+.config(function(plangularConfigProvider){
+  plangularConfigProvider.clientId = '[YOUR-CLIENT-ID-HERE]';
+})
+```
+
+
+---
+
+
 ## SoundCloud API
 
 Example JSON object:
