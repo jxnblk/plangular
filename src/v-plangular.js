@@ -13,7 +13,7 @@
 
 var plangular = {};
 plangular.clientID = '0d33361983f16d2527b01fbf6408b7d7';
-plangular.api = 'http://api.soundcloud.com/resolve.json';
+plangular.api = '//api.soundcloud.com/resolve.json';
 plangular.data = {};
 
 module.exports = plangular;
