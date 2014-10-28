@@ -133,6 +133,9 @@ var audio = document.createElement('audio');
   }, false);
 
   var index = 0;
+scope.$on('$destroy', function() {
+        player.pause();
+      });
       var src = attrs.plangular;
       var params = { url: src, client_id: clientId, callback: 'JSON_CALLBACK' }
 
