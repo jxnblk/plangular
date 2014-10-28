@@ -18,7 +18,15 @@ var plangular = angular.module('plangular', []);
 plangular.directive('plangular', ['$http', 'plangularConfig', function ($http, plangularConfig) {
   var clientId = plangularConfig.clientId;
 
-  var audio = document.createElement('audio');
+  
+
+  return {
+
+    restrict: 'A',
+    scope: true,
+
+    link: function (scope, elem, attrs) {
+var audio = document.createElement('audio');
 
   var player = {
  
@@ -125,14 +133,6 @@ plangular.directive('plangular', ['$http', 'plangularConfig', function ($http, p
   }, false);
 
   var index = 0;
-
-  return {
-
-    restrict: 'A',
-    scope: true,
-
-    link: function (scope, elem, attrs) {
-
       var src = attrs.plangular;
       var params = { url: src, client_id: clientId, callback: 'JSON_CALLBACK' }
 
