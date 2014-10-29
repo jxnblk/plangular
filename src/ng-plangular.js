@@ -18,124 +18,121 @@ var plangular = angular.module('plangular', []);
 plangular.directive('plangular', ['$http', 'plangularConfig', function ($http, plangularConfig) {
   var clientId = plangularConfig.clientId;
 
-  
+  var audio = document.createElement('audio');
 
+  
   return {
 
     restrict: 'A',
     scope: true,
 
     link: function (scope, elem, attrs) {
-var audio = document.createElement('audio');
+      var player = {
+       
+          currentTrack: false,
+          playing: false,
+          tracks: [],
+          i: 0,
+          playlistIndex: 0,
+          data: {},
+          currentTime: 0,
+          duration: 0,
+      
+          load: function(track, index) {
+            this.tracks[index] = track;
+            if (!this.playing && !this.i && index == 0) {
+              this.currentTrack = this.tracks[0];
+            }
+          },
+      
+          play: function(index, playlistIndex) {
+            this.i = index || 0;
+            var track = this.tracks[this.i];
+            if (track.tracks) {
+              this.playlistIndex = playlistIndex || 0;
+              this.playing = track.tracks[this.playlistIndex];
+              var src = track.tracks[this.playlistIndex].stream_url + '?client_id=' + clientId;
+            } else {
+              this.playing = track;
+              var src = track.stream_url + '?client_id=' + clientId;
+            }
+            this.currentTrack = this.playing;
+            if (src != audio.src) audio.src = src;
+            audio.play();
+          },
+      
+          pause: function() {
+            audio.pause();
+            this.playing = false;
+          },
+      
+          playPause: function(i, playlistIndex) {
+            var track = this.tracks[i];
+            if (track.tracks && this.playing != track.tracks[playlistIndex]) {
+              this.play(i, playlistIndex);
+            } else if (!track.tracks && this.playing != track) {
+              this.play(i);
+            } else {
+              this.pause();
+            }
+          },
+      
+          next: function() {
+            var playlist = this.tracks[this.i].tracks || null;
+            if (playlist && this.playlistIndex < playlist.length - 1) {
+              this.playlistIndex++;
+              this.play(this.i, this.playlistIndex);
+            } else if (this.i < this.tracks.length - 1) {
+              this.i++;
+              // Handle advancing to new playlist
+              if (this.tracks[this.i].tracks) {
+                var playlist = this.tracks[this.i].tracks || null;
+                this.playlistIndex = 0;
+                this.play(this.i, this.playlistIndex);
+              } else {
+                this.play(this.i);
+              }
+            } else if (this.i >= this.tracks.length -1) {
+              this.pause();
+            }
+          },
+      
+          previous: function() {
+            var playlist = this.tracks[this.i].tracks || null;
+            if (playlist && this.playlistIndex > 0) {
+              this.playlistIndex--;
+              this.play(this.i, this.playlistIndex);
+            } else if (this.i > 0) {
+              this.i--;
+              if (this.tracks[this.i].tracks) {
+                this.playlistIndex = this.tracks[this.i].tracks.length - 1;
+                this.play(this.i, this.playlistIndex);
+              } else {
+                this.play(this.i);
+              }
+            }
+          },
+      
+          seek: function(e) {
+            if (!audio.readyState) return false;
+            var xpos = e.offsetX / e.target.offsetWidth;
+            audio.currentTime = (xpos * audio.duration);
+          }
+      
+        };
+      
+        audio.addEventListener('timeupdate', function() {
+          player.currentTime = audio.currentTime;
+          player.duration = audio.duration;
+        }, false);
+      
+        audio.addEventListener('ended', function() {
+          if (player.tracks.length > 0) player.next();
+          else player.pause();
+        }, false);
 
-  var player = {
- 
-    currentTrack: false,
-    playing: false,
-    tracks: [],
-    i: 0,
-    playlistIndex: 0,
-    data: {},
-    currentTime: 0,
-    duration: 0,
+      var index = 0;
 
-    load: function(track, index) {
-      this.tracks[index] = track;
-      if (!this.playing && !this.i && index == 0) {
-        this.currentTrack = this.tracks[0];
-      }
-    },
-
-    play: function(index, playlistIndex) {
-      this.i = index || 0;
-      var track = this.tracks[this.i];
-      if (track.tracks) {
-        this.playlistIndex = playlistIndex || 0;
-        this.playing = track.tracks[this.playlistIndex];
-        var src = track.tracks[this.playlistIndex].stream_url + '?client_id=' + clientId;
-      } else {
-        this.playing = track;
-        var src = track.stream_url + '?client_id=' + clientId;
-      }
-      this.currentTrack = this.playing;
-      if (src != audio.src) audio.src = src;
-      audio.play();
-    },
-
-    pause: function() {
-      audio.pause();
-      this.playing = false;
-    },
-
-    playPause: function(i, playlistIndex) {
-      var track = this.tracks[i];
-      if (track.tracks && this.playing != track.tracks[playlistIndex]) {
-        this.play(i, playlistIndex);
-      } else if (!track.tracks && this.playing != track) {
-        this.play(i);
-      } else {
-        this.pause();
-      }
-    },
-
-    next: function() {
-      var playlist = this.tracks[this.i].tracks || null;
-      if (playlist && this.playlistIndex < playlist.length - 1) {
-        this.playlistIndex++;
-        this.play(this.i, this.playlistIndex);
-      } else if (this.i < this.tracks.length - 1) {
-        this.i++;
-        // Handle advancing to new playlist
-        if (this.tracks[this.i].tracks) {
-          var playlist = this.tracks[this.i].tracks || null;
-          this.playlistIndex = 0;
-          this.play(this.i, this.playlistIndex);
-        } else {
-          this.play(this.i);
-        }
-      } else if (this.i >= this.tracks.length -1) {
-        this.pause();
-      }
-    },
-
-    previous: function() {
-      var playlist = this.tracks[this.i].tracks || null;
-      if (playlist && this.playlistIndex > 0) {
-        this.playlistIndex--;
-        this.play(this.i, this.playlistIndex);
-      } else if (this.i > 0) {
-        this.i--;
-        if (this.tracks[this.i].tracks) {
-          this.playlistIndex = this.tracks[this.i].tracks.length - 1;
-          this.play(this.i, this.playlistIndex);
-        } else {
-          this.play(this.i);
-        }
-      }
-    },
-
-    seek: function(e) {
-      if (!audio.readyState) return false;
-      var xpos = e.offsetX / e.target.offsetWidth;
-      audio.currentTime = (xpos * audio.duration);
-    }
-
-  };
-
-  audio.addEventListener('timeupdate', function() {
-    player.currentTime = audio.currentTime;
-    player.duration = audio.duration;
-  }, false);
-
-  audio.addEventListener('ended', function() {
-    if (player.tracks.length > 0) player.next();
-    else player.pause();
-  }, false);
-
-  var index = 0;
-scope.$on('$destroy', function() {
-        player.pause();
-      });
       var src = attrs.plangular;
       var params = { url: src, client_id: clientId, callback: 'JSON_CALLBACK' }
 
@@ -202,7 +199,9 @@ scope.$on('$destroy', function() {
           player.seek(e);
         }
       };
-
+      scope.$on('$destroy', function() {
+        player.pause();
+      });
     }
 
   }
@@ -294,5 +293,4 @@ plangular.provider('plangularConfig', function() {
 
 
 })();
-
 
