@@ -156,7 +156,7 @@ plangular.directive('plangular', ['$http', 'plangularConfig', function ($http, p
       } else if (player.data[src]) {
         scope.track = player.data[src];
         addKeys(scope.track);
-        player.load(data, scope.index);
+        player.load(scope.track, scope.index);
       } else {
         $http.jsonp('//api.soundcloud.com/resolve.json', { params: params }).success(function(data){
           scope.track = data;
