@@ -110,6 +110,19 @@ plangular.directive('plangular', ['$http', 'plangularConfig', function ($http, p
       if (!audio.readyState) return false;
       var xpos = e.offsetX / e.target.offsetWidth;
       audio.currentTime = (xpos * audio.duration);
+    },
+
+    destroy: function() {
+      this.currentTrack = false;
+      this.playing = false;
+      this.tracks = [];
+      this.i = 0;
+      this.playlistIndex = 0;
+      this.currentTime = 0;
+      this.duration = 0;
+      audio.pause();
+      if (!audio.readyState) return false;
+      audio.currentTime = 0;
     }
 
   };
@@ -131,7 +144,7 @@ plangular.directive('plangular', ['$http', 'plangularConfig', function ($http, p
     restrict: 'A',
     scope: true,
 
-    link: function (scope, elem, attrs) {
+    link: function postLink(scope, elem, attrs) {
 
       var src = attrs.plangular;
       var params = { url: src, client_id: clientId, callback: 'JSON_CALLBACK' }
@@ -156,6 +169,7 @@ plangular.directive('plangular', ['$http', 'plangularConfig', function ($http, p
       } else if (player.data[src]) {
         scope.track = player.data[src];
         addKeys(scope.track);
+        player.load(scope.track, scope.index);
       } else {
         $http.jsonp('//api.soundcloud.com/resolve.json', { params: params }).success(function(data){
           scope.track = data;
@@ -199,6 +213,10 @@ plangular.directive('plangular', ['$http', 'plangularConfig', function ($http, p
           player.seek(e);
         }
       };
+
+      scope.$on('$destroy', function() {
+        player.destroy();
+      });
 
     }
 
