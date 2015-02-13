@@ -139,6 +139,8 @@ Use template conditionals to show and hide controls based on the player state.
 <!-- or -->
 <button ng-click="play()" ng-if="player.playing != track">Play</button>
 <button ng-click="pause()" ng-if="player.playing == track">Pause</button>
+<!-- or for a Playlist play button -->
+<button ng-click="play(playlistIndex)" ng-if="player.playing != track">Play</button>
 ```
 
 ### Next/Previous Controls
