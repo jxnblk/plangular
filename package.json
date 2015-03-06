@@ -1,34 +1,47 @@
 {
   "name": "plangular",
   "version": "3.0.0-beta-1",
-  "description": "Custom SoundCloud player with Angular, Vuejs, or Plain JavaScript",
+  "description": "Custom SoundCloud player for Angular, Vuejs, or Plain JavaScript",
   "main": "index.js",
+  "scripts": {
+    "test": "node test",
+    "browserify:vuejs": "browserify src/vuejs.js -o dist/v-plangular.js -s plangular",
+    "browserify:docs": "browserify docs/src/app.js -o docs/app.js",
+    "browserify": "npm run browserify:vuejs",
+    "watch:browserify": "watch 'npm run browserify' ./src",
+    "serve": "http-server -p 8000",
+    "start": "parallelshell 'npm run watch:browserify' 'npm run serve'"
+  },
   "dependencies": {
+    "qs": "^2.3.3",
     "soundcloud-resolve": "^1.0.1"
   },
   "devDependencies": {
+    "browserify": "^9.0.3",
     "gulp": "^3.8.7",
+    "gulp-autoprefixer": "0.0.10",
     "gulp-browserify": "^0.5.0",
+    "gulp-cheerio": "^0.3.2",
     "gulp-connect": "~2.0.6",
+    "gulp-footer": "^1.0.5",
+    "gulp-header": "^1.0.5",
+    "gulp-markdown": "^1.0.0",
+    "gulp-rename": "^1.2.0",
+    "gulp-sass": "^0.7.3",
     "gulp-uglifyjs": "~0.4.2",
     "gulp-watch": "~0.6.9",
-    "gulp-sass": "^0.7.3",
-    "jsonp": "0.0.4",
-    "gulp-rename": "^1.2.0",
-    "xhr": "^1.15.0",
-    "gulp-autoprefixer": "0.0.10",
-    "gulp-markdown": "^1.0.0",
+    "http-server": "^0.7.5",
+    "jsonp": "^0.1.0",
     "marked": "^0.3.2",
+    "parallelshell": "^1.0.4",
+    "partialify": "^3.1.1",
     "pygmentize": "^0.5.3",
     "pygmentize-bundled": "^2.1.1",
+    "superagent": "^0.21.0",
     "through2": "^0.6.1",
-    "gulp-header": "^1.0.5",
-    "gulp-footer": "^1.0.5",
-    "partialify": "^3.1.1",
-    "gulp-cheerio": "^0.3.2"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "uglify-js": "^2.4.16",
+    "watch": "^0.14.0",
+    "xhr": "^1.15.0"
   },
   "repository": {
     "type": "git",

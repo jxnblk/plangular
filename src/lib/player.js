@@ -1,5 +1,5 @@
 
-var audio = require('./lib/audio');
+var audio = require('./audio');
 
 module.exports = function() {
 
@@ -12,7 +12,7 @@ module.exports = function() {
   this.play = function(src) {
     if (src != audio.src) audio.src = src;
     audio.play();
-    this.playing = true;
+    this.playing = src;
   }
 
   this.pause = function() {
@@ -21,8 +21,8 @@ module.exports = function() {
   }
 
   this.playPause = function(src) {
-    if (src != audio.src) {
-      this.play();
+    if (src != this.playing) {
+      this.play(src);
     } else {
       this.pause();
     }

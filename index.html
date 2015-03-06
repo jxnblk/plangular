@@ -12,7 +12,7 @@
   <link href="http://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
 
   <script src="//cdnjs.cloudflare.com/ajax/libs/vue/0.10.6/vue.min.js"></script>
-  <script src="v-plangular.min.js"></script>
+  <script src="dist/v-plangular.js"></script>
 
   <!--
   <script src="docs/app.js"></script>
@@ -26,19 +26,15 @@
     v-component="plangular" v-src="'http://soundcloud.com/jxnblk/plangular'">
     <div class="relative table-cell py4">
       <div class="relative mb4 vhs-zoom-in">
-        <div class="absolute-fill transition-opacity"
-          v-show="player.currentTrack == track"
-          v-style="opacity: player.currentTime | logowave">
-          <svg viewBox="0 0 1024 64" style="width:100%;height:100%" v-show="player.playing == track">
+        <div class="absolute-fill transition-opacity" style="display:none">
+          <svg viewBox="0 0 1024 64" style="width:100%;height:100%">
             <path d="M0 32 H1024" stroke="currentColor" stroke-width="3" class="vhs-flicker">
           </svg>
           <img src="docs/images/waveform-new.svg" style="height:100%" class="absolute-fill full-width"/>
         </div>
         <div class="relative px2">
           <button v-on="click: playPause()" class="h1 button button-circle vhs-flicker-in vhs-delay-1">
-            <svg class="vhs-pop-in" v-if="player.playing != track" v-plangular-icon="'play'"></svg>
-            <svg class="vhs-pop-in" v-if="player.playing == track" v-plangular-icon="'pause'"></svg>
-            <span class="hide">Play/Pause</span>
+            <span class="">Play/Pause</span>
           </button>
         </div>
       </div>
@@ -65,74 +61,13 @@
       v-class="player.playing == track ? 'bg-red-alpha' : 'bg-darken-2'">
       <div class="table-cell p1">
         <button class="button-icon" v-on="click: playPause()">
-          <svg class="vhs-pop-in" v-if="player.playing != track" v-plangular-icon="'play'"></svg>
-          <svg class="vhs-pop-in" v-if="player.playing == track" v-plangular-icon="'pause'"></svg>
+          play/pause
         </button>
       </div>
       <h3 class="table-cell p1 full-width">{{ user.username }} - {{ title }}</h3>
       <small class="monospace h6 table-cell px1 nowrap">
-        {{ currentTime | prettyTime }} / {{ duration | prettyTime }}
+        {{ currentTime }} / {{ duration }}
       </small>
-    </div>
-
-    <div class="table mb1 rounded" v-component="plangular" v-src="'http://soundcloud.com/jxnblk/really-wanna'"
-      v-class="player.playing == track ? 'bg-red-alpha' : 'bg-darken-2'">
-      <div class="table-cell p1">
-        <button class="button-icon" v-on="click: playPause()">
-          <svg class="vhs-pop-in" v-if="player.playing != track" v-plangular-icon="'play'"></svg>
-          <svg class="vhs-pop-in" v-if="player.playing == track" v-plangular-icon="'pause'"></svg>
-        </button>
-      </div>
-      <div class="table-cell px1 full-width">
-        <div class="mt1">{{ user.username }}</div>
-        <h3 class="m0">{{ title }} </h3>
-        <progress class="full-width"
-          v-on="click: player.seek($event)"
-          value="{{ currentTime / duration || 0 }}">
-            {{ currentTime / duration }}
-        </progress>
-      </div>
-    </div>
-
-    <div class="bg-darken-2 rounded" v-component="plangular" v-src="'http://soundcloud.com/jxnblk/sets/yello'">
-      <div class="p2 bg-darken-1">
-        <div class="table">
-          <h3 class="table-cell full-width m0">{{ user.username }}</h3>
-          <small class="monospace h6 table-cell nowrap">{{ currentTime | prettyTime }} - {{ duration | prettyTime }}</small>
-        </div>
-        <h1 class="m0">{{ title }}</h1>
-        <div class="table">
-          <div class="table-cell">
-            <button class="button-icon" v-on="click: previous()">
-              <svg v-plangular-icon="'previous'"></svg>
-            </button>
-          </div>
-          <div class="table-cell">
-            <button class="h2 button-icon" v-on="click: playPause(player.playlistIndex)">
-              <svg v-if="player.tracks[player.i] != track || !player.playing" v-plangular-icon="'play'"></svg>
-              <svg v-if="player.tracks[player.i] == track && player.playing" v-plangular-icon="'pause'"></svg>
-            </button>
-          </div>
-          <div class="table-cell">
-            <button class="button-icon" v-on="click: next()">
-              <svg v-plangular-icon="'next'"></svg>
-            </button>
-          </div>
-          <div class="table-cell full-width">
-            <div class="px1">
-              <progress class="" v-on="click: seek($event)" value="{{ currentTime / duration || 0 }}">{{ currentTime / duration }}</progress>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div v-repeat="t : tracks" class="">
-        <a href="#{{ t.title }}" class="block px2 py1 nav-item"
-          v-on="click: playPause($index)"
-          v-class="player.currentTrack == t ? 'bg-darken-3' : ''">
-          <span class="mr1">{{ $index }}.</span>
-          {{ t.user.username }} - {{ t.title }}
-        </a>
-      </div>
     </div>
 
     <div class="center py2">
@@ -182,7 +117,10 @@
   </footer>
 
 
-<script> var vm = new Vue({ el: '#vm' }); </script>
+<script>
+  Vue.component('plangular', plangular);
+  var vm = new Vue({ el: '#vm', client_id: 'derp' });
+</script>
 
 </body>
 </html>

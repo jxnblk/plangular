@@ -11,27 +11,31 @@ module.exports = function() {
   this.tracks = [];
   //this.currentTrack = null;
 
-  this.loadTrack: function(track) {
-    this.tracks.push(track);
+  this.loadTrack = function(track, i) {
+    if (typeof i == 'number') {
+      this.tracks[i] = track;
+    } else {
+      this.tracks.push(track);
+    }
   };
 
-  this.loadTracks: function(tracks) {
+  this.loadTracks = function(tracks) {
     tracks.forEach(function(track) {
       self.loadTrack(track);
     });
   };
 
-  this.removeTrack: function(i) {
+  this.removeTrack = function(i) {
     this.tracks.splice(i, 1);
   };
 
-  this.next: function() {
+  this.next = function() {
     if (this.index < this.tracks.length - 1) {
       this.index++;
     }
   };
 
-  this.previous: function() {
+  this.previous = function() {
     if (this.index > 0) {
       index--;
     }
