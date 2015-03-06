@@ -38,29 +38,33 @@ module.exports = Vue.extend({
     },
     pause: player.pause,
     playPause: function() {
-      console.log(this.src);
+      //console.log(tracklist.index, tracklist.tracks[tracklist.index].title);
       player.playPause(this.src);
     },
     next: function() {},
     previous: function() {},
+    getSrc: function(url) {
+      return url + '?client_id=' + client_id;
+    },
   },
   directives: {
     src: function(value) {
       var self = this;
-      self.vm.$parent.plangular = self.vm.$parent.plangular || { instances: 0 };
-      var index = self.vm.$parent.plangular.instances;
-      self.vm.index = index;
-      self.vm.$parent.plangular.instances++;
-      resolve(value, client_id, function(err, response) {
-        if (err) {
-          console.error(err);
+
+      var elements = document.querySelectorAll('[v-src]');
+      for (var i = 0; i < elements.length; i++) {
+        if (this.el == elements[i]) {
+          self.vm.index = i;
         }
-        //console.log(response);
+      }
+
+      resolve(value, client_id, function(err, response) {
+        if (err) { console.error(err); }
         for (var key in response) {
           self.vm.$data[key] = response[key];
         }
         self.vm.track = response;
-        tracklist.loadTrack(response, index);
+        tracklist.loadTrack(response, self.vm.index);
       });
     }
   }
