@@ -1,9 +1,11 @@
 {
   "name": "plangular",
-  "version": "0.0.1",
-  "description": "",
-  "main": "gulpfile.js",
-  "dependencies": {},
+  "version": "3.0.0-beta-1",
+  "description": "Custom SoundCloud player with Angular, Vuejs, or Plain JavaScript",
+  "main": "index.js",
+  "dependencies": {
+    "soundcloud-resolve": "^1.0.1"
+  },
   "devDependencies": {
     "gulp": "^3.8.7",
     "gulp-browserify": "^0.5.0",
