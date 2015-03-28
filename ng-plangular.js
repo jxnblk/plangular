@@ -106,13 +106,24 @@ plangular.directive('plangular', ['$http', 'plangularConfig', function ($http, p
       }
     },
 
-    seek: function(e) {
-      if (!audio.readyState) return false;
-      var xpos = e.offsetX / e.target.offsetWidth;
-      audio.currentTime = (xpos * audio.duration);
-    }
+     seek: function(e) {
+        if (!audio.readyState) return false;
 
-  };
+        var xpos;
+        //if FF
+        if(e.offsetX === undefined) {
+
+           xpos = e.originalEvent.layerX / e.target.offsetWidth;
+          audio.currentTime = (xpos * audio.duration);
+
+        } else {
+          xpos = e.offsetX / e.target.offsetWidth;
+          audio.currentTime = (xpos * audio.duration);
+        }
+
+      }
+
+    };
 
   audio.addEventListener('timeupdate', function() {
     player.currentTime = audio.currentTime;
