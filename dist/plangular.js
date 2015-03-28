@@ -58,6 +58,32 @@ module.exports = audio;
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{}],3:[function(require,module,exports){
 
+module.exports = function(n, options) {
+
+  var options = options || {};
+
+  var hours = Math.floor(n / 3600),
+    mins = '0' + Math.floor((n % 3600) / 60),
+    secs = '0' + Math.floor((n % 60));
+
+  mins = mins.substr(mins.length - 2);
+  secs = secs.substr(secs.length - 2);
+
+  if(!isNaN(secs)){
+    if (hours){
+      return hours+':'+mins+':'+secs;  
+    } else {
+      return mins+':'+secs;  
+    };
+  } else {
+    return '00:00';
+  };
+
+};
+
+
+},{}],4:[function(require,module,exports){
+
 var jsonp = require('jsonp');
 var request = require('superagent');
 var qs = require('qs');
@@ -92,7 +118,7 @@ module.exports = function(params) {
 };
 
 
-},{"jsonp":4,"qs":8,"superagent":13}],4:[function(require,module,exports){
+},{"jsonp":5,"qs":9,"superagent":14}],5:[function(require,module,exports){
 /**
  * Module dependencies
  */
@@ -191,7 +217,7 @@ function jsonp(url, opts, fn){
   return cancel;
 }
 
-},{"debug":5}],5:[function(require,module,exports){
+},{"debug":6}],6:[function(require,module,exports){
 
 /**
  * This is the web browser implementation of `debug()`.
@@ -368,7 +394,7 @@ function localstorage(){
   } catch (e) {}
 }
 
-},{"./debug":6}],6:[function(require,module,exports){
+},{"./debug":7}],7:[function(require,module,exports){
 
 /**
  * This is the common logic for both the Node.js and web browser
@@ -567,7 +593,7 @@ function coerce(val) {
   return val;
 }
 
-},{"ms":7}],7:[function(require,module,exports){
+},{"ms":8}],8:[function(require,module,exports){
 /**
  * Helpers.
  */
@@ -692,10 +718,10 @@ function plural(ms, n, name) {
   return Math.ceil(ms / n) + ' ' + name + 's';
 }
 
-},{}],8:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 module.exports = require('./lib/');
 
-},{"./lib/":9}],9:[function(require,module,exports){
+},{"./lib/":10}],10:[function(require,module,exports){
 // Load modules
 
 var Stringify = require('./stringify');
@@ -712,7 +738,7 @@ module.exports = {
     parse: Parse
 };
 
-},{"./parse":10,"./stringify":11}],10:[function(require,module,exports){
+},{"./parse":11,"./stringify":12}],11:[function(require,module,exports){
 // Load modules
 
 var Utils = require('./utils');
@@ -875,7 +901,7 @@ module.exports = function (str, options) {
     return Utils.compact(obj);
 };
 
-},{"./utils":12}],11:[function(require,module,exports){
+},{"./utils":13}],12:[function(require,module,exports){
 // Load modules
 
 var Utils = require('./utils');
@@ -974,7 +1000,7 @@ module.exports = function (obj, options) {
     return keys.join(delimiter);
 };
 
-},{"./utils":12}],12:[function(require,module,exports){
+},{"./utils":13}],13:[function(require,module,exports){
 // Load modules
 
 
@@ -1108,7 +1134,7 @@ exports.isBuffer = function (obj) {
         obj.constructor.isBuffer(obj));
 };
 
-},{}],13:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 /**
  * Module dependencies.
  */
@@ -2221,7 +2247,7 @@ request.put = function(url, data, fn){
 
 module.exports = request;
 
-},{"emitter":14,"reduce":15}],14:[function(require,module,exports){
+},{"emitter":15,"reduce":16}],15:[function(require,module,exports){
 
 /**
  * Expose `Emitter`.
@@ -2387,7 +2413,7 @@ Emitter.prototype.hasListeners = function(event){
   return !! this.listeners(event).length;
 };
 
-},{}],15:[function(require,module,exports){
+},{}],16:[function(require,module,exports){
 
 /**
  * Reduce `arr` with `fn`.
@@ -2412,18 +2438,17 @@ module.exports = function(arr, fn, initial){
   
   return curr;
 };
-},{}],16:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 
 // Plangular
 // AngularJS Version
 
 'use strict';
 
+var plangular = angular.module('plangular', []);
 var resolve = require('soundcloud-resolve-jsonp');
 var Player = require('audio-player');
-
-
-var plangular = angular.module('plangular', []);
+var hhmmss = require('hhmmss');
 
 plangular.directive('plangular', ['$timeout', 'plangularConfig', function($timeout, plangularConfig) {
 
@@ -2512,8 +2537,8 @@ plangular.directive('plangular', ['$timeout', 'plangularConfig', function($timeo
       player.audio.addEventListener('timeupdate', function() {
         if (!scope.$$phase && scope.track.src == player.audio.src) {
           $timeout(function() {
-            scope.currentTime = player.audio.currentTime; 
-            scope.duration = player.audio.duration; 
+            scope.currentTime = player.audio.currentTime;
+            scope.duration = player.audio.duration;
           });
         }
       });
@@ -2528,6 +2553,9 @@ plangular.directive('plangular', ['$timeout', 'plangularConfig', function($timeo
 
 }]);
 
+plangular.filter('hhmmss', function() {
+  return hhmmss;
+});
 
 plangular.provider('plangularConfig', function() {
   // Remove this from source
@@ -2544,5 +2572,5 @@ plangular.provider('plangularConfig', function() {
 module.exports = 'plangular';
 
 
-},{"audio-player":1,"soundcloud-resolve-jsonp":3}]},{},[16])(16)
+},{"audio-player":1,"hhmmss":3,"soundcloud-resolve-jsonp":4}]},{},[17])(17)
 });

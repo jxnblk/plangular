@@ -4,11 +4,10 @@
 
 'use strict';
 
+var plangular = angular.module('plangular', []);
 var resolve = require('soundcloud-resolve-jsonp');
 var Player = require('audio-player');
-
-
-var plangular = angular.module('plangular', []);
+var hhmmss = require('hhmmss');
 
 plangular.directive('plangular', ['$timeout', 'plangularConfig', function($timeout, plangularConfig) {
 
@@ -97,8 +96,8 @@ plangular.directive('plangular', ['$timeout', 'plangularConfig', function($timeo
       player.audio.addEventListener('timeupdate', function() {
         if (!scope.$$phase && scope.track.src == player.audio.src) {
           $timeout(function() {
-            scope.currentTime = player.audio.currentTime; 
-            scope.duration = player.audio.duration; 
+            scope.currentTime = player.audio.currentTime;
+            scope.duration = player.audio.duration;
           });
         }
       });
@@ -113,6 +112,9 @@ plangular.directive('plangular', ['$timeout', 'plangularConfig', function($timeo
 
 }]);
 
+plangular.filter('hhmmss', function() {
+  return hhmmss;
+});
 
 plangular.provider('plangularConfig', function() {
   // Remove this from source
