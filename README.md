@@ -119,6 +119,12 @@ Use template bindings to include information about the track. You can use any da
 <!-- or in the track object -->
 <p>{{ track.user.username }}</p>
 <h1>{{ track.title }}</h1>
+
+
+<!-- or if you're using a playlist -->
+<p>{{ user.username }}</p>
+<h1>{{ tracks[player.playlistIndex].title }}</h1>
+<!-- this will display the current song being played in the playlist -->
 ```
 
 ### Add Play/Pause Controls
@@ -139,6 +145,8 @@ Use template conditionals to show and hide controls based on the player state.
 <!-- or -->
 <button ng-click="play()" ng-if="player.playing != track">Play</button>
 <button ng-click="pause()" ng-if="player.playing == track">Pause</button>
+<!-- or for a Playlist play button -->
+<button ng-click="play(playlistIndex)" ng-if="player.playing != track">Play</button>
 ```
 
 ### Next/Previous Controls
