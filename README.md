@@ -63,12 +63,6 @@ Alternatively, you may link to the CDN hosted versions:
 <script src="http://d2v52k3cl9vedd.cloudfront.net/plangular/2.0-beta-1/ng-plangular.min.js"></script>
 ```
 
-### Insert plangular in angular.module
-Open `app.js` and add plangular:
-```js
-angular.module('starter', ['ionic', 'starter.controllers', 'plangular'])
-```
-
 ### Initialize the App
 Bootstrap the Vuejs or Angular app.
 
