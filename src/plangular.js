@@ -103,7 +103,9 @@ plangular.directive('plangular', ['$timeout', 'plangularConfig', function($timeo
       });
 
       player.audio.addEventListener('ended', function() {
-        scope.next();
+        if (scope.track.src == player.audio.src) {
+          scope.next();
+        }
       });
 
     }

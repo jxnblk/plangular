@@ -33,13 +33,13 @@
     .button-logo:after {
       border-radius: inherit;
     }
+    .icon { top: .03125em }
   </style>
 
 </head>
 <body class="" ng-app="app">
 
   <div class="red bg-dark">
-
     <header class="center px2 py4 red bg-darken-2" plangular="http://soundcloud.com/jxnblk/plangular">
       <button class="h0 h0-responsive center mb2 button button-outline button-logo"
         ng-click="playPause()">
@@ -51,50 +51,11 @@
         Github
       </a>
     </header>
-
     <section id="examples" class="container px2 py3">
-
-      <div plangular="http://soundcloud.com/mrsjxn/bbb">
-        {{loading ? 'loading' : ''}}
-        <h3>{{track.user.username}}</h3>
-        <h2>{{track.title}}</h2>
-        <button ng-click="play()">Play</button>
-        <button ng-click="pause()">Pause</button>
-        <button ng-click="playPause()">Play/Pause</button>
-      </div>
-
-      <div plangular="http://soundcloud.com/jxnblk/let-go">
-        <h3>{{track.user.username}}</h3>
-        <h2>{{track.title}}</h2>
-        <button ng-click="play()">Play</button>
-        <button ng-click="pause()">Pause</button>
-        <button ng-click="playPause()">Play/Pause</button>
-      </div>
-
-      <div plangular="http://soundcloud.com/jxnblk/sets/yello">
-        <h3>{{playlist.user.username}} - {{playlist.title}}</h3>
-        <button ng-click="playPause(index)">Play/Pause</button>
-        <button ng-click="previous()">Previous</button>
-        <button ng-click="next()">Next</button>
-        <br>
-        <code>{{ currentTime | hhmmss }} / {{ duration | hhmmss }}</code>
-        <hr>
-        <h4>{{track.user.username}} - {{track.title}}</h4>
-        <progress
-          ng-click="player.seek($event)"
-          ng-value="currentTime / duration || 0">
-          {{ currentTime / duration || 0 }}
-        </progress>
-        <ul>
-          <li ng-repeat="track in tracks">
-            <button ng-click="playPause($index)">Play</button>
-            {{track.user.username}} - {{track.title}}
-          </li>
-        </ul>
-      </div>
-
+      <% examples.forEach(function(example) { %>
+        <%= example %>
+      <% }) %>
     </section>
-
   </div>
 
   <div class="container px2">

@@ -1,0 +1,44 @@
+
+<div plangular="http://soundcloud.com/jxnblk/sets/yello" class="mb3 bg-darken-2 rounded">
+  <div class="p2">
+    <div class="flex flex-center">
+      <h4 class="m0 flex-auto">{{playlist.user.username}}</h4>
+      <samp class="h6">{{ currentTime | hhmmss }} / {{ duration | hhmmss }}</samp>
+    </div>
+    <h3 class="h1 caps m0">{{playlist.title}}</h3>
+    <div class="flex flex-center">
+      <button class="h3 button button-narrow button-transparent" ng-click="previous()">
+        <svg class="icon geomicon" data-icon="previous" viewBox="0 0 32 32" style="fill:currentcolor"><path d="M4 4 H8 V14 L28 4 V28 L8 18 V28 H4 z "></path></svg>
+      </button>
+      <button class="h1 button button-transparent" ng-click="playPause(index)">
+        <svg ng-if="player.playing !== track.src" class="icon geomicon" data-icon="play" viewBox="0 0 32 32" width="32" height="32" style="fill:currentcolor"><path d="M4 4 L28 16 L4 28 z "></path></svg>
+        <svg ng-if="player.playing === track.src" class="icon geomicon" data-icon="pause" viewBox="0 0 32 32" width="32" height="32" style="fill:currentcolor"><path d="M4 4 H12 V28 H4 z M20 4 H28 V28 H20 z "></path></svg>
+      </button>
+      <button class="h3 button mr2 button-narrow button-transparent" ng-click="next()">
+        <svg class="icon geomicon" data-icon="next" viewBox="0 0 32 32" style="fill:currentcolor"><path d="M4 4 L24 14 V4 H28 V28 H24 V18 L4 28 z "></path></svg>
+      </button>
+      <progress
+        class="progress"
+        ng-click="player.seek($event)"
+        ng-value="currentTime / duration || 0">
+        {{ currentTime / duration || 0 }}
+      </progress>
+    </div>
+  </div>
+  <ul class="list-reset">
+    <li ng-repeat="track in tracks">
+      <button
+        class="flex flex-center full-width left-align button button-transparent"
+        ng-class="{'is-active': player.playing === track.src }"
+        ng-click="playPause($index)">
+        <span class="flex-auto">
+          {{track.user.username}} - {{track.title}}
+        </span>
+        <span class="h6">
+          {{ track.duration / 1000 | hhmmss }}
+        </span>
+      </button>
+    </li>
+  </ul>
+</div>
+

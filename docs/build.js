@@ -20,7 +20,13 @@ data.javascripts = [
   'dist/plangular.js'
 ];
 data.toc = readme.toc;
-data.content = readme.parts.body;
+data.content = readme.html;
+
+data.examples = [
+  fs.readFileSync(path.join(__dirname, './examples/basic.html'), 'utf8'),
+  fs.readFileSync(path.join(__dirname, './examples/progress.html'), 'utf8'),
+  fs.readFileSync(path.join(__dirname, './examples/playlist.html'), 'utf8'),
+];
 
 
 var html = tpl(data);

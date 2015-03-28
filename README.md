@@ -1,8 +1,10 @@
-# Plangular
-
-Angular directive for custom SoundCloud players
-
-http://jxnblk.github.io/plangular
+<div class="display-none">
+  <h1>Plangular</h1>
+  <p>
+  Angular directive for custom SoundCloud players
+    <a href="http://jxnblk.com/plangular">jxnblk.com/plangular</a>
+  </p>
+</div>
 
 ## Getting Started
 
