@@ -63,6 +63,12 @@ Alternatively, you may link to the CDN hosted versions:
 <script src="http://d2v52k3cl9vedd.cloudfront.net/plangular/2.0-beta-1/ng-plangular.min.js"></script>
 ```
 
+### Insert plangular in angular.module
+Open `app.js` and add plangular:
+```js
+angular.module('starter', ['ionic', 'starter.controllers', 'plangular'])
+```
+
 ### Initialize the App
 Bootstrap the Vuejs or Angular app.
 
@@ -113,6 +119,12 @@ Use template bindings to include information about the track. You can use any da
 <!-- or in the track object -->
 <p>{{ track.user.username }}</p>
 <h1>{{ track.title }}</h1>
+
+
+<!-- or if you're using a playlist -->
+<p>{{ user.username }}</p>
+<h1>{{ tracks[player.playlistIndex].title }}</h1>
+<!-- this will display the current song being played in the playlist -->
 ```
 
 ### Add Play/Pause Controls
@@ -133,6 +145,8 @@ Use template conditionals to show and hide controls based on the player state.
 <!-- or -->
 <button ng-click="play()" ng-if="player.playing != track">Play</button>
 <button ng-click="pause()" ng-if="player.playing == track">Pause</button>
+<!-- or for a Playlist play button -->
+<button ng-click="play(playlistIndex)" ng-if="player.playing != track">Play</button>
 ```
 
 ### Next/Previous Controls
@@ -260,6 +274,22 @@ Use template conditionals to show a loading state.
 - `pause()` - Method for pausing
 - `playPause()` - Method for toggling playback of the track
 - `seek($event)` - Method for scrubbing
+
+
+---
+
+
+## Configuring Plangular
+
+#### plangularConfigProvider *(AngularJS only)*
+
+Plangular works out of the box, but if you want to configure it to use your own Soundcloud client ID, you can modify `plangularConfigProvider` in a config block:
+
+```js
+.config(function(plangularConfigProvider){
+  plangularConfigProvider.clientId = '[YOUR-CLIENT-ID-HERE]';
+})
+```
 
 
 ---
