@@ -237,12 +237,10 @@ button, .button {
   border: 0;
   box-shadow: inset 0 0 0 3px #f52;
   border-radius: 3px;
-  -webkit-transition-property: color, background-color, box-shadow, -webkit-transform;
-          transition-property: color, background-color, box-shadow, transform;
-  -webkit-transition-duration: 0.1s;
-          transition-duration: 0.1s;
-  -webkit-transition-timing-function: ease-out;
-          transition-timing-function: ease-out;
+  transition-property: color, background-color, box-shadow, -webkit-transform;
+  transition-property: color, background-color, box-shadow, transform;
+  transition-duration: 0.1s;
+  transition-timing-function: ease-out;
   cursor: pointer; }
   button:hover, .button:hover {
     color: #203036;
@@ -353,12 +351,10 @@ progress {
   .theme-dark-red .button {
     color: #f52;
     box-shadow: inset 0 0 0 3px #f52;
-    -webkit-transition-property: color, background-color, box-shadow, -webkit-transform;
-            transition-property: color, background-color, box-shadow, transform;
-    -webkit-transition-duration: 0.1s;
-            transition-duration: 0.1s;
-    -webkit-transition-timing-function: ease-out;
-            transition-timing-function: ease-out;
+    transition-property: color, background-color, box-shadow, -webkit-transform;
+    transition-property: color, background-color, box-shadow, transform;
+    transition-duration: 0.1s;
+    transition-timing-function: ease-out;
     cursor: pointer; }
     .theme-dark-red .button:hover {
       color: #203036;
@@ -631,12 +627,10 @@ progress {
           animation-iteration-count: infinite; }
 
 .transition-opacity {
-  -webkit-transition: opacity 1s linear;
-          transition: opacity 1s linear; }
+  transition: opacity 1s linear; }
 
 .transition-bg {
-  -webkit-transition: background 1s linear;
-          transition: background 1s linear; }
+  transition: background 1s linear; }
 
 /*
  * GitHub style for Pygments
