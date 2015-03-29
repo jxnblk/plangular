@@ -18,7 +18,7 @@
   "dependencies": {
     "audio-player": "^1.0.0",
     "hhmmss": "^1.0.0",
-    "soundcloud-resolve-jsonp": "^1.0.3"
+    "soundcloud-resolve-jsonp": "^1.1.0"
   },
   "devDependencies": {
     "blkmark": "^1.0.1",
