@@ -8,7 +8,11 @@
 
 ## Getting Started
 
-Install with Bower:
+```bash
+npm install plangular-3
+```
+
+Or install with Bower:
 
 ```bash
 bower install plangular
