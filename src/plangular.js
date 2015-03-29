@@ -42,12 +42,6 @@ plangular.directive('plangular', ['$timeout', 'plangularConfig', function($timeo
         resolve({ url: src, client_id: client_id }, function(err, res) {
           if (err) { console.error(err); }
           scope.$apply(function() {
-            // superagent
-            // if (res.text) { res = JSON.parse(res.text); }
-            // corslite
-            if (res.response) {
-              res = JSON.parse(res.response);
-            }
             scope.track = createSrc(res);
             if (Array.isArray(res)) {
               scope.tracks = res.map(function(track) {
