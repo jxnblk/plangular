@@ -9,7 +9,7 @@
     <h2 class="h4 caps m0">{{track.title}}</h2>
     <progress
       class="progress"
-      ng-click="player.seek($event)"
+      ng-click="seek($event)"
       ng-value="currentTime / duration || 0">
       {{ currentTime / duration || 0 }}
     </progress>

@@ -3,12 +3,33 @@
 var _ = require('lodash');
 var fs = require('fs');
 var path = require('path');
-var blkmark = require('blkmark');
+var marked = require('marked');
+var toc = require('markdown-toc');
+var highlight = require('highlight.js');
 
 var data = require('../package.json');
-var readmeSrc = fs.readFileSync(path.join(__dirname, '../README.md'), 'utf8');
-var readme = blkmark(readmeSrc);
+var readme = fs.readFileSync(path.join(__dirname, '../README.md'), 'utf8');
 var tpl = _.template(fs.readFileSync(path.join(__dirname, './template.html'), 'utf8'));
+
+// Marked options
+var renderer = new marked.Renderer();
+renderer.code = function(code, lang) {
+  return '<pre>' + highlight.highlightAuto(code, [lang]).value + '</pre>';
+};
+renderer.heading = function (text, level) {
+  var name = _.kebabCase(text);
+  var result;
+  if (level < 4) {
+    result =
+      '<h' + level + ' id="' + name + '">'+
+      '<a href="#' + name + '">'+ text + '</a>'+
+      '</h' + level + '>';
+  } else {
+    result = '<h' + level + '>' + text + '</h' + level + '>';
+  }
+  return result;
+}
+
 
 // Format data
 data.title = _.capitalize(data.name);
@@ -17,15 +38,17 @@ data.stylesheets = [
 ];
 data.javascripts = [
   'https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular.min.js',
-  'dist/plangular.js'
+  'dist/plangular.min.js'
 ];
-data.toc = readme.toc;
-data.content = readme.html;
+data.toc = toc(readme).json;
+data.content = marked(readme, { renderer: renderer });
 
 data.examples = [
   fs.readFileSync(path.join(__dirname, './examples/basic.html'), 'utf8'),
   fs.readFileSync(path.join(__dirname, './examples/progress.html'), 'utf8'),
   fs.readFileSync(path.join(__dirname, './examples/playlist.html'), 'utf8'),
+  fs.readFileSync(path.join(__dirname, './examples/user.html'), 'utf8'),
+  //fs.readFileSync(path.join(__dirname, './examples/likes.html'), 'utf8'),
 ];
 
 

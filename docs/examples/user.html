@@ -1,11 +1,10 @@
 
-<div plangular="http://soundcloud.com/jxnblk/sets/yello" class="mb3 bg-darken-2 rounded">
+<div plangular="http://soundcloud.com/jxnblk/tracks" class="mb3 bg-darken-2 rounded">
   <div class="p2">
     <div class="flex flex-center">
-      <h4 class="m0 flex-auto">{{playlist.user.username}}</h4>
+      <h4 class="caps m0 flex-auto">Jxnblk</h4>
       <samp class="h6">{{ currentTime | hhmmss }} / {{ duration | hhmmss }}</samp>
     </div>
-    <h3 class="h1 caps m0">{{playlist.title}}</h3>
     <div class="flex flex-center">
       <button class="h3 button button-narrow button-transparent" ng-click="previous()">
         <svg class="icon geomicon" data-icon="previous" viewBox="0 0 32 32" style="fill:currentcolor"><path d="M4 4 H8 V14 L28 4 V28 L8 18 V28 H4 z "></path></svg>
@@ -26,7 +25,7 @@
     </div>
   </div>
   <ul class="list-reset">
-    <li ng-repeat="track in tracks">
+    <li ng-repeat="track in tracks | limitTo:8">
       <button
         class="flex flex-center full-width left-align button button-transparent"
         ng-class="{'is-active': player.playing === track.src }"

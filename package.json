@@ -7,6 +7,9 @@
     "test": "mocha test",
     "browserify": "browserify src/plangular.js --standalone=plangular -o dist/plangular.js",
     "watchify": "watchify src/plangular.js --standalone=plangular -o dist/plangular.js",
+    "uglify": "npm run browserify && uglifyjs dist/plangular.js -o dist/plangular.min.js",
+    "s3": "s3-cli put dist/plangular.min.js s3://jxnblk/plangular/3.0.0/plangular.min.js -P",
+    "release": "npm run uglify && npm run s3",
     "docs": "node docs/build",
     "watch:docs": "watch 'npm run docs' ./docs",
     "serve": "http-server -p 8000",
@@ -20,8 +23,13 @@
   "devDependencies": {
     "blkmark": "^1.0.1",
     "browserify": "^9.0.3",
+    "highlight.js": "^8.4.0",
     "http-server": "^0.7.5",
     "lodash": "^3.6.0",
+    "markdown-toc": "^0.11.0",
+    "marked": "^0.3.3",
+    "s3-cli": "^0.11.1",
+    "uglify-js": "^2.4.17",
     "watch": "^0.14.0",
     "watchify": "^2.6.2"
   },

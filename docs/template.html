@@ -16,6 +16,7 @@
   <% }) %>
 
   <style>
+    .container-narrow { max-width: 48em }
     .bg-dark { background-color:#102630; }
     .button-logo {
       width: 2em;
@@ -51,14 +52,14 @@
         Github
       </a>
     </header>
-    <section id="examples" class="container px2 py3">
+    <section id="examples" class="container-narrow mx-auto px2 py3">
       <% examples.forEach(function(example) { %>
         <%= example %>
       <% }) %>
     </section>
   </div>
 
-  <div class="container px2">
+  <div class="container-narrow mx-auto px2">
 
     <div class="py3" ng-non-bindable>
       <%= content %>
@@ -68,10 +69,14 @@
       <div class="flex flex-baseline flex-wrap mxn1">
         <a href="//jxnblk.com/plangular" class="button ml1 mr1 button-small button-link">Plangular</a>
         <div class="h6">v<%= version %></div>
-        <div class="flex-auto"></div>
 
         <a href="<%= homepage %>" class="button ml1 mr1 button-small button-link">Github</a>
         <a href="//npmjs.com/package/<%= name %>" class="button ml1 mr1 button-small button-link">NPM</a>
+        <div class="flex-auto"></div>
+        <p class="h5 bold m0 px1">
+          Made by
+          <a href="//jxnblk.com">Jxnblk</a>.
+        </p>
       </div>
     </footer>
 
