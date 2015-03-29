@@ -268,7 +268,7 @@
 
 <h2 id="getting-started"><a href="#getting-started">Getting Started</a></h2><p>Install with Bower:</p>
 <pre>bower install plangular</pre><p>Or use the CDN:</p>
-<pre><span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"http://d2v52k3cl9vedd.cloudfront.net/plangular/3.0.0/plangular.min.js"</span>&gt;</span><span class="javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span></pre><h2 id="angular-app"><a href="#angular-app">Angular App</a></h2><p>Include a link to plangular after including Angular.</p>
+<pre><span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"http://d2v52k3cl9vedd.cloudfront.net/plangular/3.0.0/plangular.min.js"</span>&gt;</span><span class="javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span></pre><h2 id="angular-app"><a href="#angular-app">Angular app</a></h2><p>Include a link to plangular after including Angular.</p>
 <pre>&lt;script src=<span class="hljs-string">"//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"</span>&gt;<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"bower_components/plangular/dist/plangular.min.js"</span>&gt;</span><span class="javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span></span></pre><h2 id="initialize-the-app"><a href="#initialize-the-app">Initialize the app</a></h2><pre><span class="hljs-tag">&lt;<span class="hljs-title">body</span> <span class="hljs-attribute">ng-app</span>=<span class="hljs-value">"plangular"</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span></pre><p>Or include plangular as a dependency in another app:</p>
@@ -298,15 +298,17 @@
       {{track.user.username}} - {{track.title}}
     <span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-title">ul</span>&gt;</span></pre><h2 id="user-tracks"><a href="#user-tracks">User Tracks</a></h2><p>To load the most recent tracks from a given user, use the tracks endpoint. Use <code>ng-repeat</code> to iterate over the <code>tracks</code> array.</p>
+<span class="hljs-tag">&lt;/<span class="hljs-title">ul</span>&gt;</span></pre><h2 id="user-tracks"><a href="#user-tracks">User tracks</a></h2><p>To load the most recent tracks from a given user, use the tracks endpoint. Use <code>ng-repeat</code> to iterate over the <code>tracks</code> array.</p>
 <pre><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">plangular</span>=<span class="hljs-value">"http://soundcloud.com/jxnblk/tracks"</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></pre><h2 id="previous-next-controls"><a href="#previous-next-controls">Previous/Next controls</a></h2><p>To skip to the next and previous track in a playlist or array of tracks, use the <code>previous()</code> and <code>next()</code> methods.</p>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></pre><h2 id="user-likes"><a href="#user-likes">User likes</a></h2><p>To load the most recent likes from a given user, use the likes endpoint.</p>
+<pre><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">plangular</span>=<span class="hljs-value">"http://soundcloud.com/jxnblk/likes"</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></pre><h2 id="previous-next-controls"><a href="#previous-next-controls">Previous/next controls</a></h2><p>To skip to the next and previous track in a playlist or array of tracks, use the <code>previous()</code> and <code>next()</code> methods.</p>
 <pre><span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">ng-click</span>=<span class="hljs-value">"previous()"</span>&gt;</span>Previous<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">ng-click</span>=<span class="hljs-value">"next()"</span>&gt;</span>Next<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span></pre><h3 id="configuration"><a href="#configuration">Configuration</a></h3><p>Plangular works out of the box, but if you want to configure it to use your own Soundcloud client ID, you can modify <code>plangularConfigProvider</code> in a config block:</p>
+<span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">ng-click</span>=<span class="hljs-value">"next()"</span>&gt;</span>Next<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span></pre><h2 id="configuration"><a href="#configuration">Configuration</a></h2><p>Plangular works out of the box, but if you want to configure it to use your own Soundcloud client ID, you can modify <code>plangularConfigProvider</code> in a config block:</p>
 <pre>.config(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(plangularConfigProvider)</span></span>{
   plangularConfigProvider.clientId = <span class="hljs-string">'[YOUR-CLIENT-ID]'</span>;
-})</pre><h2 id="examples"><a href="#examples">Examples</a></h2><p>See more examples and starter templates in
-<a href="//github.com/jxnblk/plangular/docs/examples">/docs/examples</a></p>
+})</pre><h2 id="example-templates"><a href="#example-templates">Example templates</a></h2><p>See more examples and starter templates in
+<a href="docs/examples">docs/examples</a></p>
 <hr>
 <h2 id="api"><a href="#api">API</a></h2><h3 id="code-track-code"><a href="#code-track-code"><code>track</code></a></h3><p>Object returned from the SoundCloud API</p>
 <h3 id="code-tracks-code"><a href="#code-tracks-code"><code>tracks</code></a></h3><p>An array of track objects if the instance is a playlist or list of tracks</p>

@@ -20,7 +20,7 @@ Or use the CDN:
 <script src="http://d2v52k3cl9vedd.cloudfront.net/plangular/3.0.0/plangular.min.js"></script>
 ```
 
-## Angular App
+## Angular app
 
 Include a link to plangular after including Angular.
 
@@ -131,7 +131,7 @@ Use the `tracks` array and `ng-repeat` when using a SoundCloud playlist. Pass th
 </ul>
 ```
 
-## User Tracks
+## User tracks
 
 To load the most recent tracks from a given user, use the tracks endpoint. Use `ng-repeat` to iterate over the `tracks` array.
 
@@ -140,7 +140,16 @@ To load the most recent tracks from a given user, use the tracks endpoint. Use `
 </div>
 ```
 
-## Previous/Next controls
+## User likes
+
+To load the most recent likes from a given user, use the likes endpoint.
+
+```html
+<div plangular="http://soundcloud.com/jxnblk/likes">
+</div>
+```
+
+## Previous/next controls
 
 To skip to the next and previous track in a playlist or array of tracks, use the `previous()` and `next()` methods.
 
@@ -149,7 +158,7 @@ To skip to the next and previous track in a playlist or array of tracks, use the
 <button ng-click="next()">Next</button>
 ```
 
-### Configuration
+## Configuration
 
 Plangular works out of the box, but if you want to configure it to use your own Soundcloud client ID, you can modify `plangularConfigProvider` in a config block:
 
@@ -159,9 +168,9 @@ Plangular works out of the box, but if you want to configure it to use your own 
 })
 ```
 
-## Examples
+## Example templates
 See more examples and starter templates in
-[/docs/examples](//github.com/jxnblk/plangular/docs/examples)
+[docs/examples](docs/examples)
 
 ---
 
