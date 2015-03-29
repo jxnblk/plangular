@@ -223,7 +223,6 @@ Sets the audio element’s `currentTime` property based on a pointer event.
 ## Using the SoundCloud API
 
 ### Track object
-
 For more details on the SoundCloud track object, see https://developers.soundcloud.com/docs/api/reference#tracks
 
 ### Terms
