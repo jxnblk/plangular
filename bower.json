@@ -1,0 +1,25 @@
+{
+  "name": "plangular",
+  "version": "3.0.0",
+  "homepage": "https://github.com/jxnblk/plangular",
+  "authors": [
+    "Brent Jackson <jacksonblack@gmail.com>"
+  ],
+  "description": "Angular directive for creating custom SoundCloud players",
+  "main": "dist/plangular.js",
+  "keywords": [
+    "angular",
+    "soundcloud",
+    "audio",
+    "music",
+    "player"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
