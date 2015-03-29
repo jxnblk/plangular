@@ -1,8 +1,15 @@
 
-<!-- Currently this does NOT work  -->
+<!--
+  Currently this does NOT work
+  in some cases because of SoundCloud API's
+  incorrect handling of JSONP and
+  illegal characters in user generated content.
+  ng-if is used below to hide the player in
+  Safari when the error occurs
+-->
 
 <div plangular="http://soundcloud.com/jxnblk/likes" class="mb3 bg-darken-2 rounded">
-  <div class="p2">
+  <div ng-if="track" class="p2">
     <div class="flex flex-center">
       <h4 class="caps m0 flex-auto">Jxnblk’s Likes</h4>
       <samp class="h6">{{ currentTime | hhmmss }} / {{ duration | hhmmss }}</samp>
@@ -21,12 +28,12 @@
       <progress
         class="progress"
         ng-click="player.seek($event)"
-        ng-value="currentTime / duration">
+        ng-value="currentTime / duration || 0">
         {{ currentTime / duration }}
       </progress>
     </div>
   </div>
-  <ul class="list-reset">
+  <ul ng-if="tracks" class="list-reset">
     <li ng-repeat="track in tracks | limitTo:8">
       <button
         class="flex flex-center full-width left-align button button-transparent"

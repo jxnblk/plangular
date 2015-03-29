@@ -42,6 +42,9 @@ plangular.directive('plangular', ['$timeout', 'plangularConfig', function($timeo
         resolve({ url: src, client_id: client_id }, function(err, res) {
           if (err) { console.error(err); }
           scope.$apply(function() {
+            if (res.text) {
+              res = JSON.parse(res.text);
+            }
             scope.track = createSrc(res);
             if (Array.isArray(res)) {
               scope.tracks = res.map(function(track) {
@@ -90,6 +93,8 @@ plangular.directive('plangular', ['$timeout', 'plangularConfig', function($timeo
         if (scope.index < scope.tracks.length - 1) {
           scope.index++;
           scope.play(scope.index);
+        } else {
+          scope.pause();
         }
       };
 
@@ -109,10 +114,8 @@ plangular.directive('plangular', ['$timeout', 'plangularConfig', function($timeo
       });
 
       player.audio.addEventListener('ended', function() {
-        if (scope.track.src == player.audio.src) {
+        if (scope.track.src === player.audio.src) {
           scope.next();
-        } else {
-          scope.pause();
         }
       });
 

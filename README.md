@@ -82,8 +82,8 @@ Use the `hhmmss` filter to format seconds as `hh:mm:ss` strings.
 ## Progress bar
 
 ```html
-<progress ng-value="currentTime / duration">
-  {{ currentTime / duration }}
+<progress ng-value="currentTime / duration || 0">
+  {{ currentTime / duration || 0 }}
 </progress>
 ```
 

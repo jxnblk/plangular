@@ -10,7 +10,7 @@
     <progress
       class="progress"
       ng-click="seek($event)"
-      ng-value="currentTime / duration">
+      ng-value="currentTime / duration || 0">
       {{ currentTime / duration }}
     </progress>
   </div>

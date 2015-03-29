@@ -50,7 +50,7 @@ data.examples = [
   fs.readFileSync(path.join(__dirname, './examples/progress.html'), 'utf8'),
   fs.readFileSync(path.join(__dirname, './examples/playlist.html'), 'utf8'),
   fs.readFileSync(path.join(__dirname, './examples/user.html'), 'utf8'),
-  //fs.readFileSync(path.join(__dirname, './examples/likes.html'), 'utf8'),
+  fs.readFileSync(path.join(__dirname, './examples/likes.html'), 'utf8'),
 ];
 
 
