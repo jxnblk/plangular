@@ -16,6 +16,12 @@
   <% }) %>
 
   <style>
+    code {
+      font-size: 87.5%;
+      color: #ff4136;
+      background-color: rgba(255,0,0,.0625);
+      background-color: transparent;
+    }
     .container-narrow { max-width: 48em }
     .bg-dark { background-color:#102630; }
     .button-logo {
@@ -42,17 +48,20 @@
 
   <div class="red bg-dark">
     <header class="center px2 py4 red bg-darken-2" plangular="http://soundcloud.com/jxnblk/plangular">
-      <button class="h0 h0-responsive center mb2 button button-outline button-logo"
+      <button class="h0 h0-responsive center mb2 button button-outline button-logo vhs-flicker vhs-delay-3"
         ng-click="playPause()">
         <svg class="icon geomicon" data-icon="play" viewBox="0 0 32 32" style="top:0.03125em;left:0.125em;fill:currentcolor"><path d="M4 4 L28 16 L4 28 z "></path></svg>
       </button>
-      <h1 class="h0 h0-responsive caps m0"><%= title %></h1>
-      <p class=""><%= description %></p>
-      <a href="<%= homepage %>" class="button button-outline">
+      <h1 class="h0 h0-responsive caps m0 vhs-flicker"><%= title %></h1>
+      <p class="bold vhs-zoom vhs-delay-2">
+        <%= description %>
+        <span class="h6 caps">&middot; v<%= version %></span>
+      </p>
+      <a href="<%= homepage %>" class="button button-outline vhs-bottom vhs-delay-2">
         Github
       </a>
     </header>
-    <section id="examples" class="container-narrow mx-auto px2 py3">
+    <section id="examples" class="container-narrow mx-auto px2 py3 vhs-bottom vhs-delay-3">
       <% examples.forEach(function(example) { %>
         <%= example %>
       <% }) %>

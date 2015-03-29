@@ -73,15 +73,17 @@ Or with separate play/pause controls:
 
 ## Show current time and duration
 
+Use the `hhmmss` filter to format seconds as `hh:mm:ss` strings.
+
 ```html
-<small>{{ currentTime }} | {{ duration }}</small>
+<small>{{ currentTime | hhmmss }} | {{ duration | hhmmss }}</small>
 ```
 
 ## Progress bar
 
 ```html
-<progress ng-value="currentTime / duration || 0">
-  {{ currentTime / duration || 0 }}
+<progress ng-value="currentTime / duration">
+  {{ currentTime / duration }}
 </progress>
 ```
 
@@ -89,9 +91,9 @@ Or with separate play/pause controls:
 
 ```html
 <progress
-  ng-click="player.seek($event)"
-  ng-value="currentTime / duration || 0">
-  {{ currentTime / duration || 0 }}
+  ng-click="seek($event)"
+  ng-value="currentTime / duration">
+  {{ currentTime / duration }}
 </progress>
 ```
 
@@ -102,7 +104,7 @@ Or with separate play/pause controls:
 <img ng-src="{{ track.waveform_url }}" alt="waveform" />
 ```
 
-Note: The waveform image that the SoundCloud API provides is a 1200 x 280px PNG with a light gray frame and transparent middle. To show progress use absolute positioning with the waveform in front. The light gray color is #efefef.
+Note: The waveform image that the SoundCloud API provides is a 1200 x 280px PNG with a light gray frame and transparent middle. To show progress use absolute positioning with the waveform in front. The light gray color is `#efefef`.
 
 ## Loading states
 
@@ -163,12 +165,12 @@ See more examples and starter templates in
 
 ---
 
-## Api
+## API
 
 ### `track` 
 Object returned from the SoundCloud API
 
-## `tracks`
+### `tracks`
 An array of track objects if the instance is a playlist or list of tracks
 
 ### `player`

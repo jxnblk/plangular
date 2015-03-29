@@ -10,6 +10,8 @@
   
     <link rel="stylesheet" href="http://d2v52k3cl9vedd.cloudfront.net/bassdock/1.2.1/bassdock.min.css">
   
+    <link rel="stylesheet" href="http://d2v52k3cl9vedd.cloudfront.net/vhs/0.1.0/vhs.min.css">
+  
 
   
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular.min.js"></script>
@@ -18,6 +20,12 @@
   
 
   <style>
+    code {
+      font-size: 87.5%;
+      color: #ff4136;
+      background-color: rgba(255,0,0,.0625);
+      background-color: transparent;
+    }
     .container-narrow { max-width: 48em }
     .bg-dark { background-color:#102630; }
     .button-logo {
@@ -44,21 +52,24 @@
 
   <div class="red bg-dark">
     <header class="center px2 py4 red bg-darken-2" plangular="http://soundcloud.com/jxnblk/plangular">
-      <button class="h0 h0-responsive center mb2 button button-outline button-logo"
+      <button class="h0 h0-responsive center mb2 button button-outline button-logo vhs-flicker vhs-delay-3"
         ng-click="playPause()">
         <svg class="icon geomicon" data-icon="play" viewBox="0 0 32 32" style="top:0.03125em;left:0.125em;fill:currentcolor"><path d="M4 4 L28 16 L4 28 z "></path></svg>
       </button>
-      <h1 class="h0 h0-responsive caps m0">Plangular</h1>
-      <p class="">Angular directive for custom SoundCloud players</p>
-      <a href="https://github.com/jxnblk/plangular" class="button button-outline">
+      <h1 class="h0 h0-responsive caps m0 vhs-flicker">Plangular</h1>
+      <p class="bold vhs-zoom vhs-delay-2">
+        Angular directive for custom SoundCloud players
+        <span class="h6 caps">&middot; v3.0.0-beta-1</span>
+      </p>
+      <a href="https://github.com/jxnblk/plangular" class="button button-outline vhs-bottom vhs-delay-2">
         Github
       </a>
     </header>
-    <section id="examples" class="container-narrow mx-auto px2 py3">
+    <section id="examples" class="container-narrow mx-auto px2 py3 vhs-bottom vhs-delay-3">
       
         
 <div plangular="http://soundcloud.com/mrsjxn/no-love" class="p2 mb3 flex flex-center bg-darken-2 rounded">
-  <button ng-click="playPause()" class="h2 mr2 button button-transparent rounded">
+  <button ng-click="playPause()" class="flex-none h2 mr2 button button-transparent rounded">
     <svg ng-if="player.playing !== track.src" class="icon geomicon" data-icon="play" viewBox="0 0 32 32" width="32" height="32" style="fill:currentcolor"><path d="M4 4 L28 16 L4 28 z "></path></svg>
     <svg ng-if="player.playing === track.src" class="icon geomicon" data-icon="pause" viewBox="0 0 32 32" width="32" height="32" style="fill:currentcolor"><path d="M4 4 H12 V28 H4 z M20 4 H28 V28 H20 z "></path></svg>
   </button>
@@ -70,7 +81,7 @@
       
         
 <div plangular="http://soundcloud.com/jxnblk/let-go" class="p2 mb3 flex flex-center bg-darken-2 rounded">
-  <button ng-click="playPause()" class="h2 mr2 button button-transparent rounded">
+  <button ng-click="playPause()" class="flex-none h2 mr2 button button-transparent rounded">
     <svg ng-if="player.playing !== track.src" class="icon geomicon" data-icon="play" viewBox="0 0 32 32" width="32" height="32" style="fill:currentcolor"><path d="M4 4 L28 16 L4 28 z "></path></svg>
     <svg ng-if="player.playing === track.src" class="icon geomicon" data-icon="pause" viewBox="0 0 32 32" width="32" height="32" style="fill:currentcolor"><path d="M4 4 H12 V28 H4 z M20 4 H28 V28 H20 z "></path></svg>
   </button>
@@ -80,8 +91,8 @@
     <progress
       class="progress"
       ng-click="seek($event)"
-      ng-value="currentTime / duration || 0">
-      {{ currentTime / duration || 0 }}
+      ng-value="currentTime / duration">
+      {{ currentTime / duration }}
     </progress>
   </div>
 </div>
@@ -97,21 +108,21 @@
     </div>
     <h3 class="h1 caps m0">{{playlist.title}}</h3>
     <div class="flex flex-center">
-      <button class="h3 button button-narrow button-transparent" ng-click="previous()">
+      <button class="flex-none h3 button button-narrow button-transparent" ng-click="previous()">
         <svg class="icon geomicon" data-icon="previous" viewBox="0 0 32 32" style="fill:currentcolor"><path d="M4 4 H8 V14 L28 4 V28 L8 18 V28 H4 z "></path></svg>
       </button>
-      <button class="h1 button button-transparent" ng-click="playPause(index)">
+      <button class="flex-none h1 button button-transparent" ng-click="playPause(index)">
         <svg ng-if="player.playing !== track.src" class="icon geomicon" data-icon="play" viewBox="0 0 32 32" width="32" height="32" style="fill:currentcolor"><path d="M4 4 L28 16 L4 28 z "></path></svg>
         <svg ng-if="player.playing === track.src" class="icon geomicon" data-icon="pause" viewBox="0 0 32 32" width="32" height="32" style="fill:currentcolor"><path d="M4 4 H12 V28 H4 z M20 4 H28 V28 H20 z "></path></svg>
       </button>
-      <button class="h3 button mr2 button-narrow button-transparent" ng-click="next()">
+      <button class="flex-none h3 button mr2 button-narrow button-transparent" ng-click="next()">
         <svg class="icon geomicon" data-icon="next" viewBox="0 0 32 32" style="fill:currentcolor"><path d="M4 4 L24 14 V4 H28 V28 H24 V18 L4 28 z "></path></svg>
       </button>
       <progress
         class="progress"
         ng-click="seek($event)"
-        ng-value="currentTime / duration || 0">
-        {{ currentTime / duration || 0 }}
+        ng-value="currentTime / duration">
+        {{ currentTime / duration }}
       </progress>
     </div>
   </div>
@@ -142,21 +153,21 @@
       <samp class="h6">{{ currentTime | hhmmss }} / {{ duration | hhmmss }}</samp>
     </div>
     <div class="flex flex-center">
-      <button class="h3 button button-narrow button-transparent" ng-click="previous()">
+      <button class="flex-none h3 button button-narrow button-transparent" ng-click="previous()">
         <svg class="icon geomicon" data-icon="previous" viewBox="0 0 32 32" style="fill:currentcolor"><path d="M4 4 H8 V14 L28 4 V28 L8 18 V28 H4 z "></path></svg>
       </button>
-      <button class="h1 button button-transparent" ng-click="playPause(index)">
+      <button class="flex-none h1 button button-transparent" ng-click="playPause(index)">
         <svg ng-if="player.playing !== track.src" class="icon geomicon" data-icon="play" viewBox="0 0 32 32" width="32" height="32" style="fill:currentcolor"><path d="M4 4 L28 16 L4 28 z "></path></svg>
         <svg ng-if="player.playing === track.src" class="icon geomicon" data-icon="pause" viewBox="0 0 32 32" width="32" height="32" style="fill:currentcolor"><path d="M4 4 H12 V28 H4 z M20 4 H28 V28 H20 z "></path></svg>
       </button>
-      <button class="h3 button mr2 button-narrow button-transparent" ng-click="next()">
+      <button class="flex-none h3 button mr2 button-narrow button-transparent" ng-click="next()">
         <svg class="icon geomicon" data-icon="next" viewBox="0 0 32 32" style="fill:currentcolor"><path d="M4 4 L24 14 V4 H28 V28 H24 V18 L4 28 z "></path></svg>
       </button>
       <progress
         class="progress"
         ng-click="seek($event)"
-        ng-value="currentTime / duration || 0">
-        {{ currentTime / duration || 0 }}
+        ng-value="currentTime / duration">
+        {{ currentTime / duration }}
       </progress>
     </div>
   </div>
@@ -205,14 +216,15 @@
   <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">ng-href</span>=<span class="hljs-value">"{{track.permalink_url}}"</span>&gt;</span>View on SoundCloud<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></pre><h2 id="add-player-controls"><a href="#add-player-controls">Add player controls</a></h2><pre><span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">ng-click</span>=<span class="hljs-value">"playPause()"</span>&gt;</span>Play/Pause<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span></pre><p>Or with separate play/pause controls:</p>
 <pre><span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">ng-click</span>=<span class="hljs-value">"play()"</span>&gt;</span>Play<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">ng-click</span>=<span class="hljs-value">"pause()"</span>&gt;</span>Pause<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span></pre><h2 id="show-current-time-and-duration"><a href="#show-current-time-and-duration">Show current time and duration</a></h2><pre><span class="hljs-tag">&lt;<span class="hljs-title">small</span>&gt;</span>{{ currentTime }} | {{ duration }}<span class="hljs-tag">&lt;/<span class="hljs-title">small</span>&gt;</span></pre><h2 id="progress-bar"><a href="#progress-bar">Progress bar</a></h2><pre><span class="hljs-tag">&lt;<span class="hljs-title">progress</span> <span class="hljs-attribute">ng-value</span>=<span class="hljs-value">"currentTime / duration || 0"</span>&gt;</span>
-  {{ currentTime / duration || 0 }}
+<span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">ng-click</span>=<span class="hljs-value">"pause()"</span>&gt;</span>Pause<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span></pre><h2 id="show-current-time-and-duration"><a href="#show-current-time-and-duration">Show current time and duration</a></h2><p>Use the <code>hhmmss</code> filter to format seconds as <code>hh:mm:ss</code> strings.</p>
+<pre><span class="hljs-tag">&lt;<span class="hljs-title">small</span>&gt;</span>{{ currentTime | hhmmss }} | {{ duration | hhmmss }}<span class="hljs-tag">&lt;/<span class="hljs-title">small</span>&gt;</span></pre><h2 id="progress-bar"><a href="#progress-bar">Progress bar</a></h2><pre><span class="hljs-tag">&lt;<span class="hljs-title">progress</span> <span class="hljs-attribute">ng-value</span>=<span class="hljs-value">"currentTime / duration"</span>&gt;</span>
+  {{ currentTime / duration }}
 <span class="hljs-tag">&lt;/<span class="hljs-title">progress</span>&gt;</span></pre><h2 id="add-scrubber-functionality"><a href="#add-scrubber-functionality">Add scrubber functionality</a></h2><pre><span class="hljs-tag">&lt;<span class="hljs-title">progress</span>
-  <span class="hljs-attribute">ng-click</span>=<span class="hljs-value">"player.seek($event)"</span>
-  <span class="hljs-attribute">ng-value</span>=<span class="hljs-value">"currentTime / duration || 0"</span>&gt;</span>
-  {{ currentTime / duration || 0 }}
+  <span class="hljs-attribute">ng-click</span>=<span class="hljs-value">"seek($event)"</span>
+  <span class="hljs-attribute">ng-value</span>=<span class="hljs-value">"currentTime / duration"</span>&gt;</span>
+  {{ currentTime / duration }}
 <span class="hljs-tag">&lt;/<span class="hljs-title">progress</span>&gt;</span></pre><h2 id="add-images"><a href="#add-images">Add images</a></h2><pre><span class="hljs-tag">&lt;<span class="hljs-title">img</span> <span class="hljs-attribute">ng-src</span>=<span class="hljs-value">"{{ track.artwork_url  }}"</span> <span class="hljs-attribute">alt</span>=<span class="hljs-value">"{{ track.title }}"</span> /&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-title">img</span> <span class="hljs-attribute">ng-src</span>=<span class="hljs-value">"{{ track.waveform_url }}"</span> <span class="hljs-attribute">alt</span>=<span class="hljs-value">"waveform"</span> /&gt;</span></pre><p>Note: The waveform image that the SoundCloud API provides is a 1200 x 280px PNG with a light gray frame and transparent middle. To show progress use absolute positioning with the waveform in front. The light gray color is #efefef.</p>
+<span class="hljs-tag">&lt;<span class="hljs-title">img</span> <span class="hljs-attribute">ng-src</span>=<span class="hljs-value">"{{ track.waveform_url }}"</span> <span class="hljs-attribute">alt</span>=<span class="hljs-value">"waveform"</span> /&gt;</span></pre><p>Note: The waveform image that the SoundCloud API provides is a 1200 x 280px PNG with a light gray frame and transparent middle. To show progress use absolute positioning with the waveform in front. The light gray color is <code>#efefef</code>.</p>
 <h2 id="loading-states"><a href="#loading-states">Loading states</a></h2><p>Use the <code>ng-if</code> directive to show and hide content based on whether the track has loaded.</p>
 <pre><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">ng-if</span>=<span class="hljs-value">"!track"</span>&gt;</span><span class="hljs-comment">&lt;!-- Loading state --&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">ng-if</span>=<span class="hljs-value">"track"</span>&gt;</span><span class="hljs-comment">&lt;!-- Player --&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></pre><h2 id="playlists"><a href="#playlists">Playlists</a></h2><p>Use the <code>tracks</code> array and <code>ng-repeat</code> when using a SoundCloud playlist. Pass the <code>$index</code> to the <code>playPause()</code> method to trigger playback on a per-track basis. Determine which track is currently playing with <code>player.playing === track.src</code>.</p>
@@ -234,8 +246,8 @@
 })</pre><h2 id="examples"><a href="#examples">Examples</a></h2><p>See more examples and starter templates in
 <a href="//github.com/jxnblk/plangular/docs/examples">/docs/examples</a></p>
 <hr>
-<h2 id="api"><a href="#api">Api</a></h2><h3 id="code-track-code"><a href="#code-track-code"><code>track</code></a></h3><p>Object returned from the SoundCloud API</p>
-<h2 id="code-tracks-code"><a href="#code-tracks-code"><code>tracks</code></a></h2><p>An array of track objects if the instance is a playlist or list of tracks</p>
+<h2 id="api"><a href="#api">API</a></h2><h3 id="code-track-code"><a href="#code-track-code"><code>track</code></a></h3><p>Object returned from the SoundCloud API</p>
+<h3 id="code-tracks-code"><a href="#code-tracks-code"><code>tracks</code></a></h3><p>An array of track objects if the instance is a playlist or list of tracks</p>
 <h3 id="code-player-code"><a href="#code-player-code"><code>player</code></a></h3><p>Audio player object</p>
 <h3 id="code-audio-code"><a href="#code-audio-code"><code>audio</code></a></h3><p>The HTML5 <code>&lt;audio&gt;</code> element used by the player, exposed for access to media events.</p>
 <h3 id="code-current-time-code"><a href="#code-current-time-code"><code>currentTime</code></a></h3><p>Angular-friendly <code>currentTime</code> from the audio element</p>
@@ -247,7 +259,7 @@
 <h3 id="code-play-pause-i-code"><a href="#code-play-pause-i-code"><code>playPause(i)</code></a></h3><p>Toggles playback. Optionally pass an index when handling playlists.</p>
 <h3 id="code-previous-code"><a href="#code-previous-code"><code>previous()</code></a></h3><p>Skip to previous track when handling playlists</p>
 <h3 id="code-next-code"><a href="#code-next-code"><code>next()</code></a></h3><p>Skip to next track when handling playlists</p>
-<h3 id="code-seek-event-code"><a href="#code-seek-event-code"><code>seek($event)</code></a></h3><p>Sets the audio elements <code>currentTime</code> property based on a pointer event.</p>
+<h3 id="code-seek-event-code"><a href="#code-seek-event-code"><code>seek($event)</code></a></h3><p>Sets the audio element’s <code>currentTime</code> property based on a pointer event.</p>
 <hr>
 <h2 id="using-the-sound-cloud-api"><a href="#using-the-sound-cloud-api">Using the SoundCloud API</a></h2><h3 id="track-object"><a href="#track-object">Track object</a></h3><p>For more details on the SoundCloud track object, see <a href="https://developers.soundcloud.com/docs/api/reference#tracks">https://developers.soundcloud.com/docs/api/reference#tracks</a></p>
 <h3 id="terms"><a href="#terms">Terms</a></h3><p>According to the SoundCloud API terms you must:</p>

@@ -34,7 +34,8 @@ renderer.heading = function (text, level) {
 // Format data
 data.title = _.capitalize(data.name);
 data.stylesheets = [
-  'http://d2v52k3cl9vedd.cloudfront.net/bassdock/1.2.1/bassdock.min.css'
+  'http://d2v52k3cl9vedd.cloudfront.net/bassdock/1.2.1/bassdock.min.css',
+  'http://d2v52k3cl9vedd.cloudfront.net/vhs/0.1.0/vhs.min.css'
 ];
 data.javascripts = [
   'https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular.min.js',
