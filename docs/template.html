@@ -19,9 +19,8 @@
     a { word-wrap: break-word }
     code {
       font-size: 87.5%;
-      color: #ff4136;
-      background-color: rgba(255,0,0,.0625);
-      background-color: transparent;
+      color: #222;
+      background-color: rgba(127, 219, 255, .25);
     }
     .container-narrow { max-width: 48em }
     .bg-dark { background-color:#102630; }
@@ -68,6 +67,9 @@
       </a>
     </header>
     <section id="examples" class="container-narrow mx-auto px2 py3 vhs-bottom vhs-delay-3">
+      <h2>
+        <a href="#examples" class="red">Examples</a>
+      </h2>
       <% examples.forEach(function(example) { %>
         <%= example %>
       <% }) %>
@@ -79,6 +81,19 @@
     <div class="py3" ng-non-bindable>
       <%= content %>
     </div>
+
+    <section id="more-examples" class="py4">
+      <h2>
+        <a href="#more-examples">
+          More Examples
+        </a>
+      </h2>
+      <% more_examples.forEach(function(example) { %>
+        <div class="mb2">
+          <%= example %>
+        </div>
+      <% }) %>
+    </section>
 
     <section id="cta" class="center py4">
       <a href="<%= homepage %>" class="h3 button button-big button-outline button-grow red">Github</a>
@@ -106,6 +121,7 @@
       ng-if="player.playing"
       ng-click="pause()"
       class="button button-small black bg-red vhs-bottom">
+      <svg class="icon geomicon" data-icon="pause" viewBox="0 0 32 32" width="32" height="32" style="fill:currentcolor;top:-.0625em"><path d="M4 4 H12 V28 H4 z M20 4 H28 V28 H20 z "></path></svg>
       Pause
     </button>
   </div>

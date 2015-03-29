@@ -53,6 +53,16 @@ data.examples = [
   fs.readFileSync(path.join(__dirname, './examples/likes.html'), 'utf8'),
 ];
 
+data.more_examples = [
+  //fs.readFileSync(path.join(__dirname, './examples/unstyled.html'), 'utf8'),
+  fs.readFileSync(path.join(__dirname, './examples/compact.html'), 'utf8'),
+  fs.readFileSync(path.join(__dirname, './examples/inline-progress.html'), 'utf8'),
+  fs.readFileSync(path.join(__dirname, './examples/compact-progress.html'), 'utf8'),
+  fs.readFileSync(path.join(__dirname, './examples/artwork.html'), 'utf8'),
+  fs.readFileSync(path.join(__dirname, './examples/waveform.html'), 'utf8'),
+  fs.readFileSync(path.join(__dirname, './examples/custom-image.html'), 'utf8'),
+];
+
 
 var html = tpl(data);
 

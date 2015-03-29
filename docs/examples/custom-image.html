@@ -1,0 +1,23 @@
+
+<div plangular="http://soundcloud.com/mrsjxn/valis"
+  style="background-image:url(https://d262ilb51hltx0.cloudfront.net/max/2000/1*DZwdGMaeu-rvTroJYui6Uw.jpeg)"
+  class="py2 white bg-cover bg-center">
+  <div class="center py4">
+    <h4 class="caps mb0">{{track.user.username}}</h4>
+    <h3 class="h0 h0-responsive caps m0">{{track.title}}</h3>
+  </div>
+  <div class="flex flex-center px2">
+    <button ng-click="playPause()" class="flex-none h2 mr2 button button-transparent button-grow rounded">
+      <svg ng-if="player.playing !== track.src" class="icon geomicon" data-icon="play" viewBox="0 0 32 32" width="32" height="32" style="fill:currentcolor"><path d="M4 4 L28 16 L4 28 z "></path></svg>
+      <svg ng-if="player.playing === track.src" class="icon geomicon" data-icon="pause" viewBox="0 0 32 32" width="32" height="32" style="fill:currentcolor"><path d="M4 4 H12 V28 H4 z M20 4 H28 V28 H20 z "></path></svg>
+    </button>
+    <div class="flex-auto">
+      <progress
+        class="progress"
+        ng-click="seek($event)"
+        ng-value="currentTime / duration || 0">
+        {{ currentTime / duration }}
+      </progress>
+    </div>
+  </div>
+</div>

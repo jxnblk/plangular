@@ -23,9 +23,8 @@
     a { word-wrap: break-word }
     code {
       font-size: 87.5%;
-      color: #ff4136;
-      background-color: rgba(255,0,0,.0625);
-      background-color: transparent;
+      color: #222;
+      background-color: rgba(127, 219, 255, .25);
     }
     .container-narrow { max-width: 48em }
     .bg-dark { background-color:#102630; }
@@ -72,6 +71,9 @@
       </a>
     </header>
     <section id="examples" class="container-narrow mx-auto px2 py3 vhs-bottom vhs-delay-3">
+      <h2>
+        <a href="#examples" class="red">Examples</a>
+      </h2>
       
         
 <div plangular="http://soundcloud.com/mrsjxn/no-love" class="p2 mb3 flex flex-center bg-darken-2 rounded">
@@ -335,6 +337,156 @@ If it&#39;s set to false, there is no way to play that sound with the API.</p>
 
     </div>
 
+    <section id="more-examples" class="py4">
+      <h2>
+        <a href="#more-examples">
+          More Examples
+        </a>
+      </h2>
+      
+        <div class="mb2">
+          
+<div plangular="http://soundcloud.com/mrsjxn/morning-bounce"
+  class="flex flex-center">
+  <button ng-click="playPause()" class="flex-none h4 mr2 button button-transparent button-grow rounded">
+    <svg ng-if="player.playing !== track.src" class="icon geomicon" data-icon="play" viewBox="0 0 32 32" width="32" height="32" style="fill:currentcolor"><path d="M4 4 L28 16 L4 28 z "></path></svg>
+    <svg ng-if="player.playing === track.src" class="icon geomicon" data-icon="pause" viewBox="0 0 32 32" width="32" height="32" style="fill:currentcolor"><path d="M4 4 H12 V28 H4 z M20 4 H28 V28 H20 z "></path></svg>
+  </button>
+  <div class="bold caps">
+    {{track.user.username}} - {{track.title}}
+  </div>
+</div>
+
+        </div>
+      
+        <div class="mb2">
+          
+<div plangular="http://soundcloud.com/mrsjxn/touch-this"
+  class="flex flex-center">
+  <button ng-click="playPause()" class="flex-none h4 mr2 button button-transparent button-grow rounded">
+    <svg ng-if="player.playing !== track.src" class="icon geomicon" data-icon="play" viewBox="0 0 32 32" width="32" height="32" style="fill:currentcolor"><path d="M4 4 L28 16 L4 28 z "></path></svg>
+    <svg ng-if="player.playing === track.src" class="icon geomicon" data-icon="pause" viewBox="0 0 32 32" width="32" height="32" style="fill:currentcolor"><path d="M4 4 H12 V28 H4 z M20 4 H28 V28 H20 z "></path></svg>
+  </button>
+  <div class="flex-auto">
+    <progress
+      class="progress red"
+      ng-click="seek($event)"
+      ng-value="currentTime / duration || 0">
+      {{ currentTime / duration }}
+    </progress>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="mb2">
+          
+<div plangular="http://soundcloud.com/jxnblk/really-wanna"
+  class="flex flex-center">
+  <button ng-click="playPause()" class="flex-none h4 mr2 button button-transparent button-grow rounded">
+    <svg ng-if="player.playing !== track.src" class="icon geomicon" data-icon="play" viewBox="0 0 32 32" width="32" height="32" style="fill:currentcolor"><path d="M4 4 L28 16 L4 28 z "></path></svg>
+    <svg ng-if="player.playing === track.src" class="icon geomicon" data-icon="pause" viewBox="0 0 32 32" width="32" height="32" style="fill:currentcolor"><path d="M4 4 H12 V28 H4 z M20 4 H28 V28 H20 z "></path></svg>
+  </button>
+  <div class="h5 bold caps mr2">
+    {{track.user.username}} - {{track.title}}
+  </div>
+  <div class="flex-auto">
+    <progress
+      class="progress red"
+      ng-click="seek($event)"
+      ng-value="currentTime / duration || 0">
+      {{ currentTime / duration }}
+    </progress>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="mb2">
+          
+<div plangular="http://soundcloud.com/mrsjxn/bbb" class="flex flex-center">
+  <div class="mr2">
+    <img ng-src="{{track.artwork_url}}"/>
+  </div>
+  <div class="flex-auto">
+    <h3 class="h4 m0">{{track.user.username}}</h3>
+    <h2 class="h4 caps m0">{{track.title}}</h2>
+    <div class="flex flex-center">
+      <button ng-click="playPause()" class="flex-none h4 mr2 button button-transparent button-grow rounded">
+        <svg ng-if="player.playing !== track.src" class="icon geomicon" data-icon="play" viewBox="0 0 32 32" width="32" height="32" style="fill:currentcolor"><path d="M4 4 L28 16 L4 28 z "></path></svg>
+        <svg ng-if="player.playing === track.src" class="icon geomicon" data-icon="pause" viewBox="0 0 32 32" width="32" height="32" style="fill:currentcolor"><path d="M4 4 H12 V28 H4 z M20 4 H28 V28 H20 z "></path></svg>
+      </button>
+      <div class="flex-auto">
+        <progress
+          class="progress"
+          ng-click="seek($event)"
+          ng-value="currentTime / duration || 0">
+          {{ currentTime / duration }}
+        </progress>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+        </div>
+      
+        <div class="mb2">
+          
+<div plangular="http://soundcloud.com/jxnblk/american-party"
+  class="py1">
+  <div class="relative bg-silver" style="height:6rem;">
+    <div class="absolute top-0 bottom-0 left-0 bg-aqua"
+      style="width:{{ 100 * (currentTime / duration) || 0 }}%"></div>
+    <img ng-src="{{track.waveform_url}}"
+      style="width:100%;height:100%;-webkit-filter:contrast(200%);filter:contrast(200%);"
+      class="absolute top-0 right-0 bottom-0 left-0" />
+    <div class="absolute top-0 right-0 bottom-0 left-0" ng-click="seek($event)"></div>
+    <div class="absolute m1 top-0 bottom-0 mt3 mb3 flex flex-center">
+      <button ng-click="playPause()" class="flex-none h4 mr1 button button-transparent button-grow rounded">
+        <svg ng-if="player.playing !== track.src" class="icon geomicon" data-icon="play" viewBox="0 0 32 32" width="32" height="32" style="fill:currentcolor"><path d="M4 4 L28 16 L4 28 z "></path></svg>
+        <svg ng-if="player.playing === track.src" class="icon geomicon" data-icon="pause" viewBox="0 0 32 32" width="32" height="32" style="fill:currentcolor"><path d="M4 4 H12 V28 H4 z M20 4 H28 V28 H20 z "></path></svg>
+      </button>
+      <div>
+        <h3 class="h6 caps m0">{{track.user.username}}</h3>
+        <h2 class="h4 caps m0">{{track.title}}</h2>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+        </div>
+      
+        <div class="mb2">
+          
+<div plangular="http://soundcloud.com/mrsjxn/valis"
+  style="background-image:url(https://d262ilb51hltx0.cloudfront.net/max/2000/1*DZwdGMaeu-rvTroJYui6Uw.jpeg)"
+  class="py2 white bg-cover bg-center">
+  <div class="center py4">
+    <h4 class="caps mb0">{{track.user.username}}</h4>
+    <h3 class="h0 h0-responsive caps m0">{{track.title}}</h3>
+  </div>
+  <div class="flex flex-center px2">
+    <button ng-click="playPause()" class="flex-none h2 mr2 button button-transparent button-grow rounded">
+      <svg ng-if="player.playing !== track.src" class="icon geomicon" data-icon="play" viewBox="0 0 32 32" width="32" height="32" style="fill:currentcolor"><path d="M4 4 L28 16 L4 28 z "></path></svg>
+      <svg ng-if="player.playing === track.src" class="icon geomicon" data-icon="pause" viewBox="0 0 32 32" width="32" height="32" style="fill:currentcolor"><path d="M4 4 H12 V28 H4 z M20 4 H28 V28 H20 z "></path></svg>
+    </button>
+    <div class="flex-auto">
+      <progress
+        class="progress"
+        ng-click="seek($event)"
+        ng-value="currentTime / duration || 0">
+        {{ currentTime / duration }}
+      </progress>
+    </div>
+  </div>
+</div>
+
+        </div>
+      
+    </section>
+
     <section id="cta" class="center py4">
       <a href="https://github.com/jxnblk/plangular" class="h3 button button-big button-outline button-grow red">Github</a>
     </section>
@@ -361,6 +513,7 @@ If it&#39;s set to false, there is no way to play that sound with the API.</p>
       ng-if="player.playing"
       ng-click="pause()"
       class="button button-small black bg-red vhs-bottom">
+      <svg class="icon geomicon" data-icon="pause" viewBox="0 0 32 32" width="32" height="32" style="fill:currentcolor;top:-.0625em"><path d="M4 4 H12 V28 H4 z M20 4 H28 V28 H20 z "></path></svg>
       Pause
     </button>
   </div>
