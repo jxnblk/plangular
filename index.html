@@ -20,6 +20,7 @@
   
 
   <style>
+    a { word-wrap: break-word }
     code {
       font-size: 87.5%;
       color: #ff4136;
@@ -44,24 +45,29 @@
     .button-logo:after {
       border-radius: inherit;
     }
+    .button-outline { border-width: 2px }
+    .button-transparent:focus { box-shadow: inset 0 0 0 2px }
+    .button-grow { transition: transform, box-shadow, .05s ease }
+    .button-grow:hover { transform: scale(1.0625) }
+    .button-grow:active { transform: scale(.9375) }
     .icon { top: .03125em }
   </style>
 
 </head>
 <body class="" ng-app="app">
 
-  <div class="red bg-dark">
-    <header class="center px2 py4 red bg-darken-2" plangular="http://soundcloud.com/jxnblk/plangular">
-      <button class="h0 h0-responsive center mb2 button button-outline button-logo vhs-flicker vhs-delay-3"
+  <div class="orange xred bg-dark">
+    <header class="center px2 py4 bg-darken-2" plangular="http://soundcloud.com/jxnblk/plangular">
+      <button class="h0 h0-responsive center mb2 button button-outline button-logo button-grow vhs-flicker vhs-delay-3"
         ng-click="playPause()">
         <svg class="icon geomicon" data-icon="play" viewBox="0 0 32 32" style="top:0.03125em;left:0.125em;fill:currentcolor"><path d="M4 4 L28 16 L4 28 z "></path></svg>
       </button>
-      <h1 class="h0 h0-responsive caps m0 vhs-flicker">Plangular</h1>
-      <p class="bold vhs-zoom vhs-delay-2">
+      <h1 class="h0 caps m0 vhs-flicker vhs-duration-3">Plangular</h1>
+      <p class="bold vhs-fade vhs-duration-4 vhs-delay-2">
         Angular directive for custom SoundCloud players
         <span class="h6 caps">&middot; v3.0.0-beta-1</span>
       </p>
-      <a href="https://github.com/jxnblk/plangular" class="button button-outline vhs-bottom vhs-delay-2">
+      <a href="https://github.com/jxnblk/plangular" class="button button-outline button-grow vhs-bottom vhs-delay-2">
         Github
       </a>
     </header>
@@ -69,7 +75,7 @@
       
         
 <div plangular="http://soundcloud.com/mrsjxn/no-love" class="p2 mb3 flex flex-center bg-darken-2 rounded">
-  <button ng-click="playPause()" class="flex-none h2 mr2 button button-transparent rounded">
+  <button ng-click="playPause()" class="flex-none h2 mr2 button button-transparent button-grow rounded">
     <svg ng-if="player.playing !== track.src" class="icon geomicon" data-icon="play" viewBox="0 0 32 32" width="32" height="32" style="fill:currentcolor"><path d="M4 4 L28 16 L4 28 z "></path></svg>
     <svg ng-if="player.playing === track.src" class="icon geomicon" data-icon="pause" viewBox="0 0 32 32" width="32" height="32" style="fill:currentcolor"><path d="M4 4 H12 V28 H4 z M20 4 H28 V28 H20 z "></path></svg>
   </button>
@@ -81,7 +87,7 @@
       
         
 <div plangular="http://soundcloud.com/jxnblk/let-go" class="p2 mb3 flex flex-center bg-darken-2 rounded">
-  <button ng-click="playPause()" class="flex-none h2 mr2 button button-transparent rounded">
+  <button ng-click="playPause()" class="flex-none h2 mr2 button button-transparent button-grow rounded">
     <svg ng-if="player.playing !== track.src" class="icon geomicon" data-icon="play" viewBox="0 0 32 32" width="32" height="32" style="fill:currentcolor"><path d="M4 4 L28 16 L4 28 z "></path></svg>
     <svg ng-if="player.playing === track.src" class="icon geomicon" data-icon="pause" viewBox="0 0 32 32" width="32" height="32" style="fill:currentcolor"><path d="M4 4 H12 V28 H4 z M20 4 H28 V28 H20 z "></path></svg>
   </button>
@@ -106,16 +112,16 @@
       <h4 class="m0 flex-auto">{{playlist.user.username}}</h4>
       <samp class="h6">{{ currentTime | hhmmss }} / {{ duration | hhmmss }}</samp>
     </div>
-    <h3 class="h1 caps m0">{{playlist.title}}</h3>
+    <h3 class="h1 caps mt0">{{playlist.title}}</h3>
     <div class="flex flex-center">
-      <button class="flex-none h3 button button-narrow button-transparent" ng-click="previous()">
+      <button class="flex-none h3 button button-narrow button-transparent button-grow rounded" ng-click="previous()">
         <svg class="icon geomicon" data-icon="previous" viewBox="0 0 32 32" style="fill:currentcolor"><path d="M4 4 H8 V14 L28 4 V28 L8 18 V28 H4 z "></path></svg>
       </button>
-      <button class="flex-none h1 button button-transparent" ng-click="playPause(index)">
+      <button class="flex-none h1 button button-transparent button-grow rounded" ng-click="playPause(index)">
         <svg ng-if="player.playing !== track.src" class="icon geomicon" data-icon="play" viewBox="0 0 32 32" width="32" height="32" style="fill:currentcolor"><path d="M4 4 L28 16 L4 28 z "></path></svg>
         <svg ng-if="player.playing === track.src" class="icon geomicon" data-icon="pause" viewBox="0 0 32 32" width="32" height="32" style="fill:currentcolor"><path d="M4 4 H12 V28 H4 z M20 4 H28 V28 H20 z "></path></svg>
       </button>
-      <button class="flex-none h3 button mr2 button-narrow button-transparent" ng-click="next()">
+      <button class="flex-none h3 button mr2 button-narrow button-transparent button-grow rounded" ng-click="next()">
         <svg class="icon geomicon" data-icon="next" viewBox="0 0 32 32" style="fill:currentcolor"><path d="M4 4 L24 14 V4 H28 V28 H24 V18 L4 28 z "></path></svg>
       </button>
       <progress
@@ -148,19 +154,19 @@
         
 <div plangular="http://soundcloud.com/jxnblk/tracks" class="mb3 bg-darken-2 rounded">
   <div class="p2">
-    <div class="flex flex-center">
+    <div class="flex flex-center mb1">
       <h4 class="caps m0 flex-auto">Jxnblk</h4>
       <samp class="h6">{{ currentTime | hhmmss }} / {{ duration | hhmmss }}</samp>
     </div>
     <div class="flex flex-center">
-      <button class="flex-none h3 button button-narrow button-transparent" ng-click="previous()">
+      <button class="flex-none h3 button button-narrow button-transparent button-grow rounded" ng-click="previous()">
         <svg class="icon geomicon" data-icon="previous" viewBox="0 0 32 32" style="fill:currentcolor"><path d="M4 4 H8 V14 L28 4 V28 L8 18 V28 H4 z "></path></svg>
       </button>
-      <button class="flex-none h1 button button-transparent" ng-click="playPause(index)">
+      <button class="flex-none h1 button button-transparent button-grow rounded" ng-click="playPause(index)">
         <svg ng-if="player.playing !== track.src" class="icon geomicon" data-icon="play" viewBox="0 0 32 32" width="32" height="32" style="fill:currentcolor"><path d="M4 4 L28 16 L4 28 z "></path></svg>
         <svg ng-if="player.playing === track.src" class="icon geomicon" data-icon="pause" viewBox="0 0 32 32" width="32" height="32" style="fill:currentcolor"><path d="M4 4 H12 V28 H4 z M20 4 H28 V28 H20 z "></path></svg>
       </button>
-      <button class="flex-none h3 button mr2 button-narrow button-transparent" ng-click="next()">
+      <button class="flex-none h3 button mr2 button-narrow button-transparent button-grow rounded" ng-click="next()">
         <svg class="icon geomicon" data-icon="next" viewBox="0 0 32 32" style="fill:currentcolor"><path d="M4 4 L24 14 V4 H28 V28 H24 V18 L4 28 z "></path></svg>
       </button>
       <progress

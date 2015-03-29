@@ -16,6 +16,7 @@
   <% }) %>
 
   <style>
+    a { word-wrap: break-word }
     code {
       font-size: 87.5%;
       color: #ff4136;
@@ -40,6 +41,11 @@
     .button-logo:after {
       border-radius: inherit;
     }
+    .button-outline { border-width: 2px }
+    .button-transparent:focus { box-shadow: inset 0 0 0 2px }
+    .button-grow { transition: transform, box-shadow, .05s ease }
+    .button-grow:hover { transform: scale(1.0625) }
+    .button-grow:active { transform: scale(.9375) }
     .icon { top: .03125em }
   </style>
 
@@ -47,17 +53,17 @@
 <body class="" ng-app="app">
 
   <div class="red bg-dark">
-    <header class="center px2 py4 red bg-darken-2" plangular="http://soundcloud.com/jxnblk/plangular">
-      <button class="h0 h0-responsive center mb2 button button-outline button-logo vhs-flicker vhs-delay-3"
+    <header class="center px2 py4 bg-darken-2" plangular="http://soundcloud.com/jxnblk/plangular">
+      <button class="h0 h0-responsive center mb2 button button-outline button-logo button-grow vhs-flicker vhs-delay-3"
         ng-click="playPause()">
         <svg class="icon geomicon" data-icon="play" viewBox="0 0 32 32" style="top:0.03125em;left:0.125em;fill:currentcolor"><path d="M4 4 L28 16 L4 28 z "></path></svg>
       </button>
-      <h1 class="h0 h0-responsive caps m0 vhs-flicker"><%= title %></h1>
-      <p class="bold vhs-zoom vhs-delay-2">
+      <h1 class="h0 caps m0 vhs-flicker vhs-duration-3"><%= title %></h1>
+      <p class="bold vhs-fade vhs-duration-4 vhs-delay-2">
         <%= description %>
         <span class="h6 caps">&middot; v<%= version %></span>
       </p>
-      <a href="<%= homepage %>" class="button button-outline vhs-bottom vhs-delay-2">
+      <a href="<%= homepage %>" class="button button-outline button-grow vhs-bottom vhs-delay-2">
         Github
       </a>
     </header>

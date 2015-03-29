@@ -1,19 +1,19 @@
 
 <div plangular="http://soundcloud.com/jxnblk/tracks" class="mb3 bg-darken-2 rounded">
   <div class="p2">
-    <div class="flex flex-center">
+    <div class="flex flex-center mb1">
       <h4 class="caps m0 flex-auto">Jxnblk</h4>
       <samp class="h6">{{ currentTime | hhmmss }} / {{ duration | hhmmss }}</samp>
     </div>
     <div class="flex flex-center">
-      <button class="flex-none h3 button button-narrow button-transparent" ng-click="previous()">
+      <button class="flex-none h3 button button-narrow button-transparent button-grow rounded" ng-click="previous()">
         <svg class="icon geomicon" data-icon="previous" viewBox="0 0 32 32" style="fill:currentcolor"><path d="M4 4 H8 V14 L28 4 V28 L8 18 V28 H4 z "></path></svg>
       </button>
-      <button class="flex-none h1 button button-transparent" ng-click="playPause(index)">
+      <button class="flex-none h1 button button-transparent button-grow rounded" ng-click="playPause(index)">
         <svg ng-if="player.playing !== track.src" class="icon geomicon" data-icon="play" viewBox="0 0 32 32" width="32" height="32" style="fill:currentcolor"><path d="M4 4 L28 16 L4 28 z "></path></svg>
         <svg ng-if="player.playing === track.src" class="icon geomicon" data-icon="pause" viewBox="0 0 32 32" width="32" height="32" style="fill:currentcolor"><path d="M4 4 H12 V28 H4 z M20 4 H28 V28 H20 z "></path></svg>
       </button>
-      <button class="flex-none h3 button mr2 button-narrow button-transparent" ng-click="next()">
+      <button class="flex-none h3 button mr2 button-narrow button-transparent button-grow rounded" ng-click="next()">
         <svg class="icon geomicon" data-icon="next" viewBox="0 0 32 32" style="fill:currentcolor"><path d="M4 4 L24 14 V4 H28 V28 H24 V18 L4 28 z "></path></svg>
       </button>
       <progress
