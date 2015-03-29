@@ -32,7 +32,8 @@ renderer.heading = function (text, level) {
 
 
 // Format data
-data.title = _.capitalize(data.name);
+//data.title = _.capitalize(data.name);
+data.title = 'Plangular';
 data.stylesheets = [
   'http://d2v52k3cl9vedd.cloudfront.net/bassdock/1.2.1/bassdock.min.css',
   'http://d2v52k3cl9vedd.cloudfront.net/vhs/0.1.0/vhs.min.css'

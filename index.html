@@ -33,7 +33,7 @@
       width: 2em;
       height: 2em;
       border-radius: 10000px;
-      border-width: 2px;
+      border-width: 3px;
     }
     .button-logo:hover {
       color: #102630;
@@ -58,16 +58,16 @@
 
   <div class="red bg-dark">
     <header class="center px2 py4 bg-darken-2" plangular="http://soundcloud.com/jxnblk/plangular">
-      <button class="h0 h0-responsive center mb2 button button-outline button-logo button-grow vhs-flicker vhs-delay-3"
+      <button class="h0 h0-responsive center mt4 mb3 button button-outline button-logo button-grow vhs-flicker vhs-delay-3"
         ng-click="playPause()">
         <svg class="icon geomicon" data-icon="play" viewBox="0 0 32 32" style="top:0.03125em;left:0.125em;fill:currentcolor"><path d="M4 4 L28 16 L4 28 z "></path></svg>
       </button>
       <h1 class="h0 caps m0 vhs-flicker vhs-duration-3">Plangular</h1>
-      <p class="bold vhs-fade vhs-duration-4 vhs-delay-2">
+      <p class="h3 bold mb3 vhs-fade vhs-duration-4 vhs-delay-2">
         Angular directive for custom SoundCloud players
         <span class="h6 caps">&middot; v3.0.0-beta-1</span>
       </p>
-      <a href="https://github.com/jxnblk/plangular" class="button button-outline button-grow vhs-bottom vhs-delay-2">
+      <a href="https://github.com/jxnblk/plangular" class="mb4 h3 button button-big button-outline button-grow vhs-bottom vhs-delay-2">
         Github
       </a>
     </header>
@@ -281,13 +281,17 @@ If it&#39;s set to false, there is no way to play that sound with the API.</p>
 
     </div>
 
+    <section id="cta" class="center py4">
+      <a href="https://github.com/jxnblk/plangular" class="h3 button button-big button-outline button-grow red">Github</a>
+    </section>
+
     <footer class="py2 border-top">
-      <div class="flex flex-baseline flex-wrap mxn1">
+      <div class="flex flex-baseline flex-wrap mb3 mxn1">
         <a href="//jxnblk.com/plangular" class="button ml1 mr1 button-small button-link">Plangular</a>
         <div class="h6">v3.0.0-beta-1</div>
 
         <a href="https://github.com/jxnblk/plangular" class="button ml1 mr1 button-small button-link">Github</a>
-        <a href="//npmjs.com/package/plangular" class="button ml1 mr1 button-small button-link">NPM</a>
+        <a href="//npmjs.com/package/plangular-3" class="button ml1 mr1 button-small button-link">NPM</a>
         <div class="flex-auto"></div>
         <p class="h5 bold m0 px1">
           Made by
@@ -296,6 +300,15 @@ If it&#39;s set to false, there is no way to play that sound with the API.</p>
       </div>
     </footer>
 
+  </div>
+
+  <div plangular class="fixed right-0 bottom-0 p2">
+    <button
+      ng-if="player.playing"
+      ng-click="pause()"
+      class="button button-small black bg-red vhs-bottom">
+      Pause
+    </button>
   </div>
 
 <script>

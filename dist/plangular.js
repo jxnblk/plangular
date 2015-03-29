@@ -2479,22 +2479,24 @@ plangular.directive('plangular', ['$timeout', 'plangularConfig', function($timeo
         return track;
       }
 
-      resolve({ url: src, client_id: client_id }, function(err, res) {
-        if (err) { console.error(err); }
-        scope.$apply(function() {
-          scope.track = createSrc(res);
-          if (Array.isArray(res)) {
-            scope.tracks = res.map(function(track) {
-              return createSrc(track);
-            });
-          } else if (res.tracks) {
-            scope.playlist = res;
-            scope.tracks = res.tracks.map(function(track) {
-              return createSrc(track);
-            });
-          }
+      if (src) {
+        resolve({ url: src, client_id: client_id }, function(err, res) {
+          if (err) { console.error(err); }
+          scope.$apply(function() {
+            scope.track = createSrc(res);
+            if (Array.isArray(res)) {
+              scope.tracks = res.map(function(track) {
+                return createSrc(track);
+              });
+            } else if (res.tracks) {
+              scope.playlist = res;
+              scope.tracks = res.tracks.map(function(track) {
+                return createSrc(track);
+              });
+            }
+          });
         });
-      });
+      }
 
       scope.play = function(i) {
         if (typeof i !== 'undefined' && scope.tracks) {
@@ -2550,6 +2552,8 @@ plangular.directive('plangular', ['$timeout', 'plangularConfig', function($timeo
       player.audio.addEventListener('ended', function() {
         if (scope.track.src == player.audio.src) {
           scope.next();
+        } else {
+          scope.pause();
         }
       });
 
