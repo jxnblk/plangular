@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title><%= title %></title>
+  <meta name="author" content="<%= author %>">
+  <meta name="description" content="<%= description %>">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <% stylesheets.forEach(function(stylesheet) { %>
+    <link rel="stylesheet" href="<%= stylesheet %>">
+  <% }) %>
+
+  <% javascripts.forEach(function(script) { %>
+    <script src="<%= script %>"></script>
+  <% }) %>
+
+  <style>
+    a { word-wrap: break-word }
+    code {
+      font-size: 87.5%;
+      color: #222;
+      background-color: rgba(127, 219, 255, .25);
+    }
+    .container-narrow { max-width: 48em }
+    .bg-dark { background-color:#102630; }
+    .button-logo {
+      width: 2em;
+      height: 2em;
+      border-radius: 10000px;
+      border-width: 3px;
+    }
+    .button-logo:hover {
+      color: #102630;
+      background-color: #ff4136;
+      opacity: 0.9;
+      box-shadow: 0 0 0 2px rgba(255,65,54,.5);
+    }
+    .button-logo:before,
+    .button-logo:after {
+      border-radius: inherit;
+    }
+    .button-outline { border-width: 2px }
+    .button-transparent:focus { box-shadow: inset 0 0 0 2px }
+    .button-grow { transition: transform, box-shadow, .05s ease }
+    .button-grow:hover { transform: scale(1.0625) }
+    .button-grow:active { transform: scale(.9375) }
+    .icon { top: .03125em }
+  </style>
+
+</head>
+<body class="" ng-app="app">
+
+  <div class="red bg-dark">
+    <header class="center px2 py4 bg-darken-2" plangular="http://soundcloud.com/jxnblk/plangular">
+      <button class="h0 h0-responsive center mt4 mb3 button button-outline button-logo button-grow vhs-flicker vhs-delay-3"
+        ng-click="playPause()">
+        <svg class="icon geomicon" data-icon="play" viewBox="0 0 32 32" style="top:0.03125em;left:0.125em;fill:currentcolor"><path d="M4 4 L28 16 L4 28 z "></path></svg>
+      </button>
+      <h1 class="h0 caps m0 vhs-flicker vhs-duration-3"><%= title %></h1>
+      <p class="h3 bold mb3 vhs-fade vhs-duration-4 vhs-delay-2">
+        <%= description %>
+        <span class="h6 caps">&middot; v<%= version %></span>
+      </p>
+      <a href="<%= homepage %>" class="mb4 h3 button button-big button-outline button-grow vhs-bottom vhs-delay-2">
+        Github
+      </a>
+    </header>
+    <section id="examples" class="container-narrow mx-auto px2 py3 vhs-bottom vhs-delay-3">
+      <h2>
+        <a href="#examples" class="red">Examples</a>
+      </h2>
+      <% examples.forEach(function(example) { %>
+        <%= example %>
+      <% }) %>
+    </section>
+  </div>
+
+  <div class="container-narrow mx-auto px2">
+
+    <div class="py3" ng-non-bindable>
+      <%= content %>
+    </div>
+
+    <section id="more-examples" class="py4">
+      <h2>
+        <a href="#more-examples">
+          More Examples
+        </a>
+      </h2>
+      <% more_examples.forEach(function(example) { %>
+        <div class="mb2">
+          <%= example %>
+        </div>
+      <% }) %>
+    </section>
+
+    <section id="cta" class="center py4">
+      <a href="<%= homepage %>" class="h3 button button-big button-outline button-grow red">Github</a>
+    </section>
+
+    <footer class="py2 border-top">
+      <div class="flex flex-baseline flex-wrap mb3 mxn1">
+        <a href="//jxnblk.com/plangular" class="button ml1 mr1 button-small button-link">Plangular</a>
+        <div class="h6">v<%= version %></div>
+
+        <a href="<%= homepage %>" class="button ml1 mr1 button-small button-link">Github</a>
+        <a href="//npmjs.com/package/<%= name %>" class="button ml1 mr1 button-small button-link">NPM</a>
+        <div class="flex-auto"></div>
+        <p class="h5 bold m0 px1">
+          Made by
+          <a href="//jxnblk.com">Jxnblk</a>.
+        </p>
+      </div>
+    </footer>
+
+  </div>
+
+  <div plangular class="fixed right-0 bottom-0 p2">
+    <button
+      ng-if="player.playing"
+      ng-click="pause()"
+      class="button button-small black bg-red vhs-bottom">
+      <svg class="icon geomicon" data-icon="pause" viewBox="0 0 32 32" width="32" height="32" style="fill:currentcolor;top:-.0625em"><path d="M4 4 H12 V28 H4 z M20 4 H28 V28 H20 z "></path></svg>
+      Pause
+    </button>
+  </div>
+
+<script>
+  var app = angular.module('app', ['plangular']);
+</script>
+
+</body>
+</html>

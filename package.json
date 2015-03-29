@@ -1,32 +1,36 @@
 {
-  "name": "plangular",
-  "version": "2.2.0",
-  "description": "",
-  "main": "gulpfile.js",
-  "dependencies": {},
-  "devDependencies": {
-    "gulp": "^3.8.7",
-    "gulp-browserify": "^0.5.0",
-    "gulp-connect": "~2.0.6",
-    "gulp-uglifyjs": "~0.4.2",
-    "gulp-watch": "~0.6.9",
-    "gulp-sass": "^0.7.3",
-    "jsonp": "0.0.4",
-    "gulp-rename": "^1.2.0",
-    "xhr": "^1.15.0",
-    "gulp-autoprefixer": "0.0.10",
-    "gulp-markdown": "^1.0.0",
-    "marked": "^0.3.2",
-    "pygmentize": "^0.5.3",
-    "pygmentize-bundled": "^2.1.1",
-    "through2": "^0.6.1",
-    "gulp-header": "^1.0.5",
-    "gulp-footer": "^1.0.5",
-    "partialify": "^3.1.1",
-    "gulp-cheerio": "^0.3.2"
-  },
+  "name": "plangular-3",
+  "version": "3.0.0-beta-1",
+  "description": "Angular directive for custom SoundCloud players",
+  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha test",
+    "browserify": "browserify src/plangular.js --standalone=plangular -o dist/plangular.js",
+    "uglify": "npm run browserify && uglifyjs dist/plangular.js -o dist/plangular.min.js",
+    "s3": "s3-cli put dist/plangular.min.js s3://jxnblk/plangular/3.0.0/plangular.min.js -P",
+    "release": "npm run uglify && npm run s3",
+    "docs": "node docs/build",
+    "watch:docs": "watch 'npm run docs' ./docs",
+    "watch:js": "watch 'npm run uglify' ./src",
+    "serve": "http-server -p 8000",
+    "start": "npm run watch:js & npm run watch:docs & npm run serve"
+  },
+  "dependencies": {
+    "audio-player": "^1.0.0",
+    "hhmmss": "^1.0.0",
+    "soundcloud-resolve-jsonp": "^1.2.0"
+  },
+  "devDependencies": {
+    "blkmark": "^1.0.1",
+    "browserify": "^9.0.3",
+    "highlight.js": "^8.4.0",
+    "http-server": "^0.7.5",
+    "lodash": "^3.6.0",
+    "markdown-toc": "^0.11.0",
+    "marked": "^0.3.3",
+    "s3-cli": "^0.11.1",
+    "uglify-js": "^2.4.17",
+    "watch": "^0.14.0"
   },
   "repository": {
     "type": "git",

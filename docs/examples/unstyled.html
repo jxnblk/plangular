@@ -1,0 +1,14 @@
+
+<div plangular="http://soundcloud.com/jxnblk/let-go">
+  <button ng-click="playPause()">
+    Play/Pause
+  </button>
+  <h3>{{track.user.username}}</h3>
+  <h2>{{track.title}}</h2>
+  <progress
+    ng-click="seek($event)"
+    ng-value="currentTime / duration || 0">
+    {{ currentTime / duration || 0 }}
+  </progress>
+</div>
+
