@@ -133,8 +133,7 @@ plangular.filter('hhmmss', function() {
 });
 
 plangular.provider('plangularConfig', function() {
-  // Remove this from source
-  this.clientId = '0d33361983f16d2527b01fbf6408b7d7';
+  this.clientId = require('./config.json').client_id;
   var _this = this;
   this.$get = function() {
     return {

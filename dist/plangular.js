@@ -404,6 +404,11 @@ module.exports = function(params) {
 }).call(this);
 
 },{}],8:[function(require,module,exports){
+module.exports={
+  "client_id": "0d33361983f16d2527b01fbf6408b7d7"
+}
+
+},{}],9:[function(require,module,exports){
 
 // Plangular
 // AngularJS Version
@@ -539,8 +544,7 @@ plangular.filter('hhmmss', function() {
 });
 
 plangular.provider('plangularConfig', function() {
-  // Remove this from source
-  this.clientId = '0d33361983f16d2527b01fbf6408b7d7';
+  this.clientId = require('./config.json').client_id;
   var _this = this;
   this.$get = function() {
     return {
@@ -553,5 +557,5 @@ plangular.provider('plangularConfig', function() {
 module.exports = 'plangular';
 
 
-},{"audio-player":1,"hhmmss":4,"soundcloud-resolve-jsonp":6}]},{},[8])(8)
+},{"./config.json":8,"audio-player":1,"hhmmss":4,"soundcloud-resolve-jsonp":6}]},{},[9])(9)
 });
