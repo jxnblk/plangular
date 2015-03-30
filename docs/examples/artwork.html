@@ -1,13 +1,15 @@
 
 <div plangular="http://soundcloud.com/mrsjxn/bbb" class="flex flex-center">
   <div class="mr2">
-    <img ng-src="{{track.artwork_url}}"/>
+    <img ng-src="{{track.artwork_url}}" alt="{{track.title}} artwork"/>
   </div>
   <div class="flex-auto">
     <h3 class="h4 m0">{{track.user.username}}</h3>
     <h2 class="h4 caps m0">{{track.title}}</h2>
     <div class="flex flex-center">
-      <button ng-click="playPause()" class="flex-none h4 mr2 button button-transparent button-grow rounded">
+      <button ng-click="playPause()"
+        title="Play/Pause"
+        class="flex-none h4 mr2 button button-transparent button-grow rounded">
         <svg ng-if="player.playing !== track.src" class="icon geomicon" data-icon="play" viewBox="0 0 32 32" width="32" height="32" style="fill:currentcolor"><path d="M4 4 L28 16 L4 28 z "></path></svg>
         <svg ng-if="player.playing === track.src" class="icon geomicon" data-icon="pause" viewBox="0 0 32 32" width="32" height="32" style="fill:currentcolor"><path d="M4 4 H12 V28 H4 z M20 4 H28 V28 H20 z "></path></svg>
       </button>

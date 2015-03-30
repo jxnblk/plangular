@@ -58,7 +58,7 @@ plangular.directive('plangular', ['$timeout', 'plangularConfig', function($timeo
       }
 
       scope.play = function(i) {
-        if (typeof i !== 'undefined' && scope.tracks) {
+        if (typeof i !== 'undefined' && scope.tracks.length) {
           scope.index = i;
           scope.track = scope.tracks[i];
         }
