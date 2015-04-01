@@ -1,0 +1,32 @@
+
+<div plangular="http://soundcloud.com/mrsjxn/srcd-party" class="relative overflow-hidden white bg-black">
+  <div class="absolute left-0 right-0" style="top:50%;margin-top:-50%;">
+    <img ng-src="{{track.artwork_url}}" style="min-width:100%;-webkit-filter:blur(32px);filter:blur(32px)"/>
+  </div>
+  <div class="relative flex flex-center bg-darken-1">
+    <div class="clearfix">
+      <img ng-src="{{track.artwork_url}}" class="left" alt="{{track.title}} artwork"/>
+    </div>
+    <div class="flex-auto px2">
+      <h3 class="h4 regular m0"><span class="inline-block px1 bg-black">{{track.user.username}}</span></h3>
+      <h2 class="h4 caps m0"><span class="inline-block px1 bg-black">{{track.title}}</span></h2>
+      <div class="flex flex-center py1">
+        <button ng-click="playPause()"
+          title="Play/Pause"
+          class="flex-none h4 mr2 button button-small bg-black button-grow rounded">
+          <svg ng-if="player.playing !== track.src" class="icon geomicon" data-icon="play" viewBox="0 0 32 32" width="32" height="32" style="fill:currentcolor"><path d="M4 4 L28 16 L4 28 z "></path></svg>
+          <svg ng-if="player.playing === track.src" class="icon geomicon" data-icon="pause" viewBox="0 0 32 32" width="32" height="32" style="fill:currentcolor"><path d="M4 4 H12 V28 H4 z M20 4 H28 V28 H20 z "></path></svg>
+        </button>
+        <div class="flex-auto">
+          <progress
+            class="progress"
+            ng-click="seek($event)"
+            ng-value="currentTime / duration || 0">
+            {{ currentTime / duration }}
+          </progress>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

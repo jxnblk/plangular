@@ -61,6 +61,7 @@ data.more_examples = [
   fs.readFileSync(path.join(__dirname, './examples/artwork.html'), 'utf8'),
   fs.readFileSync(path.join(__dirname, './examples/waveform.html'), 'utf8'),
   fs.readFileSync(path.join(__dirname, './examples/custom-image.html'), 'utf8'),
+  fs.readFileSync(path.join(__dirname, './examples/artwork-blur.html'), 'utf8'),
 ];
 
 
