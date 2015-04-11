@@ -29,12 +29,26 @@ module.exports = function() {
     }
   }
 
-  this.seek = function(e) {
-    if (!audio.readyState) return false;
-    var percent = e.offsetX / e.target.offsetWidth || (e.layerX - e.target.offsetLeft) / e.target.offsetWidth;
-    var time = percent * audio.duration || 0;
-    audio.currentTime = time;
-  }
+    this.seek = function(e) {
+      if (!audio.readyState) return false;
+
+      var xpos;
+      //if FF
+      if (e.offsetX === undefined) {
+
+        //calc offset for FF
+        var target = e.target || e.srcElement,
+          rect = target.getBoundingClientRect(),
+          offsetX = e.clientX - rect.left;
+
+        xpos = offsetX / e.originalEvent.target.offsetWidth;
+        audio.currentTime = (xpos * audio.duration);
+
+      } else {
+        xpos = e.offsetX / e.target.offsetWidth;
+        audio.currentTime = (xpos * audio.duration);
+      }
+    };
 
   this.init = function() {
     // Potentially add audio event listeners
