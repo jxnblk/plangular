@@ -64,7 +64,7 @@
       <h1 class="h0 caps m0 vhs-flicker vhs-duration-3">Plangular</h1>
       <p class="h3 bold mb3 vhs-fade vhs-duration-4 vhs-delay-2">
         Angular directive for custom SoundCloud players
-        <span class="h6 caps">&middot; v3.0.1</span>
+        <span class="h6 caps">&middot; v3.1.0</span>
       </p>
       <a href="https://github.com/jxnblk/plangular" class="mb4 h3 button button-big button-outline button-grow vhs-bottom vhs-delay-2">
         Github
@@ -295,9 +295,17 @@
 <pre>bower install plangular</pre><p>Or use the CDN:</p>
 <pre><span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"http://d2v52k3cl9vedd.cloudfront.net/plangular/3.0.1/plangular.min.js"</span>&gt;</span><span class="javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span></pre><h2 id="angular-app"><a href="#angular-app">Angular app</a></h2><p>Include a link to plangular after including Angular.</p>
 <pre>&lt;script src=<span class="hljs-string">"//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"</span>&gt;<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"bower_components/plangular/dist/plangular.min.js"</span>&gt;</span><span class="javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span></span></pre><h2 id="initialize-the-app"><a href="#initialize-the-app">Initialize the app</a></h2><pre><span class="hljs-tag">&lt;<span class="hljs-title">body</span> <span class="hljs-attribute">ng-app</span>=<span class="hljs-value">"plangular"</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span></pre><p>Or include plangular as a dependency in another app:</p>
-<pre><span class="hljs-keyword">var</span> app = angular.module(<span class="hljs-string">'app'</span>, [<span class="hljs-string">'plangular'</span>]);</pre><h2 id="create-a-plangular-directive-instance"><a href="#create-a-plangular-directive-instance">Create a plangular directive instance</a></h2><pre><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">plangular</span>=<span class="hljs-value">"http://soundcloud.com/jxnblk/plangular"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"bower_components/plangular/dist/plangular.min.js"</span>&gt;</span><span class="javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span></span></pre><h2 id="initialize-the-app"><a href="#initialize-the-app">Initialize the app</a></h2><p>Configure Plangular with your own <code>client_id</code>.
+For new SoundCloud apps, you can register at <a href="https://developers.soundcloud.com/">https://developers.soundcloud.com/</a></p>
+<pre><span class="hljs-tag">&lt;<span class="hljs-title">body</span> <span class="hljs-attribute">ng-app</span>=<span class="hljs-value">"app"</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-title">script</span>&gt;</span><span class="javascript">
+    <span class="hljs-keyword">var</span> app = angular.module(<span class="hljs-string">'app'</span>, [<span class="hljs-string">'plangular'</span>])
+      .config(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(plangularConfigProvider)</span></span>{
+        plangularConfigProvider.clientId = <span class="hljs-string">'[YOUR-CLIENT-ID]'</span>;
+      });
+  </span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span></pre><h2 id="create-a-plangular-directive-instance"><a href="#create-a-plangular-directive-instance">Create a plangular directive instance</a></h2><pre><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">plangular</span>=<span class="hljs-value">"http://soundcloud.com/jxnblk/plangular"</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></pre><h2 id="include-track-info"><a href="#include-track-info">Include track info</a></h2><pre><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">plangular</span>=<span class="hljs-value">"http://soundcloud.com/jxnblk/plangular"</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-title">h3</span>&gt;</span>{{track.user.username}} - {{track.title}}<span class="hljs-tag">&lt;/<span class="hljs-title">h3</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">ng-href</span>=<span class="hljs-value">"{{track.permalink_url}}"</span>&gt;</span>View on SoundCloud<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
@@ -329,10 +337,7 @@
 <pre><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">plangular</span>=<span class="hljs-value">"http://soundcloud.com/jxnblk/likes"</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></pre><h2 id="previous-next-controls"><a href="#previous-next-controls">Previous/next controls</a></h2><p>To skip to the next and previous track in a playlist or array of tracks, use the <code>previous()</code> and <code>next()</code> methods.</p>
 <pre><span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">ng-click</span>=<span class="hljs-value">"previous()"</span>&gt;</span>Previous<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">ng-click</span>=<span class="hljs-value">"next()"</span>&gt;</span>Next<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span></pre><h2 id="configuration"><a href="#configuration">Configuration</a></h2><p>Plangular works out of the box, but if you want to configure it to use your own Soundcloud client ID, you can modify <code>plangularConfigProvider</code> in a config block:</p>
-<pre>.config(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(plangularConfigProvider)</span></span>{
-  plangularConfigProvider.clientId = <span class="hljs-string">'[YOUR-CLIENT-ID]'</span>;
-})</pre><h2 id="example-templates"><a href="#example-templates">Example templates</a></h2><p>See more examples and starter templates in
+<span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">ng-click</span>=<span class="hljs-value">"next()"</span>&gt;</span>Next<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span></pre><h2 id="example-templates"><a href="#example-templates">Example templates</a></h2><p>See more examples and starter templates in
 <a href="docs/examples">docs/examples</a></p>
 <hr>
 <h2 id="api"><a href="#api">API</a></h2><h3 id="code-track-code"><a href="#code-track-code"><code>track</code></a></h3><p>Object returned from the SoundCloud API</p>
@@ -570,7 +575,7 @@ If it&#39;s set to false, there is no way to play that sound with the API.</p>
     <footer class="py2 border-top">
       <div class="flex flex-baseline flex-wrap mb3 mxn1">
         <a href="//jxnblk.com/plangular" class="button ml1 mr1 button-small button-link">Plangular</a>
-        <div class="h6">v3.0.1</div>
+        <div class="h6">v3.1.0</div>
 
         <a href="https://github.com/jxnblk/plangular" class="button ml1 mr1 button-small button-link">Github</a>
         <a href="//npmjs.com/package/plangular-3" class="button ml1 mr1 button-small button-link">NPM</a>
@@ -595,7 +600,10 @@ If it&#39;s set to false, there is no way to play that sound with the API.</p>
   </div>
 
 <script>
-  var app = angular.module('app', ['plangular']);
+  var app = angular.module('app', ['plangular'])
+    .config(function(plangularConfigProvider){
+      plangularConfigProvider.clientId = 'aeb5b3f63ac0518f8362010439a77ca1';
+    });
 </script>
 
 </body>

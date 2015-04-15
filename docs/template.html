@@ -127,7 +127,10 @@
   </div>
 
 <script>
-  var app = angular.module('app', ['plangular']);
+  var app = angular.module('app', ['plangular'])
+    .config(function(plangularConfigProvider){
+      plangularConfigProvider.clientId = 'aeb5b3f63ac0518f8362010439a77ca1';
+    });
 </script>
 
 </body>
