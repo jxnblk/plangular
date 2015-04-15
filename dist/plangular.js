@@ -406,11 +406,6 @@ module.exports = function(params) {
 }).call(this);
 
 },{}],8:[function(require,module,exports){
-module.exports={
-  "client_id": "0d33361983f16d2527b01fbf6408b7d7"
-}
-
-},{}],9:[function(require,module,exports){
 
 // Plangular
 // AngularJS Version
@@ -443,6 +438,22 @@ plangular.directive('plangular', ['$timeout', 'plangularConfig', function($timeo
       scope.index = 0;
       scope.playlist;
       scope.tracks = [];
+
+      if (!client_id) {
+        var message = [
+          'You must provide a client_id for Plangular',
+          '',
+          'Example:',
+          "var app = angular.module('app', ['plangular'])",
+          "  .config(function(plangularConfigProvider){",
+          "    plangularConfigProvider.clientId = '[CLIENT_ID]';",
+          "  });",
+          '',
+          'Register for app at https://developers.soundcloud.com/',
+        ].join('\n');
+        console.error(message);
+        return false;
+      }
 
       function createSrc(track) {
         if (track.stream_url) {
@@ -540,11 +551,10 @@ plangular.filter('hhmmss', function() {
 });
 
 plangular.provider('plangularConfig', function() {
-  this.clientId = require('./config.json').client_id;
-  var _this = this;
+  var self = this;
   this.$get = function() {
     return {
-      clientId: _this.clientId
+      clientId: self.clientId
     };
   };
 });
@@ -553,5 +563,5 @@ plangular.provider('plangularConfig', function() {
 module.exports = 'plangular';
 
 
-},{"./config.json":8,"audio-player":1,"hhmmss":4,"soundcloud-resolve-jsonp":6}]},{},[9])(9)
+},{"audio-player":1,"hhmmss":4,"soundcloud-resolve-jsonp":6}]},{},[8])(8)
 });

@@ -31,6 +31,22 @@ plangular.directive('plangular', ['$timeout', 'plangularConfig', function($timeo
       scope.playlist;
       scope.tracks = [];
 
+      if (!client_id) {
+        var message = [
+          'You must provide a client_id for Plangular',
+          '',
+          'Example:',
+          "var app = angular.module('app', ['plangular'])",
+          "  .config(function(plangularConfigProvider){",
+          "    plangularConfigProvider.clientId = '[CLIENT_ID]';",
+          "  });",
+          '',
+          'Register for app at https://developers.soundcloud.com/',
+        ].join('\n');
+        console.error(message);
+        return false;
+      }
+
       function createSrc(track) {
         if (track.stream_url) {
           track.src = track.stream_url + '?client_id=' + client_id;
@@ -127,11 +143,10 @@ plangular.filter('hhmmss', function() {
 });
 
 plangular.provider('plangularConfig', function() {
-  this.clientId = require('./config.json').client_id;
-  var _this = this;
+  var self = this;
   this.$get = function() {
     return {
-      clientId: _this.clientId
+      clientId: self.clientId
     };
   };
 });

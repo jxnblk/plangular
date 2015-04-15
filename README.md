@@ -35,15 +35,19 @@ Include a link to plangular after including Angular.
 
 ## Initialize the app
 
+Configure Plangular with your own `client_id`.
+For new SoundCloud apps, you can register at https://developers.soundcloud.com/
+
 ```html
-<body ng-app="plangular">
+<body ng-app="app">
+
+  <script>
+    var app = angular.module('app', ['plangular'])
+      .config(function(plangularConfigProvider){
+        plangularConfigProvider.clientId = '[YOUR-CLIENT-ID]';
+      });
+  </script>
 </body>
-```
-
-Or include plangular as a dependency in another app:
-
-```js
-var app = angular.module('app', ['plangular']);
 ```
 
 ## Create a plangular directive instance
@@ -162,15 +166,6 @@ To skip to the next and previous track in a playlist or array of tracks, use the
 <button ng-click="next()">Next</button>
 ```
 
-## Configuration
-
-Plangular works out of the box, but if you want to configure it to use your own Soundcloud client ID, you can modify `plangularConfigProvider` in a config block:
-
-```js
-.config(function(plangularConfigProvider){
-  plangularConfigProvider.clientId = '[YOUR-CLIENT-ID]';
-})
-```
 
 ## Example templates
 See more examples and starter templates in
