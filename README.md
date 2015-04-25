@@ -21,7 +21,7 @@ bower install plangular
 Or use the CDN:
 
 ```html
-<script src="http://d2v52k3cl9vedd.cloudfront.net/plangular/3.0.1/plangular.min.js"></script>
+<script src="http://d2v52k3cl9vedd.cloudfront.net/plangular/3.1.0/plangular.min.js"></script>
 ```
 
 ## Angular app
