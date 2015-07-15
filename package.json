@@ -1,6 +1,6 @@
 {
   "name": "plangular-3",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "description": "Angular directive for custom SoundCloud players",
   "main": "index.js",
   "scripts": {
