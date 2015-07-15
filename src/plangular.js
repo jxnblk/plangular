@@ -49,7 +49,8 @@ plangular.directive('plangular', ['$timeout', 'plangularConfig', function($timeo
 
       function createSrc(track) {
         if (track.stream_url) {
-          track.src = track.stream_url + '?client_id=' + client_id;
+          var sep = track.stream_url.indexOf('?') === -1 ? '?' : '&'
+          track.src = track.stream_url + sep + 'client_id=' + client_id;
         }
         return track;
       }
@@ -153,4 +154,3 @@ plangular.provider('plangularConfig', function() {
 
 
 module.exports = 'plangular';
-
