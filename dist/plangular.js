@@ -57,101 +57,6 @@ module.exports = audio;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{}],3:[function(require,module,exports){
-function corslite(url, callback, cors) {
-    var sent = false;
-
-    if (typeof window.XMLHttpRequest === 'undefined') {
-        return callback(Error('Browser not supported'));
-    }
-
-    if (typeof cors === 'undefined') {
-        var m = url.match(/^\s*https?:\/\/[^\/]*/);
-        cors = m && (m[0] !== location.protocol + '//' + location.domain +
-                (location.port ? ':' + location.port : ''));
-    }
-
-    var x = new window.XMLHttpRequest();
-
-    function isSuccessful(status) {
-        return status >= 200 && status < 300 || status === 304;
-    }
-
-    if (cors && !('withCredentials' in x)) {
-        // IE8-9
-        x = new window.XDomainRequest();
-
-        // Ensure callback is never called synchronously, i.e., before
-        // x.send() returns (this has been observed in the wild).
-        // See https://github.com/mapbox/mapbox.js/issues/472
-        var original = callback;
-        callback = function() {
-            if (sent) {
-                original.apply(this, arguments);
-            } else {
-                var that = this, args = arguments;
-                setTimeout(function() {
-                    original.apply(that, args);
-                }, 0);
-            }
-        }
-    }
-
-    function loaded() {
-        if (
-            // XDomainRequest
-            x.status === undefined ||
-            // modern browsers
-            isSuccessful(x.status)) callback.call(x, null, x);
-        else callback.call(x, x, null);
-    }
-
-    // Both `onreadystatechange` and `onload` can fire. `onreadystatechange`
-    // has [been supported for longer](http://stackoverflow.com/a/9181508/229001).
-    if ('onload' in x) {
-        x.onload = loaded;
-    } else {
-        x.onreadystatechange = function readystate() {
-            if (x.readyState === 4) {
-                loaded();
-            }
-        };
-    }
-
-    // Call the callback with the XMLHttpRequest object as an error and prevent
-    // it from ever being called again by reassigning it to `noop`
-    x.onerror = function error(evt) {
-        // XDomainRequest provides no evt parameter
-        callback.call(this, evt || true, null);
-        callback = function() { };
-    };
-
-    // IE9 must have onprogress be set to a unique function.
-    x.onprogress = function() { };
-
-    x.ontimeout = function(evt) {
-        callback.call(this, evt, null);
-        callback = function() { };
-    };
-
-    x.onabort = function(evt) {
-        callback.call(this, evt, null);
-        callback = function() { };
-    };
-
-    // GET is the only supported HTTP Verb by XDomainRequest and is the
-    // only one supported here.
-    x.open('GET', url, true);
-
-    // Send the request. Sending data is not supported.
-    x.send(null);
-    sent = true;
-
-    return x;
-}
-
-if (typeof module !== 'undefined') module.exports = corslite;
-
-},{}],4:[function(require,module,exports){
 
 module.exports = function(n, options) {
 
@@ -177,83 +82,14 @@ module.exports = function(n, options) {
 };
 
 
-},{}],5:[function(require,module,exports){
-/*!
-	query-string
-	Parse and stringify URL query strings
-	https://github.com/sindresorhus/query-string
-	by Sindre Sorhus
-	MIT License
-*/
-(function () {
-	'use strict';
-	var queryString = {};
-
-	queryString.parse = function (str) {
-		if (typeof str !== 'string') {
-			return {};
-		}
-
-		str = str.trim().replace(/^(\?|#)/, '');
-
-		if (!str) {
-			return {};
-		}
-
-		return str.trim().split('&').reduce(function (ret, param) {
-			var parts = param.replace(/\+/g, ' ').split('=');
-			var key = parts[0];
-			var val = parts[1];
-
-			key = decodeURIComponent(key);
-			// missing `=` should be `null`:
-			// http://w3.org/TR/2012/WD-url-20120524/#collect-url-parameters
-			val = val === undefined ? null : decodeURIComponent(val);
-
-			if (!ret.hasOwnProperty(key)) {
-				ret[key] = val;
-			} else if (Array.isArray(ret[key])) {
-				ret[key].push(val);
-			} else {
-				ret[key] = [ret[key], val];
-			}
-
-			return ret;
-		}, {});
-	};
-
-	queryString.stringify = function (obj) {
-		return obj ? Object.keys(obj).map(function (key) {
-			var val = obj[key];
-
-			if (Array.isArray(val)) {
-				return val.map(function (val2) {
-					return encodeURIComponent(key) + '=' + encodeURIComponent(val2);
-				}).join('&');
-			}
-
-			return encodeURIComponent(key) + '=' + encodeURIComponent(val);
-		}).join('&') : '';
-	};
-
-	if (typeof define === 'function' && define.amd) {
-		define(function() { return queryString; });
-	} else if (typeof module !== 'undefined' && module.exports) {
-		module.exports = queryString;
-	} else {
-		window.queryString = queryString;
-	}
-})();
-
-},{}],6:[function(require,module,exports){
+},{}],4:[function(require,module,exports){
 
 var qs = require('query-string');
 var corslite = require('corslite');
 var jsonp = require('browser-jsonp');
 
 
-//var endpoint = 'https://api.soundcloud.com/resolve.json';
-var endpoint = '//api.soundcloud.com/resolve.json';
+var endpoint = 'https://api.soundcloud.com/resolve.json';
 
 module.exports = function(params) {
 
@@ -294,7 +130,7 @@ module.exports = function(params) {
 };
 
 
-},{"browser-jsonp":7,"corslite":3,"query-string":5}],7:[function(require,module,exports){
+},{"browser-jsonp":5,"corslite":6,"query-string":7}],5:[function(require,module,exports){
 (function() {
   var JSONP, computedUrl, createElement, encode, noop, objectToURI, random, randomString;
 
@@ -405,6 +241,169 @@ module.exports = function(params) {
 
 }).call(this);
 
+},{}],6:[function(require,module,exports){
+function corslite(url, callback, cors) {
+    var sent = false;
+
+    if (typeof window.XMLHttpRequest === 'undefined') {
+        return callback(Error('Browser not supported'));
+    }
+
+    if (typeof cors === 'undefined') {
+        var m = url.match(/^\s*https?:\/\/[^\/]*/);
+        cors = m && (m[0] !== location.protocol + '//' + location.domain +
+                (location.port ? ':' + location.port : ''));
+    }
+
+    var x = new window.XMLHttpRequest();
+
+    function isSuccessful(status) {
+        return status >= 200 && status < 300 || status === 304;
+    }
+
+    if (cors && !('withCredentials' in x)) {
+        // IE8-9
+        x = new window.XDomainRequest();
+
+        // Ensure callback is never called synchronously, i.e., before
+        // x.send() returns (this has been observed in the wild).
+        // See https://github.com/mapbox/mapbox.js/issues/472
+        var original = callback;
+        callback = function() {
+            if (sent) {
+                original.apply(this, arguments);
+            } else {
+                var that = this, args = arguments;
+                setTimeout(function() {
+                    original.apply(that, args);
+                }, 0);
+            }
+        }
+    }
+
+    function loaded() {
+        if (
+            // XDomainRequest
+            x.status === undefined ||
+            // modern browsers
+            isSuccessful(x.status)) callback.call(x, null, x);
+        else callback.call(x, x, null);
+    }
+
+    // Both `onreadystatechange` and `onload` can fire. `onreadystatechange`
+    // has [been supported for longer](http://stackoverflow.com/a/9181508/229001).
+    if ('onload' in x) {
+        x.onload = loaded;
+    } else {
+        x.onreadystatechange = function readystate() {
+            if (x.readyState === 4) {
+                loaded();
+            }
+        };
+    }
+
+    // Call the callback with the XMLHttpRequest object as an error and prevent
+    // it from ever being called again by reassigning it to `noop`
+    x.onerror = function error(evt) {
+        // XDomainRequest provides no evt parameter
+        callback.call(this, evt || true, null);
+        callback = function() { };
+    };
+
+    // IE9 must have onprogress be set to a unique function.
+    x.onprogress = function() { };
+
+    x.ontimeout = function(evt) {
+        callback.call(this, evt, null);
+        callback = function() { };
+    };
+
+    x.onabort = function(evt) {
+        callback.call(this, evt, null);
+        callback = function() { };
+    };
+
+    // GET is the only supported HTTP Verb by XDomainRequest and is the
+    // only one supported here.
+    x.open('GET', url, true);
+
+    // Send the request. Sending data is not supported.
+    x.send(null);
+    sent = true;
+
+    return x;
+}
+
+if (typeof module !== 'undefined') module.exports = corslite;
+
+},{}],7:[function(require,module,exports){
+/*!
+	query-string
+	Parse and stringify URL query strings
+	https://github.com/sindresorhus/query-string
+	by Sindre Sorhus
+	MIT License
+*/
+(function () {
+	'use strict';
+	var queryString = {};
+
+	queryString.parse = function (str) {
+		if (typeof str !== 'string') {
+			return {};
+		}
+
+		str = str.trim().replace(/^(\?|#)/, '');
+
+		if (!str) {
+			return {};
+		}
+
+		return str.trim().split('&').reduce(function (ret, param) {
+			var parts = param.replace(/\+/g, ' ').split('=');
+			var key = parts[0];
+			var val = parts[1];
+
+			key = decodeURIComponent(key);
+			// missing `=` should be `null`:
+			// http://w3.org/TR/2012/WD-url-20120524/#collect-url-parameters
+			val = val === undefined ? null : decodeURIComponent(val);
+
+			if (!ret.hasOwnProperty(key)) {
+				ret[key] = val;
+			} else if (Array.isArray(ret[key])) {
+				ret[key].push(val);
+			} else {
+				ret[key] = [ret[key], val];
+			}
+
+			return ret;
+		}, {});
+	};
+
+	queryString.stringify = function (obj) {
+		return obj ? Object.keys(obj).map(function (key) {
+			var val = obj[key];
+
+			if (Array.isArray(val)) {
+				return val.map(function (val2) {
+					return encodeURIComponent(key) + '=' + encodeURIComponent(val2);
+				}).join('&');
+			}
+
+			return encodeURIComponent(key) + '=' + encodeURIComponent(val);
+		}).join('&') : '';
+	};
+
+	if (typeof define === 'function' && define.amd) {
+		define(function() { return queryString; });
+	} else if (typeof module !== 'undefined' && module.exports) {
+		module.exports = queryString;
+	} else {
+		window.queryString = queryString;
+	}
+})();
+
 },{}],8:[function(require,module,exports){
 
 // Plangular
@@ -457,7 +456,8 @@ plangular.directive('plangular', ['$timeout', 'plangularConfig', function($timeo
 
       function createSrc(track) {
         if (track.stream_url) {
-          track.src = track.stream_url + '?client_id=' + client_id;
+          var sep = track.stream_url.indexOf('?') === -1 ? '?' : '&'
+          track.src = track.stream_url + sep + 'client_id=' + client_id;
         }
         return track;
       }
@@ -562,6 +562,5 @@ plangular.provider('plangularConfig', function() {
 
 module.exports = 'plangular';
 
-
-},{"audio-player":1,"hhmmss":4,"soundcloud-resolve-jsonp":6}]},{},[8])(8)
+},{"audio-player":1,"hhmmss":3,"soundcloud-resolve-jsonp":4}]},{},[8])(8)
 });

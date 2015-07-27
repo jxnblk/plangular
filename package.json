@@ -7,7 +7,7 @@
     "test": "mocha test",
     "browserify": "browserify src/plangular.js --standalone=plangular -o dist/plangular.js",
     "uglify": "npm run browserify && uglifyjs dist/plangular.js -o dist/plangular.min.js",
-    "s3": "s3-cli put dist/plangular.min.js s3://jxnblk/plangular/3.1.0/plangular.min.js -P",
+    "s3": "s3-cli put dist/plangular.min.js s3://jxnblk/plangular/3.1.1/plangular.min.js -P",
     "release": "npm run uglify && npm run s3",
     "bump": "node scripts/bump",
     "docs": "node docs/build",
