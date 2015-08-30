@@ -1,3 +1,8 @@
+
+:warning: **This repo is no longer being maintained**
+
+For creating custom SoundCloud players, I highly recommend [react-soundplayer](https://github.com/soundblogs/react-soundplayer) or for a more general solution, see [plyr](https://github.com/Selz/plyr).
+
 <div class="display-none">
   <h1>Plangular</h1>
   <p>
@@ -175,7 +180,7 @@ See more examples and starter templates in
 
 ## API
 
-### `track` 
+### `track`
 Object returned from the SoundCloud API
 
 ### `tracks`
